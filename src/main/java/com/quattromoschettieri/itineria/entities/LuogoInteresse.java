@@ -1,5 +1,8 @@
 package com.quattromoschettieri.itineria.entities;
 
+import com.quattromoschettieri.itineria.entities.enums.Accessibilita;
+import com.quattromoschettieri.itineria.entities.enums.Tipo;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

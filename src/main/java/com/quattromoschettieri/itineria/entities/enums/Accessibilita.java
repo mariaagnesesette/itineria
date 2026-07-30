@@ -1,6 +1,6 @@
-package com.quattromoschettieri.itineria.entities;
+package com.quattromoschettieri.itineria.entities.enums;
 
-public enum Accessibilità {
+public enum Accessibilita {
     COMPLETA,
     PARZIALE,
     LIMITATA,
