@@ -1,5 +1,5 @@
 package com.quattromoschettieri.itineria.entities;
 
-public enum Accessibilità {
+public enum Accessibilita {
 
 }
