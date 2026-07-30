@@ -12,17 +12,18 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name="luoghi_interesse")
 @Inheritance(strategy = InheritanceType.JOINED)
+@SuperBuilder
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public abstract class LuogoInteresse extends GenericEntity{
 
@@ -34,7 +35,7 @@ public abstract class LuogoInteresse extends GenericEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
-    private Tipo tipo;
+    private Tipo tipoLuogo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "accessibilita")
