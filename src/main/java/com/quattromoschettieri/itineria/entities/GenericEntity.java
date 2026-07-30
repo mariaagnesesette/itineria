@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Entity {
+public abstract class GenericEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +47,7 @@ public abstract class Entity {
             return true;
         if (obj == null || Hibernate.getClass(this) !=  Hibernate.getClass(obj))
             return false;
-        Entity other = (Entity) obj;
+        GenericEntity other = (GenericEntity) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
