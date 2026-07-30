@@ -1,5 +1,5 @@
 package com.quattromoschettieri.itineria.entities;
 
-public enum Accessibilita {
+public class Citta {
 
 }
