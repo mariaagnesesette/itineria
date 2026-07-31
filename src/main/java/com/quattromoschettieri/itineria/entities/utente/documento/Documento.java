@@ -41,7 +41,7 @@ public class Documento extends GenericEntity{
     @Column(name = "file_key", length = 255, nullable = false)
     private String fileKey;
 
-    @Column(name = "codice_identificativo", length = 20, nullable = false)
+    @Column(name = "codice_identificativo", length = 20, nullable = false, unique = true)
     private String codiceIdentificativo;
 
     @Builder.Default
@@ -53,6 +53,7 @@ public class Documento extends GenericEntity{
     @JoinColumn(name = "id_utente", 
                 referencedColumnName = "id",
                 nullable = false)
+    @EqualsAndHashCode.Exclude
     private Utente utente;
 
 
