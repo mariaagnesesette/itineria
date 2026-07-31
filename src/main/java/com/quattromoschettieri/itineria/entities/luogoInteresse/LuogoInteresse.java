@@ -1,7 +1,7 @@
-package com.quattromoschettieri.itineria.entities;
+package com.quattromoschettieri.itineria.entities.luogoInteresse;
 
-import com.quattromoschettieri.itineria.entities.enums.Accessibilita;
-import com.quattromoschettieri.itineria.entities.enums.Tipo;
+import com.quattromoschettieri.itineria.entities.Citta;
+import com.quattromoschettieri.itineria.entities.GenericEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +12,6 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

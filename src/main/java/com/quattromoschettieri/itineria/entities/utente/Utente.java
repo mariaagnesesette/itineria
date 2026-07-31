@@ -1,9 +1,10 @@
-package com.quattromoschettieri.itineria.entities;
+package com.quattromoschettieri.itineria.entities.utente;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import com.quattromoschettieri.itineria.entities.enums.Ruolo;
+import com.quattromoschettieri.itineria.entities.GenericEntity;
+import com.quattromoschettieri.itineria.entities.utente.documento.Documento;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

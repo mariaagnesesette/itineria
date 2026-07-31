@@ -1,9 +1,9 @@
-package com.quattromoschettieri.itineria.entities;
+package com.quattromoschettieri.itineria.entities.museo;
 
-import com.quattromoschettieri.itineria.entities.enums.TipologiaMuseo;
-
-import com.quattromoschettieri.itineria.entities.enums.Accessibilita;
-import com.quattromoschettieri.itineria.entities.enums.Tipo;
+import com.quattromoschettieri.itineria.entities.Citta;
+import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
+import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
+import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

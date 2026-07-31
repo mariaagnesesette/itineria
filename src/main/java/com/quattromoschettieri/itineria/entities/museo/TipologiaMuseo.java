@@ -1,4 +1,5 @@
-package com.quattromoschettieri.itineria.entities.enums;
+
+package com.quattromoschettieri.itineria.entities.museo;
 
 public enum TipologiaMuseo {
 

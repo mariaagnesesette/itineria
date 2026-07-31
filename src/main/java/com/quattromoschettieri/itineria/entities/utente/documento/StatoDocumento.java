@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.entities.enums;
+package com.quattromoschettieri.itineria.entities.utente.documento;
 
 public enum StatoDocumento {
     IN_ATTESA,
