@@ -1,20 +1,28 @@
 package com.quattromoschettieri.itineria.entities.luogoInteresse;
 
-import com.quattromoschettieri.itineria.entities.Citta;
-import com.quattromoschettieri.itineria.entities.GenericEntity;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.quattromoschettieri.itineria.entities.GenericEntity;
+import com.quattromoschettieri.itineria.entities.citta.Citta;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -24,6 +32,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, exclude = "orariApertura")
 public abstract class LuogoInteresse extends GenericEntity{
 
     @Column(name = "nome")
@@ -59,6 +68,11 @@ public abstract class LuogoInteresse extends GenericEntity{
     @JoinColumn(name = "id_citta",
                 referencedColumnName = "id")
     private Citta citta;
+
+    @OneToMany(mappedBy = "LuogoInteresse", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true )
+    @Builder.Default
+    @EqualsAndHashCode.Exclude
+    private List<OrarioApertura> orariApertura = new ArrayList<>();
 
 
 }

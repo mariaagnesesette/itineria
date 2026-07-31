@@ -29,8 +29,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class PrezziMuseo {
+public class PrezzoMuseo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,12 +41,14 @@ public class PrezziMuseo {
     @JoinColumn(name = "id_museo",
                 referencedColumnName = "id",
                 nullable = false)
+    @EqualsAndHashCode.Exclude
     private Museo museo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_fascia_prezzo",
                 referencedColumnName = "id",
                 nullable = false)
+    @EqualsAndHashCode.Exclude
     private FasciaPrezzo fasciaPrezzo;
 
     @Column(name = "prezzo", nullable = false, precision = 6, scale = 2)

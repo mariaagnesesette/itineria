@@ -46,7 +46,8 @@ public class Museo extends LuogoInteresse {
 
     @OneToMany(mappedBy = "museo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private List<PrezziMuseo> prezzi = new ArrayList<>();
+    @EqualsAndHashCode.Exclude
+    private List<PrezzoMuseo> prezzi = new ArrayList<>();
 
     public static MuseoBuilder<?, ?> builder() {
         return new MuseoBuilderImpl().tipoLuogo(Tipo.MUSEO);
