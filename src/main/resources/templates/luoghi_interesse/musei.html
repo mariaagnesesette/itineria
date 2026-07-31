@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musei di Torino — Itineraria</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS del progetto -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="style.css">
+</head>
+<body>
+
+<!-- ==========================================================================
+     HEADER / NAVBAR (identico a index.html — da centralizzare in un fragment
+     Thymeleaf th:fragment="header" quando il progetto sarà collegato al backend)
+     ========================================================================== -->
+<header class="site-header site-header--solid">
+  <div class="container site-header__inner">
+
+    <nav class="main-nav">
+      <a th:href="@{/}" href="index.html" class="main-nav__link">Home</a>
+
+      <div class="main-nav__item">
+        <a th:href="@{/luoghi}" href="#" class="main-nav__link main-nav__link--dropdown">
+          Luoghi d'interesse <i class="fa-solid fa-chevron-down"></i>
+        </a>
+
+        <!-- Mega Dropdown -->
+        <div class="mega-dropdown">
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-book"></i> Biblioteche</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/biblioteche/comunali}" href="#">Biblioteche comunali</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/sale-studio}" href="#">Sale studio</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/aule-studio}" href="#">Aule studio</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/coworking}" href="#">Spazi coworking</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-mug-hot"></i> Bar e Caffetterie</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/bar}" href="#">Bar</a></li>
+              <li><a th:href="@{/luoghi/caffetterie}" href="#">Caffetterie</a></li>
+              <li><a th:href="@{/luoghi/pasticcerie}" href="#">Pasticcerie</a></li>
+              <li><a th:href="@{/luoghi/gelaterie}" href="#">Gelaterie</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-utensils"></i> Ristoranti</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/ristoranti/tipici}" href="#">Ristoranti tipici</a></li>
+              <li><a th:href="@{/luoghi/ristoranti/pizzerie}" href="#">Pizzerie</a></li>
+              <li><a th:href="@{/luoghi/ristoranti/internazionali}" href="#">Cucine internazionali</a></li>
+              <li><a th:href="@{/luoghi/ristoranti/vegetariani}" href="#">Vegetariani e Vegani</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/parchi/cittadini}" href="#">Parchi cittadini</a></li>
+              <li><a th:href="@{/luoghi/parchi/giardini}" href="#">Giardini</a></li>
+              <li><a th:href="@{/luoghi/parchi/aree-picnic}" href="#">Aree picnic</a></li>
+              <li><a th:href="@{/luoghi/parchi/oasi-naturali}" href="#">Oasi naturali</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-landmark"></i> Musei</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/musei#storia-memoria-e-sport}" href="#storia-memoria-e-sport">Musei storici</a></li>
+              <li><a th:href="@{/musei#arte-fotografia-e-fondazioni-contemporanee}" href="#arte-fotografia-e-fondazioni-contemporanee">Musei d'arte</a></li>
+              <li><a th:href="@{/musei#scienza-medicina-e-natura}" href="#scienza-medicina-e-natura">Musei scientifici</a></li>
+              <li><a th:href="@{/musei#tecnica-industria-e-collezioni-tematiche}" href="#tecnica-industria-e-collezioni-tematiche">Musei interattivi</a></li>
+              <li><a th:href="@{/musei}" href="musei.html" style="font-weight:700; color: var(--color-accent);">Vedi tutti i musei →</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <a th:href="@{/eventi}" href="#" class="main-nav__link">Eventi</a>
+      <a th:href="@{/contatti}" href="#" class="main-nav__link">Contatti</a>
+    </nav>
+
+    <a th:href="@{/login}" href="#" class="btn-login">
+      <i class="fa-solid fa-user"></i> Accedi
+    </a>
+
+  </div>
+</header>
+
+<!-- ==========================================================================
+     PAGE INTRO — Breadcrumb + titolo + ricerca musei
+     ========================================================================== -->
+<section class="page-intro">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a th:href="@{/}" href="index.html">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Musei</span>
+    </nav>
+
+    <h1 class="page-intro__title"><i class="fa-solid fa-landmark"></i> Musei di Torino</h1>
+    <p class="page-intro__desc">
+      Da Museo Egizio alle Residenze Reali UNESCO: <span th:text="${#lists.size(musei)} + ' musei'">37 musei</span>
+      e collezioni da scoprire in città, organizzati per categoria.
+    </p>
+
+    <div class="museum-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="museumSearchInput" placeholder="Cerca un museo per nome...">
+    </div>
+
+    <div class="filter-chips" id="filterChips">
+      <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
+      <button type="button" class="filter-chip" data-filter="grandi-musei-principali">Grandi Musei</button>
+      <button type="button" class="filter-chip" data-filter="arte-fotografia-e-fondazioni-contemporanee">Arte e Fotografia</button>
+      <button type="button" class="filter-chip" data-filter="scienza-medicina-e-natura">Scienza e Natura</button>
+      <button type="button" class="filter-chip" data-filter="storia-memoria-e-sport">Storia e Sport</button>
+      <button type="button" class="filter-chip" data-filter="tecnica-industria-e-collezioni-tematiche">Tecnica e Industria</button>
+      <button type="button" class="filter-chip" data-filter="religione-e-arte-sacra">Arte Sacra</button>
+      <button type="button" class="filter-chip" data-filter="residenze-reali-e-dintorni">Residenze Reali</button>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     CICLO DINAMICO — struttura dati di riferimento per il backend
+     ${categorieMusei} = lista di categorie, ognuna con .id, .nome e .musei
+     ${musei} = lista piatta di tutti i musei, usata solo per il conteggio sopra
+     Disattivato con th:if="${false}": rimuovere quando il Controller passa i dati.
+     ========================================================================== -->
+<section class="section" th:if="${false}">
+  <div class="container">
+    <div th:each="categoria : ${categorieMusei}" class="museum-category" th:id="${categoria.id}">
+      <h2 class="section__title">
+        <i th:class="'fa-solid ' + ${categoria.icona}"></i>
+        <span th:text="${categoria.nome}">Nome categoria</span>
+      </h2>
+      <div class="museum-grid">
+        <a th:each="museo : ${categoria.musei}"
+           th:href="@{'/musei/' + ${museo.slug}}"
+           th:classappend="${museo.preferito} ? ' museum-card--featured' : ''"
+           class="museum-card" href="#">
+          <span class="museum-card__icon"><i th:class="'fa-solid ' + ${museo.icona}"></i></span>
+          <span class="museum-card__body">
+            <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
+            <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
+          </span>
+          <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     CONTENUTO STATICO DI ESEMPIO — visibile finché il backend non collega
+     ${categorieMusei}. Struttura e testi pronti per essere copiati 1:1
+     nel Controller/DB (nome, slug, icona, descrizione, categoria).
+     ========================================================================== -->
+
+<!-- 1. GRANDI MUSEI PRINCIPALI -->
+<section class="section museum-category" id="grandi-musei-principali">
+  <div class="container">
+    <h2 class="section__title"><i class="fa-solid fa-star"></i> I Grandi Musei Principali</h2>
+    <div class="museum-grid">
+
+      <a th:href="@{/musei/museo-egizio}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-monument"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Egizio</span>
+          <span class="museum-card__desc">La più importante collezione di arte e cultura egizia al mondo dopo quella del Cairo.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-nazionale-del-cinema}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-clapperboard"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Nazionale del Cinema</span>
+          <span class="museum-card__desc">Ospitato nella Mole Antonelliana, racconta la storia del cinema con un percorso tra i più originali al mondo.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/musei-reali}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-crown"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Musei Reali</span>
+          <span class="museum-card__desc">Palazzo Reale, Galleria Sabauda, Armeria Reale e Museo d'Antichità in un unico grande complesso.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/gam-galleria-arte-moderna}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-palette"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">GAM — Galleria Civica d'Arte Moderna e Contemporanea</span>
+          <span class="museum-card__desc">Arte moderna e contemporanea dall'Ottocento a oggi, tra le collezioni pubbliche più ricche d'Italia.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/mao-museo-arte-orientale}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-brush"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">MAO — Museo d'Arte Orientale</span>
+          <span class="museum-card__desc">Capolavori d'arte asiatica tra Cina, Giappone, India, Sud-Est asiatico e area himalayana.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/mauto-museo-automobile}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-car"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">MAUTO — Museo Nazionale dell'Automobile</span>
+          <span class="museum-card__desc">Oltre 80 vetture storiche in un museo interamente dedicato alla storia dell'automobile.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/palazzo-madama}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-chess-rook"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Palazzo Madama — Museo Civico d'Arte Antica</span>
+          <span class="museum-card__desc">Duemila anni di storia torinese in un palazzo che è esso stesso un monumento.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 2. ARTE, FOTOGRAFIA E FONDAZIONI CONTEMPORANEE -->
+<section class="section museum-category" id="arte-fotografia-e-fondazioni-contemporanee">
+  <div class="container">
+    <h2 class="section__title"><i class="fa-solid fa-shapes"></i> Arte, Fotografia e Fondazioni Contemporanee</h2>
+    <div class="museum-grid">
+
+      <a th:href="@{/musei/castello-di-rivoli}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-shapes"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Castello di Rivoli Museo d'Arte Contemporanea</span>
+          <span class="museum-card__desc">Arte contemporanea internazionale in un'ex residenza sabauda alle porte di Torino.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/pinacoteca-agnelli}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-image"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Pinacoteca Agnelli (e Pista 500)</span>
+          <span class="museum-card__desc">Capolavori del '900 nel Lingotto, con la storica pista di collaudo sul tetto.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/fondazione-sandretto-re-rebaudengo}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-paintbrush"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Fondazione Sandretto Re Rebaudengo</span>
+          <span class="museum-card__desc">Mostre temporanee di arte contemporanea tra i più giovani talenti internazionali.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/camera-centro-fotografia}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-camera-retro"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">CAMERA — Centro Italiano per la Fotografia</span>
+          <span class="museum-card__desc">Un centro interamente dedicato alla fotografia, tra mostre e progetti educativi.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-accorsi-ometto}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-chair"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo di Arti Decorative Accorsi-Ometto</span>
+          <span class="museum-card__desc">Arti decorative e arredi d'epoca in un elegante palazzo del centro storico.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/mef-museo-ettore-fico}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-paint-roller"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">MEF — Museo Ettore Fico</span>
+          <span class="museum-card__desc">Spazio indipendente dedicato all'arte contemporanea emergente.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/fondazione-merz}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-cube"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Fondazione Merz</span>
+          <span class="museum-card__desc">L'ex stabilimento industriale che custodisce l'opera di Mario Merz e artisti contemporanei.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/mau-museo-arte-urbana}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-spray-can"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">MAU — Museo d'Arte Urbana</span>
+          <span class="museum-card__desc">Un museo a cielo aperto tra murales e opere d'arte urbana nei quartieri Campidoglio e Borgo Vanchiglia.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/pav-parco-arte-vivente}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-seedling"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">PAV — Parco Arte Vivente</span>
+          <span class="museum-card__desc">Un parco che unisce arte contemporanea e natura in un percorso immersivo.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 3. SCIENZA, MEDICINA E NATURA -->
+<section class="section museum-category" id="scienza-medicina-e-natura">
+  <div class="container">
+    <h2 class="section__title"><i class="fa-solid fa-flask"></i> Scienza, Medicina e Natura</h2>
+    <div class="museum-grid">
+
+      <a th:href="@{/musei/museo-anatomia-umana-rolando}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-bone"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo di Anatomia Umana "Luigi Rolando"</span>
+          <span class="museum-card__desc">Una delle più antiche collezioni anatomiche d'Europa, fondata nell'Ottocento.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-antropologia-criminale-lombroso}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo di Antropologia Criminale "Cesare Lombroso"</span>
+          <span class="museum-card__desc">Le collezioni di Cesare Lombroso tra storia della medicina e criminologia.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-della-frutta}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-apple-whole"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo della Frutta "Francesco Garnier Valletti"</span>
+          <span class="museum-card__desc">Centinaia di modelli in cera di frutti e ortaggi, unici al mondo.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-regionale-scienze-naturali}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-paw"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Regionale di Scienze Naturali (MRSN)</span>
+          <span class="museum-card__desc">Biodiversità, geologia e paleontologia in uno dei musei naturalistici più importanti d'Italia.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/planetario-infinito}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-meteor"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Planetario e Museo dell'Astronomia (Infini.to)</span>
+          <span class="museum-card__desc">Un viaggio nello spazio tra planetario e mostre di astronomia, ai piedi del Colle della Maddalena.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4. STORIA, MEMORIA E SPORT -->
+<section class="section museum-category" id="storia-memoria-e-sport">
+  <div class="container">
+    <h2 class="section__title"><i class="fa-solid fa-shield-halved"></i> Storia, Memoria e Sport</h2>
+    <div class="museum-grid">
+
+      <a th:href="@{/musei/museo-risorgimento}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-flag"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Nazionale del Risorgimento Italiano</span>
+          <span class="museum-card__desc">La storia dell'unità d'Italia raccontata a Palazzo Carignano.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-pietro-micca}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-shield-halved"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Pietro Micca e dell'Assedio di Torino</span>
+          <span class="museum-card__desc">Le gallerie sotterranee scavate durante l'assedio di Torino del 1706.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-diffuso-della-resistenza}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-hand-fist"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Diffuso della Resistenza</span>
+          <span class="museum-card__desc">La memoria della Resistenza, della deportazione e dei diritti in un percorso multimediale.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-carcere-le-nuove}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-lock"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Carcere Le Nuove</span>
+          <span class="museum-card__desc">L'ex carcere ottocentesco diventato luogo di memoria civile.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/j-museum-juventus}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-futbol"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">J-Museum (Juventus Museum)</span>
+          <span class="museum-card__desc">Trofei, storia e cimeli della Juventus all'interno dell'Allianz Stadium.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-grande-torino}" href="#" class="museum-card museum-card--featured">
+        <span class="museum-card__badge">Preferito</span>
+        <span class="museum-card__icon"><i class="fa-solid fa-star"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo del Grande Torino e della Leggenda Granata</span>
+          <span class="museum-card__desc">Dedicato alla storica squadra scomparsa nella tragedia di Superga nel 1949.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5. TECNICA, INDUSTRIA E COLLEZIONI TEMATICHE -->
+<section class="section museum-category" id="tecnica-industria-e-collezioni-tematiche">
+  <div class="container">
+    <h2 class="section__title"><i class="fa-solid fa-gears"></i> Tecnica, Industria e Collezioni Tematiche</h2>
+    <div class="museum-grid">
+
+      <a th:href="@{/musei/museo-radio-televisione-rai}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-tower-broadcast"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo della Radio e della Televisione (RAI)</span>
+          <span class="museum-card__desc">La storia della comunicazione italiana negli spazi Rai di Torino.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/heritage-hub-stellantis}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-car-side"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Heritage Hub Stellantis</span>
+          <span class="museum-card__desc">L'archivio storico e le vetture d'epoca di Fiat, Lancia e Alfa Romeo.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/mufant}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-rocket"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">MUFANT — Museo del Fantastico e della Fantascienza</span>
+          <span class="museum-card__desc">Fantascienza, fantasy e fumetto in un museo unico nel suo genere.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-storico-reale-mutua}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Storico Reale Mutua</span>
+          <span class="museum-card__desc">La storia dell'assicurazione più antica d'Italia, attiva dal 1828.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 6. RELIGIONE E ARTE SACRA -->
+<section class="section museum-category" id="religione-e-arte-sacra">
+  <div class="container">
+    <h2 class="section__title"><i class="fa-solid fa-church"></i> Religione e Arte Sacra</h2>
+    <div class="museum-grid">
+
+      <a th:href="@{/musei/museo-della-sindone}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-cross"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo della Sindone</span>
+          <span class="museum-card__desc">La storia e i misteri della Sacra Sindone di Torino.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/museo-diocesano-di-torino}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-church"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Museo Diocesano di Torino</span>
+          <span class="museum-card__desc">Arte sacra e tesori della diocesi torinese.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 7. RESIDENZE REALI E DINTORNI -->
+<section class="section museum-category" id="residenze-reali-e-dintorni">
+  <div class="container">
+    <h2 class="section__title"><i class="fa-solid fa-chess-rook"></i> Residenze Reali e Dintorni</h2>
+    <div class="museum-grid">
+
+      <a th:href="@{/musei/reggia-di-venaria-reale}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-archway"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Reggia di Venaria Reale</span>
+          <span class="museum-card__desc">Una delle residenze sabaude più grandiose, patrimonio UNESCO.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/palazzina-di-caccia-di-stupinigi}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-horse"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Palazzina di Caccia di Stupinigi</span>
+          <span class="museum-card__desc">Capolavoro barocco di Juvarra, un tempo residenza di caccia dei Savoia.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/castello-di-moncalieri}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Castello di Moncalieri</span>
+          <span class="museum-card__desc">Residenza reale affacciata sul Po, oggi sede di eventi e visite guidate.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei/castello-ducale-di-aglie}" href="#" class="museum-card">
+        <span class="museum-card__icon"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="museum-card__body">
+          <span class="museum-card__title">Castello Ducale di Agliè</span>
+          <span class="museum-card__desc">Dimora sabauda nel Canavese, patrimonio UNESCO.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<p class="museum-empty-state" id="museumEmptyState" hidden>
+  <i class="fa-solid fa-magnifying-glass"></i> Nessun museo trovato. Prova con un altro nome.
+</p>
+
+<!-- ==========================================================================
+     FOOTER (identico a index.html)
+     ========================================================================== -->
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="footer-brand__logo"><i class="fa-solid fa-location-dot"></i> Itineraria</div>
+        <p class="footer-brand__desc">La tua guida digitale per scoprire Torino in modo autentico e sostenibile.</p>
+        <div class="footer-social">
+          <a th:href="@{https://instagram.com/itineraria}" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a th:href="@{https://facebook.com/itineraria}" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a th:href="@{https://pinterest.com/itineraria}" href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Contatti</div>
+        <ul class="footer-col__list">
+          <li class="footer-contact-item"><i class="fa-regular fa-envelope"></i> info@itineraria.it</li>
+          <li class="footer-contact-item"><i class="fa-solid fa-phone"></i> +39 011 123 4567</li>
+          <li class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Torino, Italia</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Esplora</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/luoghi}" href="#">Luoghi d'interesse</a></li>
+          <li><a th:href="@{/eventi}" href="#">Eventi</a></li>
+          <li><a th:href="@{/forum}" href="#">Forum (coming soon)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Info</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/chi-siamo}" href="#">Chi siamo</a></li>
+          <li><a th:href="@{/privacy}" href="#">Privacy Policy</a></li>
+          <li><a th:href="@{/termini}" href="#">Termini e condizioni</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Supporto</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/faq}" href="#">FAQ</a></li>
+          <li><a th:href="@{/contatti}" href="#">Contattaci</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span th:text="'© ' + ${#dates.year(#dates.createNow())} + ' Itineraria.'">© 2025 Itineraria.</span>
+      <span>Tutti i diritti riservati.</span>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ==========================================================================
+     JAVASCRIPT — filtri per categoria + ricerca live
+     Nota per il backend: spostare in /js/musei.js e includere con
+     <script th:src="@{/js/musei.js}" defer></script>
+     ========================================================================== -->
+<script>
+(function () {
+  "use strict";
+
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
+  var categories = Array.prototype.slice.call(document.querySelectorAll('.museum-category'));
+  var searchInput = document.getElementById('museumSearchInput');
+  var emptyState = document.getElementById('museumEmptyState');
+
+  /* ---------- Filtro per categoria (chip): scorre alla sezione scelta ---------- */
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+
+      var target = chip.getAttribute('data-filter');
+
+      categories.forEach(function (cat) {
+        cat.style.display = (target === 'all' || cat.id === target) ? '' : 'none';
+      });
+
+      if (target !== 'all') {
+        var el = document.getElementById(target);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* ---------- Ricerca live per nome museo ---------- */
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      var query = searchInput.value.trim().toLowerCase();
+      var anyVisible = false;
+
+      // Se l'utente digita una ricerca, ignora il filtro categoria e mostra tutte le sezioni
+      categories.forEach(function (cat) { cat.style.display = ''; });
+      if (query.length > 0) {
+        chips.forEach(function (c) { c.classList.remove('active'); });
+      } else {
+        chips[0].classList.add('active');
+      }
+
+      categories.forEach(function (cat) {
+        var cards = Array.prototype.slice.call(cat.querySelectorAll('.museum-card'));
+        var visibleCount = 0;
+
+        cards.forEach(function (card) {
+          var title = card.querySelector('.museum-card__title').textContent.toLowerCase();
+          var match = query === '' || title.indexOf(query) !== -1;
+          card.style.display = match ? '' : 'none';
+          if (match) visibleCount++;
+        });
+
+        cat.style.display = visibleCount > 0 ? '' : 'none';
+        if (visibleCount > 0) anyVisible = true;
+      });
+
+      if (emptyState) emptyState.hidden = query === '' || anyVisible;
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

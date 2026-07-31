@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itineraria — Scopri Torino</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS del progetto -->
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+<!-- ==========================================================================
+     HEADER / NAVBAR
+     ========================================================================== -->
+<header class="site-header">
+  <div class="container site-header__inner">
+
+    <nav class="main-nav">
+      <a th:href="@{/}" href="#" class="main-nav__link main-nav__link--active">Home</a>
+
+      <div class="main-nav__item">
+        <a th:href="@{/luoghi}" href="#" class="main-nav__link main-nav__link--dropdown">
+          Luoghi d'interesse <i class="fa-solid fa-chevron-down"></i>
+        </a>
+
+        <!-- Mega Dropdown -->
+        <div class="mega-dropdown">
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-book"></i> Biblioteche</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/biblioteche/comunali}" href="#">Biblioteche comunali</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/sale-studio}" href="#">Sale studio</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/aule-studio}" href="#">Aule studio</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/coworking}" href="#">Spazi coworking</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-mug-hot"></i> Bar e Caffetterie</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/bar}" href="#">Bar</a></li>
+              <li><a th:href="@{/luoghi/caffetterie}" href="#">Caffetterie</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-utensils"></i> Ristoranti</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/ristoranti/tipici}" href="#">Ristoranti tipici</a></li>
+              <li><a th:href="@{/luoghi/ristoranti/pizzerie}" href="#">Pizzerie</a></li>
+              <li><a th:href="@{/luoghi/ristoranti/internazionali}" href="#">Cucine internazionali</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/parchi/cittadini}" href="#">Parchi cittadini</a></li>
+              <li><a th:href="@{/luoghi/parchi/giardini}" href="#">Giardini</a></li>
+              <li><a th:href="@{/luoghi/parchi/aree-picnic}" href="#">Aree picnic</a></li>
+              <li><a th:href="@{/luoghi/parchi/oasi-naturali}" href="#">Oasi naturali</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-landmark"></i> Musei</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/musei#storia-memoria-e-sport}" href="musei.html#storia-memoria-e-sport">Musei storici</a></li>
+              <li><a th:href="@{/musei#arte-fotografia-e-fondazioni-contemporanee}" href="musei.html#arte-fotografia-e-fondazioni-contemporanee">Musei d'arte</a></li>
+              <li><a th:href="@{/musei#scienza-medicina-e-natura}" href="musei.html#scienza-medicina-e-natura">Musei scientifici</a></li>
+              <li><a th:href="@{/musei#tecnica-industria-e-collezioni-tematiche}" href="musei.html#tecnica-industria-e-collezioni-tematiche">Musei interattivi</a></li>
+              <li><a th:href="@{/musei}" href="musei.html" style="font-weight:700; color: var(--color-accent);">Vedi tutti i musei →</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <a th:href="@{/eventi}" href="#" class="main-nav__link">Eventi</a>
+      <a th:href="@{/contatti}" href="#" class="main-nav__link">Contatti</a>
+    </nav>
+
+    <a th:href="@{/login}" href="#" class="btn-login">
+      <i class="fa-solid fa-user"></i> Accedi
+    </a>
+
+  </div>
+</header>
+
+<!-- ==========================================================================
+     HERO
+     ========================================================================== -->
+<section class="hero" th:style="'background-image: url(' + @{/images/torino-hero.jpg} + ')'"
+          style="background-image: url('https://images.unsplash.com/photo-1725630592680-90f1c82649b0?q=80&w=1800&auto=format&fit=crop');">
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+
+    <!-- Lineetta decorativa con ape, come nel mockup -->
+    <svg class="hero__bee-decor" viewBox="0 0 90 70" aria-hidden="true" focusable="false">
+      <path d="M4 66C22 66 30 40 46 26C58 15 70 12 84 16" fill="none" stroke="#C85A32" stroke-width="1.5" stroke-linecap="round"/>
+      <g transform="translate(78,8) rotate(18)">
+        <ellipse cx="0" cy="0" rx="7" ry="4.5" fill="#C85A32"/>
+        <path d="M-3 -2.2C-1 -3.5 1 -3.5 3 -2.2M-3 0C-1 -1.3 1 -1.3 3 0M-3 2.2C-1 0.9 1 0.9 3 2.2" stroke="#F5F3EE" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="-6.5" cy="-3" rx="3.5" ry="2.2" fill="#F5F3EE" opacity="0.75" transform="rotate(-20 -6.5 -3)"/>
+        <ellipse cx="-6.5" cy="0.5" rx="3" ry="1.8" fill="#F5F3EE" opacity="0.6" transform="rotate(-10 -6.5 0.5)"/>
+      </g>
+    </svg>
+
+    <h1 class="hero__title">Itineraria</h1>
+    <p class="hero__subtitle">Scopri Torino</p>
+    <p class="hero__subtitle hero__subtitle--muted">tra luoghi iconici e gemme nascoste.</p>
+    <p class="hero__tagline">
+      La tua guida digitale per vivere la città in modo autentico.<br>
+      Dai monumenti imperdibili agli angoli più tranquilli dove rilassarsi e studiare.
+    </p>
+
+    <form class="hero__search" th:action="@{/ricerca}" action="#" method="get">
+      <input type="text" name="q" placeholder="Cerca luoghi, eventi, esperienze...">
+      <button type="submit" class="hero__search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     LUOGHI PRINCIPALI — Carousel
+     ========================================================================== -->
+<section class="section">
+  <div class="container">
+
+    <div class="section__header">
+      <h2 class="section__title"><i class="fa-solid fa-location-dot"></i> Luoghi principali</h2>
+      <div class="section__controls">
+        <a th:href="@{/luoghi}" href="#" class="section__link">Vedi tutti</a>
+        <button class="nav-arrow" data-carousel-prev aria-label="Precedente"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arrow" data-carousel-next aria-label="Successivo"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="places-carousel" id="placesCarousel">
+      <button class="places-carousel__side-arrow" data-carousel-prev aria-label="Luogo precedente">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div class="places-carousel__viewport">
+        <div class="places-carousel__track" id="placesTrack">
+
+          <!-- Ciclo dinamico: sostituisce gli slide statici sottostanti quando ${luoghiPrincipali} arriva dal Controller -->
+          <a th:each="luogo : ${luoghiPrincipali}" th:href="@{'/luoghi/' + ${luogo.slug}}" href="#" class="place-slide" th:if="${false}">
+            <img th:src="@{'/images/' + ${luogo.immagine}}" th:alt="${luogo.nome}" src="#" alt="">
+            <span class="place-slide__caption">
+              <h3 th:text="${luogo.nome}">Nome luogo</h3>
+              <p th:text="${luogo.categoria}">Categoria</p>
+            </span>
+          </a>
+
+          <!-- Slide statici di esempio -->
+          <a th:href="@{/luoghi/mole-antonelliana}" href="#" class="place-slide">
+            <img src="https://images.unsplash.com/photo-1725630592680-90f1c82649b0?q=80&w=1600&auto=format&fit=crop" alt="Mole Antonelliana e skyline di Torino al tramonto">
+            <span class="place-slide__caption">
+              <h3>Mole Antonelliana</h3>
+              <p>Il simbolo di Torino, sede del Museo del Cinema</p>
+            </span>
+          </a>
+          <a th:href="@{/luoghi/monte-dei-cappuccini}" href="#" class="place-slide">
+            <img src="https://images.unsplash.com/photo-1649160845345-97ad6714f904?q=80&w=1600&auto=format&fit=crop" alt="Vista panoramica di Torino con la Mole sullo sfondo">
+            <span class="place-slide__caption">
+              <h3>Monte dei Cappuccini</h3>
+              <p>Il punto panoramico più amato dai torinesi</p>
+            </span>
+          </a>
+          <a th:href="@{/luoghi/piazza-vittorio}" href="#" class="place-slide">
+            <img src="https://images.unsplash.com/photo-1608210577933-d602090bbc29?q=80&w=1600&auto=format&fit=crop" alt="Edificio storico di Torino al tramonto">
+            <span class="place-slide__caption">
+              <h3>Piazza Vittorio Veneto</h3>
+              <p>Una delle piazze porticate più grandi d'Europa</p>
+            </span>
+          </a>
+          <a th:href="@{/luoghi/fiume-po}" href="#" class="place-slide">
+            <img src="https://images.unsplash.com/photo-1692656479597-05c4f67cffde?q=80&w=1600&auto=format&fit=crop" alt="Torre con guglia sullo skyline di Torino">
+            <span class="place-slide__caption">
+              <h3>Lungo il Po</h3>
+              <p>Passeggiate e scorci sul fiume che attraversa la città</p>
+            </span>
+          </a>
+          <a th:href="@{/luoghi/centro-storico}" href="#" class="place-slide">
+            <img src="https://images.unsplash.com/photo-1664309571450-5180d3ca2ce9?q=80&w=1600&auto=format&fit=crop" alt="Edificio storico con guglia nel centro di Torino">
+            <span class="place-slide__caption">
+              <h3>Centro Storico</h3>
+              <p>Portici, caffè storici e architettura barocca</p>
+            </span>
+          </a>
+
+        </div>
+      </div>
+
+      <button class="places-carousel__side-arrow" data-carousel-next aria-label="Luogo successivo">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="carousel-dots" id="placesDots"></div>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     GRIGLIA CATEGORIE
+     ========================================================================== -->
+<section class="section">
+  <div class="container">
+    <div class="categories-grid">
+
+      <a th:href="@{/luoghi/biblioteche}" href="#" class="category-card">
+        <span class="category-card__icon category-card__icon--green"><i class="fa-solid fa-book"></i></span>
+        <span class="category-card__body">
+          <span class="category-card__title">Biblioteche</span>
+          <span class="category-card__desc">Spazi di studio e lettura per ogni esigenza.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/luoghi/bar-caffetterie}" href="#" class="category-card">
+        <span class="category-card__icon category-card__icon--orange"><i class="fa-solid fa-mug-hot"></i></span>
+        <span class="category-card__body">
+          <span class="category-card__title">Bar e Caffetterie</span>
+          <span class="category-card__desc">I migliori luoghi dove gustare un buon caffè o rilassarsi.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/luoghi/ristoranti}" href="#" class="category-card">
+        <span class="category-card__icon category-card__icon--yellow"><i class="fa-solid fa-utensils"></i></span>
+        <span class="category-card__body">
+          <span class="category-card__title">Ristoranti</span>
+          <span class="category-card__desc">Dai sapori tipici alle cucine internazionali.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/luoghi/parchi-zone-verdi}" href="#" class="category-card">
+        <span class="category-card__icon category-card__icon--forest"><i class="fa-solid fa-tree"></i></span>
+        <span class="category-card__body">
+          <span class="category-card__title">Parchi e Zone Verdi</span>
+          <span class="category-card__desc">Oasi di relax immersi nella natura.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      </a>
+
+      <a th:href="@{/musei}" href="musei.html" class="category-card">
+        <span class="category-card__icon category-card__icon--purple"><i class="fa-solid fa-landmark"></i></span>
+        <span class="category-card__body">
+          <span class="category-card__title">Musei</span>
+          <span class="category-card__desc">Arte, storia e cultura nel cuore della città.</span>
+        </span>
+        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     EVENTI IN ARRIVO
+     ========================================================================== -->
+<section class="section">
+  <div class="container">
+
+    <div class="section__header">
+      <h2 class="section__title"><i class="fa-regular fa-calendar"></i> Eventi in arrivo</h2>
+      <div class="section__controls">
+        <a th:href="@{/eventi}" href="#" class="section__link">Vedi tutti</a>
+        <button class="nav-arrow" data-events-prev aria-label="Eventi precedenti"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="nav-arrow" data-events-next aria-label="Eventi successivi"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="events-row" id="eventsRow">
+
+      <!-- Ciclo dinamico: sostituisce le 5 card statiche sottostanti quando ${eventi} arriva dal Controller -->
+      <a th:each="evento : ${eventi}" th:href="@{'/eventi/' + ${evento.slug}}" href="#" class="event-card" th:if="${false}">
+        <img th:src="@{'/images/' + ${evento.immagine}}" th:alt="${evento.titolo}" src="#" alt="">
+        <span th:class="${evento.gratuito} ? 'event-card__badge event-card__badge--free' : 'event-card__badge event-card__badge--price'"
+              th:text="${evento.gratuito} ? 'Gratuito' : ('da €' + ${evento.prezzo})">Gratuito</span>
+        <span class="event-card__overlay">
+          <span class="event-card__title" th:text="${evento.titolo}">Titolo evento</span>
+          <span class="event-card__date" th:text="${evento.dataRange}">Data evento</span>
+        </span>
+      </a>
+
+      <!-- Card statiche di esempio -->
+      <a th:href="@{/eventi/torino-jazz-festival}" href="#" class="event-card">
+        <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=600" alt="Concerto jazz dal vivo">
+        <span class="event-card__badge event-card__badge--free">Gratuito</span>
+        <span class="event-card__overlay">
+          <span class="event-card__title">Torino Jazz Festival 2025</span>
+          <span class="event-card__date">12 - 20 Maggio 2025</span>
+        </span>
+      </a>
+
+      <a th:href="@{/eventi/salone-del-libro}" href="#" class="event-card">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600" alt="Folla al Salone del Libro">
+        <span class="event-card__badge event-card__badge--price">da €10</span>
+        <span class="event-card__overlay">
+          <span class="event-card__title">Salone del Libro</span>
+          <span class="event-card__date">9 - 13 Maggio 2025</span>
+        </span>
+      </a>
+
+      <a th:href="@{/eventi/kappa-futurfestival}" href="#" class="event-card">
+        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=600" alt="Proiezione all'aperto su grande schermo">
+        <span class="event-card__badge event-card__badge--price">da €40</span>
+        <span class="event-card__overlay">
+          <span class="event-card__title">Kappa FuturFestival</span>
+          <span class="event-card__date">5 - 7 Luglio 2025</span>
+        </span>
+      </a>
+
+      <a th:href="@{/eventi/flowers-festival}" href="#" class="event-card">
+        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=600" alt="Giardino fiorito in un parco">
+        <span class="event-card__badge event-card__badge--free">Gratuito</span>
+        <span class="event-card__overlay">
+          <span class="event-card__title">Flowers Festival</span>
+          <span class="event-card__date">24 - 26 Maggio 2025</span>
+        </span>
+      </a>
+
+      <a th:href="@{/eventi/mito-settembremusica}" href="#" class="event-card">
+        <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=600" alt="Orchestra durante un concerto">
+        <span class="event-card__badge event-card__badge--price">da €15</span>
+        <span class="event-card__overlay">
+          <span class="event-card__title">MITO SettembreMusica</span>
+          <span class="event-card__date">1 - 21 Settembre 2025</span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="footer-brand__logo"><i class="fa-solid fa-location-dot"></i> Itineraria</div>
+        <p class="footer-brand__desc">La tua guida digitale per scoprire Torino in modo autentico e sostenibile.</p>
+        <div class="footer-social">
+          <a th:href="@{https://instagram.com/itineraria}" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a th:href="@{https://facebook.com/itineraria}" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a th:href="@{https://pinterest.com/itineraria}" href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Contatti</div>
+        <ul class="footer-col__list">
+          <li class="footer-contact-item"><i class="fa-regular fa-envelope"></i> info@itineraria.it</li>
+          <li class="footer-contact-item"><i class="fa-solid fa-phone"></i> +39 011 123 4567</li>
+          <li class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Torino, Italia</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Esplora</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/luoghi}" href="#">Luoghi d'interesse</a></li>
+          <li><a th:href="@{/eventi}" href="#">Eventi</a></li>
+          <li><a th:href="@{/forum}" href="#">Forum (coming soon)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Info</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/chi-siamo}" href="#">Chi siamo</a></li>
+          <li><a th:href="@{/privacy}" href="#">Privacy Policy</a></li>
+          <li><a th:href="@{/termini}" href="#">Termini e condizioni</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Supporto</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/faq}" href="#">FAQ</a></li>
+          <li><a th:href="@{/contatti}" href="#">Contattaci</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span th:text="'© ' + ${#dates.year(#dates.createNow())} + ' Itineraria.'">© 2025 Itineraria.</span>
+      <span>Tutti i diritti riservati.</span>
+    </div>
+
+  </div>
+</footer>
+<!-- ==========================================================================
+     JAVASCRIPT — Carousel "Luoghi principali" + scroll "Eventi in arrivo"
+     Nota per il backend: spostare questo blocco in /js/main.js e includerlo
+     con <script th:src="@{/js/main.js}" defer></script> quando il progetto
+     Spring Boot sarà collegato alle risorse statiche.
+     ========================================================================== -->
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Carousel "Luoghi principali" (scorrimento singolo + autoplay) ---------- */
+  var track = document.getElementById('placesTrack');
+  var dotsWrap = document.getElementById('placesDots');
+  var carousel = document.getElementById('placesCarousel');
+
+  if (track && dotsWrap && carousel) {
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.place-slide'));
+    var current = 0;
+    var AUTOPLAY_MS = 5000;
+    var timer = null;
+
+    // Genera i pallini cliccabili
+    slides.forEach(function (slide, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Vai al luogo ' + (i + 1));
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', function () { goTo(i); resetAutoplay(); });
+      dotsWrap.appendChild(dot);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+
+    function render() {
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      slides.forEach(function (s, i) { s.classList.toggle('is-active', i === current); });
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      render();
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAutoplay() { timer = setInterval(next, AUTOPLAY_MS); }
+    function stopAutoplay() { if (timer) clearInterval(timer); }
+    function resetAutoplay() { stopAutoplay(); startAutoplay(); }
+
+    // Frecce (sia quelle ai lati del carousel sia quelle nell'header sezione)
+    document.querySelectorAll('[data-carousel-prev]').forEach(function (btn) {
+      btn.addEventListener('click', function () { prev(); resetAutoplay(); });
+    });
+    document.querySelectorAll('[data-carousel-next]').forEach(function (btn) {
+      btn.addEventListener('click', function () { next(); resetAutoplay(); });
+    });
+
+    // Pausa lo scorrimento automatico quando l'utente interagisce con il mouse
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+
+    // Supporto swipe touch su mobile
+    var touchStartX = 0;
+    track.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      var diff = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diff) > 40) { diff < 0 ? next() : prev(); resetAutoplay(); }
+    }, { passive: true });
+
+    render();
+    startAutoplay();
+  }
+
+  /* ---------- Scroll frecce "Eventi in arrivo" ---------- */
+  var eventsRow = document.getElementById('eventsRow');
+  if (eventsRow) {
+    var scrollByCard = function (direction) {
+      var card = eventsRow.querySelector('.event-card');
+      var gap = 16;
+      var amount = card ? (card.getBoundingClientRect().width + gap) * direction : 300 * direction;
+      eventsRow.scrollBy({ left: amount, behavior: 'smooth' });
+    };
+    document.querySelectorAll('[data-events-prev]').forEach(function (btn) {
+      btn.addEventListener('click', function () { scrollByCard(-1); });
+    });
+    document.querySelectorAll('[data-events-next]').forEach(function (btn) {
+      btn.addEventListener('click', function () { scrollByCard(1); });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
