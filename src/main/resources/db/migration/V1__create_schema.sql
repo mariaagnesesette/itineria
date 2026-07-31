@@ -81,8 +81,8 @@ CREATE TABLE zone_verdi (
 
 CREATE TABLE musei (
     id BIGINT PRIMARY KEY,
-    tipologia ENUM('arte', 'storia', 'scienza', 'archeologia', 'storia_naturale', 'etnografico', 'militare', 'scienze_naturali', 'musica', 'religioso_sacro', 'casa_museo', 'trasporti', 'multidisciplinare') NOT NULL,
     guide_prenotabili BOOLEAN DEFAULT FALSE,
+    tipologia ENUM('ARTE', 'STORIA', 'SCIENZA', 'ARCHEOLOGIA', 'STORIA_NATURALE', 'ETNOGRAFICO', 'MILITARE', 'SCIENZE_NATURALI', 'MUSICA', 'RELIGIOSO_SACRO', 'CASA_MUSEO', 'TRASPORTI', 'MULTIDISCIPLINARE') NOT NULL,
     bar_interno BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id)
         REFERENCES luoghi_interesse (id)
@@ -128,6 +128,7 @@ CREATE TABLE ristoranti (
     fascia_prezzo ENUM('ECONOMICO', 'MEDIO', 'COSTOSO', 'LUSSO') NOT NULL,
     dog_friendly BOOLEAN DEFAULT FALSE,
     per_celiaci BOOLEAN DEFAULT FALSE,
+    posti_esterni BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id)
         REFERENCES luoghi_interesse (id)
         ON UPDATE RESTRICT ON DELETE CASCADE
@@ -136,11 +137,10 @@ CREATE TABLE ristoranti (
 CREATE TABLE locali (
     id BIGINT PRIMARY KEY,
     tipo_locale ENUM('BAR', 'PUB', 'CAFFE', 'COCKTAIL_BAR', 'ENOTECA', 'ALTRO') NOT NULL,
-    stile VARCHAR(100),
     atmosfera ENUM('TRANQUILLA', 'INFORMALE', 'ELEGANTE', 'FESTOSA') NOT NULL,
     fascia_prezzo ENUM('ECONOMICO', 'MEDIO', 'ALTO') NOT NULL,
     apertura_serale BOOLEAN DEFAULT FALSE,
-    musica BOOLEAN DEFAULT FALSE,
+    per_celiaci BOOLEAN DEFAULT FALSE,
     posti_esterni BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id)
         REFERENCES luoghi_interesse (id)
@@ -150,8 +150,7 @@ CREATE TABLE locali (
 CREATE TABLE eventi (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     descrizione VARCHAR(5000) NOT NULL,
-    tipologia ENUM('mostra', 'concerto', 'spettacolo_teatrale', 'conferenza', 'laboratorio', 'visita_guidata', 'proiezione', 'festival', 'presentazione_libro', 'workshop', 'evento_bambini', 'evento_speciale') NOT NULL,
-    prezzo DECIMAL(10 , 2 ) NOT NULL CHECK (prezzo >= 0),
+    tipologia ENUM('MOSTRA', 'CONCERTO', 'SPETTACOLO_TEATRALE', 'CONFERENZA', 'LABORATORIO', 'VISITA_GUIDATA', 'PROIEZIONE', 'FESTIVAL', 'PRESENTAZIONE_LIBRO', 'WORKSHOP', 'EVENTO_BAMBINI', 'EVENTO_SPECIALE') NOT NULL,    prezzo DECIMAL(10 , 2 ) NOT NULL CHECK (prezzo >= 0),
     prenotazione BOOLEAN DEFAULT FALSE NOT NULL,
     pubblico ENUM('TUTTI', 'BAMBINI', 'ADOLESCENTI', 'GIOVANI', 'ADULTI', 'OVER_65') NOT NULL,
     id_luogo_interesse BIGINT NOT NULL,
