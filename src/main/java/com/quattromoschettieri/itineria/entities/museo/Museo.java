@@ -1,14 +1,18 @@
 package com.quattromoschettieri.itineria.entities.museo;
 
-import com.quattromoschettieri.itineria.entities.Citta;
-import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.Builder;
@@ -26,7 +30,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-public class Museo extends LuogoInteresse{
+public class Museo extends LuogoInteresse {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipologia")
@@ -40,33 +44,13 @@ public class Museo extends LuogoInteresse{
     @Builder.Default
     private boolean barInterno = false;
 
-public Museo(String nome,
-             String descrizione,
-             Accessibilita accessibilita,
-             String indirizzo,
-             boolean sempreAperto,
-             String link,
-             String numero,
-             String email,
-             Citta citta,
-             TipologiaMuseo tipologia,
-             boolean guidaPrenotabile,
-             boolean barInterno) {
+    @OneToMany(mappedBy = "museo", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    @EqualsAndHashCode.Exclude
+    private List<PrezzoMuseo> prezzi = new ArrayList<>();
 
-    this.setNome(nome);
-    this.setDescrizione(descrizione);
-    this.setTipoLuogo(Tipo.MUSEO);
-    this.setAccessibilita(accessibilita);
-    this.setIndirizzo(indirizzo);
-    this.setSempreAperto(sempreAperto);
-    this.setLink(link);
-    this.setNumero(numero);
-    this.setEmail(email);
-    this.setCitta(citta);
-
-    this.tipologia = tipologia;
-    this.guidaPrenotabile = guidaPrenotabile;
-    this.barInterno = barInterno;
-}
+    public static MuseoBuilder<?, ?> builder() {
+        return new MuseoBuilderImpl().tipoLuogo(Tipo.MUSEO);
+    }
 
 }
