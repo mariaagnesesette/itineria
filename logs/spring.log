@@ -1,0 +1,100 @@
+2026-07-31T15:18:01.900+02:00  INFO 10440 --- [itineria] [main] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 25.0.3 with PID 10440 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria)
+2026-07-31T15:18:01.932+02:00  INFO 10440 --- [itineria] [main] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-31T15:18:04.677+02:00  INFO 10440 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-31T15:18:04.874+02:00  INFO 10440 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 170 ms. Found 2 JPA repository interfaces.
+2026-07-31T15:18:07.678+02:00  INFO 10440 --- [itineria] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: AotMetamodel]
+2026-07-31T15:18:07.856+02:00  INFO 10440 --- [itineria] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-07-31T15:18:09.319+02:00  INFO 10440 --- [itineria] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-31T15:18:09.367+02:00  WARN 10440 --- [itineria] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-31T15:18:09.403+02:00  INFO 10440 --- [itineria] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database dialect: MySQLDialect
+	Database version: 8.0
+	Default catalog/schema: unknown/unknown
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	JDBC fetch size: undefined/unknown
+	Pool: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-31T15:26:39.664+02:00  INFO 22936 --- [itineria] [main] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 25.0.3 with PID 22936 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria)
+2026-07-31T15:26:39.673+02:00  INFO 22936 --- [itineria] [main] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-31T15:26:41.889+02:00  INFO 22936 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-31T15:26:42.067+02:00  INFO 22936 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 147 ms. Found 3 JPA repository interfaces.
+2026-07-31T15:26:44.896+02:00  INFO 22936 --- [itineria] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: AotMetamodel]
+2026-07-31T15:26:45.097+02:00  INFO 22936 --- [itineria] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-07-31T15:26:46.697+02:00  INFO 22936 --- [itineria] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-31T15:26:46.748+02:00  WARN 22936 --- [itineria] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-31T15:26:46.789+02:00  INFO 22936 --- [itineria] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database dialect: MySQLDialect
+	Database version: 8.0
+	Default catalog/schema: unknown/unknown
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	JDBC fetch size: undefined/unknown
+	Pool: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-31T15:27:17.306+02:00  INFO 26016 --- [itineria] [main] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 25.0.3 with PID 26016 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria)
+2026-07-31T15:27:17.323+02:00  INFO 26016 --- [itineria] [main] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-31T15:27:21.427+02:00  INFO 26016 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-31T15:27:21.801+02:00  INFO 26016 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 319 ms. Found 3 JPA repository interfaces.
+2026-07-31T15:27:27.096+02:00  INFO 26016 --- [itineria] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: AotMetamodel]
+2026-07-31T15:27:27.617+02:00  INFO 26016 --- [itineria] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-07-31T15:27:30.689+02:00  INFO 26016 --- [itineria] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-31T15:27:30.783+02:00  WARN 26016 --- [itineria] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-31T15:27:30.916+02:00  INFO 26016 --- [itineria] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database dialect: MySQLDialect
+	Database version: 8.0
+	Default catalog/schema: unknown/unknown
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	JDBC fetch size: undefined/unknown
+	Pool: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-31T15:33:46.638+02:00  INFO 27692 --- [itineria] [main] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 25.0.3 with PID 27692 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria)
+2026-07-31T15:33:46.654+02:00  INFO 27692 --- [itineria] [main] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-31T15:33:49.304+02:00  INFO 27692 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-31T15:33:49.485+02:00  INFO 27692 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 152 ms. Found 3 JPA repository interfaces.
+2026-07-31T15:33:53.013+02:00  INFO 27692 --- [itineria] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: AotMetamodel]
+2026-07-31T15:33:53.236+02:00  INFO 27692 --- [itineria] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-07-31T15:33:54.923+02:00  INFO 27692 --- [itineria] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-31T15:33:54.971+02:00  WARN 27692 --- [itineria] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-31T15:33:55.013+02:00  INFO 27692 --- [itineria] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database dialect: MySQLDialect
+	Database version: 8.0
+	Default catalog/schema: unknown/unknown
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	JDBC fetch size: undefined/unknown
+	Pool: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-31T15:36:56.046+02:00  INFO 5216 --- [itineria] [main] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 25.0.3 with PID 5216 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria)
+2026-07-31T15:36:56.064+02:00  INFO 5216 --- [itineria] [main] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-31T15:37:01.360+02:00  INFO 5216 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-31T15:37:01.919+02:00  INFO 5216 --- [itineria] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 499 ms. Found 3 JPA repository interfaces.
+2026-07-31T15:37:08.369+02:00  INFO 5216 --- [itineria] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: AotMetamodel]
+2026-07-31T15:37:08.816+02:00  INFO 5216 --- [itineria] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-07-31T15:37:10.936+02:00  INFO 5216 --- [itineria] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-31T15:37:11.026+02:00  WARN 5216 --- [itineria] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-31T15:37:11.100+02:00  INFO 5216 --- [itineria] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: undefined/unknown
+	Database dialect: MySQLDialect
+	Database version: 8.0
+	Default catalog/schema: unknown/unknown
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	JDBC fetch size: undefined/unknown
+	Pool: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown

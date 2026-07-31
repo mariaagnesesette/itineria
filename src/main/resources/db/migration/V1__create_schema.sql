@@ -4,7 +4,7 @@ CREATE TABLE utenti (
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
     data_nascita DATE NOT NULL,
-    nickname VARCHAR(30),
+    username VARCHAR(30),
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     ruolo ENUM('USER', 'MANAGER', 'ADMIN') DEFAULT 'user',
@@ -17,7 +17,7 @@ CREATE TABLE documenti (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     tipo ENUM('CARTA_IDENTITA', 'PATENTE', 'PASSAPORTO') NOT NULL,
     file_key VARCHAR(255) NOT NULL,    
-    codice_identificativo VARCHAR(20) NOT NULL,
+    codice_identificativo VARCHAR(20) UNIQUE NOT NULL,
     stato ENUM('IN_ATTESA', 'APPROVATO', 'RIFIUTATO', 'SCADUTO') NOT NULL DEFAULT 'IN_ATTESA',    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     version BIGINT NOT NULL DEFAULT 0,
@@ -71,8 +71,7 @@ CREATE TABLE orario_apertura (
 CREATE TABLE zone_verdi (
     id BIGINT PRIMARY KEY,
     area_mq DECIMAL(8 , 2 ) NOT NULL,
-    tipologia ENUM('parco_urbano', 'parco_giochi', 'parco_naturale', 'giardino_pubblico', 'area_cani', 'orto_botanico', 'parco_storico', 'riserva_naturale') NOT NULL,
-    dog_friendly BOOLEAN DEFAULT FALSE,
+    tipologia ENUM('PARCO_URBANO', 'PARCO_GIOCHI', 'PARCO_NATURALE', 'GIARDINO_PUBBLICO', 'AREA_CANI', 'ORTO_BOTANICO', 'PARCO_STORICO', 'RISERVA_NATURALE') NOT NULL,    dog_friendly BOOLEAN DEFAULT FALSE,
     ristoro BOOLEAN DEFAULT FALSE,
     ciclabile BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id)
@@ -112,7 +111,7 @@ CREATE TABLE prezzi_musei (
     UNIQUE KEY uq_museo_fascia (id_museo , id_fascia_prezzo)
 );
 
-CREATE TABLE biblioteca (
+CREATE TABLE biblioteche (
     id BIGINT PRIMARY KEY,
     pubblico BOOLEAN DEFAULT FALSE,
     wifi BOOLEAN DEFAULT FALSE,
@@ -123,10 +122,10 @@ CREATE TABLE biblioteca (
         ON UPDATE RESTRICT ON DELETE CASCADE
 );
 
-CREATE TABLE ristorante (
+CREATE TABLE ristoranti (
     id BIGINT PRIMARY KEY,
-    tipo_cucina ENUM('ITALIANA', 'PIZZERIA', 'GIAPPONESE', 'CINESE', 'VEGETARIANA', 'FAST_FOOD', 'ALTRO'),
-    fascia_prezzo ENUM('ECONOMICO', 'MEDIO', 'COSTOSO', 'LUSSO'),
+    tipo_cucina ENUM('ITALIANA', 'PIZZERIA', 'GIAPPONESE', 'CINESE', 'VEGETARIANA', 'FAST_FOOD', 'ALTRO') NOT NULL,
+    fascia_prezzo ENUM('ECONOMICO', 'MEDIO', 'COSTOSO', 'LUSSO') NOT NULL,
     dog_friendly BOOLEAN DEFAULT FALSE,
     per_celiaci BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id)
@@ -134,12 +133,12 @@ CREATE TABLE ristorante (
         ON UPDATE RESTRICT ON DELETE CASCADE
 );
 
-CREATE TABLE locale (
+CREATE TABLE locali (
     id BIGINT PRIMARY KEY,
-    tipo_locale ENUM('BAR', 'PUB', 'CAFFE', 'COCKTAIL_BAR', 'ENOTECA', 'ALTRO'),
+    tipo_locale ENUM('BAR', 'PUB', 'CAFFE', 'COCKTAIL_BAR', 'ENOTECA', 'ALTRO') NOT NULL,
     stile VARCHAR(100),
-    atmosfera ENUM('TRANQUILLA', 'INFORMALE', 'ELEGANTE', 'FESTOSA'),
-    fascia_prezzo ENUM('ECONOMICO', 'MEDIO', 'ALTO'),
+    atmosfera ENUM('TRANQUILLA', 'INFORMALE', 'ELEGANTE', 'FESTOSA') NOT NULL,
+    fascia_prezzo ENUM('ECONOMICO', 'MEDIO', 'ALTO') NOT NULL,
     apertura_serale BOOLEAN DEFAULT FALSE,
     musica BOOLEAN DEFAULT FALSE,
     posti_esterni BOOLEAN DEFAULT FALSE,
@@ -153,8 +152,8 @@ CREATE TABLE eventi (
     descrizione VARCHAR(5000) NOT NULL,
     tipologia ENUM('mostra', 'concerto', 'spettacolo_teatrale', 'conferenza', 'laboratorio', 'visita_guidata', 'proiezione', 'festival', 'presentazione_libro', 'workshop', 'evento_bambini', 'evento_speciale') NOT NULL,
     prezzo DECIMAL(10 , 2 ) NOT NULL CHECK (prezzo >= 0),
-    prenotabile BOOLEAN DEFAULT TRUE,
-    fascia_eta ENUM('tutte_le_eta', '0_5', '6_12', '13_17', '18_25', 'adulti', 'over_65') NOT NULL,
+    prenotazione BOOLEAN DEFAULT FALSE NOT NULL,
+    pubblico ENUM('TUTTI', 'BAMBINI', 'ADOLESCENTI', 'GIOVANI', 'ADULTI', 'OVER_65') NOT NULL,
     id_luogo_interesse BIGINT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -165,7 +164,7 @@ CREATE TABLE eventi (
 );
 
 CREATE TABLE data_evento (
-    id_data_evento BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     evento_id BIGINT NOT NULL,
     data_inizio DATE NOT NULL,
     data_fine DATE,
