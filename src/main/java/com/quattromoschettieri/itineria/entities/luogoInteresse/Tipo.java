@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.entities;
+package com.quattromoschettieri.itineria.entities.luogoInteresse;
 
 public enum Tipo {
 

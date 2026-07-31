@@ -1,7 +1,7 @@
-package com.quattromoschettieri.itineria.entities;
+package com.quattromoschettieri.itineria.entities.utente.documento;
 
-import com.quattromoschettieri.itineria.entities.enums.StatoDocumento;
-import com.quattromoschettieri.itineria.entities.enums.TipoDocumento;
+import com.quattromoschettieri.itineria.entities.GenericEntity;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
