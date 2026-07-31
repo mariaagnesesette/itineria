@@ -1,6 +1,7 @@
 package com.quattromoschettieri.itineria.entities.ristorante;
 
 import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
+import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +41,14 @@ public class Ristorante extends LuogoInteresse{
     @Column(name = "per_celiaci", columnDefinition = "boolean default false")
     @Builder.Default
     private boolean perCeliaci = false;
+
+    @Column(name = "posti_esterni", columnDefinition = "boolean default false")
+    @Builder.Default
+    private boolean postiEsterni = false;
+
+    public static RistoranteBuilder<?, ?> builder() {
+        return new RistoranteBuilderImpl().tipoLuogo(Tipo.RISTORANTE);
+    }
 
 
 }
