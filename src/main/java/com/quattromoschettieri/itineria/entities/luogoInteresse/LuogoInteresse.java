@@ -3,8 +3,15 @@ package com.quattromoschettieri.itineria.entities.luogoInteresse;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+import java.util.Set;
+
 import com.quattromoschettieri.itineria.entities.GenericEntity;
 import com.quattromoschettieri.itineria.entities.citta.Citta;
+import com.quattromoschettieri.itineria.entities.citta.Citta;
+import com.quattromoschettieri.itineria.entities.evento.Evento;
+import com.quattromoschettieri.itineria.entities.recensione.Recensione;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,7 +22,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Builder;
@@ -67,6 +76,7 @@ public abstract class LuogoInteresse extends GenericEntity{
     @ManyToOne
     @JoinColumn(name = "id_citta",
                 referencedColumnName = "id")
+    @EqualsAndHashCode.Exclude
     private Citta citta;
 
     @OneToMany(mappedBy = "LuogoInteresse", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true )
@@ -74,5 +84,16 @@ public abstract class LuogoInteresse extends GenericEntity{
     @EqualsAndHashCode.Exclude
     private List<OrarioApertura> orariApertura = new ArrayList<>();
 
+    @OneToMany(mappedBy = "luogoInteresse")
+    @EqualsAndHashCode.Exclude
+    private List<Recensione> recensioni;
+
+    @OneToMany(mappedBy = "luogoInteresse")
+    @EqualsAndHashCode.Exclude
+    private List<Evento> eventi;
+
+    @ManyToMany(mappedBy = "luoghiPreferiti")
+    @EqualsAndHashCode.Exclude
+    private Set<Utente> utentiPreferitori;
 
 }
