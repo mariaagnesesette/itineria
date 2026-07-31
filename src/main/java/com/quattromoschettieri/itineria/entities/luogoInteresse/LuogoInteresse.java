@@ -3,11 +3,9 @@ package com.quattromoschettieri.itineria.entities.luogoInteresse;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.List;
 import java.util.Set;
 
 import com.quattromoschettieri.itineria.entities.GenericEntity;
-import com.quattromoschettieri.itineria.entities.citta.Citta;
 import com.quattromoschettieri.itineria.entities.citta.Citta;
 import com.quattromoschettieri.itineria.entities.evento.Evento;
 import com.quattromoschettieri.itineria.entities.recensione.Recensione;
@@ -24,7 +22,6 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Builder;

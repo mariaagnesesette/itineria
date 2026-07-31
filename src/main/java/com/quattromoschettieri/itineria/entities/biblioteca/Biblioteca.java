@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.entities;
+package com.quattromoschettieri.itineria.entities.biblioteca;
 
 import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
