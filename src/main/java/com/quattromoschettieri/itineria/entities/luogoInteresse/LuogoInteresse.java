@@ -91,6 +91,6 @@ public abstract class LuogoInteresse extends GenericEntity{
 
     @ManyToMany(mappedBy = "luoghiPreferiti")
     @EqualsAndHashCode.Exclude
-    private Set<Utente> utentiPreferitori;
+    private Set<Utente> utentiPreferiti;
 
 }
