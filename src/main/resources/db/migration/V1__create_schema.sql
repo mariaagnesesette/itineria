@@ -52,9 +52,12 @@ CREATE TABLE luoghi_interesse (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     version BIGINT NOT NULL DEFAULT 0,
     id_citta BIGINT NOT NULL,
+    id_manager BIGINT,
     FOREIGN KEY (id_citta)
         REFERENCES citta (id)
-        ON UPDATE RESTRICT ON DELETE RESTRICT
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
+    FOREIGN KEY (id_proprietario) REFERENCES utenti(id)
+        ON UPDATE RESTRICT ON DELETE SET NULL
 );
 
 CREATE TABLE orario_apertura (
