@@ -24,6 +24,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,7 +33,13 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name="luoghi_interesse")
+@Table(name="luoghi_interesse",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uk_luogo_nome_citta",
+            columnNames = {"nome", "id_citta"}
+        )
+    }
+)
 @Inheritance(strategy = InheritanceType.JOINED)
 @SuperBuilder
 @Data

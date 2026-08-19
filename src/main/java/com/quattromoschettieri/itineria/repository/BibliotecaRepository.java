@@ -9,6 +9,4 @@ import com.quattromoschettieri.itineria.entities.biblioteca.Biblioteca;
 
 public interface BibliotecaRepository extends JpaRepository<Biblioteca, Long>, JpaSpecificationExecutor<Biblioteca> {
     Page<Biblioteca> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
-
-    
 }

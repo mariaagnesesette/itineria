@@ -53,6 +53,7 @@ CREATE TABLE luoghi_interesse (
     version BIGINT NOT NULL DEFAULT 0,
     id_citta BIGINT NOT NULL,
     id_manager BIGINT,
+    CONSTRAINT uk_luogo_nome_citta UNIQUE (nome, id_citta);
     FOREIGN KEY (id_citta)
         REFERENCES citta (id)
         ON UPDATE RESTRICT ON DELETE RESTRICT,
