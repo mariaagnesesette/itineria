@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.quattromoschettieri.itineria.DTO.BibliotecaDTO;
 import com.quattromoschettieri.itineria.entities.biblioteca.Biblioteca;
 import com.quattromoschettieri.itineria.services.BibliotecaService;
-import com.quattromoschettieri.itineria.services.CittaService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 @RequestMapping("/biblioteche")
@@ -28,12 +25,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class BibliotecaController {
 
     private final BibliotecaService bibliotecaService;
-    private final CittaService cittaService;
 
-    //READ
-    //ricerca con filtri
+    // READ
+    // ricerca con filtri
     @GetMapping("/filtri")
-    public String filtriBiblioteche(@ModelAttribute BibliotecaDTO bibliotecaDTO,
+    public String filterBiblioteche(@ModelAttribute BibliotecaDTO bibliotecaDTO,
             Pageable pageable,
             Model model) {
 
@@ -45,9 +41,9 @@ public class BibliotecaController {
         return "biblioteche/lista";
     }
 
-    //lista generica
+    // lista generica
     @GetMapping
-    public String listaBiblioteche(
+    public String listBiblioteche(
             @ModelAttribute BibliotecaDTO bibliotecaDTO,
             Pageable pageable,
             Model model) {
@@ -59,9 +55,9 @@ public class BibliotecaController {
         return "biblioteche/lista";
     }
 
-    //ricerca per id
+    // ricerca per id
     @GetMapping("/{id}")
-    public String dettaglioBiblioteca(@PathVariable Long id, Model model) {
+    public String detailBiblioteca(@PathVariable Long id, Model model) {
 
         Biblioteca risultato = bibliotecaService.findById(id);
 
@@ -70,10 +66,10 @@ public class BibliotecaController {
         return "biblioteche/dettaglio";
     }
 
-    //ricerca per nome
-    @GetMapping("/{nome}")
-    public String dettaglioBibliotecaNome(@PathVariable String nome, Model model, Pageable pageable) {
-        
+    // ricerca per nome
+    @GetMapping("searchByNome/{nome}")
+    public String detailBibliotecaNome(@PathVariable String nome, Model model, Pageable pageable) {
+
         Page<Biblioteca> risultati = bibliotecaService.findByNome(nome, pageable);
 
         model.addAttribute("risultati", risultati);
@@ -81,12 +77,17 @@ public class BibliotecaController {
         return "biblioteche/byNome";
     }
 
-    //CREATE
+    // CREATE
+    @GetMapping("/nuovo")
+    public String formNuovaBiblioteca(Model model) {
+        model.addAttribute("bibliotecaDTO", new BibliotecaDTO());
+        return "biblioteche/form";
+    }
 
     @PostMapping
-    public String creaBiblioteca(@Valid @ModelAttribute BibliotecaDTO dto, BindingResult bindingResult) {
-        
-        if(bindingResult.hasErrors()){
+    public String createBiblioteca(@Valid @ModelAttribute BibliotecaDTO dto, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
             return "biblioteche/form";
         }
 
@@ -94,8 +95,34 @@ public class BibliotecaController {
         return "redirect:/biblioteche";
     }
 
-    //MODIFCA
+    // UPDATE
+    @GetMapping("/{id}/modifica")
+    public String formModificaBiblioteca(@PathVariable Long id, Model model) {
+        model.addAttribute("bibliotecaDTO", bibliotecaService.findByIdDto(id));
+        return "biblioteche/form";
+    }
 
-    
+    @PutMapping("/{id}/modifica")
+    public String updateBiblioteca(@PathVariable Long id, @Valid @ModelAttribute BibliotecaDTO dto,
+            BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "biblioteche/form";
+        }
+
+        bibliotecaService.update(id, dto);
+
+        return "redirect:/biblioteche/" + id;
+
+    }
+
+    // DELETE
+    @PostMapping("/{id}/delete")
+    public String deleteBiblioteca(@PathVariable Long id) {
+
+        bibliotecaService.delete(id);
+
+        return "redirect:/biblioteche";
+    }
 
 }

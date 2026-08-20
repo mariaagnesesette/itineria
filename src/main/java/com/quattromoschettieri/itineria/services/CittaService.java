@@ -10,6 +10,7 @@ import com.quattromoschettieri.itineria.entities.citta.Regione;
 import com.quattromoschettieri.itineria.repository.CittaRepository;
 
 import lombok.RequiredArgsConstructor;
+
 // Create Read Update Delete 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class CittaService {
 
     private final CittaRepository cittaRepository;
 
-    private Citta toEntity(CittaDTO dto){
+    private Citta toEntity(CittaDTO dto) {
         Citta c = new Citta();
         c.setNome(dto.getNome());
         c.setRegione(dto.getRegione());
@@ -26,7 +27,7 @@ public class CittaService {
         return c;
     }
 
-    private CittaDTO toDto(Citta c){
+    private CittaDTO toDto(Citta c) {
         CittaDTO dto = new CittaDTO();
         dto.setId(c.getId());
         dto.setNome(c.getNome());
@@ -37,21 +38,21 @@ public class CittaService {
 
     }
 
-    private void updateEntity(Citta esistente, CittaDTO dto){
+    private void updateEntity(Citta esistente, CittaDTO dto) {
         esistente.setNome(dto.getNome());
         esistente.setRegione(dto.getRegione());
         esistente.setDescrizione(dto.getDescrizione());
     }
 
     // CREATE
-    public CittaDTO create(CittaDTO dto){
+    public CittaDTO create(CittaDTO dto) {
 
         boolean giaEsistente = cittaRepository
-                                    .findAll()
-                                    .stream()
-                                    .anyMatch(c -> c.getNome()
-                                                    .equalsIgnoreCase(dto.getNome()));
-        if(giaEsistente){
+                .findAll()
+                .stream()
+                .anyMatch(c -> c.getNome()
+                        .equalsIgnoreCase(dto.getNome()));
+        if (giaEsistente) {
             throw new IllegalArgumentException("esiste gia la citta: " + dto.getNome());
         }
 
@@ -61,31 +62,41 @@ public class CittaService {
 
     }
 
-
-    //READ
-    public Page<Citta> searchByNome(String nome, Pageable pageable){
+    // READ
+    public Page<Citta> findByNome(String nome, Pageable pageable) {
         return cittaRepository.findByNomeContainingIgnoreCase(nome, pageable);
     }
 
-    public Page<Citta> findByRegione(Regione regione, Pageable pageable){
+    public Page<Citta> findByRegione(Regione regione, Pageable pageable) {
         return cittaRepository.findByRegione(regione, pageable);
     }
 
-    public Page<Citta> findAll(Pageable pageable){
+    public Citta findById(Long id) {
+        return cittaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Citta non trovata: " + id));
+    }
+
+    public CittaDTO findByIdDto(Long id) {
+        Citta citta = cittaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Citta non trovata: " + id));
+        return toDto(citta);
+    }
+
+    public Page<Citta> findAll(Pageable pageable) {
         return cittaRepository.findAll(pageable);
     }
 
-    //UPDATE
-    public CittaDTO update(Long id, CittaDTO dto){
-        
+    // UPDATE
+    public CittaDTO update(Long id, CittaDTO dto) {
+
         Citta citta = cittaRepository.findById(id)
-                    .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
-        
+                .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
+
         boolean giaEsistente = cittaRepository.findAll().stream()
                 .anyMatch(b -> !b.getId().equals(id)
                         && b.getNome().equalsIgnoreCase(dto.getNome()));
-        
-        if(giaEsistente){
+
+        if (giaEsistente) {
             throw new IllegalArgumentException("esiste gia una città con nome: " + dto.getNome());
         }
 
@@ -94,14 +105,13 @@ public class CittaService {
         return toDto(salvata);
     }
 
-    //DELETE
-    public void delete(Long id){
+    // DELETE
+    public void delete(Long id) {
 
         Citta citta = cittaRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
 
-    cittaRepository.delete(citta);
+        cittaRepository.delete(citta);
     }
-
 
 }

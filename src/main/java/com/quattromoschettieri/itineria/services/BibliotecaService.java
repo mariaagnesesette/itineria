@@ -80,6 +80,12 @@ public class BibliotecaService {
         esistente.setAreaBambini(Boolean.TRUE.equals(dto.getAreaBambini()));
     }
 
+    public BibliotecaDTO findByIdDto(Long id) {
+        Biblioteca biblioteca = bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
+        return toDto(biblioteca);
+    }
+
     public void delete(Long id) {
 
         Biblioteca biblioteca = bibliotecaRepository.findById(id)
