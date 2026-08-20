@@ -75,5 +75,33 @@ public class CittaService {
         return cittaRepository.findAll(pageable);
     }
 
+    //UPDATE
+    public CittaDTO update(Long id, CittaDTO dto){
+        
+        Citta citta = cittaRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
+        
+        boolean giaEsistente = cittaRepository.findAll().stream()
+                .anyMatch(b -> !b.getId().equals(id)
+                        && b.getNome().equalsIgnoreCase(dto.getNome()));
+        
+        if(giaEsistente){
+            throw new IllegalArgumentException("esiste gia una città con nome: " + dto.getNome());
+        }
+
+        updateEntity(citta, dto);
+        Citta salvata = cittaRepository.save(citta);
+        return toDto(salvata);
+    }
+
+    //DELETE
+    public void delete(Long id){
+
+        Citta citta = cittaRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
+
+    cittaRepository.delete(citta);
+    }
+
 
 }

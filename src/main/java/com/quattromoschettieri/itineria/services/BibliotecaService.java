@@ -81,15 +81,16 @@ public class BibliotecaService {
     }
 
     public void delete(Long id) {
-    Biblioteca biblioteca = bibliotecaRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
 
-    bibliotecaRepository.delete(biblioteca);
+        Biblioteca biblioteca = bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
+
+        bibliotecaRepository.delete(biblioteca);
     }
 
     public BibliotecaDTO update(Long id, BibliotecaDTO dto) {
 
-        Biblioteca esistente = bibliotecaRepository.findById(id)
+        Biblioteca biblioteca = bibliotecaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
 
         Citta citta = cittaRepository.findById(dto.getIdCitta())
@@ -103,12 +104,12 @@ public class BibliotecaService {
 
         if (giaEsistente) {
             throw new IllegalArgumentException(
-                    "Esiste già un'altra biblioteca con nome '" + dto.getNome() + "' nella città di "
+                    "Esiste già un'altra biblioteca con nome " + dto.getNome() + " nella città di "
                             + citta.getNome());
         }
 
-        updateEntity(esistente, dto, citta);
-        Biblioteca salvata = bibliotecaRepository.save(esistente);
+        updateEntity(biblioteca, dto, citta);
+        Biblioteca salvata = bibliotecaRepository.save(biblioteca);
         return toDto(salvata);
     }
 
@@ -133,7 +134,8 @@ public class BibliotecaService {
     }
 
     // ricerca biblioteca tramite nome
-    public Page<Biblioteca> searchByNome(String nome, Pageable pageable) {
+    public Page<Biblioteca> findByNome(String nome, Pageable pageable) {
+
         return bibliotecaRepository.findByNomeContainingIgnoreCase(nome, pageable);
     }
 
@@ -154,6 +156,12 @@ public class BibliotecaService {
                 .and(BibliotecaSpecification.isSempreAperto(bibliotecaDTO.getSempreAperto()))
                 .and(BibliotecaSpecification.inCitta(bibliotecaDTO.getIdCitta()));
         return bibliotecaRepository.findAll(spec, pageable);
+    }
+
+    // ricerca biblioteca tramite id
+    public Biblioteca findById(Long id) {
+        return bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
     }
 
 }
