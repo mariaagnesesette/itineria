@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.repository.UtenteRepository;
+package com.quattromoschettieri.itineria.repository.utenteRepository;
 
 import java.util.List;
 import java.util.Optional;

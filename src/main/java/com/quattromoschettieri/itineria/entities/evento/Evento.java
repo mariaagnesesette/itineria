@@ -1,6 +1,8 @@
 package com.quattromoschettieri.itineria.entities.evento;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -8,6 +10,7 @@ import com.quattromoschettieri.itineria.entities.GenericEntity;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -68,12 +71,16 @@ public class Evento extends GenericEntity{
     @EqualsAndHashCode.Exclude
     private LuogoInteresse luogoInteresse;
 
-    @OneToMany(mappedBy = "evento")
+    @Builder.Default
+    @OneToMany(mappedBy = "evento",
+               cascade = CascadeType.ALL,
+               orphanRemoval = true)
     @EqualsAndHashCode.Exclude
-    private List<DataEvento> dateEvento;
+    private List<DataEvento> dateEvento = new ArrayList<>();
 
+    @Builder.Default
     @ManyToMany(mappedBy = "eventiPreferiti")
     @EqualsAndHashCode.Exclude
-    private Set<Utente> utentiPreferitori;
+    private Set<Utente> utentiPreferitori = new HashSet<>();
 
 }

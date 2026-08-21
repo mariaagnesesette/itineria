@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.repository.EventoRepository;
+package com.quattromoschettieri.itineria.repository.eventoRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.repository.EventoRepository;
+package com.quattromoschettieri.itineria.repository.eventoRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,15 +7,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import com.quattromoschettieri.itineria.entities.evento.Evento;
-import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
 
 public interface EventoRepository extends JpaRepository<Evento, Long>, JpaSpecificationExecutor<Evento>{
-
-    Page<Evento> findByLuogoInteresse(LuogoInteresse luogoInteresse, Pageable pageable);
-
-    Page<Evento> findByLuogoInteresseId(Long id, Pageable pageable);
-
-    Page<Evento> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
 
     @Query("""
            SELECT e

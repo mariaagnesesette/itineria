@@ -3,13 +3,14 @@ package com.quattromoschettieri.itineria.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
 import com.quattromoschettieri.itineria.entities.recensione.Recensione;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
 
 
-public interface RecensioneRepository extends JpaRepository<Recensione, Long>{
+public interface RecensioneRepository extends JpaRepository<Recensione, Long>, JpaSpecificationExecutor<Recensione>{
 
     Page<Recensione> findByLuogoInteresse(LuogoInteresse luogoInteresse, Pageable pageable);
 

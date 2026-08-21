@@ -1,13 +1,22 @@
-package com.quattromoschettieri.itineria.DTO.EventoDTO;
+package com.quattromoschettieri.itineria.DTO.eventoDTO;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record DataEventoDTO(
-        LocalDate dataInizio,
-        LocalDate dataFine,
-        LocalTime oraInizio,
-        LocalTime oraFine
-) {
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+public class DataEventoDTO {
+
+    private Long id;
+    
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
+    private LocalTime oraInizio;
+    private LocalTime oraFine;
 }
+

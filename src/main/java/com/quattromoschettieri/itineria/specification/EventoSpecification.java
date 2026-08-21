@@ -15,7 +15,8 @@ import jakarta.persistence.criteria.Join;
 
 public final class EventoSpecification {
 
-    private EventoSpecification() {}
+    private EventoSpecification() {
+    }
 
     public static Specification<Evento> perTipologia(
             TipologiaEvento tipologiaEvento) {
@@ -53,27 +54,49 @@ public final class EventoSpecification {
                 );
     }
 
-    public static Specification<Evento> prezzoMassimo(
-            BigDecimal prezzo) {
+    public static Specification<Evento> prezzoTra(
+            BigDecimal prezzoMinimo,
+            BigDecimal prezzoMassimo) {
 
-        return (root, query, cb) ->
-            prezzo == null
-                ? null
-                : cb.lessThanOrEqualTo(
-                    root.get("prezzo"),
-                    prezzo
+        return (root, query, cb) -> {
+
+            if (prezzoMinimo == null && prezzoMassimo == null) {
+                return null;
+            }
+
+            if (prezzoMinimo == null) {
+                return cb.lessThanOrEqualTo(
+                        root.get("prezzo"),
+                        prezzoMassimo
                 );
+            }
+
+            if (prezzoMassimo == null) {
+                return cb.greaterThanOrEqualTo(
+                        root.get("prezzo"),
+                        prezzoMinimo
+                );
+            }
+
+            return cb.between(
+                    root.get("prezzo"),
+                    prezzoMinimo,
+                    prezzoMassimo
+            );
+        };
     }
 
     public static Specification<Evento> perLuogo(
             Long luogoId) {
 
         return (root, query, cb) -> {
-            if (luogoId == null) return null;
+            if (luogoId == null) {
+                return null;
+            }
 
             return cb.equal(
-                root.get("luogoInteresse").get("id"),
-                luogoId
+                    root.get("luogoInteresse").get("id"),
+                    luogoId
             );
         };
     }
@@ -96,21 +119,23 @@ public final class EventoSpecification {
 
         return (root, query, cb) -> {
 
-            if (inizio == null || fine == null) return null;
+            if (inizio == null || fine == null) {
+                return null;
+            }
 
             query.distinct(true);
 
-            Join<Evento, DataEvento> data =
-                root.join("dataEvento");
+                Join<Evento, DataEvento> data =
+                    root.join("dataEvento");
 
             return cb.and(
                 cb.lessThanOrEqualTo(
-                    data.get("dataInizio"),
-                    fine
+                        data.get("dataInizio"),
+                        fine
                 ),
                 cb.greaterThanOrEqualTo(
-                    data.get("dataFine"),
-                    inizio
+                        data.get("dataFine"),
+                        inizio
                 )
             );
         };
@@ -121,17 +146,19 @@ public final class EventoSpecification {
 
         return (root, query, cb) -> {
 
-            if (dataRicerca == null) return null;
+            if (dataRicerca == null) {
+                return null;
+            }
 
             query.distinct(true);
 
-            Join<Evento, DataEvento> data =
-                root.join("dataEvento");
+                Join<Evento, DataEvento> data =
+                    root.join("dataEvento");
 
             return cb.between(
-                cb.literal(dataRicerca),
-                data.get("dataInizio"),
-                data.get("dataFine")
+                    cb.literal(dataRicerca),
+                    data.get("dataInizio"),
+                    data.get("dataFine")
             );
         };
     }
@@ -141,16 +168,18 @@ public final class EventoSpecification {
 
         return (root, query, cb) -> {
 
-            if (ora == null) return null;
+            if (ora == null) {
+                return null;
+            }
 
             query.distinct(true);
 
-            Join<Evento, DataEvento> data =
-                root.join("dataEvento");
+                Join<Evento, DataEvento> data =
+                    root.join("dataEvento");
 
             return cb.greaterThanOrEqualTo(
-                data.get("oraInizio"),
-                ora
+                    data.get("oraInizio"),
+                    ora
             );
         };
     }
@@ -161,17 +190,19 @@ public final class EventoSpecification {
 
         return (root, query, cb) -> {
 
-            if (inizio == null || fine == null) return null;
+            if (inizio == null || fine == null) {
+                return null;
+            }
 
             query.distinct(true);
 
-            Join<Evento, DataEvento> data =
-                root.join("dataEvento");
+                Join<Evento, DataEvento> data =
+                    root.join("dataEvento");
 
             return cb.between(
-                data.get("oraInizio"),
-                inizio,
-                fine
+                    data.get("oraInizio"),
+                    inizio,
+                    fine
             );
         };
     }
@@ -181,17 +212,19 @@ public final class EventoSpecification {
 
         return (root, query, cb) -> {
 
-            if (ora == null) return null;
+            if (ora == null) {
+                return null;
+            }
 
             query.distinct(true);
 
-            Join<Evento, DataEvento> data =
-                root.join("dataEvento");
+                Join<Evento, DataEvento> data =
+                    root.join("dataEvento");
 
             return cb.between(
-                cb.literal(ora),
-                data.get("oraInizio"),
-                data.get("oraFine")
+                    cb.literal(ora),
+                    data.get("oraInizio"),
+                    data.get("oraFine")
             );
         };
     }
