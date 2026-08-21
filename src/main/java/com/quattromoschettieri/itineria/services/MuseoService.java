@@ -110,13 +110,6 @@ public class MuseoService {
         }
     }
 
-    public MuseoDTO findByIdDto(Long id) {
-        Museo museo = museoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Museo non trovato: " + id));
-
-        return toDto(museo);
-    }
-
     // CREATE
     public MuseoDTO create(MuseoDTO dto) {
 
@@ -146,6 +139,13 @@ public class MuseoService {
     public Museo findById(Long id) {
         return museoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Museo non trovato: " + id));
+    }
+
+    public MuseoDTO findByIdDto(Long id) {
+        Museo museo = museoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Museo non trovato: " + id));
+
+        return toDto(museo);
     }
 
     public Page<Museo> findByNome(String nome, Pageable pageable) {
@@ -198,11 +198,11 @@ public class MuseoService {
         return toDto(salvato);
     }
 
-    //DELETE
-    public void delete(Long id){
+    // DELETE
+    public void delete(Long id) {
 
         Museo museo = museoRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Museo non trovato: " +id));
+                .orElseThrow(() -> new IllegalArgumentException("Museo non trovato: " + id));
 
         museoRepository.delete(museo);
     }
