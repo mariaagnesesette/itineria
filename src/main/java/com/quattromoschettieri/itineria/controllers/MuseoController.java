@@ -51,21 +51,26 @@ public class MuseoController {
 
         Page<Museo> risultati = museoService.findAll(pageable);
 
+        model.addAttribute("musei", risultati.getContent());
         model.addAttribute("risultati", risultati);
+        model.addAttribute("museoDTO", new MuseoDTO());
 
-        return "musei/lista";
+        return "luoghi_interesse/musei";
     }
 
     // ricerca con filtri
     @GetMapping("/filtri")
-    public String filterMusei(@ModelAttribute MuseoDTO dto, Pageable pageable, Model model) {
+    public String filterMusei(
+            @ModelAttribute("museoDTO") MuseoDTO dto,
+            Pageable pageable,
+            Model model) {
 
         Page<Museo> risultati = museoService.search(dto, pageable);
 
+        model.addAttribute("musei", risultati.getContent());
         model.addAttribute("risultati", risultati);
-        model.addAttribute("museoDTO", dto);
 
-        return "musei/lista";
+        return "luoghi_interesse/musei";
     }
 
     // ricerca per id
