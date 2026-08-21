@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dettaglio Luogo - Museo Egizio — Itineraria</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================
+       VARIABILI GLOBALI
+       ========================================== */
+    :root {
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --color-text-dark: #2b2523;
+      --color-text-gray: #7a7268;
+      --color-accent: #c85a32;
+      --color-bg-light: #faf8f5;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: #f7f4ef;
+      color: var(--color-text-dark);
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ==========================================
+       HEADER & NAVBAR INTEGRATI
+       ========================================== */
+    .site-header {
+      width: 100%;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e7e2d8;
+      position: relative;
+      z-index: 100;
+    }
+
+    .site-header--solid {
+      background-color: #fcfbfa;
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .main-nav__link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-dark);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .main-nav__link:hover,
+    .main-nav__link--active {
+      color: var(--color-accent);
+    }
+
+    .main-nav__item {
+      position: relative;
+    }
+
+    /* Mega Dropdown */
+    .mega-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 720px;
+      background: #ffffff;
+      border: 1px solid #e7e2d8;
+      border-radius: var(--radius-md);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      padding: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .main-nav__item:hover .mega-dropdown {
+      display: grid;
+    }
+
+    .mega-dropdown__group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mega-dropdown__title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mega-dropdown__list {
+      list-style: none;
+    }
+
+    .mega-dropdown__list li {
+      margin-bottom: 6px;
+    }
+
+    .mega-dropdown__list a {
+      font-size: 12.5px;
+      color: var(--color-text-gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .mega-dropdown__list a:hover {
+      color: var(--color-text-dark);
+    }
+
+    .btn-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--color-text-dark);
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .btn-login:hover {
+      background-color: #3d3532;
+    }
+
+    /* ==========================================
+       DETTAGLIO LUOGO CARD
+       ========================================== */
+    .detail-wrapper {
+      max-width: 960px;
+      margin: 40px auto 60px;
+    }
+
+    .page-title-label {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      color: var(--color-text-dark);
+    }
+
+    .place-card {
+      background: #faf8f5;
+      border: 1px solid #e7e2d8;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 280px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+
+    .title-section {
+      margin-bottom: 16px;
+    }
+
+    .place-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--color-text-dark);
+      margin-bottom: 4px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13.5px;
+      color: var(--color-text-gray);
+    }
+
+    .rating-stars {
+      color: #d97706;
+    }
+
+    .actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 28px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f2eee7;
+      border: 1px solid #e2dcd2;
+      border-radius: var(--radius-sm);
+      padding: 9px 16px;
+      font-size: 12.5px;
+      color: #4a423a;
+      text-decoration: none;
+    }
+
+    .action-btn i {
+      color: var(--color-accent);
+    }
+
+    .action-btn.btn-directions {
+      background: #eee8dd;
+      font-weight: 600;
+    }
+
+    .info-hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-text-dark);
+      margin-bottom: 10px;
+    }
+
+    .info-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #5c544c;
+      margin-bottom: 8px;
+    }
+
+    .read-more {
+      font-size: 12.5px;
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hours-box {
+      background: #f2eee7;
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #5c544c;
+      padding: 4px 0;
+    }
+
+    .hours-row span:last-child {
+      font-weight: 600;
+      color: var(--color-text-dark);
+    }
+
+    .gallery-section {
+      margin-bottom: 28px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .gallery-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+    }
+
+    .services-section {
+      margin-bottom: 28px;
+    }
+
+    .services-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .service-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f2eee7;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      color: #4a423a;
+    }
+
+    .reviews-map-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .rating-summary {
+      margin-bottom: 16px;
+    }
+
+    .score-big {
+      font-size: 42px;
+      font-weight: 800;
+      font-family: var(--font-serif);
+      color: var(--color-text-dark);
+      line-height: 1;
+    }
+
+    .review-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid #e7e2d8;
+    }
+
+    .review-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #362e2b;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .review-user {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--color-text-dark);
+    }
+
+    .review-date {
+      font-size: 11px;
+      color: var(--color-text-gray);
+      margin-left: 6px;
+      font-weight: 400;
+    }
+
+    .review-text {
+      font-size: 12px;
+      color: #5c544c;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .btn-all-reviews {
+      display: inline-block;
+      margin-top: 14px;
+      background: #f2eee7;
+      border: 1px solid #e2dcd2;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      color: #4a423a;
+      cursor: pointer;
+    }
+
+    .map-box {
+      width: 100%;
+      height: 240px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #e2ded4;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ==========================================
+       FOOTER INTEGRATO
+       ========================================== */
+    .site-footer {
+      background-color: #231f1d;
+      color: #e7e2d8;
+      padding: 48px 0 24px;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand__logo {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-brand__logo i {
+      color: var(--color-accent);
+    }
+
+    .footer-brand__desc {
+      font-size: 13px;
+      color: #a8a098;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      color: #ffffff;
+      background: #362e2b;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 13px;
+      transition: background-color 0.2s;
+    }
+
+    .footer-social a:hover {
+      background: var(--color-accent);
+    }
+
+    .footer-col__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .footer-col__list {
+      list-style: none;
+    }
+
+    .footer-col__list li {
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .footer-col__list a {
+      color: #a8a098;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col__list a:hover {
+      color: #ffffff;
+    }
+
+    .footer-contact-item {
+      color: #a8a098;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #362e2b;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #8c827a;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .info-hours-grid, .reviews-map-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="site-header site-header--solid">
+    <div class="container site-header__inner">
+
+      <nav class="main-nav">
+        <a href="index.html" class="main-nav__link">Home</a>
+
+        <div class="main-nav__item">
+          <a href="#" class="main-nav__link main-nav__link--dropdown main-nav__link--active">
+            Luoghi d'interesse <i class="fa-solid fa-chevron-down"></i>
+          </a>
+
+          <!-- Mega Dropdown -->
+          <div class="mega-dropdown">
+            <div class="mega-dropdown__group">
+              <div class="mega-dropdown__title"><i class="fa-solid fa-book"></i> Biblioteche</div>
+              <ul class="mega-dropdown__list">
+                <li><a href="#">Biblioteche comunali</a></li>
+                <li><a href="#">Sale studio</a></li>
+                <li><a href="#">Aule studio</a></li>
+                <li><a href="#">Spazi coworking</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-dropdown__group">
+              <div class="mega-dropdown__title"><i class="fa-solid fa-mug-hot"></i> Bar e Caffetterie</div>
+              <ul class="mega-dropdown__list">
+                <li><a href="#">Bar</a></li>
+                <li><a href="#">Caffetterie</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-dropdown__group">
+              <div class="mega-dropdown__title"><i class="fa-solid fa-utensils"></i> Ristoranti</div>
+              <ul class="mega-dropdown__list">
+                <li><a href="#">Ristoranti tipici</a></li>
+                <li><a href="#">Pizzerie</a></li>
+                <li><a href="#">Cucine internazionali</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-dropdown__group">
+              <div class="mega-dropdown__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</div>
+              <ul class="mega-dropdown__list">
+                <li><a href="#">Parchi cittadini</a></li>
+                <li><a href="#">Giardini</a></li>
+                <li><a href="#">Aree picnic</a></li>
+                <li><a href="#">Oasi naturali</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-dropdown__group">
+              <div class="mega-dropdown__title"><i class="fa-solid fa-landmark"></i> Musei</div>
+              <ul class="mega-dropdown__list">
+                <li><a href="#">Musei storici</a></li>
+                <li><a href="#">Musei d'arte</a></li>
+                <li><a href="#">Musei scientifici</a></li>
+                <li><a href="#">Musei interattivi</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="main-nav__link">Eventi</a>
+        <a href="#" class="main-nav__link">Contatti</a>
+      </nav>
+
+      <a href="#" class="btn-login">
+        <i class="fa-solid fa-user"></i> Accedi
+      </a>
+
+    </div>
+  </header>
+
+  <!-- DETTAGLIO LUOGO -->
+  <main class="container detail-wrapper">
+    
+    <div class="page-title-label">3 DETTAGLIO LUOGO</div>
+
+    <div class="place-card">
+      <!-- Copertina Museo Egizio -->
+      <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Statue_di_faraoni_nella_Galleria_dei_Re_del_Museo_Egizio.jpg/1280px-Statue_di_faraoni_nella_Galleria_dei_Re_del_Museo_Egizio.jpg" alt="Galleria dei Re - Museo Egizio">
+
+      <!-- Titolo e Meta Info -->
+      <div class="title-section">
+        <h1 class="place-title">Museo Egizio</h1>
+        <div class="meta-row">
+          <span>Museo storico</span>
+          <div>
+            <span class="rating-stars">★★★★★</span>
+            <span>(1342 recensioni)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pulsanti Azione -->
+      <div class="actions-row">
+        <a href="#" class="action-btn">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Via Accademia delle Scienze, 6 Torino</span>
+        </a>
+        <a href="tel:0114406903" class="action-btn">
+          <i class="fa-solid fa-phone"></i>
+          <span>011 440 6903</span>
+        </a>
+        <a href="#" class="action-btn">
+          <i class="fa-solid fa-globe"></i>
+          <span>Sito web</span>
+        </a>
+        <a href="#" class="action-btn btn-directions">
+          <i class="fa-solid fa-compass"></i>
+          <span>Indicazioni</span>
+        </a>
+      </div>
+
+      <!-- Informazioni e Orari -->
+      <div class="info-hours-grid">
+        <div>
+          <h2 class="section-title">Informazioni</h2>
+          <p class="info-text">
+            Il Museo Egizio di Torino è il più antico museo al mondo dedicato alla civiltà egizia. Una collezione straordinaria che racconta migliaia di anni di storia.
+          </p>
+          <a href="#" class="read-more">Mostra di più</a>
+        </div>
+
+        <div class="hours-box">
+          <h2 class="section-title">Orari di apertura</h2>
+          <div class="hours-row"><span>Lunedì</span><span>10:00 - 18:00</span></div>
+          <div class="hours-row"><span>Martedì</span><span>10:00 - 18:00</span></div>
+          <div class="hours-row"><span>Mercoledì</span><span>10:00 - 18:00</span></div>
+          <div class="hours-row"><span>Giovedì</span><span>10:00 - 18:00</span></div>
+          <div class="hours-row"><span>Venerdì</span><span>10:00 - 18:00</span></div>
+          <div class="hours-row"><span>Sabato</span><span>10:00 - 19:00</span></div>
+          <div class="hours-row"><span>Domenica</span><span>10:00 - 19:00</span></div>
+        </div>
+      </div>
+
+      <!-- Galleria Fotografica -->
+      <div class="gallery-section">
+        <h2 class="section-title">Galleria</h2>
+        <div class="gallery-grid">
+          <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Statue_di_faraoni_nella_Galleria_dei_Re_del_Museo_Egizio.jpg/640px-Statue_di_faraoni_nella_Galleria_dei_Re_del_Museo_Egizio.jpg" alt="Galleria dei Re">
+          <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Torino_Museo_Egizio_Ramses_II.jpg/640px-Torino_Museo_Egizio_Ramses_II.jpg" alt="Statua di Ramses II">
+          <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Museo_Egizio_Torino_Sarcofago.jpg/640px-Museo_Egizio_Torino_Sarcofago.jpg" alt="Sarcofago Egizio">
+          <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Museo_Egizio_%28Torino%29_-_Interno.jpg/640px-Museo_Egizio_%28Torino%29_-_Interno.jpg" alt="Interni del Museo Egizio">
+          <img class="gallery-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Palazzo_dell%27Accademia_delle_Scienze_Torino.jpg/640px-Palazzo_dell%27Accademia_delle_Scienze_Torino.jpg" alt="Facciata Palazzo Accademia delle Scienze">
+        </div>
+      </div>
+
+      <!-- Servizi -->
+      <div class="services-section">
+        <h2 class="section-title">Servizi disponibili</h2>
+        <div class="services-list">
+          <span class="service-badge"><i class="fa-solid fa-wifi"></i> Wi-Fi</span>
+          <span class="service-badge"><i class="fa-solid fa-wheelchair"></i> Accessibile</span>
+          <span class="service-badge"><i class="fa-solid fa-shirt"></i> Guardaroba</span>
+          <span class="service-badge"><i class="fa-solid fa-book-open"></i> Bookshop</span>
+          <span class="service-badge"><i class="fa-solid fa-headphones"></i> Audioguida</span>
+        </div>
+      </div>
+
+      <!-- Recensioni + Mappa -->
+      <div class="reviews-map-grid">
+        <div>
+          <h2 class="section-title">Recensioni</h2>
+          <div class="rating-summary">
+            <div class="score-big">4.6</div>
+            <div class="rating-stars">★★★★★</div>
+            <div style="font-size: 11px; color: var(--color-text-gray);">Basato su 1342 recensioni</div>
+          </div>
+
+          <div class="review-item">
+            <div class="review-avatar">G</div>
+            <div>
+              <span class="review-user">Giulia R.</span>
+              <span class="review-date">2 giorni fa</span>
+              <div class="rating-stars" style="font-size: 10px;">★★★★★</div>
+              <p class="review-text">Museo straordinario, allestimenti curati e collezioni incredibili!</p>
+            </div>
+          </div>
+
+          <div class="review-item">
+            <div class="review-avatar">M</div>
+            <div>
+              <span class="review-user">Marco B.</span>
+              <span class="review-date">1 settimana fa</span>
+              <div class="rating-stars" style="font-size: 10px;">★★★★★</div>
+              <p class="review-text">Esperienza davvero affascinante, assolutamente da vedere.</p>
+            </div>
+          </div>
+
+          <button class="btn-all-reviews">Vedi tutte le recensioni</button>
+        </div>
+
+        <div class="map-box">
+          <iframe src="https://maps.google.com/maps?q=Museo%20Egizio%20Torino&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <div class="footer-brand__logo"><i class="fa-solid fa-location-dot"></i> Itineraria</div>
+          <p class="footer-brand__desc">La tua guida digitale per scoprire Torino in modo autentico e sostenibile.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/itineraria" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com/itineraria" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://pinterest.com/itineraria" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Contatti</div>
+          <ul class="footer-col__list">
+            <li class="footer-contact-item"><i class="fa-regular fa-envelope"></i> info@itineraria.it</li>
+            <li class="footer-contact-item"><i class="fa-solid fa-phone"></i> +39 011 123 4567</li>
+            <li class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Torino, Italia</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Esplora</div>
+          <ul class="footer-col__list">
+            <li><a href="#">Luoghi d'interesse</a></li>
+            <li><a href="#">Eventi</a></li>
+            <li><a href="#">Forum (coming soon)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Info</div>
+          <ul class="footer-col__list">
+            <li><a href="#">Chi siamo</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Termini e condizioni</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Supporto</div>
+          <ul class="footer-col__list">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contattaci</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Itineraria.</span>
+        <span>Tutti i diritti riservati.</span>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
