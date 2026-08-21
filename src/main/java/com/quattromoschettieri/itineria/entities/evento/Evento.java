@@ -37,6 +37,9 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 public class Evento extends GenericEntity{
 
+    @Column(name = "nome", length = 255, nullable = false)
+    private String nome;
+
     @Column(name = "descrizione", length = 5000, nullable = false)
     private String descrizione;
 
@@ -67,7 +70,7 @@ public class Evento extends GenericEntity{
 
     @OneToMany(mappedBy = "evento")
     @EqualsAndHashCode.Exclude
-    private List<DataEvento> dataEvento;
+    private List<DataEvento> dateEvento;
 
     @ManyToMany(mappedBy = "eventiPreferiti")
     @EqualsAndHashCode.Exclude

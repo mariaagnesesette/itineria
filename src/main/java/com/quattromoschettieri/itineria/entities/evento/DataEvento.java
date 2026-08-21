@@ -38,13 +38,13 @@ public class DataEvento {
     @Column(name = "data_inizio", nullable = false)
     private LocalDate dataInizio;
 
-    @Column(name = "data_fine")
+    @Column(name = "data_fine", nullable = false)
     private LocalDate dataFine;
 
     @Column(name = "ora_inizio", nullable = false)
     private LocalTime oraInizio;
 
-    @Column(name = "ora_fine")
+    @Column(name = "ora_fine", nullable = false)
     private LocalTime oraFine;
 
     @ManyToOne(fetch = FetchType.LAZY)

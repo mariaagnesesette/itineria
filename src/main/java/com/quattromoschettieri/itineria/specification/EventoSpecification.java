@@ -18,159 +18,181 @@ public final class EventoSpecification {
     private EventoSpecification() {}
 
     public static Specification<Evento> perTipologia(
-        TipologiaEvento tipologiaEvento) {
+            TipologiaEvento tipologiaEvento) {
 
-            return(root, query, cb) ->
-                cb.equal(
+        return (root, query, cb) ->
+            tipologiaEvento == null
+                ? null
+                : cb.equal(
                     root.get("tipologiaEvento"),
                     tipologiaEvento
                 );
-        }
+    }
 
     public static Specification<Evento> perPubblico(
-        PubblicoEvento pubblicoEvento) {
+            PubblicoEvento pubblicoEvento) {
 
-            return(root, query, cb) ->
-                cb.equal(
+        return (root, query, cb) ->
+            pubblicoEvento == null
+                ? null
+                : cb.equal(
                     root.get("pubblicoEvento"),
                     pubblicoEvento
                 );
-        }
+    }
 
     public static Specification<Evento> conPrenotazione(
-        boolean prenotazione) {
+            Boolean prenotazione) {
 
-            return(root, query, cb) ->
-                cb.equal(
+        return (root, query, cb) ->
+            prenotazione == null
+                ? null
+                : cb.equal(
                     root.get("prenotazione"),
                     prenotazione
                 );
-            }
+    }
 
     public static Specification<Evento> prezzoMassimo(
-        BigDecimal prezzo) {
+            BigDecimal prezzo) {
 
-            return(root, query, cb) ->
-                cb.lessThanOrEqualTo(
+        return (root, query, cb) ->
+            prezzo == null
+                ? null
+                : cb.lessThanOrEqualTo(
                     root.get("prezzo"),
                     prezzo
                 );
-        }
+    }
 
-        public static Specification<Evento> perLuogo(
-        Long luogoId) {
+    public static Specification<Evento> perLuogo(
+            Long luogoId) {
 
-            return (root, query, cb) ->
-                cb.equal(
-                    root.get("luogoInteresse").get("id"),
-                    luogoId
-                );
-        }
+        return (root, query, cb) -> {
+            if (luogoId == null) return null;
 
-        public static Specification<Evento> contieneNome(
-        String nome) {
+            return cb.equal(
+                root.get("luogoInteresse").get("id"),
+                luogoId
+            );
+        };
+    }
 
-            return (root, query, cb) ->
-                cb.like(
+    public static Specification<Evento> contieneNome(
+            String nome) {
+
+        return (root, query, cb) ->
+            (nome == null || nome.isBlank())
+                ? null
+                : cb.like(
                     cb.lower(root.get("nome")),
                     "%" + nome.toLowerCase() + "%"
                 );
-        }
+    }
 
+    public static Specification<Evento> nelPeriodo(
+            LocalDate inizio,
+            LocalDate fine) {
 
-        public static Specification<Evento> nelPeriodo(
-        LocalDate inizio,
-        LocalDate fine) {
+        return (root, query, cb) -> {
 
-            return (root, query, cb) -> {
+            if (inizio == null || fine == null) return null;
 
-                query.distinct(true);
+            query.distinct(true);
 
-                Join<Evento, DataEvento> data =
-                        root.join("dataEvento");
+            Join<Evento, DataEvento> data =
+                root.join("dataEvento");
 
-                return cb.and(
-                    cb.lessThanOrEqualTo(
-                        data.get("dataInizio"),
-                        fine
-                    ),
-                    cb.greaterThanOrEqualTo(
-                        data.get("dataFine"),
-                        inizio
-                    )
-                );
-            };
-        }
-
-        public static Specification<Evento> nellaData(
-        LocalDate dataRicerca) {
-
-            return (root, query, cb) -> {
-
-                query.distinct(true);
-
-                Join<Evento, DataEvento> data =
-                        root.join("dateEvento");
-
-                return cb.between(
-                    cb.literal(dataRicerca),
+            return cb.and(
+                cb.lessThanOrEqualTo(
                     data.get("dataInizio"),
-                    data.get("dataFine")
-                );
-            };
-        }
+                    fine
+                ),
+                cb.greaterThanOrEqualTo(
+                    data.get("dataFine"),
+                    inizio
+                )
+            );
+        };
+    }
 
-        public static Specification<Evento> dopoOra(
-        LocalTime ora) {
+    public static Specification<Evento> nellaData(
+            LocalDate dataRicerca) {
 
-            return (root, query, cb) -> {
+        return (root, query, cb) -> {
 
-                query.distinct(true);
+            if (dataRicerca == null) return null;
 
-                Join<Evento, DataEvento> data =
-                        root.join("dateEvento");
+            query.distinct(true);
 
-                return cb.greaterThanOrEqualTo(
-                    data.get("oraInizio"),
-                    ora
-                );
-            };
-        }
+            Join<Evento, DataEvento> data =
+                root.join("dataEvento");
 
-        public static Specification<Evento> nellaFasciaOraria(
-        LocalTime inizio,
-        LocalTime fine) {
+            return cb.between(
+                cb.literal(dataRicerca),
+                data.get("dataInizio"),
+                data.get("dataFine")
+            );
+        };
+    }
 
-            return (root, query, cb) -> {
+    public static Specification<Evento> dopoOra(
+            LocalTime ora) {
 
-                query.distinct(true);
+        return (root, query, cb) -> {
 
-                Join<Evento, DataEvento> data =
-                        root.join("dateEvento");
+            if (ora == null) return null;
 
-                return cb.between(
-                        data.get("oraInizio"),
-                        inizio,
-                        fine
-                );
-            };
-        }
+            query.distinct(true);
 
-        public static Specification<Evento> attivoAllOra(
-        LocalTime ora) {
+            Join<Evento, DataEvento> data =
+                root.join("dataEvento");
 
-            return (root, query, cb) -> {
+            return cb.greaterThanOrEqualTo(
+                data.get("oraInizio"),
+                ora
+            );
+        };
+    }
 
-                query.distinct(true);
+    public static Specification<Evento> nellaFasciaOraria(
+            LocalTime inizio,
+            LocalTime fine) {
 
-                Join<Evento, DataEvento> data =
-                        root.join("dateEvento");
+        return (root, query, cb) -> {
 
-                return cb.between(
-                        cb.literal(ora),
-                        data.get("oraInizio"),
-                        data.get("oraFine")
-                );
-            };
-        }
+            if (inizio == null || fine == null) return null;
+
+            query.distinct(true);
+
+            Join<Evento, DataEvento> data =
+                root.join("dataEvento");
+
+            return cb.between(
+                data.get("oraInizio"),
+                inizio,
+                fine
+            );
+        };
+    }
+
+    public static Specification<Evento> attivoAllOra(
+            LocalTime ora) {
+
+        return (root, query, cb) -> {
+
+            if (ora == null) return null;
+
+            query.distinct(true);
+
+            Join<Evento, DataEvento> data =
+                root.join("dataEvento");
+
+            return cb.between(
+                cb.literal(ora),
+                data.get("oraInizio"),
+                data.get("oraFine")
+            );
+        };
+    }
 }
