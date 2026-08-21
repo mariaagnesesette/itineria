@@ -1,7 +1,11 @@
 package com.quattromoschettieri.itineria.DTO;
 
+import java.util.List;
+
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
+import com.quattromoschettieri.itineria.entities.museo.PrezzoMuseo;
+import com.quattromoschettieri.itineria.entities.museo.TipologiaMuseo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BibliotecaDTO {
+public class MuseoDTO {
 
     private Long id;
 
@@ -25,8 +29,12 @@ public class BibliotecaDTO {
     private String email;
 
     private Long idCitta;
-    private Boolean pubblico;
-    private Boolean wifi;
-    private Boolean areaComputer;
-    private Boolean areaBambini;
+
+    private TipologiaMuseo tipologia;
+    private Boolean guidaPrenotabile;
+    private Boolean barInterno;
+    private List<PrezzoMuseo> prezzi;
+    private Double prezzoMin;
+    private Double prezzoMax;
+
 }

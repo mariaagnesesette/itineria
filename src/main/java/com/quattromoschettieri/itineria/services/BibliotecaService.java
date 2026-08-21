@@ -79,21 +79,67 @@ public class BibliotecaService {
         esistente.setAreaComputer(Boolean.TRUE.equals(dto.getAreaComputer()));
         esistente.setAreaBambini(Boolean.TRUE.equals(dto.getAreaBambini()));
     }
+    
+    //CREATE
+    public BibliotecaDTO create(BibliotecaDTO dto) {
 
+        Citta citta = cittaRepository.findById(dto.getIdCitta())
+                .orElseThrow(() -> new IllegalArgumentException("Città non trovata: " + dto.getIdCitta()));
+
+        boolean giaEsistente = bibliotecaRepository.findAll().stream()
+                .anyMatch(b -> b.getNome().equalsIgnoreCase(dto.getNome())
+                        && b.getCitta() != null
+                        && b.getCitta().getId().equals(dto.getIdCitta()));
+
+        if (giaEsistente) {
+            throw new IllegalArgumentException(
+                    "Esiste già una biblioteca con nome " + dto.getNome() + " nella città di " + citta.getNome());
+        }
+
+        Biblioteca biblioteca = toEntity(dto, citta);
+        Biblioteca salvata = bibliotecaRepository.save(biblioteca);
+        return toDto(salvata);
+    }
+
+    //READ
+    // ricerca biblioteca tramite nome
+    public Page<Biblioteca> findByNome(String nome, Pageable pageable) {
+
+        return bibliotecaRepository.findByNomeContainingIgnoreCase(nome, pageable);
+    }
+
+    // da tutte le biblioteche presenti a db
+    public Page<Biblioteca> findAll(Pageable pageable) {
+        return bibliotecaRepository.findAll(pageable);
+    }
+
+    // ricerca biblioteca tramite filtri
+    public Page<Biblioteca> search(BibliotecaDTO bibliotecaDTO, Pageable pageable) {
+        Specification<Biblioteca> spec = Specification
+                .where(BibliotecaSpecification.nomeContains(bibliotecaDTO.getNome()))
+                .and(BibliotecaSpecification.isPubblico(bibliotecaDTO.getPubblico()))
+                .and(BibliotecaSpecification.hasWifi(bibliotecaDTO.getWifi()))
+                .and(BibliotecaSpecification.hasAreaComputer(bibliotecaDTO.getAreaComputer()))
+                .and(BibliotecaSpecification.hasAreaBambini(bibliotecaDTO.getAreaBambini()))
+                .and(BibliotecaSpecification.hasAccessibilita(bibliotecaDTO.getAccessibilita()))
+                .and(BibliotecaSpecification.isSempreAperto(bibliotecaDTO.getSempreAperto()))
+                .and(BibliotecaSpecification.inCitta(bibliotecaDTO.getIdCitta()));
+
+        return bibliotecaRepository.findAll(spec, pageable);
+    }
+
+    // ricerca biblioteca tramite id
+    public Biblioteca findById(Long id) {
+        return bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
+    }
     public BibliotecaDTO findByIdDto(Long id) {
         Biblioteca biblioteca = bibliotecaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
         return toDto(biblioteca);
     }
 
-    public void delete(Long id) {
-
-        Biblioteca biblioteca = bibliotecaRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
-
-        bibliotecaRepository.delete(biblioteca);
-    }
-
+    //UPDATE
     public BibliotecaDTO update(Long id, BibliotecaDTO dto) {
 
         Biblioteca biblioteca = bibliotecaRepository.findById(id)
@@ -119,55 +165,13 @@ public class BibliotecaService {
         return toDto(salvata);
     }
 
-    public BibliotecaDTO create(BibliotecaDTO dto) {
+    //DELETE
+    public void delete(Long id) {
 
-        Citta citta = cittaRepository.findById(dto.getIdCitta())
-                .orElseThrow(() -> new IllegalArgumentException("Città non trovata: " + dto.getIdCitta()));
-
-        boolean giaEsistente = bibliotecaRepository.findAll().stream()
-                .anyMatch(b -> b.getNome().equalsIgnoreCase(dto.getNome())
-                        && b.getCitta() != null
-                        && b.getCitta().getId().equals(dto.getIdCitta()));
-
-        if (giaEsistente) {
-            throw new IllegalArgumentException(
-                    "Esiste già una biblioteca con nome " + dto.getNome() + " nella città di " + citta.getNome());
-        }
-
-        Biblioteca biblioteca = toEntity(dto, citta);
-        Biblioteca salvata = bibliotecaRepository.save(biblioteca);
-        return toDto(salvata);
-    }
-
-    // ricerca biblioteca tramite nome
-    public Page<Biblioteca> findByNome(String nome, Pageable pageable) {
-
-        return bibliotecaRepository.findByNomeContainingIgnoreCase(nome, pageable);
-    }
-
-    // da tutte le biblioteche presenti a db
-    public Page<Biblioteca> findAll(Pageable pageable) {
-        return bibliotecaRepository.findAll(pageable);
-    }
-
-    // ricerca biblioteca tramite filtri
-    public Page<Biblioteca> search(BibliotecaDTO bibliotecaDTO, Pageable pageable) {
-        Specification<Biblioteca> spec = Specification
-                .where(BibliotecaSpecification.nomeContains(bibliotecaDTO.getNome()))
-                .and(BibliotecaSpecification.isPubblico(bibliotecaDTO.getPubblico()))
-                .and(BibliotecaSpecification.hasWifi(bibliotecaDTO.getWifi()))
-                .and(BibliotecaSpecification.hasAreaComputer(bibliotecaDTO.getAreaComputer()))
-                .and(BibliotecaSpecification.hasAreaBambini(bibliotecaDTO.getAreaBambini()))
-                .and(BibliotecaSpecification.hasAccessibilita(bibliotecaDTO.getAccessibilita()))
-                .and(BibliotecaSpecification.isSempreAperto(bibliotecaDTO.getSempreAperto()))
-                .and(BibliotecaSpecification.inCitta(bibliotecaDTO.getIdCitta()));
-        return bibliotecaRepository.findAll(spec, pageable);
-    }
-
-    // ricerca biblioteca tramite id
-    public Biblioteca findById(Long id) {
-        return bibliotecaRepository.findById(id)
+        Biblioteca biblioteca = bibliotecaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
-    }
 
+        bibliotecaRepository.delete(biblioteca);
+    }
+    
 }

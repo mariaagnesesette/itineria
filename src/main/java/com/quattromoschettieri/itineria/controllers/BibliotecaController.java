@@ -57,7 +57,7 @@ public class BibliotecaController {
 
     // ricerca per id
     @GetMapping("/{id}")
-    public String detailBiblioteca(@PathVariable Long id, Model model) {
+    public String detailBibliotecaId(@PathVariable Long id, Model model) {
 
         Biblioteca risultato = bibliotecaService.findById(id);
 
