@@ -22,7 +22,8 @@ public interface EventoRepository extends JpaRepository<Evento, Long>, JpaSpecif
            FROM Evento e
            JOIN e.dateEvento d
            GROUP BY e
-           HAVING MAX(d.dataFine) < CURRENT_DATE           """)
+           HAVING MAX(d.dataFine) < CURRENT_DATE
+           """)
     Page<Evento> findStoricoEventi(Pageable pageable);
 
     @Query("""
@@ -34,32 +35,32 @@ public interface EventoRepository extends JpaRepository<Evento, Long>, JpaSpecif
     Page<Evento> findEventiFuturi(Pageable pageable);
 
     @Query("""
-       SELECT DISTINCT e
-       FROM Evento e
-       JOIN e.dateEvento d
-       WHERE
-           (
-               CURRENT_DATE > d.dataInizio
-               AND CURRENT_DATE < d.dataFine
-           )
-           OR
-           (
-               CURRENT_DATE = d.dataInizio
-               AND CURRENT_TIME >= d.oraInizio
-           )
-           OR
-           (
-               CURRENT_DATE = d.dataFine
-               AND CURRENT_TIME <= d.oraFine
-           )
-           OR
-           (
-               CURRENT_DATE = d.dataInizio
-               AND CURRENT_DATE = d.dataFine
-               AND CURRENT_TIME >= d.oraInizio
-               AND CURRENT_TIME <= d.oraFine
-           )
-       """)
-       Page<Evento> findEventiInCorso(Pageable pageable);
+           SELECT DISTINCT e
+           FROM Evento e
+           JOIN e.dateEvento d
+           WHERE
+               (
+                   CURRENT_DATE > d.dataInizio
+                   AND CURRENT_DATE < d.dataFine
+               )
+               OR
+               (
+                   CURRENT_DATE = d.dataInizio
+                   AND CURRENT_TIME >= d.oraInizio
+               )
+               OR
+               (
+                   CURRENT_DATE = d.dataFine
+                   AND CURRENT_TIME <= d.oraFine
+               )
+               OR
+               (
+                   CURRENT_DATE = d.dataInizio
+                   AND CURRENT_DATE = d.dataFine
+                   AND CURRENT_TIME >= d.oraInizio
+                   AND CURRENT_TIME <= d.oraFine
+               )
+           """)
+    Page<Evento> findEventiInCorso(Pageable pageable);
 
 }

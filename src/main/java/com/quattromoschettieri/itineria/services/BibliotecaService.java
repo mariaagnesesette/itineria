@@ -79,39 +79,8 @@ public class BibliotecaService {
         esistente.setAreaComputer(Boolean.TRUE.equals(dto.getAreaComputer()));
         esistente.setAreaBambini(Boolean.TRUE.equals(dto.getAreaBambini()));
     }
-
-    public void delete(Long id) {
-    Biblioteca biblioteca = bibliotecaRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
-
-    bibliotecaRepository.delete(biblioteca);
-    }
-
-    public BibliotecaDTO update(Long id, BibliotecaDTO dto) {
-
-        Biblioteca esistente = bibliotecaRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
-
-        Citta citta = cittaRepository.findById(dto.getIdCitta())
-                .orElseThrow(() -> new IllegalArgumentException("Città non trovata: " + dto.getIdCitta()));
-
-        boolean giaEsistente = bibliotecaRepository.findAll().stream()
-                .anyMatch(b -> !b.getId().equals(id)
-                        && b.getNome().equalsIgnoreCase(dto.getNome())
-                        && b.getCitta() != null
-                        && b.getCitta().getId().equals(dto.getIdCitta()));
-
-        if (giaEsistente) {
-            throw new IllegalArgumentException(
-                    "Esiste già un'altra biblioteca con nome '" + dto.getNome() + "' nella città di "
-                            + citta.getNome());
-        }
-
-        updateEntity(esistente, dto, citta);
-        Biblioteca salvata = bibliotecaRepository.save(esistente);
-        return toDto(salvata);
-    }
-
+    
+    //CREATE
     public BibliotecaDTO create(BibliotecaDTO dto) {
 
         Citta citta = cittaRepository.findById(dto.getIdCitta())
@@ -132,8 +101,10 @@ public class BibliotecaService {
         return toDto(salvata);
     }
 
+    //READ
     // ricerca biblioteca tramite nome
-    public Page<Biblioteca> searchByNome(String nome, Pageable pageable) {
+    public Page<Biblioteca> findByNome(String nome, Pageable pageable) {
+
         return bibliotecaRepository.findByNomeContainingIgnoreCase(nome, pageable);
     }
 
@@ -153,7 +124,54 @@ public class BibliotecaService {
                 .and(BibliotecaSpecification.hasAccessibilita(bibliotecaDTO.getAccessibilita()))
                 .and(BibliotecaSpecification.isSempreAperto(bibliotecaDTO.getSempreAperto()))
                 .and(BibliotecaSpecification.inCitta(bibliotecaDTO.getIdCitta()));
+
         return bibliotecaRepository.findAll(spec, pageable);
     }
 
+    // ricerca biblioteca tramite id
+    public Biblioteca findById(Long id) {
+        return bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
+    }
+    public BibliotecaDTO findByIdDto(Long id) {
+        Biblioteca biblioteca = bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
+        return toDto(biblioteca);
+    }
+
+    //UPDATE
+    public BibliotecaDTO update(Long id, BibliotecaDTO dto) {
+
+        Biblioteca biblioteca = bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
+
+        Citta citta = cittaRepository.findById(dto.getIdCitta())
+                .orElseThrow(() -> new IllegalArgumentException("Città non trovata: " + dto.getIdCitta()));
+
+        boolean giaEsistente = bibliotecaRepository.findAll().stream()
+                .anyMatch(b -> !b.getId().equals(id)
+                        && b.getNome().equalsIgnoreCase(dto.getNome())
+                        && b.getCitta() != null
+                        && b.getCitta().getId().equals(dto.getIdCitta()));
+
+        if (giaEsistente) {
+            throw new IllegalArgumentException(
+                    "Esiste già un'altra biblioteca con nome " + dto.getNome() + " nella città di "
+                            + citta.getNome());
+        }
+
+        updateEntity(biblioteca, dto, citta);
+        Biblioteca salvata = bibliotecaRepository.save(biblioteca);
+        return toDto(salvata);
+    }
+
+    //DELETE
+    public void delete(Long id) {
+
+        Biblioteca biblioteca = bibliotecaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Biblioteca non trovata: " + id));
+
+        bibliotecaRepository.delete(biblioteca);
+    }
+    
 }
