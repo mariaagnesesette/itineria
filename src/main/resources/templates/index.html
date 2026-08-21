@@ -153,14 +153,6 @@
       <div class="places-carousel__viewport">
         <div class="places-carousel__track" id="placesTrack">
 
-          <!-- Ciclo dinamico: sostituisce gli slide statici sottostanti quando ${luoghiPrincipali} arriva dal Controller -->
-          <a th:each="luogo : ${luoghiPrincipali}" th:href="@{'/luoghi/' + ${luogo.slug}}" href="#" class="place-slide" th:if="${false}">
-            <img th:src="@{'/images/' + ${luogo.immagine}}" th:alt="${luogo.nome}" src="#" alt="">
-            <span class="place-slide__caption">
-              <h3 th:text="${luogo.nome}">Nome luogo</h3>
-              <p th:text="${luogo.categoria}">Categoria</p>
-            </span>
-          </a>
 
           <!-- Slide statici di esempio -->
           <a th:href="@{/luoghi/mole-antonelliana}" href="#" class="place-slide">
@@ -285,24 +277,24 @@
 
     <div class="events-row" id="eventsRow">
 
-      <!-- Ciclo dinamico: sostituisce le 5 card statiche sottostanti quando ${eventi} arriva dal Controller -->
-      <a th:each="evento : ${eventi}" th:href="@{'/eventi/' + ${evento.slug}}" href="#" class="event-card" th:if="${false}">
-        <img th:src="@{'/images/' + ${evento.immagine}}" th:alt="${evento.titolo}" src="#" alt="">
-        <span th:class="${evento.gratuito} ? 'event-card__badge event-card__badge--free' : 'event-card__badge event-card__badge--price'"
-              th:text="${evento.gratuito} ? 'Gratuito' : ('da €' + ${evento.prezzo})">Gratuito</span>
+
+      <!-- Card statiche  -->
+
+       <a th:href="@{/eventi/Presentazione-progetto}" href="#" class="event-card">
+        <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=600" alt="Concerto jazz dal vivo">
+        <span class="event-card__badge event-card__badge--free">Gratuito</span>
         <span class="event-card__overlay">
-          <span class="event-card__title" th:text="${evento.titolo}">Titolo evento</span>
-          <span class="event-card__date" th:text="${evento.dataRange}">Data evento</span>
+          <span class="event-card__title">Presentazione proggetto Generation 2026</span>
+          <span class="event-card__date">27 Agosto 2026</span>
         </span>
       </a>
 
-      <!-- Card statiche di esempio -->
       <a th:href="@{/eventi/torino-jazz-festival}" href="#" class="event-card">
         <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=600" alt="Concerto jazz dal vivo">
         <span class="event-card__badge event-card__badge--free">Gratuito</span>
         <span class="event-card__overlay">
-          <span class="event-card__title">Torino Jazz Festival 2025</span>
-          <span class="event-card__date">12 - 20 Maggio 2025</span>
+          <span class="event-card__title">Torino Jazz Festival 2026</span>
+          <span class="event-card__date">12 - 20 Settembre 2026</span>
         </span>
       </a>
 
@@ -311,25 +303,25 @@
         <span class="event-card__badge event-card__badge--price">da €10</span>
         <span class="event-card__overlay">
           <span class="event-card__title">Salone del Libro</span>
-          <span class="event-card__date">9 - 13 Maggio 2025</span>
+          <span class="event-card__date">9 - 13 Ottobre 2026</span>
         </span>
       </a>
 
-      <a th:href="@{/eventi/kappa-futurfestival}" href="#" class="event-card">
+      <a th:href="@{/eventi/Engineer}" href="#" class="event-card">
         <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=600" alt="Proiezione all'aperto su grande schermo">
         <span class="event-card__badge event-card__badge--price">da €40</span>
         <span class="event-card__overlay">
-          <span class="event-card__title">Kappa FuturFestival</span>
-          <span class="event-card__date">5 - 7 Luglio 2025</span>
+          <span class="event-card__title">Engineer FuturFestival</span>
+          <span class="event-card__date">5 - 7 Ottobre 2026</span>
         </span>
       </a>
 
-      <a th:href="@{/eventi/flowers-festival}" href="#" class="event-card">
+      <a th:href="@{/eventi/Winter-festival}" href="#" class="event-card">
         <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=600" alt="Giardino fiorito in un parco">
         <span class="event-card__badge event-card__badge--free">Gratuito</span>
         <span class="event-card__overlay">
-          <span class="event-card__title">Flowers Festival</span>
-          <span class="event-card__date">24 - 26 Maggio 2025</span>
+          <span class="event-card__title">Winter Festival</span>
+          <span class="event-card__date">24 - 26 Novembre 2025</span>
         </span>
       </a>
 
@@ -338,7 +330,7 @@
         <span class="event-card__badge event-card__badge--price">da €15</span>
         <span class="event-card__overlay">
           <span class="event-card__title">MITO SettembreMusica</span>
-          <span class="event-card__date">1 - 21 Settembre 2025</span>
+          <span class="event-card__date">1 - 21 Settembre 2026</span>
         </span>
       </a>
 
