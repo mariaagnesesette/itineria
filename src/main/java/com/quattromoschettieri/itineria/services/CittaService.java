@@ -5,61 +5,35 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.quattromoschettieri.itineria.DTO.CittaDTO;
+import com.quattromoschettieri.itineria.converters.CittaConverter;
 import com.quattromoschettieri.itineria.entities.citta.Citta;
 import com.quattromoschettieri.itineria.entities.citta.Regione;
 import com.quattromoschettieri.itineria.repository.CittaRepository;
 
 import lombok.RequiredArgsConstructor;
 
-// Create Read Update Delete 
+// Create Read Update Delete
 @Service
 @RequiredArgsConstructor
 public class CittaService {
 
     private final CittaRepository cittaRepository;
-
-    private Citta toEntity(CittaDTO dto) {
-        Citta c = new Citta();
-        c.setNome(dto.getNome());
-        c.setRegione(dto.getRegione());
-        c.setDescrizione(dto.getDescrizione());
-
-        return c;
-    }
-
-    private CittaDTO toDto(Citta c) {
-        CittaDTO dto = new CittaDTO();
-        dto.setId(c.getId());
-        dto.setNome(c.getNome());
-        dto.setRegione(c.getRegione());
-        dto.setDescrizione(c.getDescrizione());
-
-        return dto;
-
-    }
-
-    private void updateEntity(Citta esistente, CittaDTO dto) {
-        esistente.setNome(dto.getNome());
-        esistente.setRegione(dto.getRegione());
-        esistente.setDescrizione(dto.getDescrizione());
-    }
+    private final CittaConverter cittaConverter;
 
     // CREATE
     public CittaDTO create(CittaDTO dto) {
-
-        boolean giaEsistente = cittaRepository
-                .findAll()
+        boolean giaEsistente = cittaRepository.findAll()
                 .stream()
                 .anyMatch(c -> c.getNome()
                         .equalsIgnoreCase(dto.getNome()));
+
         if (giaEsistente) {
             throw new IllegalArgumentException("esiste gia la citta: " + dto.getNome());
         }
 
-        Citta citta = toEntity(dto);
+        Citta citta = cittaConverter.toEntity(dto);
         Citta salvata = cittaRepository.save(citta);
-        return toDto(salvata);
-
+        return cittaConverter.toDto(salvata);
     }
 
     // READ
@@ -79,7 +53,7 @@ public class CittaService {
     public CittaDTO findByIdDto(Long id) {
         Citta citta = cittaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Citta non trovata: " + id));
-        return toDto(citta);
+        return cittaConverter.toDto(citta);
     }
 
     public Page<Citta> findAll(Pageable pageable) {
@@ -88,7 +62,6 @@ public class CittaService {
 
     // UPDATE
     public CittaDTO update(Long id, CittaDTO dto) {
-
         Citta citta = cittaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
 
@@ -100,18 +73,16 @@ public class CittaService {
             throw new IllegalArgumentException("esiste gia una città con nome: " + dto.getNome());
         }
 
-        updateEntity(citta, dto);
+        cittaConverter.updateEntity(citta, dto);
         Citta salvata = cittaRepository.save(citta);
-        return toDto(salvata);
+        return cittaConverter.toDto(salvata);
     }
 
     // DELETE
     public void delete(Long id) {
-
         Citta citta = cittaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("citta non trovata: " + id));
 
         cittaRepository.delete(citta);
     }
-
 }

@@ -86,4 +86,8 @@ public class Utente extends GenericEntity{
     )
     @EqualsAndHashCode.Exclude
     private Set<Evento> eventiPreferiti;
+
+    @OneToMany(mappedBy = "manager")
+    @EqualsAndHashCode.Exclude
+    private List<LuogoInteresse> luoghiGestiti;
 }

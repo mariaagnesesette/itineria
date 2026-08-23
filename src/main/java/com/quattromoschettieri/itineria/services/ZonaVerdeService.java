@@ -6,8 +6,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.quattromoschettieri.itineria.DTO.ZonaVerdeDTO;
+import com.quattromoschettieri.itineria.converters.ZonaVerdeConverter;
 import com.quattromoschettieri.itineria.entities.citta.Citta;
-import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
 import com.quattromoschettieri.itineria.entities.zonaVerde.ZonaVerde;
 import com.quattromoschettieri.itineria.repository.CittaRepository;
 import com.quattromoschettieri.itineria.repository.ZonaVerdeRepository;
@@ -21,88 +21,7 @@ public class ZonaVerdeService {
 
     private final ZonaVerdeRepository zonaVerdeRepository;
     private final CittaRepository cittaRepository;
-
-    private ZonaVerde toEntity(ZonaVerdeDTO dto, Citta citta) {
-        ZonaVerde zonaVerde = new ZonaVerde();
-
-        zonaVerde.setNome(dto.getNome());
-        zonaVerde.setDescrizione(dto.getDescrizione());
-        zonaVerde.setAccessibilita(dto.getAccessibilita());
-        zonaVerde.setIndirizzo(dto.getIndirizzo());
-        zonaVerde.setSempreAperto(
-                Boolean.TRUE.equals(dto.getSempreAperto()));
-        zonaVerde.setLink(dto.getLink());
-        zonaVerde.setNumero(dto.getNumero());
-        zonaVerde.setEmail(dto.getEmail());
-        zonaVerde.setTipoLuogo(Tipo.ZONA_VERDE);
-        zonaVerde.setCitta(citta);
-
-        zonaVerde.setAreaMq(
-                dto.getAreaMq() != null ? dto.getAreaMq() : 0.0);
-        zonaVerde.setTipologia(dto.getTipologia());
-        zonaVerde.setDogFriendly(
-                Boolean.TRUE.equals(dto.getDogFriendly()));
-        zonaVerde.setRistoro(
-                Boolean.TRUE.equals(dto.getRistoro()));
-        zonaVerde.setCiclabile(
-                Boolean.TRUE.equals(dto.getCiclabile()));
-
-        return zonaVerde;
-    }
-
-    private ZonaVerdeDTO toDto(ZonaVerde zonaVerde) {
-        ZonaVerdeDTO dto = new ZonaVerdeDTO();
-
-        dto.setId(zonaVerde.getId());
-        dto.setNome(zonaVerde.getNome());
-        dto.setDescrizione(zonaVerde.getDescrizione());
-        dto.setTipoLuogo(zonaVerde.getTipoLuogo());
-        dto.setAccessibilita(zonaVerde.getAccessibilita());
-        dto.setIndirizzo(zonaVerde.getIndirizzo());
-        dto.setSempreAperto(zonaVerde.isSempreAperto());
-        dto.setLink(zonaVerde.getLink());
-        dto.setNumero(zonaVerde.getNumero());
-        dto.setEmail(zonaVerde.getEmail());
-
-        if (zonaVerde.getCitta() != null) {
-            dto.setIdCitta(zonaVerde.getCitta().getId());
-        }
-
-        dto.setAreaMq(zonaVerde.getAreaMq());
-        dto.setTipologia(zonaVerde.getTipologia());
-        dto.setDogFriendly(zonaVerde.isDogFriendly());
-        dto.setRistoro(zonaVerde.isRistoro());
-        dto.setCiclabile(zonaVerde.isCiclabile());
-
-        return dto;
-    }
-
-    private void updateEntity(
-            ZonaVerde esistente,
-            ZonaVerdeDTO dto,
-            Citta citta) {
-
-        esistente.setNome(dto.getNome());
-        esistente.setDescrizione(dto.getDescrizione());
-        esistente.setAccessibilita(dto.getAccessibilita());
-        esistente.setIndirizzo(dto.getIndirizzo());
-        esistente.setSempreAperto(
-                Boolean.TRUE.equals(dto.getSempreAperto()));
-        esistente.setLink(dto.getLink());
-        esistente.setNumero(dto.getNumero());
-        esistente.setEmail(dto.getEmail());
-        esistente.setCitta(citta);
-
-        esistente.setAreaMq(
-                dto.getAreaMq() != null ? dto.getAreaMq() : 0.0);
-        esistente.setTipologia(dto.getTipologia());
-        esistente.setDogFriendly(
-                Boolean.TRUE.equals(dto.getDogFriendly()));
-        esistente.setRistoro(
-                Boolean.TRUE.equals(dto.getRistoro()));
-        esistente.setCiclabile(
-                Boolean.TRUE.equals(dto.getCiclabile()));
-    }
+    private final ZonaVerdeConverter zonaVerdeConverter;
 
     //CREATE
     public ZonaVerdeDTO create(ZonaVerdeDTO dto) {
@@ -121,10 +40,10 @@ public class ZonaVerdeService {
                             + " nella città di " + citta.getNome());
         }
 
-        ZonaVerde zonaVerde = toEntity(dto, citta);
+        ZonaVerde zonaVerde = zonaVerdeConverter.toEntity(dto, citta);
         ZonaVerde salvata = zonaVerdeRepository.save(zonaVerde);
 
-        return toDto(salvata);
+        return zonaVerdeConverter.toDto(salvata);
     }
 
     //READ
@@ -139,7 +58,7 @@ public class ZonaVerdeService {
     }
 
     public ZonaVerdeDTO findByIdDto(Long id) {
-        return toDto(findById(id));
+        return zonaVerdeConverter.toDto(findById(id));
     }
 
     public Page<ZonaVerde> findByNome(
@@ -199,10 +118,10 @@ public class ZonaVerdeService {
                             + citta.getNome());
         }
 
-        updateEntity(esistente, dto, citta);
+        zonaVerdeConverter.updateEntity(esistente, dto, citta);
         ZonaVerde salvata = zonaVerdeRepository.save(esistente);
 
-        return toDto(salvata);
+        return zonaVerdeConverter.toDto(salvata);
     }
 
     //DELETE

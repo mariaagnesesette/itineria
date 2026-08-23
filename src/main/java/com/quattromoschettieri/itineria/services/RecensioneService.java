@@ -8,10 +8,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.quattromoschettieri.itineria.DTO.RecensioneDTO;
+import com.quattromoschettieri.itineria.converters.RecensioneConverter;
 import com.quattromoschettieri.itineria.entities.recensione.Recensione;
-import com.quattromoschettieri.itineria.repository.LuogoInteresseRepository;
 import com.quattromoschettieri.itineria.repository.RecensioneRepository;
-import com.quattromoschettieri.itineria.repository.utenteRepository.UtenteRepository;
 import com.quattromoschettieri.itineria.specification.RecensioneSpecification;
 
 import lombok.RequiredArgsConstructor;
@@ -22,41 +21,7 @@ public class RecensioneService {
 
     private final RecensioneRepository recensioneRepository;
 
-    private final UtenteRepository utenteRepository;
-
-    private final LuogoInteresseRepository luogoInteresseRepository;
-
-    private Recensione toEntity(RecensioneDTO dto) {
-        Recensione recensione = Recensione.builder()
-                .voto(dto.getVoto())
-                .commento(dto.getCommento())
-                .utente(utenteRepository
-                        .findById(dto.getIdUtente())
-                        .orElseThrow(() -> new RuntimeException("Utente non trovato")))
-                .luogoInteresse(luogoInteresseRepository
-                        .findById(dto.getIdLuogoInteresse())
-                        .orElseThrow(() -> new RuntimeException("Luogo di interesse non trovato")))
-                .build();
-
-        return recensione;
-    }
-
-    private RecensioneDTO toDto(Recensione recensione) {
-        RecensioneDTO dto = new RecensioneDTO();
-
-        dto.setId(recensione.getId());
-        dto.setVoto(recensione.getVoto());
-        dto.setCommento(recensione.getCommento());
-        dto.setIdUtente(recensione.getUtente().getId());
-        dto.setIdLuogoInteresse(recensione.getLuogoInteresse().getId());
-
-        return dto;
-    }
-
-    private void updateEntity(Recensione recensione, RecensioneDTO dto) {
-        recensione.setVoto(dto.getVoto());
-        recensione.setCommento(dto.getCommento());
-    }
+    private final RecensioneConverter recensioneConverter;
 
     public Page<Recensione> findAll(Pageable pageable) {
         return recensioneRepository.findAll(pageable);
@@ -80,21 +45,21 @@ public class RecensioneService {
     }
 
     public RecensioneDTO save(RecensioneDTO dto) {
-        Recensione recensione = toEntity(dto);
+        Recensione recensione = recensioneConverter.toEntity(dto);
 
         Recensione salvata = recensioneRepository.save(recensione);
 
-        return toDto(salvata);
+        return recensioneConverter.toDto(salvata);
     }
 
     public RecensioneDTO update(Long id, RecensioneDTO dto) {
         Recensione recensione = findById(id);
 
-        updateEntity(recensione, dto);
+        recensioneConverter.updateEntity(recensione, dto);
 
         Recensione salvata = recensioneRepository.save(recensione);
 
-        return toDto(salvata);
+        return recensioneConverter.toDto(salvata);
     }
 
     public void delete(Long id) {
