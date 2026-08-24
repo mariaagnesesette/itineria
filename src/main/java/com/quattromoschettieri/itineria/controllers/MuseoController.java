@@ -103,7 +103,7 @@ public class MuseoController {
 
         model.addAttribute("museo", risultato);
 
-        return "biblioteche/dettaglio";
+        return "musei/dettaglio";
     }
 
     // ricerca per nome

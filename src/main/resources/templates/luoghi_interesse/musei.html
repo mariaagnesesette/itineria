@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- CSS del progetto -->
-  <link rel="stylesheet" href="../css/musei.css">
+<link rel="stylesheet" th:href="@{/css/musei.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -72,7 +73,7 @@
         <input type="text" th:field="*{nome}" placeholder="Cerca per nome" />
 
         <select th:field="*{tipologia}">
-          <option th:value="">Tutte le tipologie</option>
+          <option value="">Tutte le tipologie</option>
           <option th:each="t : ${tipologieMuseo}" th:value="${t}" th:text="${t}"></option>
         </select>
 

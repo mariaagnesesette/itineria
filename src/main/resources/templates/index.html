@@ -14,7 +14,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- CSS del progetto -->
+<<<<<<< HEAD
   <link rel="stylesheet" th:href="@{/css/style.css}">
+=======
+<link rel="stylesheet" th:href="@{/css/style.css}">
+>>>>>>> giulia
 
 </head>
 <body>
@@ -22,80 +26,7 @@
 <!-- ==========================================================================
      HEADER / NAVBAR
      ========================================================================== -->
-<header class="site-header">
-  <div class="container site-header__inner">
-
-    <nav class="main-nav">
-      <a th:href="@{/}" href="#" class="main-nav__link main-nav__link--active">Home</a>
-
-      <div class="main-nav__item">
-        <a th:href="@{/luoghi}" href="#" class="main-nav__link main-nav__link--dropdown">
-          Luoghi d'interesse <i class="fa-solid fa-chevron-down"></i>
-        </a>
-
-        <!-- Mega Dropdown -->
-        <div class="mega-dropdown">
-          <div class="mega-dropdown__group">
-            <div class="mega-dropdown__title"><i class="fa-solid fa-book"></i> Biblioteche</div>
-            <ul class="mega-dropdown__list">
-              <li><a th:href="@{/luoghi/biblioteche/comunali}" href="#">Biblioteche comunali</a></li>
-              <li><a th:href="@{/luoghi/biblioteche/sale-studio}" href="#">Sale studio</a></li>
-              <li><a th:href="@{/luoghi/biblioteche/aule-studio}" href="#">Aule studio</a></li>
-              <li><a th:href="@{/luoghi/biblioteche/coworking}" href="#">Spazi coworking</a></li>
-            </ul>
-          </div>
-
-          <div class="mega-dropdown__group">
-            <div class="mega-dropdown__title"><i class="fa-solid fa-mug-hot"></i> Bar e Caffetterie</div>
-            <ul class="mega-dropdown__list">
-              <li><a th:href="@{/luoghi/bar}" href="#">Bar</a></li>
-              <li><a th:href="@{/luoghi/caffetterie}" href="#">Caffetterie</a></li>
-            </ul>
-          </div>
-
-          <div class="mega-dropdown__group">
-            <div class="mega-dropdown__title"><i class="fa-solid fa-utensils"></i> Ristoranti</div>
-            <ul class="mega-dropdown__list">
-              <li><a th:href="@{/luoghi/ristoranti/tipici}" href="#">Ristoranti tipici</a></li>
-              <li><a th:href="@{/luoghi/ristoranti/pizzerie}" href="#">Pizzerie</a></li>
-              <li><a th:href="@{/luoghi/ristoranti/internazionali}" href="#">Cucine internazionali</a></li>
-            </ul>
-          </div>
-
-          <div class="mega-dropdown__group">
-            <div class="mega-dropdown__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</div>
-            <ul class="mega-dropdown__list">
-              <li><a th:href="@{/luoghi/parchi/cittadini}" href="#">Parchi cittadini</a></li>
-              <li><a th:href="@{/luoghi/parchi/giardini}" href="#">Giardini</a></li>
-              <li><a th:href="@{/luoghi/parchi/aree-picnic}" href="#">Aree picnic</a></li>
-              <li><a th:href="@{/luoghi/parchi/oasi-naturali}" href="#">Oasi naturali</a></li>
-            </ul>
-          </div>
-
-          <div class="mega-dropdown__group">
-            <div class="mega-dropdown__title"><i class="fa-solid fa-landmark"></i> Musei</div>
-            <ul class="mega-dropdown__list">
-              <li><a th:href="@{/musei#storia-memoria-e-sport}" href="musei.html#storia-memoria-e-sport">Musei storici</a></li>
-              <li><a th:href="@{/musei#arte-fotografia-e-fondazioni-contemporanee}" href="musei.html#arte-fotografia-e-fondazioni-contemporanee">Musei d'arte</a></li>
-              <li><a th:href="@{/musei#scienza-medicina-e-natura}" href="musei.html#scienza-medicina-e-natura">Musei scientifici</a></li>
-              <li><a th:href="@{/musei#tecnica-industria-e-collezioni-tematiche}" href="musei.html#tecnica-industria-e-collezioni-tematiche">Musei interattivi</a></li>
-              <li><a th:href="@{/musei}" href="musei.html" style="font-weight:700; color: var(--color-accent);">Vedi tutti i musei →</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <a th:href="@{/eventi}" href="#" class="main-nav__link">Eventi</a>
-      <a th:href="@{/contatti}" href="#" class="main-nav__link">Contatti</a>
-    </nav>
-
-    <a th:href="@{/login}" href="utente/accedi.html" class="btn-login">
-      <i class="fa-solid fa-user"></i> Accedi
-    </a>
-
-  </div>
-</header>
-
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 <!-- ==========================================================================
      HERO
      ========================================================================== -->
@@ -212,7 +143,7 @@
   <div class="container">
     <div class="categories-grid">
 
-      <a th:href="@{/luoghi/biblioteche}" href="#" class="category-card">
+      <a th:href="@{/luoghi/biblioteche}"  class="category-card">
         <span class="category-card__icon category-card__icon--green"><i class="fa-solid fa-book"></i></span>
         <span class="category-card__body">
           <span class="category-card__title">Biblioteche</span>
@@ -221,7 +152,7 @@
         <i class="fa-solid fa-arrow-right category-card__arrow"></i>
       </a>
 
-      <a th:href="@{/luoghi/bar-caffetterie}" href="#" class="category-card">
+      <a th:href="@{/luoghi/bar-caffetterie}" class="category-card">
         <span class="category-card__icon category-card__icon--orange"><i class="fa-solid fa-mug-hot"></i></span>
         <span class="category-card__body">
           <span class="category-card__title">Bar e Caffetterie</span>
@@ -230,7 +161,7 @@
         <i class="fa-solid fa-arrow-right category-card__arrow"></i>
       </a>
 
-      <a th:href="@{/luoghi/ristoranti}" href="#" class="category-card">
+      <a th:href="@{/luoghi/ristoranti}"  class="category-card">
         <span class="category-card__icon category-card__icon--yellow"><i class="fa-solid fa-utensils"></i></span>
         <span class="category-card__body">
           <span class="category-card__title">Ristoranti</span>
@@ -239,7 +170,7 @@
         <i class="fa-solid fa-arrow-right category-card__arrow"></i>
       </a>
 
-      <a th:href="@{/luoghi/parchi-zone-verdi}" href="#" class="category-card">
+      <a th:href="@{/zoneVerdi}"  class="category-card">
         <span class="category-card__icon category-card__icon--forest"><i class="fa-solid fa-tree"></i></span>
         <span class="category-card__body">
           <span class="category-card__title">Parchi e Zone Verdi</span>
@@ -248,7 +179,7 @@
         <i class="fa-solid fa-arrow-right category-card__arrow"></i>
       </a>
 
-      <a th:href="@{/musei}" href="musei.html" class="category-card">
+      <a th:href="@{/musei}" class="category-card">
         <span class="category-card__icon category-card__icon--purple"><i class="fa-solid fa-landmark"></i></span>
         <span class="category-card__body">
           <span class="category-card__title">Musei</span>
