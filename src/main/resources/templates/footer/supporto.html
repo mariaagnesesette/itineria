@@ -11,7 +11,7 @@
     <title>Supporto | Itineraria</title>
 
     <link rel="stylesheet"
-          href="supporto.css">
+          href="/css/pages.css">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -60,7 +60,7 @@
 
 <div class="cards">
 
-<div class="card">
+<button class="card support-topic" type="button" data-topic="accesso">
 
 <i class="fa-solid fa-user-lock"></i>
 
@@ -68,9 +68,9 @@
 
 <p>Password dimenticata, accesso al proprio account e autenticazione.</p>
 
-</div>
+</button>
 
-<div class="card">
+<button class="card support-topic" type="button" data-topic="ricerca">
 
 <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -78,9 +78,9 @@
 
 <p>Problemi nella ricerca di luoghi ed eventi.</p>
 
-</div>
+</button>
 
-<div class="card">
+<button class="card support-topic" type="button" data-topic="segnalazione">
 
 <i class="fa-solid fa-location-dot"></i>
 
@@ -88,9 +88,9 @@
 
 <p>Invia suggerimenti o segnala informazioni errate.</p>
 
-</div>
+</button>
 
-<div class="card">
+<button class="card support-topic" type="button" data-topic="tecnico">
 
 <i class="fa-solid fa-bug"></i>
 
@@ -98,7 +98,7 @@
 
 <p>Segnala errori o malfunzionamenti dell'applicazione.</p>
 
-</div>
+</button>
 
 </div>
 
@@ -110,37 +110,37 @@
 
 <div class="guide-list">
 
-<div class="guide">
+<a class="guide support-guide" href="faq.html#cercare-luogo">
 
 <i class="fa-solid fa-book"></i>
 
 <span>Come cercare un luogo</span>
 
-</div>
+</a>
 
-<div class="guide">
+<a class="guide support-guide" href="faq.html#eventi">
 
 <i class="fa-solid fa-calendar-days"></i>
 
 <span>Come trovare eventi</span>
 
-</div>
+</a>
 
-<div class="guide">
+<a class="guide support-guide" href="faq.html#preferiti">
 
 <i class="fa-solid fa-heart"></i>
 
 <span>Come salvare i preferiti</span>
 
-</div>
+</a>
 
-<div class="guide">
+<a class="guide support-guide" href="faq.html">
 
 <i class="fa-solid fa-circle-question"></i>
 
 <span>Domande frequenti</span>
 
-</div>
+</a>
 
 </div>
 
@@ -191,7 +191,7 @@ Contatta il Supporto
 
 </footer>
 
-<script src="supporto.js"></script>
+<script src="/js/supporto.js" defer></script>
 
 </body>
 
