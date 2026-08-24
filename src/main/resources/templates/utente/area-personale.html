@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itineraria - Area Personale</title>
+    
+</head>
+<body>
+
+    <!-- Header Maintenu -->
+    <header>
+        <a href="../index.html" class="logo">ITINERARIA</a>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="#">Luoghi d'interesse</a>
+            <a href="#">Eventi</a>
+            <a href="../footer/contattaci.html">Contatti</a>
+        </nav>
+    </header>
+
+    <div class="area-personale-wrapper">
+        
+        <div class="profile-header-title">
+            <span>AREA PERSONALE</span>
+            <h1>name users</h1>
+        </div>
+
+        <div class="main-tabs">
+            <button class="tab-btn active" onclick="switchTab('dati')">Dati personali</button>
+            <button class="tab-btn" onclick="switchTab('documenti')">I miei documenti</button>
+            <button class="tab-btn" onclick="switchTab('preferiti')">I miei preferiti</button>
+            <button class="tab-btn" onclick="switchTab('recensioni')">Le mie recensioni</button>
+        </div>
+
+        <div id="panel-dati" class="tab-panel active">
+            <div class="card-box">
+                <form action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" value="nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="cognome">Cognome</label>
+                            <input type="text" id="cognome" value="cognome">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Data di nascita</label>
+                            <input type="date" id="dob" value="dob">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nickname">Nickname</label>
+                            <input type="text" id="nickname" value="nickname">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Nuova password</label>
+                            <input type="password" id="password" value="password">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit-action">Salva modifiche</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="panel-documenti" class="tab-panel">
+            <div class="card-box">
+                <form action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="doc-type">Tipo documento</label>
+                            <select id="doc-type">
+                                <option>Carta d'Identità</option>
+                                <option>Passaporto</option>
+                                <option>Patente di guida</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="doc-code">Codice</label>
+                            <input type="text" id="doc-code">
+                        </div>
+                        <div class="form-group">
+                            <label for="doc-file">Foto documento</label>
+                            <input type="file" id="doc-file">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit-action">
+                        <span>📤</span> Carica documento
+                    </button>
+                </form>
+            </div>
+
+            <div class="card-box" style="padding: 0; overflow: hidden;">
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Codice</th>
+                            <th>Inviato il</th>
+                            <th>Stato</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Carta d'Identità</td>
+                            <td>CA84920XZ</td>
+                            <td>20 luglio 2026</td>
+                            <td><span class="badge-status">In approvazione</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="panel-preferiti" class="tab-panel">
+            <div class="preferiti-bar">
+                <div class="sub-pills">
+                    <button class="pill-btn active">Luoghi</button>
+                    <button class="pill-btn">Eventi</button>
+                </div>
+                <input type="text" class="search-input" placeholder="Filtra per nome o tipo (es. sushieria)">
+            </div>
+
+            <div class="cards-list-grid">
+                <div class="item-card">
+                    <div class="item-card-info">
+                        <h3>Biblioteca dell'Archiginnasio</h3>
+                        <p>Bologna · Biblioteca universitaria</p>
+                    </div>
+                    <button class="btn-icon-trash" title="Elimina">🗑</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-card-info">
+                        <h3>Sakura Sushi</h3>
+                        <p>Firenze · Sushieria</p>
+                    </div>
+                    <button class="btn-icon-trash" title="Elimina">🗑</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-card-info">
+                        <h3>Parco dei Pini</h3>
+                        <p>Napoli · Parco urbano</p>
+                    </div>
+                    <button class="btn-icon-trash" title="Elimina">🗑</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-recensioni" class="tab-panel">
+            <div class="review-card">
+                <div class="review-header">
+                    <h3>Biblioteca dell'Archiginnasio</h3>
+                    <div class="review-meta">
+                        <span class="stars">★★★★★</span>
+                        <span>2 luglio 2026</span>
+                    </div>
+                </div>
+                <p class="review-text">Sale meravigliose e silenziose, wifi stabile. Perfetta per studiare tutto il pomeriggio.</p>
+                <div class="review-actions">
+                    <button class="btn-action-sm">✏️ Modifica</button>
+                    <button class="btn-action-text">🗑 Elimina</button>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <h3>Trattoria del Portico</h3>
+                    <div class="review-meta">
+                        <span class="stars">★★★★☆</span>
+                        <span>30 giugno 2026</span>
+                    </div>
+                </div>
+                <p class="review-text">Tagliatelle ottime e personale gentile. Il dehors è il posto migliore.</p>
+                <div class="review-actions">
+                    <button class="btn-action-sm">✏️ Modifica</button>
+                    <button class="btn-action-text">🗑 Elimina</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p> 2025 Itineraria. Tutti i diritti riservati.</p>
+        <p style="margin-top: 10px;">
+            <a href="../footer/supporto.html">Supporto</a> | <a href="../footer/faq.html">FAQ</a> | <a href="../footer/contattaci.html">Contattaci</a>
+        </p>
+    </footer>
+</body>
+</html>
