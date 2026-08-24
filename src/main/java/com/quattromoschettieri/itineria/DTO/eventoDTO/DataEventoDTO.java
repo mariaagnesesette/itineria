@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.DTO.EventoDTO;
+package com.quattromoschettieri.itineria.DTO.eventoDTO;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

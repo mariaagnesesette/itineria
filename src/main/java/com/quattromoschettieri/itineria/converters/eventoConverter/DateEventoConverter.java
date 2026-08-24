@@ -2,7 +2,7 @@ package com.quattromoschettieri.itineria.converters.eventoConverter;
 
 import org.springframework.stereotype.Component;
 
-import com.quattromoschettieri.itineria.DTO.EventoDTO.DataEventoDTO;
+import com.quattromoschettieri.itineria.DTO.eventoDTO.DataEventoDTO;
 import com.quattromoschettieri.itineria.entities.evento.DataEvento;
 import com.quattromoschettieri.itineria.entities.evento.Evento;
 

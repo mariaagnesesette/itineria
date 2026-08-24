@@ -14,7 +14,7 @@ import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.entities.utente.documento.Documento;
 import com.quattromoschettieri.itineria.entities.utente.documento.StatoDocumento;
 import com.quattromoschettieri.itineria.entities.utente.documento.TipoDocumento;
-import com.quattromoschettieri.itineria.repository.utenterepository.DocumentoRepository;
+import com.quattromoschettieri.itineria.repository.utenteRepository.DocumentoRepository;
 
 import lombok.RequiredArgsConstructor;
 

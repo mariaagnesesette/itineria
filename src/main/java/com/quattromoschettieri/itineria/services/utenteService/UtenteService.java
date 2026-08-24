@@ -8,7 +8,7 @@ import com.quattromoschettieri.itineria.DTO.utenteDTO.UtenteDTO;
 import com.quattromoschettieri.itineria.converters.utenteConverter.UtenteConverter;
 import com.quattromoschettieri.itineria.entities.utente.Ruolo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
-import com.quattromoschettieri.itineria.repository.utenterepository.UtenteRepository;
+import com.quattromoschettieri.itineria.repository.utenteRepository.UtenteRepository;
 
 import lombok.RequiredArgsConstructor;
 

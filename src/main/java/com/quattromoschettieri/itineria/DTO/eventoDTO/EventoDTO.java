@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.DTO.EventoDTO;
+package com.quattromoschettieri.itineria.DTO.eventoDTO;
 
 import java.math.BigDecimal;
 import java.util.List;

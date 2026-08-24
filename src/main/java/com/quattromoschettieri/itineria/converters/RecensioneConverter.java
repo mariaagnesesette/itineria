@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.quattromoschettieri.itineria.DTO.RecensioneDTO;
 import com.quattromoschettieri.itineria.entities.recensione.Recensione;
 import com.quattromoschettieri.itineria.repository.LuogoInteresseRepository;
-import com.quattromoschettieri.itineria.repository.utenterepository.UtenteRepository;
+import com.quattromoschettieri.itineria.repository.utenteRepository.UtenteRepository;
 
 import lombok.RequiredArgsConstructor;
 
