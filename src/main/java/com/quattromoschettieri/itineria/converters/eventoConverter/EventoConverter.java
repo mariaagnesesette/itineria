@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.quattromoschettieri.itineria.DTO.eventoDTO.DataEventoDTO;
-import com.quattromoschettieri.itineria.DTO.eventoDTO.EventoDTO;
+import com.quattromoschettieri.itineria.DTO.EventoDTO.DataEventoDTO;
+import com.quattromoschettieri.itineria.DTO.EventoDTO.EventoDTO;
 import com.quattromoschettieri.itineria.entities.evento.DataEvento;
 import com.quattromoschettieri.itineria.entities.evento.Evento;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;

@@ -7,14 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.quattromoschettieri.itineria.DTO.eventoDTO.DataEventoDTO;
-import com.quattromoschettieri.itineria.DTO.eventoDTO.EventoDTO;
+import com.quattromoschettieri.itineria.DTO.EventoDTO.DataEventoDTO;
+import com.quattromoschettieri.itineria.DTO.EventoDTO.EventoDTO;
 import com.quattromoschettieri.itineria.converters.eventoConverter.DateEventoConverter;
 import com.quattromoschettieri.itineria.converters.eventoConverter.EventoConverter;
 import com.quattromoschettieri.itineria.entities.evento.DataEvento;
 import com.quattromoschettieri.itineria.entities.evento.Evento;
-import com.quattromoschettieri.itineria.repository.eventoRepository.DataEventoRepository;
-import com.quattromoschettieri.itineria.repository.eventoRepository.EventoRepository;
+import com.quattromoschettieri.itineria.repository.eventorepository.DataEventoRepository;
+import com.quattromoschettieri.itineria.repository.eventorepository.EventoRepository;
 import com.quattromoschettieri.itineria.specification.EventoSpecification;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EventoService {
 
-    private final EventoRepository eventoRepository;
+    private final com.quattromoschettieri.itineria.repository.eventorepository.EventoRepository eventoRepository;
 
     private final DataEventoRepository dataEventoRepository;
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.quattromoschettieri.itineria.DTO.utenteDTO.DocumentoDTO;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.entities.utente.documento.Documento;
-import com.quattromoschettieri.itineria.repository.utenteRepository.UtenteRepository;
+import com.quattromoschettieri.itineria.repository.utenterepository.UtenteRepository;
 
 import lombok.RequiredArgsConstructor;
 

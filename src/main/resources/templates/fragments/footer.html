@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+  <!-- Fragment Footer -->
+  <footer class="site-footer" th:fragment="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <div class="footer-brand__logo"><i class="fa-solid fa-location-dot"></i> Itineraria</div>
+          <p class="footer-brand__desc">La tua guida digitale per scoprire Torino in modo autentico e sostenibile.</p>
+          <div class="footer-social">
+            <a th:href="@{https://instagram.com/itineraria}" href="https://instagram.com/itineraria" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a th:href="@{https://facebook.com/itineraria}" href="https://facebook.com/itineraria" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a th:href="@{https://pinterest.com/itineraria}" href="https://pinterest.com/itineraria" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Contatti</div>
+          <ul class="footer-col__list">
+            <li class="footer-contact-item"><i class="fa-regular fa-envelope"></i> info@itineraria.it</li>
+            <li class="footer-contact-item"><i class="fa-solid fa-phone"></i> +39 011 123 4567</li>
+            <li class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Torino, Italia</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Esplora</div>
+          <ul class="footer-col__list">
+            <li><a th:href="@{/luoghi}" href="/luoghi">Luoghi d'interesse</a></li>
+            <li><a th:href="@{/eventi}" href="/eventi">Eventi</a></li>
+            <li><a th:href="@{/forum}" href="/forum">Forum (coming soon)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Info</div>
+          <ul class="footer-col__list">
+            <li><a th:href="@{/chi-siamo}" href="/chi-siamo">Chi siamo</a></li>
+            <li><a th:href="@{/privacy}" href="/privacy">Privacy Policy</a></li>
+            <li><a th:href="@{/termini}" href="/termini">Termini e condizioni</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col__title">Supporto</div>
+          <ul class="footer-col__list">
+            <li><a th:href="@{/faq}" href="/faq">FAQ</a></li>
+            <li><a th:href="@{/contatti}" href="/contatti">Contattaci</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span th:text="'© ' + ${#dates.year(#dates.createNow())} + ' Itineraria.'">© 2026 Itineraria.</span>
+        <span>Tutti i diritti riservati.</span>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

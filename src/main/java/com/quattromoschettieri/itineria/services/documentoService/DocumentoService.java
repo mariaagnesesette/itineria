@@ -10,7 +10,7 @@ import com.quattromoschettieri.itineria.DTO.utenteDTO.DocumentoDTO;
 import com.quattromoschettieri.itineria.converters.DocumentoConverter;
 import com.quattromoschettieri.itineria.entities.utente.documento.Documento;
 import com.quattromoschettieri.itineria.entities.utente.documento.TipoDocumento;
-import com.quattromoschettieri.itineria.repository.utenteRepository.DocumentoRepository;
+import com.quattromoschettieri.itineria.repository.utenterepository.DocumentoRepository;
 
 import lombok.RequiredArgsConstructor;
 
