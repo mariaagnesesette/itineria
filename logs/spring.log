@@ -1,0 +1,171 @@
+2026-08-24T17:43:42.108+02:00  INFO 21492 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 21492 (D:\Sette Maria Agnese Computer\VisualStudioCode\itineria\target\classes started by sette in D:\Sette Maria Agnese Computer\VisualStudioCode\itineria)
+2026-08-24T17:43:42.114+02:00  INFO 21492 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T17:43:42.203+02:00  INFO 21492 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T17:43:42.203+02:00  INFO 21492 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T17:43:43.385+02:00  INFO 21492 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T17:43:43.552+02:00  INFO 21492 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 153 ms. Found 12 JPA repository interfaces.
+2026-08-24T17:43:44.524+02:00  INFO 21492 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T17:43:44.561+02:00  INFO 21492 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T17:43:44.562+02:00  INFO 21492 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T17:43:44.631+02:00  INFO 21492 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2426 ms
+2026-08-24T17:43:45.022+02:00  INFO 21492 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T17:43:46.280+02:00  WARN 21492 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Access denied for user 'root'@'localhost' (using password: YES)
+----------------------------------------------------------------------------------------------------------
+SQL State  : 28000
+Error Code : 1045
+Message    : Access denied for user 'root'@'localhost' (using password: YES)
+
+2026-08-24T17:43:46.284+02:00  INFO 21492 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-24T17:43:46.297+02:00  INFO 21492 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-24T17:43:46.323+02:00 ERROR 21492 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Access denied for user 'root'@'localhost' (using password: YES)
+----------------------------------------------------------------------------------------------------------
+SQL State  : 28000
+Error Code : 1045
+Message    : Access denied for user 'root'@'localhost' (using password: YES)
+
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
+	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Access denied for user 'root'@'localhost' (using password: YES)
+----------------------------------------------------------------------------------------------------------
+SQL State  : 28000
+Error Code : 1045
+Message    : Access denied for user 'root'@'localhost' (using password: YES)
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.8.jar:7.0.8]
+	... 13 common frames omitted
+Caused by: org.flywaydb.core.internal.exception.sqlExceptions.FlywaySqlUnableToConnectToDbException: Unable to obtain connection from database: Access denied for user 'root'@'localhost' (using password: YES)
+----------------------------------------------------------------------------------------------------------
+SQL State  : 28000
+Error Code : 1045
+Message    : Access denied for user 'root'@'localhost' (using password: YES)
+
+	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:78) ~[flyway-core-12.4.0.jar:na]
+	at org.flywaydb.core.internal.jdbc.JdbcConnectionFactory.<init>(JdbcConnectionFactory.java:76) ~[flyway-core-12.4.0.jar:na]
+	at org.flywaydb.core.FlywayExecutor.init(FlywayExecutor.java:275) ~[flyway-core-12.4.0.jar:na]
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:120) ~[flyway-core-12.4.0.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:181) ~[flyway-core-12.4.0.jar:na]
+	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67) ~[spring-boot-flyway-4.1.0.jar:4.1.0]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
+	... 20 common frames omitted
+Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-7.0.2.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-7.0.2.jar:na]
+	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:73) ~[flyway-core-12.4.0.jar:na]
+	... 27 common frames omitted
+
+2026-08-24T17:44:44.712+02:00  INFO 20804 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 20804 (D:\Sette Maria Agnese Computer\VisualStudioCode\itineria\target\classes started by sette in D:\Sette Maria Agnese Computer\VisualStudioCode\itineria)
+2026-08-24T17:44:44.720+02:00  INFO 20804 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T17:44:44.789+02:00  INFO 20804 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T17:44:44.790+02:00  INFO 20804 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T17:44:45.853+02:00  INFO 20804 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T17:44:46.025+02:00  INFO 20804 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 149 ms. Found 12 JPA repository interfaces.
+2026-08-24T17:44:47.075+02:00  INFO 20804 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T17:44:47.102+02:00  INFO 20804 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T17:44:47.105+02:00  INFO 20804 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T17:44:47.187+02:00  INFO 20804 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2396 ms
+2026-08-24T17:44:47.572+02:00  INFO 20804 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T17:44:47.766+02:00  INFO 20804 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5358f430
+2026-08-24T17:44:47.768+02:00  INFO 20804 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T17:44:47.808+02:00  INFO 20804 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T17:44:47.912+02:00  INFO 20804 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.051s)
+2026-08-24T17:44:47.927+02:00  INFO 20804 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 2
+2026-08-24T17:44:47.932+02:00  INFO 20804 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T17:44:48.091+02:00  INFO 20804 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T17:44:48.202+02:00  INFO 20804 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T17:44:48.641+02:00  INFO 20804 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T17:44:48.702+02:00  WARN 20804 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T17:44:48.715+02:00  INFO 20804 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T17:44:50.038+02:00  INFO 20804 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-24T17:44:50.091+02:00  INFO 20804 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-24T17:44:50.200+02:00  INFO 20804 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-24T17:44:51.526+02:00  WARN 20804 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-24T17:44:51.686+02:00  INFO 20804 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customerUserDetailsService
+2026-08-24T17:44:51.907+02:00 DEBUG 20804 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-24T17:44:51.959+02:00  INFO 20804 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-24T17:44:52.501+02:00  INFO 20804 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-24T17:44:52.510+02:00  INFO 20804 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Started ItineriaApplication in 8.367 seconds (process running for 8.991)
+2026-08-24T17:44:58.122+02:00  INFO 20804 --- [itineria] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-24T17:44:58.123+02:00  INFO 20804 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-24T17:44:58.126+02:00  INFO 20804 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-24T17:44:58.149+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-08-24T17:44:58.191+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /
+2026-08-24T17:44:59.139+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-24T17:44:59.140+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-24T17:44:59.172+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:44:59.178+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /images/torino-hero.jpg
+2026-08-24T17:44:59.179+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /images/torino-hero.jpg
+2026-08-24T17:44:59.192+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:44:59.204+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T17:44:59.208+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T17:44:59.222+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:44:59.265+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:04.747+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /luoghi/biblioteche/comunali
+2026-08-24T17:45:04.748+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /luoghi/biblioteche/comunali
+2026-08-24T17:45:04.758+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:04.761+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T17:45:04.762+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T17:45:04.811+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:40.532+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-08-24T17:45:40.534+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /
+2026-08-24T17:45:40.602+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-24T17:45:40.605+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-24T17:45:40.612+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:40.615+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:40.902+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /images/torino-hero.jpg
+2026-08-24T17:45:40.904+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /images/torino-hero.jpg
+2026-08-24T17:45:40.913+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:40.915+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T17:45:40.917+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T17:45:40.922+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:46.908+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /parchi
+2026-08-24T17:45:46.912+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /parchi
+2026-08-24T17:45:46.925+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T17:45:46.928+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T17:45:46.930+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T17:45:46.953+02:00 DEBUG 20804 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext

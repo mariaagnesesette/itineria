@@ -1,6 +1,7 @@
 package com.quattromoschettieri.itineria.controllers;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,8 +35,7 @@ public class ZonaVerdeController {
             Pageable pageable,
             Model model) {
 
-        Page<ZonaVerde> risultati =
-                zonaVerdeService.search(zonaVerdeDTO, pageable);
+        Page<ZonaVerde> risultati = zonaVerdeService.search(zonaVerdeDTO, pageable);
 
         model.addAttribute("risultati", risultati);
         model.addAttribute("zonaVerdeDTO", zonaVerdeDTO);
@@ -44,14 +44,32 @@ public class ZonaVerdeController {
     }
 
     @GetMapping
-    public String listZoneVerdi(
-            Pageable pageable,
-            Model model) {
+    public String listZoneVerdi(Pageable pageable, Model model) {
+        Page<ZonaVerde> tutteZone = zonaVerdeService.findAll(pageable);
+        Pageable anteprime = PageRequest.of(0, 6);
 
-        Page<ZonaVerde> risultati =
-                zonaVerdeService.findAll(pageable);
+        ZonaVerdeDTO dtoCiclabili = new ZonaVerdeDTO();
+        dtoCiclabili.setCiclabile(true);
 
-        model.addAttribute("risultati", risultati);
+        ZonaVerdeDTO dtoCani = new ZonaVerdeDTO();
+        dtoCani.setDogFriendly(true);
+
+        ZonaVerdeDTO dtoRistoro = new ZonaVerdeDTO();
+        dtoRistoro.setRistoro(true);
+
+        ZonaVerdeDTO dtoSempreAperte = new ZonaVerdeDTO();
+        dtoSempreAperte.setSempreAperto(true);
+
+        model.addAttribute("tutteZone", tutteZone.getContent());
+        model.addAttribute("zoneCiclabili",
+                zonaVerdeService.search(dtoCiclabili, anteprime).getContent());
+        model.addAttribute("zoneDogFriendly",
+                zonaVerdeService.search(dtoCani, anteprime).getContent());
+        model.addAttribute("zoneConRistoro",
+                zonaVerdeService.search(dtoRistoro, anteprime).getContent());
+        model.addAttribute("zoneSempreAperte",
+                zonaVerdeService.search(dtoSempreAperte, anteprime).getContent());
+        model.addAttribute("risultati", tutteZone);
 
         return "zoneVerdi/lista";
     }
@@ -61,8 +79,7 @@ public class ZonaVerdeController {
             @PathVariable Long id,
             Model model) {
 
-        ZonaVerde risultato =
-                zonaVerdeService.findById(id);
+        ZonaVerde risultato = zonaVerdeService.findById(id);
 
         model.addAttribute("zonaVerde", risultato);
 
@@ -75,8 +92,7 @@ public class ZonaVerdeController {
             Pageable pageable,
             Model model) {
 
-        Page<ZonaVerde> risultati =
-                zonaVerdeService.findByNome(nome, pageable);
+        Page<ZonaVerde> risultati = zonaVerdeService.findByNome(nome, pageable);
 
         model.addAttribute("risultati", risultati);
 
