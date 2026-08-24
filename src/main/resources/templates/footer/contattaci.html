@@ -9,10 +9,10 @@
 
     <title>Contattaci | Itineraria</title>
 
-    <link rel="stylesheet" href="contattaci.css">
+    <link rel="stylesheet" href="/css/pages.css">
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 
@@ -118,28 +118,32 @@
 
 <h2>Inviaci un messaggio</h2>
 
-<form id="contactForm">
+<form id="contactForm" novalidate>
 
 <input
 type="text"
 id="nome"
+name="nome"
 placeholder="Nome completo"
 required>
 
 <input
 type="email"
 id="email"
+name="email"
 placeholder="Email"
 required>
 
 <input
 type="text"
 id="oggetto"
+name="oggetto"
 placeholder="Oggetto"
 required>
 
 <textarea
 id="messaggio"
+name="messaggio"
 rows="7"
 placeholder="Scrivi il tuo messaggio..."
 required></textarea>
@@ -152,7 +156,7 @@ Invia Messaggio
 
 </form>
 
-<p id="successMessage"></p>
+<p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
 
 </div>
 
@@ -200,7 +204,7 @@ Invia Messaggio
 
 </footer>
 
-<script src="contattaci.js"></script>
+<script src="/js/contattaci.js" defer></script>
 
 </body>
 

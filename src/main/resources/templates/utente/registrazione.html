@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Registrazione</title>
+    <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
 
@@ -21,46 +22,47 @@
         <h1 class="main-title">Crea il tuo account</h1>
 
         <div class="auth-card">
-            <form action="area-personale.html" method="GET">
+            <form id="registrationForm" action="/utenti" method="POST">
                 
                 <!-- Nome & Cognome -->
                 <div class="form-row">
                     <div class="form-group half">
                         <label for="nome">Nome</label>
-                        <input type="text" id="nome" required>
+                        <input type="text" id="nome" name="nome" autocomplete="given-name" required>
                     </div>
                     <div class="form-group half">
                         <label for="cognome">Cognome</label>
-                        <input type="text" id="cognome" required>
+                        <input type="text" id="cognome" name="cognome" autocomplete="family-name" required>
                     </div>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
                 </div>
 
                 <!-- Password & Data di nascita -->
                 <div class="form-row">
                     <div class="form-group half">
                         <label for="password">Password</label>
-                        <input type="password" id="password" required>
+                        <input type="password" id="password" name="password" autocomplete="new-password" minlength="8" required>
                     </div>
                     <div class="form-group half">
                         <label for="dob">Data di nascita</label>
-                        <input type="date" id="dob" required>
+                        <input type="date" id="dob" name="dataNascita" required>
                     </div>
                 </div>
 
                 <!-- Nickname -->
                 <div class="form-group">
                     <label for="nickname">Nickname</label>
-                    <input type="text" id="nickname" required>
+                    <input type="text" id="nickname" name="username" autocomplete="username" minlength="3" required>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-submit">Registrati</button>
+                <p id="registrationMessage" class="form-message" role="alert" aria-live="polite"></p>
 
                 <!-- Footer du formulaire -->
                 <div class="auth-switch">
@@ -78,5 +80,6 @@
         </p>
     </footer>
 
+    <script src="/js/registrazione.js" defer></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Accedi</title>
+    <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
 
@@ -21,17 +22,18 @@
         <h2>Bentornato</h2>
         <p class="subtitle">Accedi per gestire i tuoi itinerari e preferiti</p>
 
-        <form action="area-personale.html" method="GET">
+        <form id="loginForm" action="/login" method="POST">
             <div class="form-group">
                 <label for="email">Indirizzo Email</label>
-                <input type="email" id="email" required placeholder="inserisci la tua email">
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="inserisci la tua email">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" required placeholder="••••••••">
+                <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="••••••••">
             </div>
 
             <button type="submit" class="btn-submit">Accedi</button>
+            <p id="loginMessage" class="form-message" role="alert" aria-live="polite"></p>
         </form>
 
         <div class="auth-switch">
@@ -46,5 +48,6 @@
         </p>
     </footer>
 
+    <script src="/js/accedi.js" defer></script>
 </body>
 </html>
