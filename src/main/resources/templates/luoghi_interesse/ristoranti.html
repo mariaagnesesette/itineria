@@ -14,21 +14,43 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- CSS del progetto -->
-<link rel="stylesheet" th:href="@{/css/ristoranti.css}" href="/css/ristoranti.css"><form th:object="${museoDTO}" action="/musei/filtri" method="get" class="musei-filter-form">
-
+  <link rel="stylesheet" th:href="@{/css/ristoranti.css}" href="/css/ristoranti.css">
 </head>
 <body>
 
-<!-- ==========================================================================
-     HEADER / NAVBAR
-     ========================================================================== -->
 <div th:replace="~{fragments/navbar :: navbar}"></div>
-<!-- ==========================================================================
-     CICLO DINAMICO — Backend Thymeleaf Template
-     ${categorieRistoranti} = lista di categorie, ognuna con .id, .nome e .ristoranti
-     ${ristoranti} = lista piatta di tutti i ristoranti
-     ========================================================================== -->
-<section class="section" th:if="${false}">
+
+<!-- Filtri (Thymeleaf-bound) -->
+<section class="section filters-section">
+  <div class="container">
+    <form th:object="${ristoranteDTO}" th:action="@{/ristoranti/filtri}" method="get" class="ristoranti-filter-form">
+      <div class="filters-row">
+        <input type="text" th:field="*{nome}" id="restaurantSearchInput" placeholder="Cerca ristorante..." class="input--text">
+
+        <select th:field="*{tipoCucina}">
+          <option th:each="t : ${T(com.quattromoschettieri.itineria.entities.ristorante.TipoCucina).values()}"
+                  th:value="${t}" th:text="${t}">Tipo cucina</option>
+          <option th:if="${false}" value="">--</option>
+        </select>
+
+        <select th:field="*{fasciaPrezzo}">
+          <option th:each="p : ${T(com.quattromoschettieri.itineria.entities.ristorante.FasciaPrezzoRistorante).values()}"
+                  th:value="${p}" th:text="${p}">Fascia prezzo</option>
+          <option th:if="${false}" value="">--</option>
+        </select>
+
+        <label><input type="checkbox" th:field="*{dogFriendly}"> Dog friendly</label>
+        <label><input type="checkbox" th:field="*{perCeliaci}"> Per celiaci</label>
+        <label><input type="checkbox" th:field="*{postiEsterni}"> Posti esterni</label>
+
+        <button type="submit" class="btn">Applica filtri</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Ciclo dinamico: categorie con fallback lista piatta -->
+<section class="section" th:if="${categorieRistoranti != null}">
   <div class="container">
     <div th:each="categoria : ${categorieRistoranti}" class="restaurant-category" th:id="${categoria.id}">
       <h2 class="section__title">
@@ -39,7 +61,7 @@
         <a th:each="ristorante : ${categoria.ristoranti}"
            th:href="@{'/ristoranti/' + ${ristorante.slug}}"
            th:classappend="${ristorante.preferito} ? ' restaurant-card--featured' : ''"
-           class="restaurant-card" href="#">
+           class="restaurant-card">
           <span th:if="${ristorante.preferito}" class="restaurant-card__badge">Consigliato</span>
           <span class="restaurant-card__icon"><i th:class="'fa-solid ' + ${ristorante.icona}"></i></span>
           <span class="restaurant-card__body">
@@ -53,184 +75,22 @@
   </div>
 </section>
 
-<!-- ==========================================================================
-     CONTENUTO STATICO DI ESEMPIO — Visibile finché il backend non collega i dati
-     ========================================================================== -->
-
-<!-- 1. RISTORANTI TIPICI -->
-<section class="section restaurant-category" id="ristoranti-tipici">
+<!-- Fallback: lista piatta -->
+<section class="section" th:if="${ristoranti != null}">
   <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-wine-glass"></i> Piemontesi e Tipici</h2>
     <div class="restaurant-grid">
-
-      <a th:href="@{/ristoranti/porto-di-savona}" href="#" class="restaurant-card restaurant-card--featured">
-        <span class="restaurant-card__badge">Imperdibile</span>
-        <span class="restaurant-card__icon"><i class="fa-solid fa-bowl-food"></i></span>
+      <a th:each="ristorante : ${ristoranti}"
+         th:href="@{'/ristoranti/' + ${ristorante.slug}}"
+         th:classappend="${ristorante.preferito} ? ' restaurant-card--featured' : ''"
+         class="restaurant-card">
+        <span th:if="${ristorante.preferito}" class="restaurant-card__badge">Consigliato</span>
+        <span class="restaurant-card__icon"><i th:class="'fa-solid ' + ${ristorante.icona}"></i></span>
         <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Ristorante Porto di Savona</span>
-          <span class="restaurant-card__desc">Cucina tipica piemontese in Piazza Vittorio Veneto dal 1863, celebre per gli agnolotti e la carbonada.</span>
+          <span class="restaurant-card__title" th:text="${ristorante.nome}">Nome ristorante</span>
+          <span class="restaurant-card__desc" th:text="${ristorante.descrizione}">Descrizione breve</span>
         </span>
         <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
       </a>
-
-      <a th:href="@{/ristoranti/tre-galline}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-drumstick-bite"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Ristorante Tre Galline</span>
-          <span class="restaurant-card__desc">Uno dei ristoranti più antichi del Quadrilatero Romano, specializzato in gran bollito misto piemontese.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/consorzio}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-pepper-hot"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Ristorante Consorzio</span>
-          <span class="restaurant-card__desc">Rivisitazione moderna dei piatti tradizionali con materie prime del territorio e ottimi vini naturali.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/arcardia}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-utensils"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Arcadia</span>
-          <span class="restaurant-card__desc">Elegante locale nella Galleria Subalpina che affianca la grande tradizione sabauda al sushi bar.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- 2. PIZZERIE -->
-<section class="section restaurant-category" id="pizzerie">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-pizza-slice"></i> Pizzerie</h2>
-    <div class="restaurant-grid">
-
-      <a th:href="@{/ristoranti/pizzeria-da-michele}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-pizza-slice"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">L'Antica Pizzeria Da Michele</span>
-          <span class="restaurant-card__desc">La vera pizza napoletana a ruota di carro sbarcata nel centro storico di Torino.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/berbere}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-wheat-awn"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Berberè Pizzeria</span>
-          <span class="restaurant-card__desc">Pizza artigianale a lievitazione naturale con lievito madre e ingredienti biologici selezionati.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/sotto-le-stelle}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-fire"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Pizzeria Spazio Sotto le Stelle</span>
-          <span class="restaurant-card__desc">Pizze gourmet e farinata cotta nel forno a legna nel cuore di Borgo San Salvario.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- 3. CUCINE INTERNAZIONALI -->
-<section class="section restaurant-category" id="cucine-internazionali">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-earth-americas"></i> Cucine Internazionali</h2>
-    <div class="restaurant-grid">
-
-      <a th:href="@{/ristoranti/katsu-ramen}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-bowl-rice"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Katsu Ramen</span>
-          <span class="restaurant-card__desc">Autentico ramen giapponese preparato con brodi a lunga cottura e tagliolini fatti in casa.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/el-machete}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-pepper-hot"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">El Machete Taquería</span>
-          <span class="restaurant-card__desc">Tacos, guacamole e margaritas preparati secondo le ricette classiche della street food messicana.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/taj-mahal}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-mortar-pestle"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Taj Mahal Torino</span>
-          <span class="restaurant-card__desc">Spezie avvolgenti e specialità della tradizione indiana cotte nel tandoor.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- 4. VEGETARIANI E VEGANI -->
-<section class="section restaurant-category" id="vegetariani-e-vegani">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-leaf"></i> Vegetariani e Vegani</h2>
-    <div class="restaurant-grid">
-
-      <a th:href="@{/ristoranti/soul-kitchen}" href="#" class="restaurant-card restaurant-card--featured">
-        <span class="restaurant-card__badge">Top Plant-Based</span>
-        <span class="restaurant-card__icon"><i class="fa-solid fa-seedling"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Soul Kitchen</span>
-          <span class="restaurant-card__desc">Alta cucina plant-based e raw gourmet che unisce creatività, estetica e salute.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/l-orto-gia-saggio}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-carrot"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">L'Orto Già Saggio</span>
-          <span class="restaurant-card__desc">Bistrot vegetariano a km 0 con menù stagionali preparati solo con ortaggi freschi di giornata.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- 5. OSTERIE E PIOLE -->
-<section class="section restaurant-category" id="osterie-e-piole">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-champagne-glasses"></i> Osterie e Piole</h2>
-    <div class="restaurant-grid">
-
-      <a th:href="@{/ristoranti/piola-da-felice}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-bottle-wine"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Caffè Procope — Piola San Salvario</span>
-          <span class="restaurant-card__desc">Atmosfera informale, tovaglie a quadri e piatti casalinghi tra vitello tonnato e tajarin al coltello.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
-      <a th:href="@{/ristoranti/osteria-del-balon}" href="#" class="restaurant-card">
-        <span class="restaurant-card__icon"><i class="fa-solid fa-glass-water"></i></span>
-        <span class="restaurant-card__body">
-          <span class="restaurant-card__title">Osteria del Balon</span>
-          <span class="restaurant-card__desc">Storica osteria di Porta Palazzo immersa nei colori e nei profumi del celebre mercato delle pulci.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right restaurant-card__arrow"></i>
-      </a>
-
     </div>
   </div>
 </section>
@@ -239,13 +99,8 @@
   <i class="fa-solid fa-magnifying-glass"></i> Nessun ristorante trovato. Prova con un altro nome.
 </p>
 
-<!-- ==========================================================================
-     FOOTER
-     ========================================================================== -->
 <footer th:replace="~{fragments/footer :: footer}"></footer>
-<!-- ==========================================================================
-     JAVASCRIPT — filtri per categoria + ricerca live
-     ========================================================================== -->
+
 <script>
 (function () {
   "use strict";
@@ -255,7 +110,6 @@
   var searchInput = document.getElementById('restaurantSearchInput');
   var emptyState = document.getElementById('restaurantEmptyState');
 
-  /* ---------- Filtro per categoria (chip): scorre alla sezione scelta ---------- */
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
       chips.forEach(function (c) { c.classList.remove('active'); });
@@ -274,7 +128,6 @@
     });
   });
 
-  /* ---------- Ricerca live per nome ristorante ---------- */
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       var query = searchInput.value.trim().toLowerCase();
@@ -283,7 +136,7 @@
       categories.forEach(function (cat) { cat.style.display = ''; });
       if (query.length > 0) {
         chips.forEach(function (c) { c.classList.remove('active'); });
-      } else {
+      } else if (chips.length) {
         chips[0].classList.add('active');
       }
 
