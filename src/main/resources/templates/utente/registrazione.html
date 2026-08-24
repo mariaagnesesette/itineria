@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Registrazione</title>
+    <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
 
     <header>
-        <a th:href="@{/}" class="logo">ITINERARIA</a>
+
+        <a href="../index.html" class="logo">ITINERARIA</a>
         <nav>
-            <a th:href="@{/}">Home</a>
+            <a th:href="@{/}" href="../index.html">Home</a>
             <a href="#">Luoghi d'interesse</a>
             <a href="#">Eventi</a>
-            <a th:href="@{/contattaci}">Contatti</a>
+            <a href="../footer/contattaci.html">Contatti</a>
         </nav>
     </header>
 
@@ -21,7 +23,8 @@
         <h1 class="main-title">Crea il tuo account</h1>
 
         <div class="auth-card">
-            <form th:action="@{/utenti}" method="POST">
+            <form id="registrationForm" action="/utenti" method="POST">
+
                 
                 <input type="hidden"
                        th:name="${_csrf.parameterName}"
@@ -31,40 +34,48 @@
                 <div class="form-row">
                     <div class="form-group half">
                         <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" required>
+                        <input type="text" id="nome" name="nome" autocomplete="given-name" required>
                     </div>
                     <div class="form-group half">
                         <label for="cognome">Cognome</label>
-                        <input type="text" id="cognome" name="cognome" required>
+                        <input type="text" id="cognome" name="cognome" autocomplete="family-name" required>
+
                     </div>
                 </div>
 
                 <!-- Email -->
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+
                 </div>
 
                 <!-- Password & Data di nascita -->
                 <div class="form-row">
                     <div class="form-group half">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+
+                        <input type="password" id="password" name="password" autocomplete="new-password" minlength="8" required>
                     </div>
                     <div class="form-group half">
-                        <label for="dataNascita">Data di nascita</label>
-                        <input type="date" id="dataNascita" name="dataNascita" required>
+                        <label for="dob">Data di nascita</label>
+                        <input type="date" id="dob" name="dataNascita" required>
+
                     </div>
                 </div>
 
                 <!-- Nickname -->
                 <div class="form-group">
-                    <label for="username">Nickname</label>
-                    <input type="text" id="username" name="username" required>
+
+                    <label for="nickname">Nickname</label>
+                    <input type="text" id="nickname" name="username" autocomplete="username" minlength="3" required>
+
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-submit">Registrati</button>
+                <p id="registrationMessage" class="form-message" role="alert" aria-live="polite"></p>
 
                 <!-- Footer du formulaire -->
                 <div class="auth-switch">
@@ -78,9 +89,10 @@
     <footer>
         <p> 2025 Itineraria. Tutti i diritti riservati.</p>
         <p style="margin-top: 10px;">
-            <a th:href="@{/supporto}">Supporto</a> | <a th:href="@{/faq}">FAQ</a> | <a th:href="@{/contattaci}">Contattaci</a>
+            <a href="../footer/supporto.html">Supporto</a> | <a href="../footer/faq.html">FAQ</a> | <a href="../footer/contattaci.html">Contattaci</a>
         </p>
     </footer>
 
+    <script src="/js/registrazione.js" defer></script>
 </body>
 </html>

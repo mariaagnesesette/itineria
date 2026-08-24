@@ -22,7 +22,79 @@
 <!-- ==========================================================================
      HEADER / NAVBAR
      ========================================================================== -->
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+<header class="site-header">
+  <div class="container site-header__inner">
+
+    <nav class="main-nav">
+      <a th:href="@{/}" href="#" class="main-nav__link main-nav__link--active">Home</a>
+
+      <div class="main-nav__item">
+        <a th:href="@{/luoghi}" href="#" class="main-nav__link main-nav__link--dropdown">
+          Luoghi d'interesse <i class="fa-solid fa-chevron-down"></i>
+        </a>
+
+        <!-- Mega Dropdown -->
+        <div class="mega-dropdown">
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-book"></i> Biblioteche</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/biblioteche/comunali}" href="#">Biblioteche comunali</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/sale-studio}" href="#">Sale studio</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/aule-studio}" href="#">Aule studio</a></li>
+              <li><a th:href="@{/luoghi/biblioteche/coworking}" href="#">Spazi coworking</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-mug-hot"></i> Bar e Caffetterie</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/bar}" href="#">Bar</a></li>
+              <li><a th:href="@{/luoghi/caffetterie}" href="#">Caffetterie</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-utensils"></i> Ristoranti</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/ristoranti/tipici}" href="#">Ristoranti tipici</a></li>
+              <li><a th:href="@{/luoghi/ristoranti/pizzerie}" href="#">Pizzerie</a></li>
+              <li><a th:href="@{/luoghi/ristoranti/internazionali}" href="#">Cucine internazionali</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/luoghi/parchi/cittadini}" href="#">Parchi cittadini</a></li>
+              <li><a th:href="@{/luoghi/parchi/giardini}" href="#">Giardini</a></li>
+              <li><a th:href="@{/luoghi/parchi/aree-picnic}" href="#">Aree picnic</a></li>
+              <li><a th:href="@{/luoghi/parchi/oasi-naturali}" href="#">Oasi naturali</a></li>
+            </ul>
+          </div>
+
+          <div class="mega-dropdown__group">
+            <div class="mega-dropdown__title"><i class="fa-solid fa-landmark"></i> Musei</div>
+            <ul class="mega-dropdown__list">
+              <li><a th:href="@{/musei#storia-memoria-e-sport}" href="musei.html#storia-memoria-e-sport">Musei storici</a></li>
+              <li><a th:href="@{/musei#arte-fotografia-e-fondazioni-contemporanee}" href="musei.html#arte-fotografia-e-fondazioni-contemporanee">Musei d'arte</a></li>
+              <li><a th:href="@{/musei#scienza-medicina-e-natura}" href="musei.html#scienza-medicina-e-natura">Musei scientifici</a></li>
+              <li><a th:href="@{/musei#tecnica-industria-e-collezioni-tematiche}" href="musei.html#tecnica-industria-e-collezioni-tematiche">Musei interattivi</a></li>
+              <li><a th:href="@{/musei}" href="musei.html" style="font-weight:700; color: var(--color-accent);">Vedi tutti i musei →</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <a th:href="@{/eventi}" href="#" class="main-nav__link">Eventi</a>
+      <a th:href="@{/contatti}" href="#" class="main-nav__link">Contatti</a>
+    </nav>
+
+    <a th:href="@{/login}" href="utente/accedi.html" class="btn-login">
+      <i class="fa-solid fa-user"></i> Accedi
+    </a>
+
+  </div>
+</header>
 
 <!-- ==========================================================================
      HERO
@@ -270,7 +342,65 @@
 <!-- ==========================================================================
      FOOTER
      ========================================================================== -->
-<footer th:replace="~{fragments/footer :: footer}"></footer>
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="footer-brand__logo"><i class="fa-solid fa-location-dot"></i> Itineraria</div>
+        <p class="footer-brand__desc">La tua guida digitale per scoprire Torino in modo autentico e sostenibile.</p>
+        <div class="footer-social">
+          <a th:href="@{https://instagram.com/itineraria}" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a th:href="@{https://facebook.com/itineraria}" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a th:href="@{https://pinterest.com/itineraria}" href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Contatti</div>
+        <ul class="footer-col__list">
+          <li class="footer-contact-item"><i class="fa-regular fa-envelope"></i> info@itineraria.it</li>
+          <li class="footer-contact-item"><i class="fa-solid fa-phone"></i> +39 011 123 4567</li>
+          <li class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Torino, Italia</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Esplora</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/luoghi}" href="#">Luoghi d'interesse</a></li>
+          <li><a th:href="@{/eventi}" href="#">Eventi</a></li>
+          <li><a th:href="@{/forum}" href="#">Forum (coming soon)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col__title">Info</div>
+        <ul class="footer-col__list">
+          <li><a th:href="@{/chi-siamo}" href="#">Chi siamo</a></li>
+          <li><a th:href="@{/privacy}" href="#">Privacy Policy</a></li>
+          <li><a th:href="@{/termini}" href="#">Termini e condizioni</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <ul class="footer-col__list">
+          <li><a th:href="@{/faq}" href="./footer/supporto.html">Supporto</a></li>
+          <li><a th:href="@{/faq}" href="./footer/faq.html">FAQ</a></li>
+          <li><a th:href="@{/contatti}" href="./footer/contattaci.html">Contattaci</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span th:text="'© ' + ${#dates.year(#dates.createNow())} + ' Itineraria.'">© 2025 Itineraria.</span>
+      <span>Tutti i diritti riservati.</span>
+    </div>
+
+  </div>
+</footer>
 <!-- ==========================================================================
      JAVASCRIPT — Carousel "Luoghi principali" + scroll "Eventi in arrivo"
      Nota per il backend: spostare questo blocco in /js/main.js e includerlo

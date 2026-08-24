@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Accedi</title>
+    <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
 
     <header>
-        <a th:href="@{/}" class="logo">ITINERARIA</a>
+        <a href="../index.html" class="logo">ITINERARIA</a>
         <nav>
-            <a th:href="@{/}">Home</a>
+            <a th:href="@{/}" href="../index.html">Home</a>
             <a href="#">Luoghi d'interesse</a>
             <a href="#">Eventi</a>
-            <a th:href="@{/contattaci}">Contatti</a>
+            <a href="../footer/contattaci.html">Contatti</a>
+
         </nav>
     </header>
 
@@ -21,25 +23,18 @@
         <h2>Bentornato</h2>
         <p class="subtitle">Accedi per gestire i tuoi itinerari e preferiti</p>
 
-        <div th:if="${param.errore}">
-            Email o password non corretti.
-        </div>
-
-        <form th:action="@{/login}" method="POST">
-
-            <input type="hidden"
-                th:name="${_csrf.parameterName}"
-                th:value="${_csrf.token}">
+        <form id="loginForm" action="/login" method="POST">
             <div class="form-group">
                 <label for="email">Indirizzo Email</label>
-                <input type="email" id="email" name="email" required placeholder="inserisci la tua email">
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="inserisci la tua email">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="••••••••">
+                <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="••••••••">
             </div>
 
             <button type="submit" class="btn-submit">Accedi</button>
+            <p id="loginMessage" class="form-message" role="alert" aria-live="polite"></p>
         </form>
 
         <div class="auth-switch">
@@ -50,9 +45,10 @@
     <footer>
         <p> 2025 Itineraria. Tutti i diritti riservati.</p>
         <p style="margin-top: 10px;">
-            <a th:href="@{/supporto}">Supporto</a> | <a th:href="@{/faq}">FAQ</a> | <a th:href="@{/contattaci}">Contattaci</a>
+            <a href="../footer/supporto.html">Supporto</a> | <a href="../footer/faq.html">FAQ</a> | <a href="../footer/contattaci.html">Contattaci</a>
         </p>
     </footer>
 
+    <script src="/js/accedi.js" defer></script>
 </body>
 </html>
