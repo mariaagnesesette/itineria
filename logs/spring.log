@@ -1,31 +1,31 @@
-2026-08-23T14:53:34.611+02:00  INFO 10060 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 10060 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\desktop\JAVITA154\Project Work\itineria)
-2026-08-23T14:53:34.640+02:00  INFO 10060 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
-2026-08-23T14:53:34.842+02:00  INFO 10060 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2026-08-23T14:53:34.847+02:00  INFO 10060 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2026-08-23T14:53:40.727+02:00  INFO 10060 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-08-23T14:53:41.071+02:00  INFO 10060 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 303 ms. Found 12 JPA repository interfaces.
-2026-08-23T14:53:43.163+02:00  INFO 10060 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-2026-08-23T14:53:43.234+02:00  INFO 10060 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-08-23T14:53:43.236+02:00  INFO 10060 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-08-23T14:53:43.425+02:00  INFO 10060 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 8576 ms
-2026-08-23T14:53:44.895+02:00  INFO 10060 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-08-23T14:53:46.631+02:00  WARN 10060 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Unknown database 'itineria'
-----------------------------------------------------------------------
-SQL State  : 42000
-Error Code : 1049
-Message    : Unknown database 'itineria'
+2026-08-23T02:24:27.140+02:00  INFO 9517 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 25.0.3 with PID 9517 (/Users/giuliabalaban/itineria_recuperato/itineria/target/classes started by giuliabalaban in /Users/giuliabalaban/itineria_recuperato/itineria)
+2026-08-23T02:24:27.142+02:00  INFO 9517 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-23T02:24:27.168+02:00  INFO 9517 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-23T02:24:27.168+02:00  INFO 9517 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-23T02:24:27.525+02:00  INFO 9517 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-23T02:24:27.595+02:00  INFO 9517 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 12 JPA repository interfaces.
+2026-08-23T02:24:28.008+02:00  INFO 9517 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-23T02:24:28.018+02:00  INFO 9517 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-23T02:24:28.018+02:00  INFO 9517 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-23T02:24:28.039+02:00  INFO 9517 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 871 ms
+2026-08-23T02:24:28.172+02:00  INFO 9517 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-23T02:24:29.328+02:00  WARN 9517 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Public Key Retrieval is not allowed
+------------------------------------------------------------------------------
+SQL State  : 08001
+Error Code : 0
+Message    : Public Key Retrieval is not allowed
 
-2026-08-23T14:53:46.642+02:00  INFO 10060 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2026-08-23T14:53:46.683+02:00  INFO 10060 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-08-23T02:24:29.334+02:00  INFO 9517 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-23T02:24:29.348+02:00  INFO 9517 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-08-23T14:53:46.751+02:00 ERROR 10060 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+2026-08-23T02:24:29.361+02:00 ERROR 9517 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Unknown database 'itineria'
-----------------------------------------------------------------------
-SQL State  : 42000
-Error Code : 1049
-Message    : Unknown database 'itineria'
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Public Key Retrieval is not allowed
+------------------------------------------------------------------------------
+SQL State  : 08001
+Error Code : 0
+Message    : Public Key Retrieval is not allowed
 
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
@@ -38,14 +38,14 @@ Message    : Unknown database 'itineria'
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
 	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Unknown database 'itineria'
-----------------------------------------------------------------------
-SQL State  : 42000
-Error Code : 1049
-Message    : Unknown database 'itineria'
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: Public Key Retrieval is not allowed
+------------------------------------------------------------------------------
+SQL State  : 08001
+Error Code : 0
+Message    : Public Key Retrieval is not allowed
 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
@@ -56,11 +56,11 @@ Message    : Unknown database 'itineria'
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 13 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.sqlExceptions.FlywaySqlUnableToConnectToDbException: Unable to obtain connection from database: Unknown database 'itineria'
-----------------------------------------------------------------------
-SQL State  : 42000
-Error Code : 1049
-Message    : Unknown database 'itineria'
+Caused by: org.flywaydb.core.internal.exception.sqlExceptions.FlywaySqlUnableToConnectToDbException: Unable to obtain connection from database: Public Key Retrieval is not allowed
+------------------------------------------------------------------------------
+SQL State  : 08001
+Error Code : 0
+Message    : Public Key Retrieval is not allowed
 
 	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:78) ~[flyway-core-12.4.0.jar:na]
 	at org.flywaydb.core.internal.jdbc.JdbcConnectionFactory.<init>(JdbcConnectionFactory.java:76) ~[flyway-core-12.4.0.jar:na]
@@ -71,8 +71,8 @@ Message    : Unknown database 'itineria'
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 20 common frames omitted
-Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'itineria'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+Caused by: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102) ~[mysql-connector-j-9.7.0.jar:9.7.0]
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.7.0.jar:9.7.0]
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840) ~[mysql-connector-j-9.7.0.jar:9.7.0]
 	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416) ~[mysql-connector-j-9.7.0.jar:9.7.0]
@@ -87,228 +87,19 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'itineria'
 	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-7.0.2.jar:na]
 	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:73) ~[flyway-core-12.4.0.jar:na]
 	... 27 common frames omitted
-
-2026-08-23T14:55:29.550+02:00  INFO 12292 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 12292 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\desktop\JAVITA154\Project Work\itineria)
-2026-08-23T14:55:29.565+02:00  INFO 12292 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
-2026-08-23T14:55:29.765+02:00  INFO 12292 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2026-08-23T14:55:29.769+02:00  INFO 12292 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2026-08-23T14:55:32.527+02:00  INFO 12292 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-08-23T14:55:32.956+02:00  INFO 12292 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 400 ms. Found 12 JPA repository interfaces.
-2026-08-23T14:55:35.788+02:00  INFO 12292 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-2026-08-23T14:55:35.869+02:00  INFO 12292 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-08-23T14:55:35.870+02:00  INFO 12292 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-08-23T14:55:36.009+02:00  INFO 12292 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 6238 ms
-2026-08-23T14:55:36.777+02:00  INFO 12292 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-08-23T14:55:37.524+02:00  INFO 12292 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3007b394
-2026-08-23T14:55:37.531+02:00  INFO 12292 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-08-23T14:55:37.657+02:00  INFO 12292 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC (MySQL 8.0)
-2026-08-23T14:55:37.966+02:00  INFO 12292 --- [itineria] [restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `itineria`.`flyway_schema_history` does not exist yet
-2026-08-23T14:55:37.976+02:00  INFO 12292 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.062s)
-2026-08-23T14:55:38.076+02:00  INFO 12292 --- [itineria] [restartedMain] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `itineria`.`flyway_schema_history` ...
-2026-08-23T14:55:38.352+02:00  INFO 12292 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: << Empty Schema >>
-2026-08-23T14:55:38.414+02:00  INFO 12292 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema `itineria` to version "1 - create schema"
-2026-08-23T14:55:38.785+02:00 ERROR 12292 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Migration of schema `itineria` to version "1 - create schema" failed! Please restore backups and roll back database and code!
-2026-08-23T14:55:38.852+02:00  WARN 12292 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V1__create_schema.sql
-----------------------------------------------
-SQL State  : 42000
-Error Code : 1064
-Message    : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
-    FOREIGN KEY (id_citta)
-        REFERENCES citta (id)
-        ON UPDATE ' at line 17
-Location   : db/migration/V1__create_schema.sql (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes\db\migration\V1__create_schema.sql)
-Line       : 40
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-2026-08-23T14:55:38.857+02:00  INFO 12292 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-08-23T14:55:38.882+02:00  INFO 12292 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-08-23T14:55:38.890+02:00  INFO 12292 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2026-08-23T14:55:38.933+02:00  INFO 12292 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-08-23T14:55:38.996+02:00 ERROR 12292 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V1__create_schema.sql
-----------------------------------------------
-SQL State  : 42000
-Error Code : 1064
-Message    : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
-    FOREIGN KEY (id_citta)
-        REFERENCES citta (id)
-        ON UPDATE ' at line 17
-Location   : db/migration/V1__create_schema.sql (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes\db\migration\V1__create_schema.sql)
-Line       : 40
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
-	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V1__create_schema.sql
-----------------------------------------------
-SQL State  : 42000
-Error Code : 1064
-Message    : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
-    FOREIGN KEY (id_citta)
-        REFERENCES citta (id)
-        ON UPDATE ' at line 17
-Location   : db/migration/V1__create_schema.sql (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes\db\migration\V1__create_schema.sql)
-Line       : 40
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.8.jar:7.0.8]
-	... 13 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V1__create_schema.sql
-----------------------------------------------
-SQL State  : 42000
-Error Code : 1064
-Message    : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
-    FOREIGN KEY (id_citta)
-        REFERENCES citta (id)
-        ON UPDATE ' at line 17
-Location   : db/migration/V1__create_schema.sql (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes\db\migration\V1__create_schema.sql)
-Line       : 40
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:283) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:282) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:255) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:153) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.database.mysql.MySQLNamedLockTemplate.execute(MySQLNamedLockTemplate.java:62) ~[flyway-mysql-12.4.0.jar:na]
-	at org.flywaydb.database.mysql.MySQLConnection.lock(MySQLConnection.java:159) ~[flyway-mysql-12.4.0.jar:na]
-	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:165) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:153) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:104) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.Flyway.lambda$migrate$3(Flyway.java:231) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:236) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:120) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.Flyway.migrate(Flyway.java:181) ~[flyway-core-12.4.0.jar:na]
-	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67) ~[spring-boot-flyway-4.1.0.jar:4.1.0]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
-	... 20 common frames omitted
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V1__create_schema.sql
-----------------------------------------------
-SQL State  : 42000
-Error Code : 1064
-Message    : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
-    FOREIGN KEY (id_citta)
-        REFERENCES citta (id)
-        ON UPDATE ' at line 17
-Location   : db/migration/V1__create_schema.sql (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes\db\migration\V1__create_schema.sql)
-Line       : 40
-Statement  : Run Flyway with -X option to see the actual statement causing the problem
-
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:251) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:212) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:134) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:75) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:66) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:31) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391) ~[flyway-core-12.4.0.jar:na]
-	... 37 common frames omitted
-Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
-    FOREIGN KEY (id_citta)
-        REFERENCES citta (id)
-        ON UPDATE ' at line 17
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.7.0.jar:9.7.0]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.7.0.jar:9.7.0]
-	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:839) ~[mysql-connector-j-9.7.0.jar:9.7.0]
-	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:687) ~[mysql-connector-j-9.7.0.jar:9.7.0]
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-7.0.2.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-7.0.2.jar:na]
-	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:229) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:88) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:207) ~[flyway-core-12.4.0.jar:na]
-	... 43 common frames omitted
-
-2026-08-23T14:58:27.073+02:00  INFO 29772 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 29772 (C:\Users\samue\OneDrive\Desktop\JAVITA154\Project Work\itineria\target\classes started by samue in C:\Users\samue\OneDrive\desktop\JAVITA154\Project Work\itineria)
-2026-08-23T14:58:27.083+02:00  INFO 29772 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
-2026-08-23T14:58:27.305+02:00  INFO 29772 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2026-08-23T14:58:27.307+02:00  INFO 29772 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2026-08-23T14:58:29.961+02:00  INFO 29772 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-08-23T14:58:30.310+02:00  INFO 29772 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 312 ms. Found 12 JPA repository interfaces.
-2026-08-23T14:58:32.169+02:00  INFO 29772 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
-2026-08-23T14:58:32.228+02:00  INFO 29772 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-08-23T14:58:32.229+02:00  INFO 29772 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-08-23T14:58:32.347+02:00  INFO 29772 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 5036 ms
-2026-08-23T14:58:33.109+02:00  INFO 29772 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-08-23T14:58:33.530+02:00  INFO 29772 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3007b394
-2026-08-23T14:58:33.535+02:00  INFO 29772 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-08-23T14:58:33.617+02:00  INFO 29772 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC (MySQL 8.0)
-2026-08-23T14:58:33.868+02:00  WARN 29772 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Validate failed: Migrations have failed validation
-Detected failed migration to version 1 (create schema).
-Please remove any half-completed changes then run repair to fix the schema history.
-Need more flexibility with validation rules? Learn more: https://help.red-gate.com/help/flyway-cli12/help_4.aspx?topic=flyway-blog/older-posts/customize-validation-rules-with-ignoremigrationpatterns
-2026-08-23T14:58:33.874+02:00  INFO 29772 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-08-23T14:58:33.894+02:00  INFO 29772 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-08-23T14:58:33.902+02:00  INFO 29772 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2026-08-23T14:58:33.936+02:00  INFO 29772 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-08-23T14:58:33.986+02:00 ERROR 29772 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Validate failed: Migrations have failed validation
-Detected failed migration to version 1 (create schema).
-Please remove any half-completed changes then run repair to fix the schema history.
-Need more flexibility with validation rules? Learn more: https://help.red-gate.com/help/flyway-cli12/help_4.aspx?topic=flyway-blog/older-posts/customize-validation-rules-with-ignoremigrationpatterns
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
-	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
-	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Validate failed: Migrations have failed validation
-Detected failed migration to version 1 (create schema).
-Please remove any half-completed changes then run repair to fix the schema history.
-Need more flexibility with validation rules? Learn more: https://help.red-gate.com/help/flyway-cli12/help_4.aspx?topic=flyway-blog/older-posts/customize-validation-rules-with-ignoremigrationpatterns
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.8.jar:7.0.8]
-	... 13 common frames omitted
-Caused by: org.flywaydb.core.api.exception.FlywayValidateException: Validate failed: Migrations have failed validation
-Detected failed migration to version 1 (create schema).
-Please remove any half-completed changes then run repair to fix the schema history.
-Need more flexibility with validation rules? Learn more: https://help.red-gate.com/help/flyway-cli12/help_4.aspx?topic=flyway-blog/older-posts/customize-validation-rules-with-ignoremigrationpatterns
-	at org.flywaydb.core.Flyway.lambda$migrate$3(Flyway.java:187) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:236) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:120) ~[flyway-core-12.4.0.jar:na]
-	at org.flywaydb.core.Flyway.migrate(Flyway.java:181) ~[flyway-core-12.4.0.jar:na]
-	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67) ~[spring-boot-flyway-4.1.0.jar:4.1.0]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
-	... 20 common frames omitted
+Caused by: com.mysql.cj.exceptions.UnableToConnectException: Public Key Retrieval is not allowed
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:76) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:122) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.protocol.a.authentication.CachingSha2PasswordPlugin.nextAuthenticationStep(CachingSha2PasswordPlugin.java:40) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.proceedHandshakeWithPluggableAuthentication(NativeAuthenticationProvider.java:436) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.protocol.a.NativeAuthenticationProvider.connect(NativeAuthenticationProvider.java:206) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.protocol.a.NativeProtocol.connect(NativeProtocol.java:1334) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:155) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:964) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828) ~[mysql-connector-j-9.7.0.jar:9.7.0]
+	... 38 common frames omitted
 
