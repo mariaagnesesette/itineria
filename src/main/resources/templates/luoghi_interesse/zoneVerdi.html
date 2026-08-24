@@ -13,8 +13,8 @@
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- CSS progetto (crea parchi.css in static/css oppure usa style.css) -->
-  <link rel="stylesheet" th:href="@{/css/parchi.css}" href="/css/parchi.css">
+  <!-- CSS progetto (crea zoneVerdi.css in static/css oppure usa style.css) -->
+  <link rel="stylesheet" th:href="@{/css/zoneVerdi.css}" href="/css/zoneVerdi.css">
 </head>
 <body>
 
@@ -59,12 +59,12 @@
 
 <section class="section">
   <div class="container">
-    <form th:object="${zonaVerdeDTO}" th:action="@{/parchi/filtri}" method="get" class="parchi-filter-form">
+    <form th:object="${zonaVerdeDTO}" th:action="@{/zoneVerdi/filtri}" method="get" class="parchi-filter-form">
       <div class="parchi-filter-row">
         <input type="text" th:field="*{nome}" id="parkSearchInputDuplicate" placeholder="Cerca per nome" />
 
         <select th:field="*{tipologia}">
-          <option th:value="">Tutte le tipologie</option>
+          <option value="">Tutte le tipologie</option>
           <option th:each="t : ${T(com.quattromoschettieri.itineria.entities.zonaVerde.TipoZonaVerde).values()}"
                   th:value="${t}" th:text="${t}"></option>
         </select>
@@ -91,8 +91,8 @@
         <span th:text="${categoria.nome}">Nome categoria</span>
       </h2>
       <div class="park-grid">
-        <a th:each="parco : ${categoria.parchi}"
-           th:href="@{'/parchi/' + ${parco.slug}}"
+          <a th:each="parco : ${categoria.parchi}"
+            th:href="@{'/zoneVerdi/' + ${parco.slug}}"
            th:classappend="${parco.preferito} ? ' park-card--featured' : ''"
            class="park-card">
           <span class="park-card__badge" th:if="${parco.preferito}">Consigliato</span>
@@ -119,7 +119,7 @@
   <div class="container">
     <div class="park-grid">
       <a th:each="parco : ${parchi}"
-         th:href="@{'/parchi/' + ${parco.slug}}"
+        th:href="@{'/zoneVerdi/' + ${parco.slug}}"
          th:classappend="${parco.preferito} ? ' park-card--featured' : ''"
          class="park-card">
         <span class="park-card__badge" th:if="${parco.preferito}">Consigliato</span>
