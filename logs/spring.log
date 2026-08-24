@@ -615,6 +615,7 @@ Caused by: java.lang.IllegalArgumentException: scale has no meaning for SQL floa
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 18 common frames omitted
 
+<<<<<<< Updated upstream
 2026-08-24T13:11:15.543+02:00  INFO 52310 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 52310 (/Users/giuliabalaban/itineria_recuperato/itineria/target/classes started by giuliabalaban in /Users/giuliabalaban/itineria_recuperato/itineria)
 2026-08-24T13:11:15.549+02:00  INFO 52310 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
 2026-08-24T13:11:15.605+02:00  INFO 52310 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
@@ -644,6 +645,57 @@ Error starting ApplicationContext. To display the condition evaluation report re
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Found non-empty schema(s) `itineria` but no schema history table. Use baseline() or set baselineOnMigrate to true to initialize the schema history table.
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.8.jar:7.0.8]
+=======
+2026-08-24T14:20:31.139+02:00  INFO 9756 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.12.1 with PID 9756 (C:\Users\lives\Desktop\ProjectWorkSamuele\itineria\target\classes started by lives in C:\Users\lives\Desktop\ProjectWorkSamuele\itineria)
+2026-08-24T14:20:31.147+02:00  INFO 9756 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T14:20:31.227+02:00  INFO 9756 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T14:20:31.228+02:00  INFO 9756 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T14:20:33.365+02:00  INFO 9756 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T14:20:33.497+02:00  INFO 9756 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 12 JPA repository interfaces.
+2026-08-24T14:20:34.649+02:00  INFO 9756 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T14:20:34.678+02:00  INFO 9756 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T14:20:34.680+02:00  INFO 9756 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T14:20:34.793+02:00  INFO 9756 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3564 ms
+2026-08-24T14:20:35.270+02:00  INFO 9756 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T14:20:35.501+02:00  INFO 9756 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7291f1c5
+2026-08-24T14:20:35.504+02:00  INFO 9756 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T14:20:35.547+02:00  INFO 9756 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T14:20:35.646+02:00  INFO 9756 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.048s)
+2026-08-24T14:20:35.661+02:00  INFO 9756 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 1
+2026-08-24T14:20:35.664+02:00  INFO 9756 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T14:20:35.804+02:00  INFO 9756 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T14:20:35.880+02:00  INFO 9756 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T14:20:36.367+02:00  INFO 9756 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T14:20:36.432+02:00  WARN 9756 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T14:20:36.445+02:00  INFO 9756 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T14:20:36.709+02:00  WARN 9756 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: BigDecimal
+2026-08-24T14:20:36.711+02:00  INFO 9756 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-24T14:20:36.717+02:00  INFO 9756 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-24T14:20:36.722+02:00  INFO 9756 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-24T14:20:36.733+02:00  INFO 9756 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-24T14:20:36.750+02:00 ERROR 9756 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: BigDecimal
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
+>>>>>>> Stashed changes
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
@@ -654,16 +706,106 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
 	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
+<<<<<<< Updated upstream
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Found non-empty schema(s) `itineria` but no schema history table. Use baseline() or set baselineOnMigrate to true to initialize the schema history table.
+=======
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+Caused by: java.lang.NoClassDefFoundError: BigDecimal
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3580) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2678) ~[na:na]
+	at org.hibernate.models.internal.jdk.JdkClassDetails.getMethods(JdkClassDetails.java:216) ~[hibernate-models-1.1.1.jar:na]
+	at org.hibernate.boot.model.internal.InheritanceState.determineAccessTypeFromId(InheritanceState.java:304) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.internal.InheritanceState.determineDefaultAccessType(InheritanceState.java:261) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.internal.InheritanceState.getElementsToProcess(InheritanceState.java:232) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.internal.InheritanceState.postProcess(InheritanceState.java:165) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.internal.EntityBinder.handleIdentifier(EntityBinder.java:434) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.internal.EntityBinder.bindEntityClass(EntityBinder.java:259) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.internal.AnnotationBinder.bindClass(AnnotationBinder.java:247) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:197) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.processEntityHierarchies(MetadataBuildingProcess.java:323) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.coordinateProcessors(MetadataBuildingProcess.java:356) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:209) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1388) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.populateSessionFactoryBuilder(EntityManagerFactoryBuilderImpl.java:1468) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1450) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
+	... 18 common frames omitted
+Caused by: java.lang.ClassNotFoundException: BigDecimal
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[na:na]
+	at java.base/java.lang.Class.forName0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:536) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:515) ~[na:na]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:123) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[na:na]
+	... 43 common frames omitted
+
+2026-08-24T14:24:11.529+02:00  INFO 5452 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.12.1 with PID 5452 (C:\Users\lives\Desktop\ProjectWorkSamuele\itineria\target\classes started by lives in C:\Users\lives\Desktop\ProjectWorkSamuele\itineria)
+2026-08-24T14:24:11.533+02:00  INFO 5452 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T14:24:11.623+02:00  INFO 5452 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T14:24:11.625+02:00  INFO 5452 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T14:24:13.008+02:00  INFO 5452 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T14:24:13.163+02:00  INFO 5452 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 146 ms. Found 12 JPA repository interfaces.
+2026-08-24T14:24:14.060+02:00  INFO 5452 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T14:24:14.077+02:00  INFO 5452 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T14:24:14.077+02:00  INFO 5452 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T14:24:14.137+02:00  INFO 5452 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2512 ms
+2026-08-24T14:24:14.492+02:00  INFO 5452 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T14:24:14.679+02:00  INFO 5452 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@8b44be1
+2026-08-24T14:24:14.682+02:00  INFO 5452 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T14:24:14.721+02:00  INFO 5452 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T14:24:14.828+02:00  INFO 5452 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.043s)
+2026-08-24T14:24:14.842+02:00  INFO 5452 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 1
+2026-08-24T14:24:14.846+02:00  INFO 5452 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T14:24:14.977+02:00  INFO 5452 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T14:24:15.046+02:00  INFO 5452 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T14:24:15.547+02:00  INFO 5452 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T14:24:15.615+02:00  WARN 5452 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T14:24:15.631+02:00  INFO 5452 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T14:24:17.102+02:00  INFO 5452 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-24T14:24:17.152+02:00 ERROR 5452 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [id_luogo_interesse] in table [biblioteche]
+2026-08-24T14:24:17.153+02:00  WARN 5452 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [id_luogo_interesse] in table [biblioteche]
+2026-08-24T14:24:17.155+02:00  INFO 5452 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-24T14:24:17.161+02:00  INFO 5452 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-24T14:24:17.164+02:00  INFO 5452 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-24T14:24:17.176+02:00  INFO 5452 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-24T14:24:17.193+02:00 ERROR 5452 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [id_luogo_interesse] in table [biblioteche]
+>>>>>>> Stashed changes
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
+<<<<<<< Updated upstream
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 13 common frames omitted
@@ -677,3 +819,492 @@ Caused by: org.flywaydb.core.api.FlywayException: Found non-empty schema(s) `iti
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 20 common frames omitted
 
+=======
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
+	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+Caused by: jakarta.persistence.PersistenceException: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [id_luogo_interesse] in table [biblioteche]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:448) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
+	... 18 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [id_luogo_interesse] in table [biblioteche]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:141) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:42) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:278) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:458) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1452) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436) ~[spring-orm-7.0.8.jar:7.0.8]
+	... 22 common frames omitted
+
+2026-08-24T14:30:42.084+02:00  INFO 3396 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.12.1 with PID 3396 (C:\Users\lives\Desktop\ProjectWorkSamuele\itineria\target\classes started by lives in c:\Users\lives\Desktop\ProjectWorkSamuele\itineria)
+2026-08-24T14:30:42.089+02:00  INFO 3396 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T14:30:42.160+02:00  INFO 3396 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T14:30:42.162+02:00  INFO 3396 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T14:30:43.211+02:00  INFO 3396 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T14:30:43.341+02:00  INFO 3396 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 12 JPA repository interfaces.
+2026-08-24T14:30:44.213+02:00  INFO 3396 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T14:30:44.244+02:00  INFO 3396 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T14:30:44.245+02:00  INFO 3396 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T14:30:44.308+02:00  INFO 3396 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2145 ms
+2026-08-24T14:30:44.621+02:00  INFO 3396 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T14:30:44.829+02:00  INFO 3396 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55cdd767
+2026-08-24T14:30:44.831+02:00  INFO 3396 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T14:30:44.871+02:00  INFO 3396 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T14:30:44.977+02:00  INFO 3396 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.044s)
+2026-08-24T14:30:44.994+02:00  INFO 3396 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 1
+2026-08-24T14:30:45.001+02:00  INFO 3396 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T14:30:45.145+02:00  INFO 3396 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T14:30:45.221+02:00  INFO 3396 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T14:30:45.702+02:00  INFO 3396 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T14:30:45.761+02:00  WARN 3396 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T14:30:45.778+02:00  INFO 3396 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T14:30:47.332+02:00  INFO 3396 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-24T14:30:47.385+02:00 ERROR 3396 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [created_at] in table [orario_apertura]
+2026-08-24T14:30:47.386+02:00  WARN 3396 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [created_at] in table [orario_apertura]
+2026-08-24T14:30:47.387+02:00  INFO 3396 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-24T14:30:47.392+02:00  INFO 3396 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-24T14:30:47.396+02:00  INFO 3396 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-24T14:30:47.406+02:00  INFO 3396 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-24T14:30:47.424+02:00 ERROR 3396 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [created_at] in table [orario_apertura]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
+	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+Caused by: jakarta.persistence.PersistenceException: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [created_at] in table [orario_apertura]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:448) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
+	... 18 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing column [created_at] in table [orario_apertura]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:141) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:42) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:278) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:458) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1452) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436) ~[spring-orm-7.0.8.jar:7.0.8]
+	... 22 common frames omitted
+
+2026-08-24T14:33:00.206+02:00  INFO 340 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.12.1 with PID 340 (C:\Users\lives\Desktop\ProjectWorkSamuele\itineria\target\classes started by lives in c:\Users\lives\Desktop\ProjectWorkSamuele\itineria)
+2026-08-24T14:33:00.212+02:00  INFO 340 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T14:33:00.279+02:00  INFO 340 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T14:33:00.280+02:00  INFO 340 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T14:33:01.268+02:00  INFO 340 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T14:33:01.401+02:00  INFO 340 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121 ms. Found 12 JPA repository interfaces.
+2026-08-24T14:33:02.277+02:00  INFO 340 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T14:33:02.299+02:00  INFO 340 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T14:33:02.300+02:00  INFO 340 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T14:33:02.358+02:00  INFO 340 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2077 ms
+2026-08-24T14:33:02.686+02:00  INFO 340 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T14:33:02.888+02:00  INFO 340 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f9eff30
+2026-08-24T14:33:02.890+02:00  INFO 340 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T14:33:02.935+02:00  INFO 340 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T14:33:03.034+02:00  INFO 340 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.041s)
+2026-08-24T14:33:03.050+02:00  INFO 340 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 1
+2026-08-24T14:33:03.056+02:00  INFO 340 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T14:33:03.200+02:00  INFO 340 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T14:33:03.298+02:00  INFO 340 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T14:33:03.838+02:00  INFO 340 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T14:33:03.900+02:00  WARN 340 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T14:33:03.913+02:00  INFO 340 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T14:33:05.464+02:00  INFO 340 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-24T14:33:05.516+02:00 ERROR 340 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing table [prezzi_museo]
+2026-08-24T14:33:05.517+02:00  WARN 340 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing table [prezzi_museo]
+2026-08-24T14:33:05.518+02:00  INFO 340 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-24T14:33:05.524+02:00  INFO 340 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-24T14:33:05.527+02:00  INFO 340 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-24T14:33:05.538+02:00  INFO 340 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-24T14:33:05.558+02:00 ERROR 340 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing table [prezzi_museo]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
+	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+Caused by: jakarta.persistence.PersistenceException: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing table [prezzi_museo]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:448) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
+	... 18 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: missing table [prezzi_museo]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:128) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:42) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:278) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:458) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1452) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436) ~[spring-orm-7.0.8.jar:7.0.8]
+	... 22 common frames omitted
+
+2026-08-24T14:34:07.849+02:00  INFO 2276 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.12.1 with PID 2276 (C:\Users\lives\Desktop\ProjectWorkSamuele\itineria\target\classes started by lives in c:\Users\lives\Desktop\ProjectWorkSamuele\itineria)
+2026-08-24T14:34:07.853+02:00  INFO 2276 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T14:34:07.927+02:00  INFO 2276 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T14:34:07.928+02:00  INFO 2276 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T14:34:09.097+02:00  INFO 2276 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T14:34:09.228+02:00  INFO 2276 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119 ms. Found 12 JPA repository interfaces.
+2026-08-24T14:34:10.044+02:00  INFO 2276 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T14:34:10.070+02:00  INFO 2276 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T14:34:10.071+02:00  INFO 2276 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T14:34:10.126+02:00  INFO 2276 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2197 ms
+2026-08-24T14:34:10.446+02:00  INFO 2276 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T14:34:10.629+02:00  INFO 2276 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@428aa2b4
+2026-08-24T14:34:10.633+02:00  INFO 2276 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T14:34:10.678+02:00  INFO 2276 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T14:34:10.773+02:00  INFO 2276 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.038s)
+2026-08-24T14:34:10.787+02:00  INFO 2276 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 1
+2026-08-24T14:34:10.791+02:00  INFO 2276 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T14:34:10.919+02:00  INFO 2276 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T14:34:10.995+02:00  INFO 2276 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T14:34:11.547+02:00  INFO 2276 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T14:34:11.618+02:00  WARN 2276 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T14:34:11.637+02:00  INFO 2276 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T14:34:13.171+02:00  INFO 2276 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-24T14:34:13.221+02:00 ERROR 2276 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: wrong column type encountered in column [voto] in table [recensioni]; found [tinyint (Types#TINYINT)], but expecting [integer (Types#INTEGER)]
+2026-08-24T14:34:13.223+02:00  WARN 2276 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: wrong column type encountered in column [voto] in table [recensioni]; found [tinyint (Types#TINYINT)], but expecting [integer (Types#INTEGER)]
+2026-08-24T14:34:13.225+02:00  INFO 2276 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-24T14:34:13.231+02:00  INFO 2276 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-24T14:34:13.234+02:00  INFO 2276 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-24T14:34:13.245+02:00  INFO 2276 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-24T14:34:13.261+02:00 ERROR 2276 --- [itineria] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: wrong column type encountered in column [voto] in table [recensioni]; found [tinyint (Types#TINYINT)], but expecting [integer (Types#INTEGER)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.1.0.jar:4.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.1.0.jar:4.1.0]
+	at com.quattromoschettieri.itineria.ItineriaApplication.main(ItineriaApplication.java:10) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52) ~[spring-boot-devtools-4.1.0.jar:4.1.0]
+Caused by: jakarta.persistence.PersistenceException: Unable to build Hibernate SessionFactory  [persistence unit: default] ; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: wrong column type encountered in column [voto] in table [recensioni]; found [tinyint (Types#TINYINT)], but expecting [integer (Types#INTEGER)]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:448) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:411) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:419) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
+	... 18 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema validation: wrong column type encountered in column [voto] in table [recensioni]; found [tinyint (Types#TINYINT)], but expecting [integer (Types#INTEGER)]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateColumnType(AbstractSchemaValidator.java:163) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:148) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:42) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:278) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$1(SchemaManagementToolCoordinator.java:101) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:100) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:35) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:33) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.internal.SessionFactoryRegistry.instantiateSessionFactory(SessionFactoryRegistry.java:64) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:458) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1452) ~[hibernate-core-7.4.1.Final.jar:7.4.1.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:93) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:443) ~[spring-orm-7.0.8.jar:7.0.8]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:436) ~[spring-orm-7.0.8.jar:7.0.8]
+	... 22 common frames omitted
+
+2026-08-24T14:35:59.268+02:00  INFO 9640 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.12.1 with PID 9640 (C:\Users\lives\Desktop\ProjectWorkSamuele\itineria\target\classes started by lives in c:\Users\lives\Desktop\ProjectWorkSamuele\itineria)
+2026-08-24T14:35:59.273+02:00  INFO 9640 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T14:35:59.346+02:00  INFO 9640 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T14:35:59.347+02:00  INFO 9640 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T14:36:00.321+02:00  INFO 9640 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T14:36:00.465+02:00  INFO 9640 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 131 ms. Found 12 JPA repository interfaces.
+2026-08-24T14:36:01.318+02:00  INFO 9640 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T14:36:01.345+02:00  INFO 9640 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T14:36:01.346+02:00  INFO 9640 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T14:36:01.402+02:00  INFO 9640 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2051 ms
+2026-08-24T14:36:01.735+02:00  INFO 9640 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T14:36:01.944+02:00  INFO 9640 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f9eff30
+2026-08-24T14:36:01.947+02:00  INFO 9640 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T14:36:01.989+02:00  INFO 9640 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T14:36:02.104+02:00  INFO 9640 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.051s)
+2026-08-24T14:36:02.126+02:00  INFO 9640 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 1
+2026-08-24T14:36:02.131+02:00  INFO 9640 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T14:36:02.307+02:00  INFO 9640 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T14:36:02.395+02:00  INFO 9640 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T14:36:02.957+02:00  INFO 9640 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T14:36:03.016+02:00  WARN 9640 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T14:36:03.030+02:00  INFO 9640 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T14:36:04.454+02:00  INFO 9640 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-24T14:36:04.502+02:00  INFO 9640 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-24T14:36:04.590+02:00  INFO 9640 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-24T14:36:05.832+02:00  WARN 9640 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-24T14:36:06.003+02:00  INFO 9640 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customerUserDetailsService
+2026-08-24T14:36:06.211+02:00 DEBUG 9640 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-24T14:36:06.259+02:00  INFO 9640 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-24T14:36:06.374+02:00  WARN 9640 --- [itineria] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/webmvc/autoconfigure/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invalid mapping on handler class [com.quattromoschettieri.itineria.controllers.MuseoController]: public java.lang.String com.quattromoschettieri.itineria.controllers.MuseoController.deleteMuseo(java.lang.Long)
+2026-08-24T14:36:06.376+02:00  INFO 9640 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-24T14:36:06.380+02:00  INFO 9640 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-24T14:36:06.390+02:00  INFO 9640 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-24T14:36:06.393+02:00  INFO 9640 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-24T14:36:06.408+02:00  INFO 9640 --- [itineria] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-24T14:36:06.428+02:00 ERROR 9640 --- [itineria] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid mapping pattern detected:
+/{id}/delete
+    ^
+Char ']' is not allowed in a captured variable name
+
+Action:
+
+Fix this pattern in your application or switch to the legacy parser implementation with 'spring.mvc.pathmatch.matching-strategy=ant_path_matcher'.
+
+2026-08-24T14:38:25.849+02:00  INFO 14192 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.12.1 with PID 14192 (C:\Users\lives\Desktop\ProjectWorkSamuele\itineria\target\classes started by lives in c:\Users\lives\Desktop\ProjectWorkSamuele\itineria)
+2026-08-24T14:38:25.855+02:00  INFO 14192 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-24T14:38:25.923+02:00  INFO 14192 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-24T14:38:25.924+02:00  INFO 14192 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-24T14:38:26.909+02:00  INFO 14192 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-24T14:38:27.056+02:00  INFO 14192 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135 ms. Found 12 JPA repository interfaces.
+2026-08-24T14:38:27.928+02:00  INFO 14192 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-24T14:38:27.965+02:00  INFO 14192 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-24T14:38:27.966+02:00  INFO 14192 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-24T14:38:28.025+02:00  INFO 14192 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2100 ms
+2026-08-24T14:38:28.347+02:00  INFO 14192 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-24T14:38:28.532+02:00  INFO 14192 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@428aa2b4
+2026-08-24T14:38:28.534+02:00  INFO 14192 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-24T14:38:28.578+02:00  INFO 14192 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-24T14:38:28.673+02:00  INFO 14192 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.036s)
+2026-08-24T14:38:28.693+02:00  INFO 14192 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 1
+2026-08-24T14:38:28.698+02:00  INFO 14192 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-24T14:38:28.835+02:00  INFO 14192 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-24T14:38:28.908+02:00  INFO 14192 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-24T14:38:29.398+02:00  INFO 14192 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-24T14:38:29.462+02:00  WARN 14192 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-24T14:38:29.475+02:00  INFO 14192 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-24T14:38:30.932+02:00  INFO 14192 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-24T14:38:30.984+02:00  INFO 14192 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-24T14:38:31.073+02:00  INFO 14192 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-24T14:38:32.340+02:00  WARN 14192 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-24T14:38:32.478+02:00  INFO 14192 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customerUserDetailsService
+2026-08-24T14:38:32.658+02:00 DEBUG 14192 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-24T14:38:32.696+02:00  INFO 14192 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-24T14:38:33.118+02:00  INFO 14192 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-24T14:38:33.125+02:00  INFO 14192 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Started ItineriaApplication in 7.845 seconds (process running for 8.394)
+2026-08-24T14:38:59.028+02:00  INFO 14192 --- [itineria] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-24T14:38:59.028+02:00  INFO 14192 --- [itineria] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-24T14:38:59.030+02:00  INFO 14192 --- [itineria] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-08-24T14:38:59.043+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-08-24T14:38:59.054+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /
+2026-08-24T14:38:59.407+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /static/css/style.css
+2026-08-24T14:38:59.408+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /static/css/style.css
+2026-08-24T14:38:59.426+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:38:59.432+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:38:59.432+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:38:59.465+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:38:59.475+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:38:59.550+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /images/torino-hero.jpg
+2026-08-24T14:38:59.552+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /images/torino-hero.jpg
+2026-08-24T14:38:59.556+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:38:59.556+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:38:59.557+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:38:59.563+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:38:59.714+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2026-08-24T14:38:59.715+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2026-08-24T14:38:59.717+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:38:59.718+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:38:59.718+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:38:59.723+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:05.419+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-08-24T14:39:05.419+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /
+2026-08-24T14:39:05.437+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /static/css/style.css
+2026-08-24T14:39:05.438+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /static/css/style.css
+2026-08-24T14:39:05.443+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:05.446+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:39:05.447+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:39:05.447+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:05.453+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:05.455+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /images/torino-hero.jpg
+2026-08-24T14:39:05.456+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /images/torino-hero.jpg
+2026-08-24T14:39:05.462+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:05.464+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:39:05.465+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:39:05.470+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:07.048+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /luoghi
+2026-08-24T14:39:07.048+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /luoghi
+2026-08-24T14:39:07.055+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:07.056+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:39:07.057+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:39:07.077+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:16.233+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-08-24T14:39:16.234+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /
+2026-08-24T14:39:16.250+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /static/css/style.css
+2026-08-24T14:39:16.255+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /static/css/style.css
+2026-08-24T14:39:16.262+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /images/torino-hero.jpg
+2026-08-24T14:39:16.264+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /images/torino-hero.jpg
+2026-08-24T14:39:16.263+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:16.265+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:16.268+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:16.269+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:39:16.269+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:39:16.270+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:39:16.270+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:39:16.273+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:16.273+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:19.883+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login
+2026-08-24T14:39:19.884+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login
+2026-08-24T14:39:19.886+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-24T14:39:19.886+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-24T14:39:19.887+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-24T14:39:19.890+02:00 DEBUG 14192 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+>>>>>>> Stashed changes

@@ -2,13 +2,14 @@ package com.quattromoschettieri.itineria.entities.luogoInteresse;
 
 import java.time.LocalTime;
 
-import com.quattromoschettieri.itineria.entities.GenericEntity;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -26,14 +27,19 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class OrarioApertura extends GenericEntity{
+@EqualsAndHashCode
+public class OrarioApertura {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_luogo_interesse",
-                referencedColumnName = "id",
-                nullable = false)
+    @JoinColumn(
+        name = "id_luogo_interesse",
+        referencedColumnName = "id",
+        nullable = false
+    )
     @EqualsAndHashCode.Exclude
     private LuogoInteresse luogoInteresse;
 
@@ -46,5 +52,4 @@ public class OrarioApertura extends GenericEntity{
 
     @Column(name = "chiusura")
     private LocalTime orarioChiusura;
-
 }

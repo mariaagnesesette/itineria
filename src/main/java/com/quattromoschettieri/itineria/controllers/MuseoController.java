@@ -116,7 +116,7 @@ public class MuseoController {
     }
 
     // DELETE
-    @PostMapping("/{id]/delete")
+    @PostMapping("/{id}/delete")
     public String deleteMuseo(@PathVariable Long id) {
 
         museoService.delete(id);

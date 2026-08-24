@@ -1,5 +1,7 @@
 package com.quattromoschettieri.itineria.DTO;
 
+import java.math.BigDecimal;
+
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
 import com.quattromoschettieri.itineria.entities.zonaVerde.TipoZonaVerde;
@@ -27,9 +29,9 @@ public class ZonaVerdeDTO {
 
     private Long idCitta;
 
-    private Double areaMq;
-    private Double areaMin;
-    private Double areaMax;
+    private BigDecimal areaMq;
+    private BigDecimal areaMin;
+    private BigDecimal areaMax;
     private TipoZonaVerde tipologia;
     private Boolean dogFriendly;
     private Boolean ristoro;

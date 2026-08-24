@@ -111,7 +111,7 @@ public class RistoranteController {
     }
 
     // DELETE
-    @PostMapping("/{id]/delete")
+    @PostMapping("/{id}/delete")
     public String deleteRistorante(@PathVariable Long id) {
 
         ristoranteService.delete(id);

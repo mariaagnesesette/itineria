@@ -2,6 +2,8 @@ package com.quattromoschettieri.itineria.converters;
 
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 import com.quattromoschettieri.itineria.DTO.ZonaVerdeDTO;
 import com.quattromoschettieri.itineria.entities.citta.Citta;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
@@ -27,7 +29,7 @@ public final class ZonaVerdeConverter {
         zonaVerde.setCitta(citta);
 
         zonaVerde.setAreaMq(
-                dto.getAreaMq() != null ? dto.getAreaMq() : 0.0);
+                dto.getAreaMq() != null ? dto.getAreaMq() : BigDecimal.ZERO);
         zonaVerde.setTipologia(dto.getTipologia());
         zonaVerde.setDogFriendly(
                 Boolean.TRUE.equals(dto.getDogFriendly()));
@@ -83,7 +85,7 @@ public final class ZonaVerdeConverter {
         esistente.setCitta(citta);
 
         esistente.setAreaMq(
-                dto.getAreaMq() != null ? dto.getAreaMq() : 0.0);
+                dto.getAreaMq() != null ? dto.getAreaMq() : BigDecimal.ZERO);
         esistente.setTipologia(dto.getTipologia());
         esistente.setDogFriendly(
                 Boolean.TRUE.equals(dto.getDogFriendly()));

@@ -1,5 +1,7 @@
 package com.quattromoschettieri.itineria.entities.zonaVerde;
 
+import java.math.BigDecimal;
+
 import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Tipo;
 
@@ -20,14 +22,14 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "zone_verdi")
 @SuperBuilder
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "id_luogo_interesse")
+@PrimaryKeyJoinColumn(name = "id")
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
 public class ZonaVerde extends LuogoInteresse{
 
     @Column(name = "area_mq", nullable = false, precision = 8, scale = 2 )
-    private double areaMq;
+    private BigDecimal areaMq;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipologia", nullable = false)
