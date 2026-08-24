@@ -1,5 +1,7 @@
 package com.quattromoschettieri.itineria.entities.museo;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,7 +20,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "prezzi_museo",
+@Table(name = "prezzi_musei",
         uniqueConstraints = @UniqueConstraint(
                 name = "uq_museo_fascia",
                 columnNames = {"id_museo","id_fascia_prezzo"}
@@ -52,6 +54,6 @@ public class PrezzoMuseo {
     private FasciaPrezzo fasciaPrezzo;
 
     @Column(name = "prezzo", nullable = false, precision = 6, scale = 2)
-    private Double prezzo;
+    private BigDecimal prezzo;
 
 }

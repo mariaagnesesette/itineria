@@ -1,5 +1,7 @@
 package com.quattromoschettieri.itineria.specification;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
@@ -21,8 +23,8 @@ public final class ZonaVerdeSpecification {
     }
 
     public static Specification<ZonaVerde> areaMq(
-            Double areaMin,
-            Double areaMax) {
+            BigDecimal areaMin,
+            BigDecimal areaMax) {
 
         return (root, query, cb) -> {
             if (areaMin == null && areaMax == null) {

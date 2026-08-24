@@ -30,7 +30,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 public class Recensione extends GenericEntity{
 
-    @Column(name = "voto", nullable = false)
+    @Column(name = "voto", columnDefinition = "TINYINT" , nullable = false)
     @Min(1)
     @Max(5)
     private Integer voto;

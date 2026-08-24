@@ -14,7 +14,6 @@ import com.quattromoschettieri.itineria.converters.eventoConverter.EventoConvert
 import com.quattromoschettieri.itineria.entities.evento.DataEvento;
 import com.quattromoschettieri.itineria.entities.evento.Evento;
 import com.quattromoschettieri.itineria.repository.eventoRepository.DataEventoRepository;
-import com.quattromoschettieri.itineria.repository.eventoRepository.EventoRepository;
 import com.quattromoschettieri.itineria.specification.EventoSpecification;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EventoService {
 
-    private final EventoRepository eventoRepository;
+    private final com.quattromoschettieri.itineria.repository.eventoRepository.EventoRepository eventoRepository;
 
     private final DataEventoRepository dataEventoRepository;
 

@@ -1,5 +1,7 @@
 package com.quattromoschettieri.itineria.specification;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
@@ -43,8 +45,8 @@ public class MuseoSpecification {
     // }
 
     public static Specification<Museo> fasciaPrezzo(
-            Double prezzoMin,
-            Double prezzoMax) {
+            BigDecimal prezzoMin,
+            BigDecimal prezzoMax) {
 
         return (root, query, cb) -> {
             if (prezzoMin == null && prezzoMax == null) {

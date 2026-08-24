@@ -20,7 +20,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "locali")
 @SuperBuilder
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "id_luogo_interesse")
+@PrimaryKeyJoinColumn(name = "id")
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter

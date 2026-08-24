@@ -1,11 +1,11 @@
-package com.quattromoschettieri.itineria.services;
+package com.quattromoschettieri.itineria.services.utenteService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.quattromoschettieri.itineria.DTO.utenteDTO.UtenteDTO;
-import com.quattromoschettieri.itineria.converters.UtenteConverter;
+import com.quattromoschettieri.itineria.converters.utenteConverter.UtenteConverter;
 import com.quattromoschettieri.itineria.entities.utente.Ruolo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.repository.utenteRepository.UtenteRepository;

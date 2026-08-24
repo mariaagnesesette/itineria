@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Accedi</title>
+    <link rel="stylesheet" href="/css/pages.css">
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="logo">ITINERARIA</a>
+        <a href="../index.html" class="logo">ITINERARIA</a>
         <nav>
-            <a href="index.html">Home</a>
+            <a th:href="@{/}" href="../index.html">Home</a>
             <a href="#">Luoghi d'interesse</a>
             <a href="#">Eventi</a>
-            <a href="contattaci.html">Contatti</a>
+            <a href="../footer/contattaci.html">Contatti</a>
+
         </nav>
     </header>
 
@@ -21,30 +23,32 @@
         <h2>Bentornato</h2>
         <p class="subtitle">Accedi per gestire i tuoi itinerari e preferiti</p>
 
-        <form action="area-personale.html" method="GET">
+        <form id="loginForm" action="/login" method="POST">
             <div class="form-group">
                 <label for="email">Indirizzo Email</label>
-                <input type="email" id="email" required placeholder="inserisci la tua email">
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="inserisci la tua email">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" required placeholder="••••••••">
+                <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="••••••••">
             </div>
 
             <button type="submit" class="btn-submit">Accedi</button>
+            <p id="loginMessage" class="form-message" role="alert" aria-live="polite"></p>
         </form>
 
         <div class="auth-switch">
-            Non sei ancora registrato? <a href="registrazione.html">Registrati qui</a>
+            Non sei ancora registrato? <a th:href="@{/registrazione}">Registrati qui</a>
         </div>
     </div>
 
     <footer>
         <p> 2025 Itineraria. Tutti i diritti riservati.</p>
         <p style="margin-top: 10px;">
-            <a href="supporto.html">Supporto</a> | <a href="faq.html">FAQ</a> | <a href="contattaci.html">Contattaci</a>
+            <a href="../footer/supporto.html">Supporto</a> | <a href="../footer/faq.html">FAQ</a> | <a href="../footer/contattaci.html">Contattaci</a>
         </p>
     </footer>
 
+    <script src="/js/accedi.js" defer></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ CREATE TABLE utenti (
     username VARCHAR(30),
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    ruolo ENUM('USER', 'MANAGER', 'ADMIN') DEFAULT 'user',
+    ruolo ENUM('USER', 'MANAGER', 'ADMIN') DEFAULT 'USER',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     version BIGINT NOT NULL DEFAULT 0
@@ -57,7 +57,7 @@ CREATE TABLE luoghi_interesse (
     FOREIGN KEY (id_citta)
         REFERENCES citta (id)
         ON UPDATE RESTRICT ON DELETE RESTRICT,
-    FOREIGN KEY (id_proprietario) REFERENCES utenti(id)
+    FOREIGN KEY (id_manager) REFERENCES utenti(id)
         ON UPDATE RESTRICT ON DELETE SET NULL
 );
 

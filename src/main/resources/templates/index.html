@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- CSS del progetto -->
-    <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+
 </head>
 <body>
 
@@ -88,7 +89,7 @@
       <a th:href="@{/contatti}" href="#" class="main-nav__link">Contatti</a>
     </nav>
 
-    <a th:href="@{/login}" href="#" class="btn-login">
+    <a th:href="@{/login}" href="utente/accedi.html" class="btn-login">
       <i class="fa-solid fa-user"></i> Accedi
     </a>
 
@@ -384,10 +385,10 @@
       </div>
 
       <div class="footer-col">
-        <div class="footer-col__title">Supporto</div>
         <ul class="footer-col__list">
-          <li><a th:href="@{/faq}" href="#">FAQ</a></li>
-          <li><a th:href="@{/contatti}" href="#">Contattaci</a></li>
+          <li><a th:href="@{/faq}" href="./footer/supporto.html">Supporto</a></li>
+          <li><a th:href="@{/faq}" href="./footer/faq.html">FAQ</a></li>
+          <li><a th:href="@{/contatti}" href="./footer/contattaci.html">Contattaci</a></li>
         </ul>
       </div>
 

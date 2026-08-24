@@ -1,5 +1,6 @@
 package com.quattromoschettieri.itineria.DTO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
@@ -34,7 +35,7 @@ public class MuseoDTO {
     private Boolean guidaPrenotabile;
     private Boolean barInterno;
     private List<PrezzoMuseo> prezzi;
-    private Double prezzoMin;
-    private Double prezzoMax;
+    private BigDecimal prezzoMin;
+    private BigDecimal prezzoMax;
 
 }
