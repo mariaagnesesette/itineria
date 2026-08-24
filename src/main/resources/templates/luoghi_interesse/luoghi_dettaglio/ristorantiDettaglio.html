@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title th:text="${ristorante != null ? ristorante.nome + ' — Ristorante' : 'Ristorante — Itineraria'}">Ristorante — Itineraria</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" th:href="@{/css/ristoranti.css}" href="/css/ristoranti.css">
+</head>
+<body>
+
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+  <main class="container">
+    <header class="page-intro">
+      <h1 class="page-intro__title"><i class="fa-solid fa-utensils"></i> <span th:text="${ristorante != null ? ristorante.nome : 'Ristorante'}">Nome Ristorante</span></h1>
+      <p class="page-intro__desc" th:text="${ristorante != null ? ristorante.descrizione : ''}">Descrizione ristorante</p>
+    </header>
+
+    <section class="section">
+      <div style="display:flex; gap:20px; flex-wrap:wrap;">
+        <div style="flex:1 1 480px;">
+          <h2>Informazioni</h2>
+          <p th:text="${ristorante.descrizione}">Descrizione estesa...</p>
+
+          <div style="margin-top:12px;">
+            <strong>Dettagli</strong>
+            <ul style="margin:8px 0 0 18px;">
+              <li th:if="${ristorante.tipoCucina != null}">Cucina: <span th:text="${ristorante.tipoCucina}"/></li>
+              <li th:if="${ristorante.fasciaPrezzo != null}">Fascia prezzo: <span th:text="${ristorante.fasciaPrezzo}"/></li>
+              <li th:if="${ristorante.dogFriendly}">Accetta cani</li>
+              <li th:if="${ristorante.perCeliaci}">Opzioni per celiaci</li>
+              <li th:if="${ristorante.postiEsterni}">Posti esterni</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:14px;">
+            <strong>Contatti</strong>
+            <div th:if="${ristorante.numero != null}"><i class="fa-solid fa-phone"></i> <span th:text="${ristorante.numero}"/></div>
+            <div th:if="${ristorante.email != null}"><i class="fa-regular fa-envelope"></i> <span th:text="${ristorante.email}"/></div>
+            <div th:if="${ristorante.link != null}" style="margin-top:6px;"><a th:href="${ristorante.link}" target="_blank" class="action-btn">Sito ufficiale</a></div>
+          </div>
+        </div>
+
+        <div style="flex:0 1 420px; min-width:280px;">
+          <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(0,0,0,0.06);">
+            <iframe th:src="@{'https://maps.google.com/maps?q=' + ${ristorante.indirizzo} + '&output=embed'}"
+                    width="100%" height="300" style="border:0;" loading="lazy"></iframe>
+          </div>
+
+          <div style="margin-top:12px; background:var(--color-white); padding:12px; border-radius:8px;">
+            <strong>Indirizzo</strong>
+            <div th:text="${ristorante.indirizzo}">Via ...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:20px;">
+      <h2>Recensioni</h2>
+      <div id="reviews-list-ristorante"></div>
+      <div id="reviews-data-ristorante" hidden>
+        <div th:each="r : ${ristorante.recensioni}" class="review-data"
+             th:attr="data-autore=${r.autore},data-data=${r.data},data-testo=${r.testo}"></div>
+      </div>
+      <div id="entity" th:attr="data-id=${ristorante != null ? ristorante.id : 'null'}" hidden></div>
+      <button id="load-more-reviews-ristorante" class="btn" hidden>Carica altre recensioni</button>
+    </section>
+
+  </main>
+
+  <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script>
+(function () {
+  "use strict";
+  const entityEl = document.getElementById('entity');
+  const ristoranteId = entityEl ? entityEl.dataset.id : null;
+  const reviewsListEl = document.getElementById('reviews-list-ristorante');
+  const loadMoreBtn = document.getElementById('load-more-reviews-ristorante');
+
+  const inlineReviews = Array.from(document.querySelectorAll('#reviews-data-ristorante .review-data'))
+    .map(el => ({ autore: el.dataset.autore || 'Utente', data: el.dataset.data || '', testo: el.dataset.testo || '' }));
+
+  function renderChunk(reviews, start, count) {
+    const frag = document.createDocumentFragment();
+    reviews.slice(start, start + count).forEach(r => {
+      const item = document.createElement('div');
+      item.style.borderTop = '1px solid #eee';
+      item.style.padding = '12px 0';
+      const author = document.createElement('div'); author.style.fontWeight='700'; author.textContent = r.autore || 'Utente';
+      const text = document.createElement('div'); text.style.color='#666'; text.textContent = r.testo || '';
+      if (r.data) { const date = document.createElement('div'); date.style.fontSize='12px'; date.style.color='#888'; date.textContent = r.data; item.appendChild(date); }
+      item.appendChild(author); item.appendChild(text); frag.appendChild(item);
+    });
+    reviewsListEl.appendChild(frag);
+  }
+
+  function useInline() {
+    const reviews = inlineReviews;
+    if (!reviews || reviews.length === 0) {
+      reviewsListEl.innerHTML = '<div class="museum-empty-state">Nessuna recensione disponibile.</div>';
+      return;
+    }
+    window.__reviewsStateRistorante = { reviews, shown: 0, chunk: 3 };
+    renderChunk(reviews, 0, 3);
+    window.__reviewsStateRistorante.shown = Math.min(3, reviews.length);
+    if (reviews.length > window.__reviewsStateRistorante.shown) loadMoreBtn.hidden = false;
+  }
+
+  function loadReviews() {
+    if (ristoranteId && ristoranteId !== 'null') {
+      fetch('/api/ristoranti/' + ristoranteId + '/recensioni?limit=20')
+        .then(res => { if (!res.ok) throw new Error('fetch failed'); return res.json(); })
+        .then(json => {
+          const reviews = Array.isArray(json) ? json : inlineReviews;
+          if (reviews.length === 0) { reviewsListEl.innerHTML = '<div class="museum-empty-state">Nessuna recensione disponibile.</div>'; return; }
+          window.__reviewsStateRistorante = { reviews, shown: 0, chunk: 3 };
+          renderChunk(reviews, 0, 3);
+          window.__reviewsStateRistorante.shown = Math.min(3, reviews.length);
+          if (reviews.length > window.__reviewsStateRistorante.shown) loadMoreBtn.hidden = false;
+        })
+        .catch(() => useInline());
+    } else {
+      useInline();
+    }
+  }
+
+  loadMoreBtn.addEventListener('click', function () {
+    const st = window.__reviewsStateRistorante;
+    if (!st) return;
+    renderChunk(st.reviews, st.shown, st.chunk);
+    st.shown += st.chunk;
+    if (st.shown >= st.reviews.length) loadMoreBtn.hidden = true;
+  });
+
+  document.addEventListener('DOMContentLoaded', loadReviews);
+})();
+</script>
+</body>
+</html>
