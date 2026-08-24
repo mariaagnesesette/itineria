@@ -5,6 +5,12 @@ import org.springframework.stereotype.Component;
 import com.quattromoschettieri.itineria.DTO.utenteDTO.DocumentoDTO;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.entities.utente.documento.Documento;
+<<<<<<< HEAD:src/main/java/com/quattromoschettieri/itineria/converters/utenteConverter/DocumentoConverter.java
+=======
+import com.quattromoschettieri.itineria.repository.utenterepository.UtenteRepository;
+
+import lombok.RequiredArgsConstructor;
+>>>>>>> giulia:src/main/java/com/quattromoschettieri/itineria/converters/DocumentoConverter.java
 
 @Component
 public class DocumentoConverter {

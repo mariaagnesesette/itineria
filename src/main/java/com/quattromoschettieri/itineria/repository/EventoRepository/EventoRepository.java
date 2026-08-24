@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.repository.eventoRepository;
+package com.quattromoschettieri.itineria.repository.eventorepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
