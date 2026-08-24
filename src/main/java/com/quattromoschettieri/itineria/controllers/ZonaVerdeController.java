@@ -38,9 +38,10 @@ public class ZonaVerdeController {
         Page<ZonaVerde> risultati = zonaVerdeService.search(zonaVerdeDTO, pageable);
 
         model.addAttribute("risultati", risultati);
+        model.addAttribute("parchi", risultati.getContent());
         model.addAttribute("zonaVerdeDTO", zonaVerdeDTO);
 
-        return "zoneVerdi/lista";
+        return "luoghi_interesse/zoneVerdi";
     }
 
     @GetMapping
@@ -59,7 +60,7 @@ public class ZonaVerdeController {
 
         ZonaVerdeDTO dtoSempreAperte = new ZonaVerdeDTO();
         dtoSempreAperte.setSempreAperto(true);
-
+;
         model.addAttribute("tutteZone", tutteZone.getContent());
         model.addAttribute("zoneCiclabili",
                 zonaVerdeService.search(dtoCiclabili, anteprime).getContent());
@@ -70,8 +71,10 @@ public class ZonaVerdeController {
         model.addAttribute("zoneSempreAperte",
                 zonaVerdeService.search(dtoSempreAperte, anteprime).getContent());
         model.addAttribute("risultati", tutteZone);
+        model.addAttribute("parchi", tutteZone.getContent());
+        model.addAttribute("zonaVerdeDTO", new ZonaVerdeDTO());
 
-        return "zoneVerdi/lista";
+        return "luoghi_interesse/zoneVerdi";
     }
 
     @GetMapping("/{id}")
@@ -83,7 +86,7 @@ public class ZonaVerdeController {
 
         model.addAttribute("zonaVerde", risultato);
 
-        return "zoneVerdi/dettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/parchiDettaglio";
     }
 
     @GetMapping("/searchByNome/{nome}")
@@ -94,9 +97,10 @@ public class ZonaVerdeController {
 
         Page<ZonaVerde> risultati = zonaVerdeService.findByNome(nome, pageable);
 
-        model.addAttribute("risultati", risultati);
+        model.addAttribute("parchi", risultati.getContent());
+        model.addAttribute("zonaVerdeDTO", new ZonaVerde());
 
-        return "zoneVerdi/byNome";
+        return "luoghi_interesse/zoneVerdi";
     }
 
     // CREATE
