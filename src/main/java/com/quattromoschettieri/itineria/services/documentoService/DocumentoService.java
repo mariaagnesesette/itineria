@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.quattromoschettieri.itineria.DTO.utenteDTO.DocumentoDTO;
 import com.quattromoschettieri.itineria.converters.utenteConverter.DocumentoConverter;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.entities.utente.documento.Documento;
 import com.quattromoschettieri.itineria.entities.utente.documento.StatoDocumento;
 import com.quattromoschettieri.itineria.entities.utente.documento.TipoDocumento;
@@ -49,10 +50,14 @@ public class DocumentoService {
         return documentoRepository.findByUtenteId(id);
     }
 
-    public DocumentoDTO save(DocumentoDTO dto, MultipartFile file) {
+    public List<Documento> findByUtente(Utente utente) {
+        return documentoRepository.findByUtente(utente);
+    }
+
+    public DocumentoDTO save(DocumentoDTO dto, Utente utente, MultipartFile file) {
         String fileKey = fileStorageService.save(file);
 
-        Documento documento = documentoConverter.toEntity(dto);
+        Documento documento = documentoConverter.toEntity(dto, utente);
         documento.setFileKey(fileKey);
         
         Documento salvato = documentoRepository.save(documento);

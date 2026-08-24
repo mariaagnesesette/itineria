@@ -35,20 +35,20 @@ public class FileStorageService {
 
     public String save(MultipartFile file) {
 
+        if (file.isEmpty()) {
+            throw new RuntimeException("Il file è vuoto");
+        }
+
+        if (!"application/pdf".equalsIgnoreCase(file.getContentType())) {
+            throw new RuntimeException("È possibile caricare solamente file PDF");
+        }
+
         try {
             Path documentiPath = storagePath.resolve("documenti");
 
             Files.createDirectories(documentiPath);
 
-            String originalName = file.getOriginalFilename();
-
-            String extension = "";
-
-            if (originalName != null && originalName.contains(".")) {
-                extension = originalName.substring(originalName.lastIndexOf("."));
-            }
-
-            String fileName = UUID.randomUUID() + extension;
+            String fileName = UUID.randomUUID() + ".pdf";
 
             Path filePath = documentiPath.resolve(fileName);
 
@@ -57,7 +57,7 @@ public class FileStorageService {
             return "documenti/" + fileName;
 
         } catch (IOException e) {
-                throw new RuntimeException("Impossibile salvare il file", e);
+            throw new RuntimeException("Impossibile salvare il file", e);
         }
     }
 
