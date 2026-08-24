@@ -1,6 +1,7 @@
 package com.quattromoschettieri.itineria.controllers;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.BibliotecaDTO;
 import com.quattromoschettieri.itineria.entities.biblioteca.Biblioteca;
+import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
 import com.quattromoschettieri.itineria.services.BibliotecaService;
 
 import jakarta.validation.Valid;
@@ -41,18 +43,55 @@ public class BibliotecaController {
         return "biblioteche/lista";
     }
 
-    // lista generica
     @GetMapping
-    public String listBiblioteche(
-            @ModelAttribute BibliotecaDTO bibliotecaDTO,
-            Pageable pageable,
-            Model model) {
+    public String listBiblioteche(Model model, Pageable pageable) {
+        // Lista tutte le biblioteche
+        Page<Biblioteca> tutteBiblioteche = bibliotecaService.findAll(pageable);
 
-        Page<Biblioteca> risultati = bibliotecaService.findAll(pageable);
+        // Sezioni per tipologie (max 6 card per categoria)
+        Pageable limitedPage = PageRequest.of(0, 6);
 
-        model.addAttribute("risultati", risultati);
+        BibliotecaDTO filterBibliotecaDTO = new BibliotecaDTO();
 
-        return "biblioteche/lista";
+        // Biblioteche Pubbliche
+        filterBibliotecaDTO.setPubblico(true);
+        Page<Biblioteca> biblioPubbliche = bibliotecaService.search(filterBibliotecaDTO, limitedPage);
+
+        // Con WiFi
+        filterBibliotecaDTO.setPubblico(null);
+        filterBibliotecaDTO.setWifi(true);
+        Page<Biblioteca> biblioWifi = bibliotecaService.search(filterBibliotecaDTO, limitedPage);
+
+        // Con Area Computer
+        filterBibliotecaDTO.setWifi(null);
+        filterBibliotecaDTO.setAreaComputer(true);
+        Page<Biblioteca> biblioComputer = bibliotecaService.search(filterBibliotecaDTO, limitedPage);
+
+        // Con Area Bambini
+        filterBibliotecaDTO.setAreaComputer(null);
+        filterBibliotecaDTO.setAreaBambini(true);
+        Page<Biblioteca> biblioBambini = bibliotecaService.search(filterBibliotecaDTO, limitedPage);
+
+        // Sempre Aperto
+        filterBibliotecaDTO.setAreaBambini(null);
+        filterBibliotecaDTO.setSempreAperto(true);
+        Page<Biblioteca> biblio24h = bibliotecaService.search(filterBibliotecaDTO, limitedPage);
+
+        // Accessibili
+        filterBibliotecaDTO.setSempreAperto(null);
+        filterBibliotecaDTO.setAccessibilita(Accessibilita.COMPLETA);
+        Page<Biblioteca> biblioAccessibili = bibliotecaService.search(filterBibliotecaDTO, limitedPage);
+
+        // Passa al template
+        model.addAttribute("tutteBiblioteche", tutteBiblioteche.getContent());
+        model.addAttribute("biblioPubbliche", biblioPubbliche.getContent());
+        model.addAttribute("biblioWifi", biblioWifi.getContent());
+        model.addAttribute("biblioComputer", biblioComputer.getContent());
+        model.addAttribute("biblioBambini", biblioBambini.getContent());
+        model.addAttribute("biblio24h", biblio24h.getContent());
+        model.addAttribute("biblioAccessibili", biblioAccessibili.getContent());
+
+        return "luoghi_interesse/biblioteche";
     }
 
     // ricerca per id
