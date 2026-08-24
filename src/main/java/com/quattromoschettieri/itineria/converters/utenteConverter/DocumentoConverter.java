@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.converters;
+package com.quattromoschettieri.itineria.converters.utenteConverter;
 
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,6 @@ public class DocumentoConverter {
         return Documento.builder()
                 .tipoDocumento(dto.getTipoDocumento())
                 .codiceIdentificativo(dto.getCodiceIdentificativo())
-                .fileKey(dto.getFileKey())
                 .utente(utente)
                 .build();
     }
@@ -42,9 +41,4 @@ public class DocumentoConverter {
         return dto;
     }
 
-    public void updateEntity(Documento documento, DocumentoDTO dto) {
-
-        documento.setTipoDocumento(dto.getTipoDocumento());
-        documento.setCodiceIdentificativo(dto.getCodiceIdentificativo());
-    }
 }

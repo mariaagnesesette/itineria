@@ -1,4 +1,4 @@
-package com.quattromoschettieri.itineria.converters;
+package com.quattromoschettieri.itineria.converters.utenteConverter;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
