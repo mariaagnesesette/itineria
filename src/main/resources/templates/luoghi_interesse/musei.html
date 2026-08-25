@@ -106,10 +106,8 @@
           <span th:text="${categoria.nome}">Nome categoria</span>
         </h2>
         <div class="museum-grid">
-          <a th:each="museo : ${categoria.musei}" th:href="@{'/musei/' + ${museo.slug}}"
-            th:classappend="${museo.preferito} ? ' museum-card--featured' : ''" class="museum-card">
-            <span class="museum-card__badge" th:if="${museo.preferito}">Preferito</span>
-            <span class="museum-card__icon"><i th:class="'fa-solid ' + ${museo.icona}"></i></span>
+          <a th:each="museo : ${categoria.musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card">
+            <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
             <span class="museum-card__body">
               <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
               <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
@@ -132,10 +130,8 @@
     <div class="container">
       <h2 class="section__title"><i class="fa-solid fa-landmark"></i> Tutti i musei</h2>
       <div class="museum-grid">
-        <a th:each="museo : ${musei}" th:href="@{'/musei/' + ${museo.slug}}"
-          th:classappend="${museo.preferito} ? ' museum-card--featured' : ''" class="museum-card">
-          <span class="museum-card__badge" th:if="${museo.preferito}">Preferito</span>
-          <span class="museum-card__icon"><i th:class="'fa-solid ' + ${museo.icona}"></i></span>
+        <a th:each="museo : ${musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card">
+          <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
           <span class="museum-card__body">
             <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
             <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
