@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Eventi - Itineria</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/eventi.css}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<main>
+
+    <!-- HERO -->
+    <section class="section eventi-hero">
+
+        <div class="container">
+
+            <span class="section__eyebrow">
+                <i class="fa-solid fa-calendar-days"></i>
+                Scopri cosa succede
+            </span>
+
+            <h1 class="section__title">
+                Eventi
+            </h1>
+
+            <p class="section__subtitle">
+                Mostre, concerti, spettacoli, conferenze,
+                festival e tanti altri eventi a Torino.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILTRI RAPIDI -->
+    <section class="section">
+
+        <div class="container">
+
+            <div class="filter-chips">
+
+                <a th:href="@{/eventi}"
+                   class="filter-chip">
+                    Tutti
+                </a>
+
+                <a th:href="@{/eventi/futuri}"
+                   class="filter-chip">
+                    Eventi futuri
+                </a>
+
+                <a th:href="@{/eventi/in-corso}"
+                   class="filter-chip">
+                    In corso
+                </a>
+
+                <a th:href="@{/eventi/storici}"
+                   class="filter-chip">
+                    Storici
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FORM FILTRI -->
+    <section class="section">
+
+        <div class="container">
+
+            <form th:action="@{/eventi/filtri}"
+                  th:object="${eventoDTO}"
+                  method="get"
+                  class="eventi-filter-form">
+
+                <div class="eventi-filter-row">
+
+                    <!-- NOME -->
+                    <input type="text"
+                           th:field="*{nome}"
+                           placeholder="Cerca evento">
+
+
+                    <!-- TIPOLOGIA -->
+                    <select th:field="*{tipologiaEvento}">
+
+                        <option value="">
+                            Tutte le tipologie
+                        </option>
+
+                        <option th:each="tipologia : ${tipologieEvento}"
+                                th:value="${tipologia}"
+                                th:text="${tipologia}">
+                        </option>
+
+                    </select>
+
+
+                    <!-- PUBBLICO -->
+                    <select th:field="*{pubblicoEvento}">
+
+                        <option value="">
+                            Tutti i pubblici
+                        </option>
+
+                        <option th:each="pubblico : ${pubbliciEvento}"
+                                th:value="${pubblico}"
+                                th:text="${pubblico}">
+                        </option>
+
+                    </select>
+
+
+                    <!-- PREZZO MIN -->
+                    <input type="number"
+                           name="prezzoMinimo"
+                           placeholder="Prezzo minimo"
+                           min="0"
+                           step="0.01">
+
+
+                    <!-- PREZZO MAX -->
+                    <input type="number"
+                           name="prezzoMassimo"
+                           placeholder="Prezzo massimo"
+                           min="0"
+                           step="0.01">
+
+
+                    <!-- PRENOTAZIONE -->
+                    <label class="eventi-filter-check">
+
+                        <input type="checkbox"
+                               th:field="*{prenotazione}">
+
+                        Prenotazione
+
+                    </label>
+
+
+                    <button type="submit"
+                            class="btn-search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Cerca
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- RISULTATI -->
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section__heading">
+
+                <h2 class="section__title">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Eventi
+
+                </h2>
+
+                <span th:if="${risultati != null}"
+                      class="results-count">
+
+                    <span th:text="${risultati.totalElements}">
+                        0
+                    </span>
+
+                    eventi trovati
+
+                </span>
+
+            </div>
+
+
+            <!-- NESSUN RISULTATO -->
+            <div th:if="${eventi == null || #lists.isEmpty(eventi)}"
+                 class="empty-state">
+
+                <i class="fa-solid fa-calendar-xmark"></i>
+
+                <h3>Nessun evento trovato</h3>
+
+                <p>
+                    Prova a modificare i filtri di ricerca.
+                </p>
+
+            </div>
+
+
+            <!-- GRIGLIA EVENTI -->
+            <div th:if="${eventi != null && !#lists.isEmpty(eventi)}"
+                 class="event-grid">
+
+                <a th:each="evento : ${eventi}"
+                   th:href="@{'/eventi/' + ${evento.id}}"
+                   class="event-card">
+
+
+                    <!-- ICONA -->
+                    <div class="event-card__icon">
+
+                        <i class="fa-solid fa-calendar-star"></i>
+
+                    </div>
+
+
+                    <!-- CORPO -->
+                    <div class="event-card__body">
+
+                        <!-- TITOLO -->
+                        <h3 class="event-card__title"
+                            th:text="${evento.nome}">
+                            Nome evento
+                        </h3>
+
+
+                        <!-- DESCRIZIONE -->
+                        <p class="event-card__description"
+                           th:text="${evento.descrizione}">
+                            Descrizione evento
+                        </p>
+
+
+                        <!-- TIPOLOGIA -->
+                        <span class="event-card__type"
+                              th:if="${evento.tipologiaEvento != null}"
+                              th:text="${evento.tipologiaEvento}">
+                            Tipologia
+                        </span>
+
+
+                        <!-- DATE -->
+                        <div class="event-card__dates"
+                             th:if="${evento.dateEvento != null && !#lists.isEmpty(evento.dateEvento)}">
+
+                            <div th:each="data : ${evento.dateEvento}"
+                                 class="event-card__date">
+
+                                <i class="fa-solid fa-calendar"></i>
+
+                                <span th:text="${data.dataInizio}">
+                                    01/01/2026
+                                </span>
+
+                                <span th:if="${data.dataFine != null
+                                             && data.dataFine != data.dataInizio}">
+
+                                    -
+                                    <span th:text="${data.dataFine}">
+                                        02/01/2026
+                                    </span>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- META -->
+                        <div class="event-card__meta">
+
+
+                            <!-- PREZZO -->
+                            <span th:if="${evento.prezzo != null}">
+
+                                <i class="fa-solid fa-euro-sign"></i>
+
+                                <span th:text="${#numbers.formatDecimal(
+                                    evento.prezzo,
+                                    1,
+                                    'COMMA',
+                                    2,
+                                    'POINT'
+                                )}">
+                                    0,00
+                                </span>
+
+                            </span>
+
+
+                            <!-- PRENOTAZIONE -->
+                            <span th:if="${evento.prenotazione}">
+
+                                <i class="fa-solid fa-ticket"></i>
+
+                                Prenotazione
+
+                            </span>
+
+
+                            <!-- PUBBLICO -->
+                            <span th:if="${evento.pubblicoEvento != null}">
+
+                                <i class="fa-solid fa-users"></i>
+
+                                <span th:text="${evento.pubblicoEvento}">
+                                    Tutti
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FRECCIA -->
+                    <i class="fa-solid fa-arrow-right event-card__arrow"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- PAGINAZIONE -->
+            <div th:if="${risultati != null && risultati.totalPages > 1}"
+                 class="pagination">
+
+                <a th:if="${risultati.hasPrevious()}"
+                   th:href="@{/eventi(page=${risultati.number - 1})}"
+                   class="pagination__button">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </a>
+
+
+                <span class="pagination__current">
+
+                    Pagina
+                    <strong th:text="${risultati.number + 1}">
+                        1
+                    </strong>
+                    di
+                    <strong th:text="${risultati.totalPages}">
+                        1
+                    </strong>
+
+                </span>
+
+
+                <a th:if="${risultati.hasNext()}"
+                   th:href="@{/eventi(page=${risultati.number + 1})}"
+                   class="pagination__button">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${biblioteca.nome} + ' | Itineria'">Biblioteca | Itineria</title>
+
+  <link rel="stylesheet" th:href="@{/css/biblioteche.css}">
+
+  <style>
+    /* Minimal inline styles adapted from museoDettaglio for quick parity */
+    .detail-wrapper{max-width:1200px;margin:0 auto;padding:40px 24px 80px}
+    .hero{position:relative;min-height:360px;border-radius:20px;overflow:hidden;margin-bottom:30px;background:#e9e9e9}
+    .hero-content{position:relative;z-index:2;padding:36px;color:#111}
+    .main-grid{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-bottom:40px}
+    .card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+    .always-open{padding:12px;border-radius:12px;background:#f4f8f4;font-weight:600}
+    .services-grid{display:flex;gap:8px;flex-wrap:wrap}
+    .service-badge{padding:8px 12px;border-radius:999px;background:#f5f5f5;font-weight:700}
+    .map-wrapper{border-radius:12px;overflow:hidden;background:#eee;min-height:240px}
+  </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="detail-wrapper">
+
+  <section class="hero">
+    <div class="hero-content">
+      <span th:if="${biblioteca.pubblico}" class="service-badge">Pubblica</span>
+      <h1 th:text="${biblioteca.nome}">Nome biblioteca</h1>
+      <div th:if="${biblioteca.citta != null}" th:text="${biblioteca.citta.nome}"></div>
+    </div>
+  </section>
+
+  <section class="main-grid">
+    <article class="card">
+      <h2>Informazioni</h2>
+      <p th:text="${biblioteca.descrizione}">Descrizione della biblioteca</p>
+
+      <h3>Orari di apertura</h3>
+      <div th:if="${biblioteca.sempreAperto}" class="always-open">Aperto sempre</div>
+      <div th:unless="${biblioteca.sempreAperto}">
+        <div th:each="orario : ${biblioteca.orariApertura}">
+          <div><strong th:text="${orario.giorno}">Giorno</strong>
+            <span th:text="${orario.oraApertura} + ' - ' + ${orario.oraChiusura}">10:00 - 18:00</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:20px">Servizi</h3>
+      <div class="services-grid">
+        <span class="service-badge" th:if="${biblioteca.wifi}">Wi‑Fi</span>
+        <span class="service-badge" th:if="${biblioteca.areaComputer}">Area computer</span>
+        <span class="service-badge" th:if="${biblioteca.areaBambini}">Area bambini</span>
+        <span class="service-badge" th:if="${biblioteca.pubblico}">Pubblica</span>
+        <span th:if="${!biblioteca.wifi && !biblioteca.areaComputer && !biblioteca.areaBambini && !biblioteca.pubblico}">Nessun servizio disponibile.</span>
+      </div>
+
+    </article>
+
+    <aside class="card">
+      <h2>Contatti</h2>
+      <div th:if="${biblioteca.indirizzo}">
+        <div><strong>Indirizzo</strong></div>
+        <div th:text="${biblioteca.indirizzo}"></div>
+      </div>
+
+      <div th:if="${biblioteca.numero}" style="margin-top:12px">
+        <div><strong>Telefono</strong></div>
+        <a th:href="'tel:' + ${biblioteca.numero}" th:text="${biblioteca.numero}"></a>
+      </div>
+
+      <div th:if="${biblioteca.email}" style="margin-top:12px">
+        <div><strong>Email</strong></div>
+        <a th:href="'mailto:' + ${biblioteca.email}" th:text="${biblioteca.email}"></a>
+      </div>
+
+      <div th:if="${biblioteca.link}" style="margin-top:12px">
+        <div><strong>Sito</strong></div>
+        <a th:href="${biblioteca.link}" target="_blank" rel="noopener noreferrer">Visita il sito</a>
+      </div>
+
+    </aside>
+  </section>
+
+  <section class="card" style="margin-bottom:30px">
+    <h2>Come arrivare</h2>
+    <div class="map-wrapper" th:if="${biblioteca.indirizzo}">
+      <iframe th:src="'https://www.google.com/maps?q=' + ${biblioteca.indirizzo} + '&output=embed'" loading="lazy" allowfullscreen></iframe>
+    </div>
+    <p th:if="${biblioteca.indirizzo == null}">Posizione non disponibile.</p>
+  </section>
+
+  <section class="card reviews-section">
+    <h2>Recensioni</h2>
+    <div th:if="${biblioteca.recensioni == null || biblioteca.recensioni.isEmpty()}">
+      <div class="no-reviews">Nessuna recensione ancora.</div>
+    </div>
+
+    <div class="reviews-list" th:unless="${biblioteca.recensioni == null || biblioteca.recensioni.isEmpty()}">
+      <article class="review-card" th:each="rec : ${biblioteca.recensioni}">
+        <div><strong th:text="${rec.utente}">Utente</strong>
+          <span th:each="i : ${#numbers.sequence(1,5)}" th:text="${i <= rec.voto ? '★' : '☆'}">★</span>
+        </div>
+        <p th:text="${rec.commento}">Commento</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="reviewForm" class="card" style="display:none">
+    <h2>Lascia una recensione</h2>
+    <form method="post" th:action="@{/recensioni}">
+      <input type="hidden" name="luogoInteresseId" th:value="${biblioteca.id}">
+      <label>Valutazione
+        <select name="voto" required>
+          <option value="">Seleziona</option>
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+      </label>
+      <label>Commento
+        <textarea name="commento" rows="5" required></textarea>
+      </label>
+      <button type="submit" class="museum-button">Pubblica recensione</button>
+    </form>
+  </section>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script>
+  function apriFormRecensione(){const f=document.getElementById('reviewForm');if(!f)return;f.style.display='block';f.scrollIntoView({behavior:'smooth',block:'start'});} 
+</script>
+
+</body>
+</html>
