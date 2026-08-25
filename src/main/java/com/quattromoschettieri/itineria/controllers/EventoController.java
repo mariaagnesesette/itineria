@@ -46,6 +46,7 @@ public class EventoController {
         Page<Evento> eventi = eventoService.findAll(pageable);
 
         model.addAttribute("eventi", eventi);
+        model.addAttribute("eventoDTO", new EventoDTO());
 
         return "luoghi_interesse/eventi"; // CORRETTO: file eventi.html è in luoghi_interesse/
     }

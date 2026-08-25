@@ -68,12 +68,18 @@
         </div>
       </div>
 
-      <a href="/eventi" class="main-nav__link">Eventi</a>
-      <a href="/contatti" class="main-nav__link">Contatti</a>
-    </nav>
+   <a th:href="@{/eventi}"
+   class="main-nav__link">
+    Eventi
+</a>
 
-    <a href="/login" class="btn-login">
-      <i class="fa-solid fa-user"></i> Accedi
-    </a>
-  </div>
+</nav>
+
+<a th:href="@{/accedi}"
+   class="btn-login">
+    <i class="fa-solid fa-user"></i>
+    Accedi
+</a>
+
+</div>
 </header>
