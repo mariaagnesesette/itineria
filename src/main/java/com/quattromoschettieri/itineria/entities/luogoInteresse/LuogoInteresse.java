@@ -85,6 +85,7 @@ public abstract class LuogoInteresse extends GenericEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_manager")
+    @EqualsAndHashCode.Exclude
     private Utente manager;
 
     @OneToMany(mappedBy = "luogoInteresse", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true )

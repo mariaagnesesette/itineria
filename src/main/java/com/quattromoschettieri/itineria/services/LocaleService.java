@@ -9,6 +9,8 @@ import com.quattromoschettieri.itineria.DTO.LocaleDTO;
 import com.quattromoschettieri.itineria.converters.LocaleConverter;
 import com.quattromoschettieri.itineria.entities.citta.Citta;
 import com.quattromoschettieri.itineria.entities.locale.Locale;
+import com.quattromoschettieri.itineria.entities.utente.Ruolo;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.repository.CittaRepository;
 import com.quattromoschettieri.itineria.repository.LocaleRepository;
 import com.quattromoschettieri.itineria.specification.LocaleSpecification;
@@ -23,9 +25,9 @@ public class LocaleService {
     private final CittaRepository cittaRepository;
     private final LocaleConverter localeConverter;
 
+    // CREATE
+    public LocaleDTO create(LocaleDTO dto, Utente manager) {
 
-
-    public LocaleDTO create(LocaleDTO dto) {
         Citta citta = cittaRepository.findById(dto.getIdCitta())
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Città non trovata: " + dto.getIdCitta()));
@@ -42,11 +44,15 @@ public class LocaleService {
         }
 
         Locale locale = localeConverter.toEntity(dto, citta);
+
+        locale.setManager(manager);
+
         Locale salvato = localeRepository.save(locale);
 
         return localeConverter.toDto(salvato);
     }
 
+    // READ
     public Page<Locale> findAll(Pageable pageable) {
         return localeRepository.findAll(pageable);
     }
@@ -65,8 +71,7 @@ public class LocaleService {
             String nome,
             Pageable pageable) {
 
-        return localeRepository
-                .findByNomeContainingIgnoreCase(nome, pageable);
+        return localeRepository.findByNomeContainingIgnoreCase(nome, pageable);
     }
 
     public Page<Locale> search(
@@ -98,8 +103,15 @@ public class LocaleService {
         return localeRepository.findAll(spec, pageable);
     }
 
-    public LocaleDTO update(Long id, LocaleDTO dto) {
-        Locale esistente = findById(id);
+    // UPDATE
+    public LocaleDTO update(
+            Long id,
+            LocaleDTO dto,
+            Utente manager) {
+
+        Locale locale = findById(id);
+
+        verificaPermesso(locale, manager);
 
         Citta citta = cittaRepository.findById(dto.getIdCitta())
                 .orElseThrow(() -> new IllegalArgumentException(
@@ -117,13 +129,51 @@ public class LocaleService {
                             + " nella città di " + citta.getNome());
         }
 
-        localeConverter.updateEntity(esistente, dto, citta);
-        Locale salvato = localeRepository.save(esistente);
+        localeConverter.updateEntity(locale, dto, citta);
+
+        Locale salvato = localeRepository.save(locale);
 
         return localeConverter.toDto(salvato);
     }
 
-    public void delete(Long id) {
-        localeRepository.delete(findById(id));
+    // DELETE
+    public void delete(Long id, Utente manager) {
+
+        Locale locale = findById(id);
+
+        verificaPermesso(locale, manager);
+
+        localeRepository.delete(locale);
     }
+
+    // CONTROLLO PERMESSI
+    private void verificaPermesso(Locale locale, Utente manager) {
+
+        if (manager.getRuolo() == Ruolo.ADMIN) {
+            return;
+        }
+
+        if (manager.getRuolo() == Ruolo.MANAGER
+                && locale.getManager() != null
+                && locale.getManager().getId().equals(manager.getId())) {
+            return;
+        }
+
+        throw new SecurityException(
+                "Non hai i permessi per modificare questo locale");
+    }
+
+    public void assegnaManager(Long localeId, Utente manager) {
+
+        Locale locale = findById(localeId);
+
+        if (manager.getRuolo() != Ruolo.MANAGER) {
+                throw new IllegalArgumentException(
+                        "L'utente deve avere ruolo MANAGER");
+        }
+
+        locale.setManager(manager);
+
+        localeRepository.save(locale);
+        }
 }

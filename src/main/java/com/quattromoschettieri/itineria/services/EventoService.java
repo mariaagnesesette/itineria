@@ -80,6 +80,29 @@ public class EventoService {
     eventoRepository.delete(evento);
     }
 
+    public EventoDTO findDtoById(Long id) {
+
+        Evento evento = findById(id);
+
+        return eventoConverter.toDto(evento);
+    }
+
+    public DataEventoDTO findDataEventoById(Long idEvento, Long idDataEvento) {
+
+        Evento evento = findById(idEvento);
+
+        DataEvento dataEvento = dataEventoRepository.findById(idDataEvento)
+                .orElseThrow(() ->
+                        new RuntimeException("Data evento non trovata"));
+
+        if (!dataEvento.getEvento().getId().equals(evento.getId())) {
+            throw new RuntimeException(
+                    "La data non appartiene all'evento");
+        }
+
+        return dateEventoConverter.toDto(dataEvento);
+    }
+
     public DataEventoDTO addDataEvento(Long idEvento, DataEventoDTO dto) {
 
     Evento evento = findById(idEvento);
