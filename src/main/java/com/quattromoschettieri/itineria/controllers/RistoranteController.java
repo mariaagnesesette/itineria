@@ -27,154 +27,155 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RistoranteController {
 
-    private final RistoranteService ristoranteService;
-    private final UtenteService utenteService;
+        private final RistoranteService ristoranteService;
+        private final UtenteService utenteService;
 
-    // CREATE
+        // CREATE
 
-    @GetMapping("/nuovo")
-    public String formNuovoRistorante(Model model) {
+        @GetMapping("/nuovo")
+        public String formNuovoRistorante(Model model) {
 
-        model.addAttribute(
-                "ristoranteDTO",
-                new RistoranteDTO());
+                model.addAttribute(
+                                "ristoranteDTO",
+                                new RistoranteDTO());
 
-        return "ristoranti/form";
-    }
-
-    @PostMapping
-    public String createRistorante(
-            @Valid @ModelAttribute RistoranteDTO dto,
-            BindingResult bindingResult,
-            Authentication authentication) {
-
-        if (bindingResult.hasErrors()) {
-            return "ristoranti/form";
+                return "ristoranti/form";
         }
 
-        Utente manager =
-                utenteService.findByEmail(authentication.getName());
+        @PostMapping
+        public String createRistorante(
+                        @Valid @ModelAttribute RistoranteDTO dto,
+                        BindingResult bindingResult,
+                        Authentication authentication) {
 
-        ristoranteService.create(dto, manager);
+                if (bindingResult.hasErrors()) {
+                        return "ristoranti/form";
+                }
 
-        return "redirect:/ristoranti";
-    }
+                Utente manager = utenteService.findByEmail(authentication.getName());
 
-    // READ
+                ristoranteService.create(dto, manager);
 
-    @GetMapping
-    public String listaRistoranti(
-            Pageable pageable,
-            Model model) {
-
-        Page<Ristorante> risultati =
-                ristoranteService.findAll(pageable);
-
-        model.addAttribute(
-                "risultati",
-                risultati);
-
-        return "ristoranti/lista";
-    }
-
-    @GetMapping("/filtri")
-    public String filterRistoranti(
-            @ModelAttribute("ristoranteDTO") RistoranteDTO dto,
-            Pageable pageable,
-            Model model) {
-
-        Page<Ristorante> risultati =
-                ristoranteService.search(dto, pageable);
-
-        model.addAttribute(
-                "risultati",
-                risultati);
-
-        model.addAttribute(
-                "ristoranteDTO",
-                dto);
-
-        return "ristoranti/lista";
-    }
-
-    @GetMapping("/{id}")
-    public String detailRistoranteId(
-            @PathVariable Long id,
-            Model model) {
-
-        Ristorante risultato =
-                ristoranteService.findById(id);
-
-        model.addAttribute(
-                "ristorante",
-                risultato);
-
-        return "ristoranti/dettaglio";
-    }
-
-    @GetMapping("/searchByNome/{nome}")
-    public String detailRistoranteNome(
-            @PathVariable String nome,
-            Pageable pageable,
-            Model model) {
-
-        Page<Ristorante> risultati =
-                ristoranteService.findByNome(
-                        nome,
-                        pageable);
-
-        model.addAttribute(
-                "risultati",
-                risultati);
-
-        return "ristoranti/byNome";
-    }
-
-    // UPDATE
-
-    @GetMapping("/{id}/modifica")
-    public String formModificaRistorante(
-            @PathVariable Long id,
-            Model model) {
-
-        model.addAttribute(
-                "ristoranteDTO",
-                ristoranteService.findByIdDto(id));
-
-        return "ristoranti/form";
-    }
-
-    @PutMapping("/{id}/modifica")
-    public String updateRistorante(
-            @PathVariable Long id,
-            @Valid @ModelAttribute RistoranteDTO dto,
-            BindingResult bindingResult,
-            Authentication authentication) {
-
-        if (bindingResult.hasErrors()) {
-            return "ristoranti/form";
+                return "redirect:/ristoranti";
         }
 
-        Utente utente =
-                utenteService.findByEmail(authentication.getName());
+        // READ
 
-        ristoranteService.update(id, dto, utente);
+        @GetMapping
+        public String listRistoranti(
+                        Pageable pageable,
+                        Model model) {
 
-        return "redirect:/ristoranti/" + id;
-    }
+                Page<Ristorante> tuttiRistoranti = ristoranteService.findAll(pageable);
 
-    // DELETE
+                model.addAttribute(
+                                "tuttiRistoranti",
+                                tuttiRistoranti.getContent());
 
-    @PostMapping("/{id}/delete")
-    public String deleteRistorante(
-            @PathVariable Long id,
-            Authentication authentication) {
+                model.addAttribute(
+                                "risultati",
+                                tuttiRistoranti);
 
-        Utente utente =
-                utenteService.findByEmail(authentication.getName());
+                model.addAttribute(
+                                "ristoranti",
+                                tuttiRistoranti.getContent());
 
-        ristoranteService.delete(id, utente);
+                model.addAttribute(
+                                "ristoranteDTO",
+                                new RistoranteDTO());
 
-        return "redirect:/ristoranti";
-    }
+                return "luoghi_interesse/ristoranti";
+        }
+
+        @GetMapping("/filtri")
+        public String filterRistoranti(
+                        @ModelAttribute("ristoranteDTO") RistoranteDTO dto,
+                        Pageable pageable,
+                        Model model) {
+
+                Page<Ristorante> risultati = ristoranteService.search(dto, pageable);
+
+                model.addAttribute("risultati", risultati);
+                model.addAttribute("ristoranti", risultati.getContent());
+                model.addAttribute("ristoranteDTO", dto);
+
+                return "luoghi_interesse/ristoranti";
+        }
+
+        @GetMapping("/{id}")
+        public String detailRistoranteId(
+                        @PathVariable Long id,
+                        Model model) {
+
+                Ristorante risultato = ristoranteService.findById(id);
+
+                model.addAttribute(
+                                "ristorante",
+                                risultato);
+
+                return "luoghi_interesse/luoghi_dettaglio/ristorantiDettaglio";
+        }
+
+        @GetMapping("/searchByNome/{nome}")
+        public String detailRistoranteNome(
+                        @PathVariable String nome,
+                        Pageable pageable,
+                        Model model) {
+
+                Page<Ristorante> risultati = ristoranteService.findByNome(
+                                nome,
+                                pageable);
+
+                model.addAttribute("ristoranti", risultati.getContent());
+                model.addAttribute("ristoranteDTO", new RistoranteDTO());
+                model.addAttribute("risultati", risultati);
+
+                return "luoghi_interesse/ristoranti";
+        }
+
+        // UPDATE
+
+        @GetMapping("/{id}/modifica")
+        public String formModificaRistorante(
+                        @PathVariable Long id,
+                        Model model) {
+
+                model.addAttribute(
+                                "ristoranteDTO",
+                                ristoranteService.findByIdDto(id));
+
+                return "ristoranti/form";
+        }
+
+        @PutMapping("/{id}/modifica")
+        public String updateRistorante(
+                        @PathVariable Long id,
+                        @Valid @ModelAttribute RistoranteDTO dto,
+                        BindingResult bindingResult,
+                        Authentication authentication) {
+
+                if (bindingResult.hasErrors()) {
+                        return "ristoranti/form";
+                }
+
+                Utente utente = utenteService.findByEmail(authentication.getName());
+
+                ristoranteService.update(id, dto, utente);
+
+                return "redirect:/ristoranti/" + id;
+        }
+
+        // DELETE
+
+        @PostMapping("/{id}/delete")
+        public String deleteRistorante(
+                        @PathVariable Long id,
+                        Authentication authentication) {
+
+                Utente utente = utenteService.findByEmail(authentication.getName());
+
+                ristoranteService.delete(id, utente);
+
+                return "redirect:/ristoranti";
+        }
 }

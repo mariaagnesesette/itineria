@@ -80,7 +80,7 @@
   <div class="container">
     <div class="restaurant-grid">
       <a th:each="ristorante : ${ristoranti}"
-         th:href="@{'/ristoranti/' + ${ristorante.slug}}"
+        th:href="@{/ristoranti/{id}(id=${ristorante.id})}"
          th:classappend="${ristorante.preferito} ? ' restaurant-card--featured' : ''"
          class="restaurant-card">
         <span th:if="${ristorante.preferito}" class="restaurant-card__badge">Consigliato</span>
