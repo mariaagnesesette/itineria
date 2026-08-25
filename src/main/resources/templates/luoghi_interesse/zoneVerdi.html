@@ -77,9 +77,12 @@
           <input type="number" th:field="*{areaMin}" placeholder="Area min (mq)" min="0" step="0.1">
           <input type="number" th:field="*{areaMax}" placeholder="Area max (mq)" min="0" step="0.1">
 
-          <label><input type="checkbox" th:field="*{dogFriendly}"> Dog friendly</label>
-          <label><input type="checkbox" th:field="*{ristoro}"> Ristoro</label>
-          <label><input type="checkbox" th:field="*{ciclabile}"> Ciclabile</label>
+          <label><input type="checkbox" name="dogFriendly" value="true" th:checked="${zonaVerdeDTO.dogFriendly}"> Dog
+            friendly</label>
+          <label><input type="checkbox" name="ristoro" value="true" th:checked="${zonaVerdeDTO.ristoro}">
+            Ristoro</label>
+          <label><input type="checkbox" name="ciclabile" value="true" th:checked="${zonaVerdeDTO.ciclabile}">
+            Ciclabile</label>
 
           <button type="submit" class="btn-search">Applica filtri</button>
         </div>
