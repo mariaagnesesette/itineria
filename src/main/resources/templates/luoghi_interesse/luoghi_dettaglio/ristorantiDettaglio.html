@@ -11,6 +11,8 @@
         Ristorante | Itineria
     </title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/luogoDettaglio.css}">
     <link rel="stylesheet" th:href="@{/css/ristoranti.css}">
@@ -94,9 +96,9 @@
 
             <div class="luogo-hero-content">
 
-                <span class="luogo-type" th:if="${ristorante.tipoCucina != null}" th:text="${ristorante.tipoCucina}">
+                <span class="luogo-type" th:if="${ristorante.tipoCucina != null}">
 
-                    Tipo cucina
+                    <i class="fa-solid fa-utensils"></i> <span th:text="${ristorante.tipoCucina}">Tipo cucina</span>
 
                 </span>
 
@@ -314,19 +316,19 @@
             <div class="services-grid">
 
                 <span class="service-badge" th:if="${ristorante.dogFriendly}">
-                    🐕 Dog friendly
+                    <i class="fa-solid fa-dog"></i> Dog friendly
                 </span>
 
                 <span class="service-badge" th:if="${ristorante.perCeliaci}">
-                    🌾 Opzioni per celiaci
+                    <i class="fa-solid fa-wheat-awn"></i> Opzioni per celiaci
                 </span>
 
                 <span class="service-badge" th:if="${ristorante.postiEsterni}">
-                    ☀️ Posti esterni
+                    <i class="fa-solid fa-umbrella-beach"></i> Posti esterni
                 </span>
 
                 <span class="service-badge" th:if="${ristorante.accessibilita != null}">
-                    ♿ Accessibilità
+                    <i class="fa-solid fa-wheelchair"></i> Accessibile
                 </span>
 
                 <span th:if="${!ristorante.dogFriendly

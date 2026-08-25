@@ -11,6 +11,8 @@
         Biblioteca | Itineria
     </title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/luogoDettaglio.css}">
     <link rel="stylesheet" th:href="@{/css/biblioteche.css}">
@@ -229,23 +231,23 @@
             <div class="services-grid">
 
                 <span class="service-badge" th:if="${biblioteca.pubblico}">
-                    ✓ Pubblica
+                    <i class="fa-solid fa-building-columns"></i> Pubblica
                 </span>
 
                 <span class="service-badge" th:if="${biblioteca.wifi}">
-                    ✓ WiFi
+                    <i class="fa-solid fa-wifi"></i> WiFi
                 </span>
 
                 <span class="service-badge" th:if="${biblioteca.areaComputer}">
-                    ✓ Area computer
+                    <i class="fa-solid fa-computer"></i> Area computer
                 </span>
 
                 <span class="service-badge" th:if="${biblioteca.areaBambini}">
-                    ✓ Area bambini
+                    <i class="fa-solid fa-child-reaching"></i> Area bambini
                 </span>
 
                 <span class="service-badge" th:if="${biblioteca.accessibilita != null}">
-                    ✓ Accessibilità
+                    <i class="fa-solid fa-wheelchair"></i> Accessibile
                 </span>
 
                 <span th:if="${!biblioteca.pubblico

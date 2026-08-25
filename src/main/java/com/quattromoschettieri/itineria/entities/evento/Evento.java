@@ -103,7 +103,10 @@ public class Evento extends GenericEntity{
         if (inizio.equals(fine)) {
             return inizio.format(giornoMese);
         }
-        return inizio.format(DateTimeFormatter.ofPattern("d")) + " - " + fine.format(giornoMese);
+        if (inizio.getMonth() == fine.getMonth() && inizio.getYear() == fine.getYear()) {
+            return inizio.format(DateTimeFormatter.ofPattern("d")) + " - " + fine.format(giornoMese);
+        }
+        return inizio.format(giornoMese) + " - " + fine.format(giornoMese);
     }
 
     public boolean isGratuito() {
