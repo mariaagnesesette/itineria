@@ -14,55 +14,53 @@
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-book"></i> Biblioteche</div>
             <ul class="mega-dropdown__list">
-              <li><a href="/luoghi/biblioteche/comunali">Biblioteche comunali</a></li>
-              <li><a href="/luoghi/biblioteche/sale-studio">Sale studio</a></li>
-              <li><a href="/luoghi/biblioteche/aule-studio">Aule studio</a></li>
-              <li><a href="/luoghi/biblioteche/coworking">Spazi coworking</a></li>
-              <li><a href="/biblioteche" style="font-weight:700; color: var(--color-accent);">Vedi tutte le biblioteche
-                  →</a></li>
-            </ul>
+              <li><a th:href="@{/biblioteche#pubbliche}">Biblioteche pubbliche</a></li>
+              <li><a th:href="@{/biblioteche#wifi}">Con WiFi</a></li>
+              <li><a th:href="@{/biblioteche#area-computer}">Area computer</a></li>
+              <li><a th:href="@{/biblioteche#area-bambini}">Area bambini</a></li>
+              <li><a th:href="@{/biblioteche#sempre-aperto}">Sempre aperte</a></li>
+              <li><a th:href="@{/biblioteche#accessibile}">Accessibili</a></li>
+              <li><a th:href="@{/biblioteche}" style="font-weight:700; color: var(--color-accent);">Vedi tutte le biblioteche →</a></li>
+          </ul>
           </div>
 
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-mug-hot"></i> Bar e Caffetterie</div>
             <ul class="mega-dropdown__list">
-              <li><a href="/luoghi/bar">Bar</a></li>
-              <li><a href="/luoghi/caffetterie">Caffetterie</a></li>
-              <li><a href="/bar" style="font-weight:700; color: var(--color-accent);">Vedi tutti i bar e caffetterie
-                  →</a></li>
+           <li><a th:href="@{/locali}">Bar</a></li>
+          <li><a th:href="@{/locali}">Caffetterie</a></li>
+           <li><a th:href="@{/locali}" style="font-weight:700; color: var(--color-accent);">Vedi tutti i bar e caffetterie →</a></li>
             </ul>
           </div>
 
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-utensils"></i> Ristoranti</div>
             <ul class="mega-dropdown__list">
-              <li><a href="/luoghi/ristoranti/tipici">Ristoranti tipici</a></li>
-              <li><a href="/luoghi/ristoranti/pizzerie">Pizzerie</a></li>
-              <li><a href="/luoghi/ristoranti/internazionali">Cucine internazionali</a></li>
-              <li><a href="/ristoranti" style="font-weight:700; color: var(--color-accent);">Vedi tutti i ristoranti
-                  →</a></li>
+           <li><a th:href="@{/ristoranti}">Ristoranti tipici</a></li>
+           <li><a th:href="@{/ristoranti}">Pizzerie</a></li>
+           <li><a th:href="@{/ristoranti}">Cucine internazionali</a></li>
+           <li><a th:href="@{/ristoranti}" style="font-weight:700; color: var(--color-accent);">Vedi tutti i ristoranti →</a></li>
             </ul>
           </div>
 
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</div>
             <ul class="mega-dropdown__list">
-              <li><a href="/zoneVerdi/filtri?tipologia=PARCO_URBANO">Parchi cittadini</a></li>
-              <li><a href="/zoneVerdi/filtri?tipologia=GIARDINO_PUBBLICO">Giardini</a></li>
-              <li><a href="/zoneVerdi/filtri?tipologia=RISERVA_NATURALE">Oasi naturali</a></li>
-              <li><a href="/zoneVerdi" style="font-weight:700; color: var(--color-accent);">Vedi tutti i parchi →</a>
-              </li>
-            </ul>
+           <li><a th:href="@{/zoneVerdi/filtri(tipologia='PARCO_URBANO')}">Parchi cittadini</a></li>
+           <li><a th:href="@{/zoneVerdi/filtri(tipologia='GIARDINO_PUBBLICO')}">Giardini</a></li>
+           <li><a th:href="@{/zoneVerdi/filtri(tipologia='RISERVA_NATURALE')}">Oasi naturali</a></li>
+           <li><a th:href="@{/zoneVerdi}" style="font-weight:700; color: var(--color-accent);">Vedi tutti i parchi →</a></li>
+           </ul>
           </div>
 
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-landmark"></i> Musei</div>
-            <ul class="mega-dropdown__list">
-              <li><a href="/musei#storia-memoria-e-sport">Musei storici</a></li>
-              <li><a href="/musei#arte-fotografia-e-fondazioni-contemporanee">Musei d'arte</a></li>
-              <li><a href="/musei#scienza-medicina-e-natura">Musei scientifici</a></li>
-              <li><a href="/musei#tecnica-industria-e-collezioni-tematiche">Musei interattivi</a></li>
-              <li><a href="/musei" style="font-weight:700; color: var(--color-accent);">Vedi tutti i musei →</a></li>
+           <ul class="mega-dropdown__list">
+            <li><a th:href="@{/musei#storia-memoria-e-sport}">Musei storici</a></li>
+           <li><a th:href="@{/musei#arte-fotografia-e-fondazioni-contemporanee}">Musei d'arte</a></li>
+           <li><a th:href="@{/musei#scienza-medicina-e-natura}">Musei scientifici</a></li>
+            <li><a th:href="@{/musei#tecnica-industria-e-collezioni-tematiche}">Musei interattivi</a></li>
+           <li><a th:href="@{/musei}" style="font-weight:700; color: var(--color-accent);">Vedi tutti i musei →</a></li>
             </ul>
           </div>
         </div>
