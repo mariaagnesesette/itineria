@@ -46,53 +46,58 @@
         <input type="text" id="parkSearchInput" placeholder="Cerca un parco per nome...">
       </div>
 
-      <div class="filter-chips" id="filterChips" th:if="${categorieParchi != null}">
+      <div class="filter-chips category-filters">
         <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-        <button type="button" th:each="cat : ${categorieParchi}" th:attr="data-filter=${cat.id}" th:text="${cat.nome}"
-          class="filter-chip"></button>
+        <th:block th:if="${categorieParchi != null}">
+          <button type="button" th:each="cat : ${categorieParchi}"
+                  th:attr="data-filter=${cat.id}"
+                  th:text="${cat.nome}"
+                  class="filter-chip"></button>
+        </th:block>
+        <th:block th:if="${categorieParchi == null}">
+          <button type="button" class="filter-chip" data-filter="PARCO_URBANO">Parchi urbani</button>
+          <button type="button" class="filter-chip" data-filter="PARCO_NATURALE">Aree naturali</button>
+          <button type="button" class="filter-chip" data-filter="PARCO_STORICO">Giardini storici</button>
+          <button type="button" class="filter-chip" data-filter="GIARDINO_PUBBLICO">Giardini pubblici</button>
+          <button type="button" class="filter-chip" data-filter="AREA_CANI">Aree per cani</button>
+          <button type="button" class="filter-chip" data-filter="ORTO_BOTANICO">Orti botanici</button>
+          <button type="button" class="filter-chip" data-filter="RISERVA_NATURALE">Riserve naturali</button>
+        </th:block>
       </div>
 
-      <div class="filter-chips" id="filterChips" th:if="${categorieParchi == null}">
-        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-        <button type="button" class="filter-chip" data-filter="parchi-urbani">Parchi urbani</button>
-        <button type="button" class="filter-chip" data-filter="aree-naturali">Aree naturali</button>
-        <button type="button" class="filter-chip" data-filter="giardini-storici">Giardini storici</button>
-        <button type="button" class="filter-chip" data-filter="aree-sportive">Aree sportive</button>
+      <div class="filter-chips feature-filters">
+        <span class="filter-divider" aria-hidden="true"></span>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="dogFriendly">
+          <i class="fa-solid fa-check filter-chip__check"></i> Dog friendly
+        </button>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="ristoro">
+          <i class="fa-solid fa-check filter-chip__check"></i> Ristoro
+        </button>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="ciclabile">
+          <i class="fa-solid fa-check filter-chip__check"></i> Ciclabile
+        </button>
       </div>
-    </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <form th:object="${zonaVerdeDTO}" th:action="@{/zoneVerdi/filtri}" method="get" class="parchi-filter-form">
-        <div class="parchi-filter-row">
-          <input type="text" th:field="*{nome}" id="parkSearchInputDuplicate" placeholder="Cerca per nome" />
+  <form th:object="${zonaVerdeDTO}" th:action="@{/zoneVerdi/filtri}" method="get" id="parchiFilterForm" hidden>
+    <input type="hidden" th:field="*{nome}" id="nomeParcoInput">
+  </form>
 
-          <select th:field="*{tipologia}">
-            <option value="">Tutte le tipologie</option>
-            <option th:each="t : ${T(com.quattromoschettieri.itineria.entities.zonaVerde.TipoZonaVerde).values()}"
-              th:value="${t}" th:text="${t}"></option>
-          </select>
 
-          <input type="number" th:field="*{areaMin}" placeholder="Area min (mq)" min="0" step="0.1">
-          <input type="number" th:field="*{areaMax}" placeholder="Area max (mq)" min="0" step="0.1">
 
-          <label><input type="checkbox" name="dogFriendly" value="true" th:checked="${zonaVerdeDTO.dogFriendly}"> Dog
-            friendly</label>
-          <label><input type="checkbox" name="ristoro" value="true" th:checked="${zonaVerdeDTO.ristoro}">
-            Ristoro</label>
-          <label><input type="checkbox" name="ciclabile" value="true" th:checked="${zonaVerdeDTO.ciclabile}">
-            Ciclabile</label>
-
-          <button type="submit" class="btn-search">Applica filtri</button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Ciclo dinamico: categorie con fallback lista piatta -->
+  <!-- Risultati organizzati per categoria -->
   <section class="section" th:if="${categorieParchi != null}">
     <div class="container">
+      <div class="parchi-results-header">
+        <h2 class="section__title">
+          <i class="fa-solid fa-tree"></i>
+          Parchi e zone verdi
+        </h2>
+          <span class="parchi-results-count"
+            th:text="${risultati != null ? risultati.totalElements + ' risultati' : (parchi != null ? #lists.size(parchi) + ' risultati' : '0 risultati')}">
+          0 risultati
+        </span>
+      </div>
       <div th:each="categoria : ${categorieParchi}" class="park-category" th:id="${categoria.id}">
         <h2 class="section__title">
           <i th:class="'fa-solid ' + ${categoria.icona}"></i>
@@ -100,7 +105,8 @@
         </h2>
         <div class="park-grid">
           <a th:each="parco : ${categoria.parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}"
-            th:classappend="${parco.preferito} ? ' park-card--featured' : ''" class="park-card">
+            th:classappend="${parco.preferito} ? ' park-card--featured' : ''" class="park-card"
+            th:attr="data-category=${parco.tipologia}, data-dog-friendly=${parco.dogFriendly}, data-ristoro=${parco.ristoro}, data-ciclabile=${parco.ciclabile}">
             <span class="park-card__badge" th:if="${parco.preferito}">Consigliato</span>
             <span class="park-card__icon"><i th:class="'fa-solid ' + ${parco.icona}"></i></span>
             <span class="park-card__body">
@@ -122,10 +128,21 @@
   </section>
 
   <!-- Fallback: lista piatta -->
-  <section class="section" th:if="${parchi != null}">
+  <section class="section" th:if="${categorieParchi == null && parchi != null}">
     <div class="container">
+      <div class="parchi-results-header">
+        <h2 class="section__title">
+          <i class="fa-solid fa-tree"></i>
+          Parchi e zone verdi
+        </h2>
+          <span class="parchi-results-count"
+            th:text="${risultati != null ? risultati.totalElements + ' risultati' : (parchi != null ? #lists.size(parchi) + ' risultati' : '0 risultati')}">
+          0 risultati
+        </span>
+      </div>
       <div class="park-grid">
-        <a th:each="parco : ${parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}" class="park-card">
+        <a th:each="parco : ${parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}" class="park-card"
+          th:attr="data-category=${parco.tipologia}, data-dog-friendly=${parco.dogFriendly}, data-ristoro=${parco.ristoro}, data-ciclabile=${parco.ciclabile}">
           <span class="park-card__body">
             <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
             <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>
@@ -154,57 +171,101 @@
     (function () {
       "use strict";
 
-      var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
-      var categories = Array.prototype.slice.call(document.querySelectorAll('.park-category'));
-      var searchInput = document.getElementById('parkSearchInput') || document.getElementById('parkSearchInputDuplicate');
-      var emptyState = document.getElementById('parkEmptyState');
+      var categoryChips = Array.prototype.slice.call(
+        document.querySelectorAll(
+          '.category-filters .filter-chip:not(.filter-chip--toggle)'
+        )
+      );
 
-      if (chips.length) {
-        chips.forEach(function (chip) {
-          chip.addEventListener('click', function () {
-            chips.forEach(function (c) { c.classList.remove('active'); });
-            chip.classList.add('active');
-            var target = chip.getAttribute('data-filter');
-            categories.forEach(function (cat) {
-              cat.style.display = (target === 'all' || cat.id === target) ? '' : 'none';
-            });
-            if (target !== 'all') {
-              var el = document.getElementById(target);
-              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+      var toggleChips = Array.prototype.slice.call(
+        document.querySelectorAll('.filter-chip--toggle')
+      );
+
+      var categories = Array.prototype.slice.call(
+        document.querySelectorAll('.park-category')
+      );
+      var cards = Array.prototype.slice.call(
+        document.querySelectorAll('.park-card')
+      );
+
+      var searchInput = document.getElementById('parkSearchInput');
+      var form = document.getElementById('parchiFilterForm');
+      var activeFeatures = {};
+      var activeCategory = 'all';
+
+      function applyFilters() {
+        cards.forEach(function (card) {
+          var categoryMatches = activeCategory === 'all' ||
+            card.getAttribute('data-category') === activeCategory;
+          var featureMatches = Object.keys(activeFeatures).every(function (feature) {
+            return card.getAttribute('data-' + feature.replace(/[A-Z]/g, function (letter) {
+              return '-' + letter.toLowerCase();
+            })) === 'true';
           });
+
+          card.style.display = categoryMatches && featureMatches ? '' : 'none';
+        });
+
+        categories.forEach(function (category) {
+          var hasVisibleCard = category.querySelector('.park-card:not([style*="display: none"])');
+          category.style.display = hasVisibleCard ? '' : 'none';
         });
       }
 
-      if (searchInput) {
-        searchInput.addEventListener('input', function () {
-          var query = searchInput.value.trim().toLowerCase();
-          var anyVisible = false;
-
-          categories.forEach(function (cat) { cat.style.display = ''; });
-          if (query.length > 0) {
-            chips.forEach(function (c) { c.classList.remove('active'); });
-          } else {
-            if (chips[0]) chips[0].classList.add('active');
-          }
-
-          categories.forEach(function (cat) {
-            var cards = Array.prototype.slice.call(cat.querySelectorAll('.park-card'));
-            var visibleCount = 0;
-
-            cards.forEach(function (card) {
-              var titleEl = card.querySelector('.park-card__title');
-              var title = titleEl ? titleEl.textContent.toLowerCase() : '';
-              var match = query === '' || title.indexOf(query) !== -1;
-              card.style.display = match ? '' : 'none';
-              if (match) visibleCount++;
-            });
-
-            cat.style.display = visibleCount > 0 ? '' : 'none';
-            if (visibleCount > 0) anyVisible = true;
+      categoryChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          categoryChips.forEach(function (item) {
+            item.classList.remove('active');
           });
 
-          if (emptyState) emptyState.hidden = (query === '' || anyVisible);
+          chip.classList.add('active');
+
+
+          activeCategory = chip.getAttribute('data-filter');
+
+          if (activeCategory === 'all') {
+            window.location.href = '/zoneVerdi';
+            return;
+          }
+
+          applyFilters();
+
+          if (activeCategory !== 'all') {
+            var element = document.getElementById(activeCategory);
+
+            if (element) {
+              element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+        });
+      });
+
+      toggleChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var feature = chip.getAttribute('data-feature');
+          var isActive = chip.classList.toggle('active');
+
+          if (isActive) {
+            activeFeatures[feature] = true;
+          } else {
+            delete activeFeatures[feature];
+          }
+
+          applyFilters();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('keyup', function (event) {
+          if (event.key === 'Enter') {
+            document.getElementById('nomeParcoInput').value =
+              searchInput.value.trim();
+
+            form.submit();
+          }
         });
       }
     })();
