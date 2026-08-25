@@ -4270,3 +4270,1907 @@ java.lang.IllegalStateException: Cannot create a session after the response has 
 2026-08-25T10:21:38.746+02:00 DEBUG 1344 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
 2026-08-25T10:21:38.746+02:00 DEBUG 1344 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
 2026-08-25T10:21:38.752+02:00 DEBUG 1344 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:27:44.655+02:00  INFO 6528 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 6528 (D:\Sette Maria Agnese Computer\VisualStudioCode\itineria\target\classes started by Maria Agnese in D:\Sette Maria Agnese Computer\VisualStudioCode\itineria)
+2026-08-25T10:27:44.662+02:00  INFO 6528 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-25T10:27:44.736+02:00  INFO 6528 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-25T10:27:44.737+02:00  INFO 6528 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-25T10:27:46.093+02:00  INFO 6528 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-25T10:27:46.269+02:00  INFO 6528 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 160 ms. Found 12 JPA repository interfaces.
+2026-08-25T10:27:47.432+02:00  INFO 6528 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-25T10:27:47.474+02:00  INFO 6528 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-25T10:27:47.476+02:00  INFO 6528 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-25T10:27:47.561+02:00  INFO 6528 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2823 ms
+2026-08-25T10:27:47.971+02:00  INFO 6528 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-25T10:27:48.216+02:00  INFO 6528 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fd81fac
+2026-08-25T10:27:48.219+02:00  INFO 6528 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-25T10:27:48.262+02:00  INFO 6528 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-25T10:27:48.371+02:00  INFO 6528 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.040s)
+2026-08-25T10:27:48.394+02:00  INFO 6528 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 2
+2026-08-25T10:27:48.397+02:00  INFO 6528 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-25T10:27:48.546+02:00  INFO 6528 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-25T10:27:48.623+02:00  INFO 6528 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-25T10:27:49.170+02:00  INFO 6528 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-25T10:27:49.276+02:00  WARN 6528 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-25T10:27:49.294+02:00  INFO 6528 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-25T10:27:51.038+02:00  INFO 6528 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-25T10:27:51.097+02:00  INFO 6528 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-25T10:27:51.198+02:00  INFO 6528 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-25T10:27:52.813+02:00  WARN 6528 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-25T10:27:52.939+02:00  INFO 6528 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customerUserDetailsService
+2026-08-25T10:27:53.165+02:00 DEBUG 6528 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-25T10:27:53.220+02:00  INFO 6528 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-25T10:27:53.780+02:00  INFO 6528 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-25T10:27:53.789+02:00  INFO 6528 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Started ItineriaApplication in 9.851 seconds (process running for 10.483)
+2026-08-25T10:28:06.547+02:00  INFO 6528 --- [itineria] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-25T10:28:06.547+02:00  INFO 6528 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-25T10:28:06.549+02:00  INFO 6528 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-08-25T10:28:06.558+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:28:06.577+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:28:06.708+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:28:06.709+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:28:06.710+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:28:06.710+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:28:06.740+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:28:06.740+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:28:07.181+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:07.221+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:28:07.221+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:28:07.222+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:28:07.222+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:28:07.242+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:07.243+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:13.723+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?tipologia=GIARDINO_PUBBLICO
+2026-08-25T10:28:13.724+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?tipologia=GIARDINO_PUBBLICO
+2026-08-25T10:28:13.728+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:28:13.729+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [GIARDINO_PUBBLICO]
+2026-08-25T10:28:13.730+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:28:13.730+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:28:13.755+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:13.834+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:28:13.835+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:28:13.838+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:13.864+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:28:13.865+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:28:13.870+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:21.016+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?tipologia=RISERVA_NATURALE
+2026-08-25T10:28:21.017+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?tipologia=RISERVA_NATURALE
+2026-08-25T10:28:21.024+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:28:21.026+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [RISERVA_NATURALE]
+2026-08-25T10:28:21.027+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:28:21.027+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:28:21.053+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:21.130+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:28:21.131+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:28:21.135+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:21.167+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:28:21.167+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:28:21.171+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:29.732+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:28:29.733+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:28:29.738+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:28:29.739+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:28:29.739+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:28:29.739+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:28:29.742+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:28:29.744+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:28:29.777+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:29.852+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:28:29.853+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:28:29.856+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:28:29.877+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:28:29.878+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:28:29.884+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:01.347+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /eventi
+2026-08-25T10:29:01.348+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /eventi
+2026-08-25T10:29:01.355+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:01.364+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-25T10:29:01.365+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-25T10:29:01.382+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:03.296+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:29:03.296+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:29:03.302+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:29:03.303+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:29:03.304+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:29:03.304+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:29:03.306+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:29:03.307+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:29:03.336+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:03.428+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:29:03.428+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:29:03.429+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:29:03.429+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:29:03.433+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:03.433+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:08.743+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:29:08.744+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?tipologia=PARCO_URBANO
+2026-08-25T10:29:08.749+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:29:08.750+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:29:08.751+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:29:08.751+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:29:08.754+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:29:08.755+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:29:08.776+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:08.865+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:29:08.865+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:29:08.866+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:29:08.866+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:29:08.869+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:29:08.869+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:27.454+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:27.455+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:27.466+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:32:27.468+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:32:27.469+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:32:27.470+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [false]
+2026-08-25T10:32:27.470+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (4:BOOLEAN) <- [false]
+2026-08-25T10:32:27.470+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [0]
+2026-08-25T10:32:27.470+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (6:INTEGER) <- [20]
+2026-08-25T10:32:27.494+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:27.591+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:32:27.591+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:32:27.592+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:32:27.594+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:32:27.600+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:27.600+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:33.449+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=GIARDINO_PUBBLICO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:33.449+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=GIARDINO_PUBBLICO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:33.455+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:32:33.456+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [GIARDINO_PUBBLICO]
+2026-08-25T10:32:33.456+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [false]
+2026-08-25T10:32:33.456+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [false]
+2026-08-25T10:32:33.457+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (4:BOOLEAN) <- [false]
+2026-08-25T10:32:33.457+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [0]
+2026-08-25T10:32:33.457+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (6:INTEGER) <- [20]
+2026-08-25T10:32:33.478+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:33.555+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:32:33.555+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:32:33.558+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:33.581+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:32:33.583+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:32:33.587+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:35.870+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=GIARDINO_PUBBLICO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:35.871+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=GIARDINO_PUBBLICO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:35.877+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:32:35.878+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [GIARDINO_PUBBLICO]
+2026-08-25T10:32:35.878+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [false]
+2026-08-25T10:32:35.878+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [false]
+2026-08-25T10:32:35.878+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (4:BOOLEAN) <- [false]
+2026-08-25T10:32:35.878+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [0]
+2026-08-25T10:32:35.881+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (6:INTEGER) <- [20]
+2026-08-25T10:32:35.897+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:35.990+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:32:35.991+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:32:35.995+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:36.038+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:32:36.038+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:32:36.045+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:37.910+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_NATURALE&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:37.911+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_NATURALE&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:37.919+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:32:37.920+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_NATURALE]
+2026-08-25T10:32:37.921+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [false]
+2026-08-25T10:32:37.921+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [false]
+2026-08-25T10:32:37.921+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (4:BOOLEAN) <- [false]
+2026-08-25T10:32:37.921+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [0]
+2026-08-25T10:32:37.922+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (6:INTEGER) <- [20]
+2026-08-25T10:32:37.937+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:38.024+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:32:38.025+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:32:38.029+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:38.069+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:32:38.070+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:32:38.075+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:40.426+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:40.427+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:40.436+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:32:40.438+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:32:40.439+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [false]
+2026-08-25T10:32:40.439+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [false]
+2026-08-25T10:32:40.439+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (4:BOOLEAN) <- [false]
+2026-08-25T10:32:40.439+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [0]
+2026-08-25T10:32:40.440+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (6:INTEGER) <- [20]
+2026-08-25T10:32:40.459+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:40.545+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:32:40.546+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:32:40.551+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:40.586+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:32:40.587+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:32:40.591+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:41.714+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:41.715+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:32:41.721+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:32:41.722+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:32:41.722+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [false]
+2026-08-25T10:32:41.722+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [false]
+2026-08-25T10:32:41.722+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (4:BOOLEAN) <- [false]
+2026-08-25T10:32:41.723+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [0]
+2026-08-25T10:32:41.723+02:00 TRACE 6528 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (6:INTEGER) <- [20]
+2026-08-25T10:32:41.739+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:41.833+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:32:41.834+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:32:41.837+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:32:41.864+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:32:41.865+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:32:41.869+02:00 DEBUG 6528 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:36:58.207+02:00  INFO 10252 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 10252 (D:\Sette Maria Agnese Computer\VisualStudioCode\itineria\target\classes started by Maria Agnese in D:\Sette Maria Agnese Computer\VisualStudioCode\itineria)
+2026-08-25T10:36:58.214+02:00  INFO 10252 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-25T10:36:58.297+02:00  INFO 10252 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-25T10:36:58.297+02:00  INFO 10252 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-25T10:36:59.771+02:00  INFO 10252 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-25T10:36:59.975+02:00  INFO 10252 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 185 ms. Found 12 JPA repository interfaces.
+2026-08-25T10:37:01.334+02:00  INFO 10252 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-25T10:37:01.385+02:00  INFO 10252 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-25T10:37:01.387+02:00  INFO 10252 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-25T10:37:01.474+02:00  INFO 10252 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3176 ms
+2026-08-25T10:37:01.971+02:00  INFO 10252 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-25T10:37:02.238+02:00  INFO 10252 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ef3ac45
+2026-08-25T10:37:02.241+02:00  INFO 10252 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-25T10:37:02.303+02:00  INFO 10252 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-25T10:37:02.457+02:00  INFO 10252 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.062s)
+2026-08-25T10:37:02.478+02:00  INFO 10252 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 2
+2026-08-25T10:37:02.485+02:00  INFO 10252 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-25T10:37:02.652+02:00  INFO 10252 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-25T10:37:02.748+02:00  INFO 10252 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-25T10:37:03.357+02:00  INFO 10252 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-25T10:37:03.431+02:00  WARN 10252 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-25T10:37:03.448+02:00  INFO 10252 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-25T10:37:05.434+02:00  INFO 10252 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-25T10:37:05.493+02:00  INFO 10252 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-25T10:37:05.601+02:00  INFO 10252 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-25T10:37:07.398+02:00  WARN 10252 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-25T10:37:07.562+02:00  INFO 10252 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customerUserDetailsService
+2026-08-25T10:37:07.833+02:00 DEBUG 10252 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-25T10:37:07.894+02:00  INFO 10252 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-25T10:37:08.499+02:00  INFO 10252 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-25T10:37:08.509+02:00  INFO 10252 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Started ItineriaApplication in 11.029 seconds (process running for 11.827)
+2026-08-25T10:37:12.930+02:00  INFO 10252 --- [itineria] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-25T10:37:12.932+02:00  INFO 10252 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-25T10:37:12.935+02:00  INFO 10252 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-25T10:37:12.949+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:37:12.982+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&_dogFriendly=on&_ristoro=on&_ciclabile=on
+2026-08-25T10:37:13.230+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:37:13.233+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:37:13.234+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [false]
+2026-08-25T10:37:13.234+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [false]
+2026-08-25T10:37:13.235+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (4:BOOLEAN) <- [false]
+2026-08-25T10:37:13.235+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [0]
+2026-08-25T10:37:13.236+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (6:INTEGER) <- [20]
+2026-08-25T10:37:13.887+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:13.917+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:37:13.918+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:37:13.921+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:37:13.924+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:37:13.952+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:13.952+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:19.698+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&ristoro=true
+2026-08-25T10:37:19.699+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&ristoro=true
+2026-08-25T10:37:19.706+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.ristoro=? 
+    limit
+        ?, ?
+2026-08-25T10:37:19.707+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:37:19.708+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:37:19.708+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2026-08-25T10:37:19.708+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [20]
+2026-08-25T10:37:19.726+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:37:19.727+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:37:19.806+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:19.907+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:37:19.907+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:37:19.908+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:37:19.908+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:37:19.913+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:19.913+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:21.575+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ristoro=true
+2026-08-25T10:37:21.576+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ristoro=true
+2026-08-25T10:37:21.583+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+    limit
+        ?, ?
+2026-08-25T10:37:21.584+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:37:21.585+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:37:21.585+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [true]
+2026-08-25T10:37:21.585+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [0]
+2026-08-25T10:37:21.585+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [20]
+2026-08-25T10:37:21.587+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:37:21.588+02:00 TRACE 10252 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:37:21.623+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:21.738+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:37:21.738+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:37:21.738+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:37:21.738+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:37:21.744+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:21.744+02:00 DEBUG 10252 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:37:45.885+02:00  INFO 11308 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 11308 (D:\Sette Maria Agnese Computer\VisualStudioCode\itineria\target\classes started by Maria Agnese in D:\Sette Maria Agnese Computer\VisualStudioCode\itineria)
+2026-08-25T10:37:45.893+02:00  INFO 11308 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-25T10:37:45.984+02:00  INFO 11308 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-25T10:37:45.985+02:00  INFO 11308 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-25T10:37:47.459+02:00  INFO 11308 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-25T10:37:47.643+02:00  INFO 11308 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 169 ms. Found 12 JPA repository interfaces.
+2026-08-25T10:37:48.876+02:00  INFO 11308 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-25T10:37:48.912+02:00  INFO 11308 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-25T10:37:48.914+02:00  INFO 11308 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-25T10:37:49.014+02:00  INFO 11308 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3028 ms
+2026-08-25T10:37:49.489+02:00  INFO 11308 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-25T10:37:49.809+02:00  INFO 11308 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@13392319
+2026-08-25T10:37:49.813+02:00  INFO 11308 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-25T10:37:49.879+02:00  INFO 11308 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-25T10:37:50.057+02:00  INFO 11308 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.085s)
+2026-08-25T10:37:50.097+02:00  INFO 11308 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 2
+2026-08-25T10:37:50.140+02:00  INFO 11308 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-25T10:37:50.517+02:00  INFO 11308 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-25T10:37:50.665+02:00  INFO 11308 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-25T10:37:51.236+02:00  INFO 11308 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-25T10:37:51.308+02:00  WARN 11308 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-25T10:37:51.326+02:00  INFO 11308 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-25T10:37:53.390+02:00  INFO 11308 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-25T10:37:53.459+02:00  INFO 11308 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-25T10:37:53.596+02:00  INFO 11308 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-25T10:37:55.725+02:00  WARN 11308 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-25T10:37:55.890+02:00  INFO 11308 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customerUserDetailsService
+2026-08-25T10:37:56.197+02:00 DEBUG 11308 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-25T10:37:56.289+02:00  INFO 11308 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-25T10:37:57.184+02:00  INFO 11308 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-25T10:37:57.193+02:00  INFO 11308 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Started ItineriaApplication in 12.122 seconds (process running for 13.061)
+2026-08-25T10:37:59.593+02:00  INFO 11308 --- [itineria] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-25T10:37:59.593+02:00  INFO 11308 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-25T10:37:59.595+02:00  INFO 11308 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-08-25T10:37:59.609+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ristoro=true
+2026-08-25T10:37:59.626+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ristoro=true
+2026-08-25T10:37:59.798+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+    limit
+        ?, ?
+2026-08-25T10:37:59.800+02:00 TRACE 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:37:59.801+02:00 TRACE 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:37:59.801+02:00 TRACE 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [true]
+2026-08-25T10:37:59.802+02:00 TRACE 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [0]
+2026-08-25T10:37:59.802+02:00 TRACE 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [20]
+2026-08-25T10:37:59.844+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:37:59.845+02:00 TRACE 11308 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:38:00.537+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:38:00.598+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:38:00.599+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:38:00.599+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:38:00.599+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:38:00.621+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:38:00.621+02:00 DEBUG 11308 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:06.241+02:00  INFO 19860 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 19860 (D:\Sette Maria Agnese Computer\VisualStudioCode\itineria\target\classes started by Maria Agnese in D:\Sette Maria Agnese Computer\VisualStudioCode\itineria)
+2026-08-25T10:40:06.249+02:00  INFO 19860 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-25T10:40:06.323+02:00  INFO 19860 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-25T10:40:06.323+02:00  INFO 19860 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-25T10:40:07.633+02:00  INFO 19860 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-25T10:40:07.786+02:00  INFO 19860 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 141 ms. Found 12 JPA repository interfaces.
+2026-08-25T10:40:08.871+02:00  INFO 19860 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-25T10:40:08.924+02:00  INFO 19860 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-25T10:40:08.925+02:00  INFO 19860 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-25T10:40:09.013+02:00  INFO 19860 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2689 ms
+2026-08-25T10:40:09.431+02:00  INFO 19860 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-25T10:40:09.677+02:00  INFO 19860 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fd81fac
+2026-08-25T10:40:09.681+02:00  INFO 19860 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-25T10:40:09.732+02:00  INFO 19860 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 8.0)
+2026-08-25T10:40:09.849+02:00  INFO 19860 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.047s)
+2026-08-25T10:40:09.866+02:00  INFO 19860 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 2
+2026-08-25T10:40:09.870+02:00  INFO 19860 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-25T10:40:10.032+02:00  INFO 19860 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-25T10:40:10.118+02:00  INFO 19860 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-25T10:40:10.719+02:00  INFO 19860 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-25T10:40:10.809+02:00  WARN 19860 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-25T10:40:10.827+02:00  INFO 19860 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-25T10:40:12.555+02:00  INFO 19860 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-25T10:40:12.618+02:00  INFO 19860 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-25T10:40:12.722+02:00  INFO 19860 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-25T10:40:14.456+02:00  WARN 19860 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-25T10:40:14.602+02:00  INFO 19860 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customerUserDetailsService
+2026-08-25T10:40:14.836+02:00 DEBUG 19860 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-25T10:40:14.905+02:00  INFO 19860 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-25T10:40:15.519+02:00  INFO 19860 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-25T10:40:15.534+02:00  INFO 19860 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Started ItineriaApplication in 9.986 seconds (process running for 10.869)
+2026-08-25T10:40:23.343+02:00  INFO 19860 --- [itineria] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-25T10:40:23.344+02:00  INFO 19860 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-25T10:40:23.347+02:00  INFO 19860 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-08-25T10:40:23.362+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ristoro=true
+2026-08-25T10:40:23.384+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ristoro=true
+2026-08-25T10:40:23.574+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ristoro=? 
+    limit
+        ?, ?
+2026-08-25T10:40:23.577+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:40:23.577+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:40:23.577+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [true]
+2026-08-25T10:40:23.578+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [0]
+2026-08-25T10:40:23.578+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [20]
+2026-08-25T10:40:23.611+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:40:23.612+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:40:24.207+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:24.221+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:40:24.222+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:40:24.225+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:40:24.226+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:40:24.253+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:24.253+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:26.304+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=
+2026-08-25T10:40:26.305+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=
+2026-08-25T10:40:26.313+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:40:26.314+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:40:26.315+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:40:26.315+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:40:26.317+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:40:26.318+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-4] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:40:26.357+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:26.459+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:40:26.459+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:40:26.460+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:40:26.460+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:40:26.465+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:26.465+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:27.729+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true
+2026-08-25T10:40:27.730+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true
+2026-08-25T10:40:27.736+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+    limit
+        ?, ?
+2026-08-25T10:40:27.737+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:40:27.737+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:40:27.738+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2026-08-25T10:40:27.738+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [20]
+2026-08-25T10:40:27.741+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:40:27.743+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-7] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:40:27.820+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:27.834+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:40:27.867+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:40:27.877+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:40:27.877+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:40:27.885+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:27.890+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:30.475+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ciclabile=true
+2026-08-25T10:40:30.477+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&dogFriendly=true&ciclabile=true
+2026-08-25T10:40:30.485+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.dog_friendly=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:40:30.486+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:40:30.487+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:40:30.487+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (3:BOOLEAN) <- [true]
+2026-08-25T10:40:30.487+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [0]
+2026-08-25T10:40:30.488+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (5:INTEGER) <- [20]
+2026-08-25T10:40:30.490+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:40:30.491+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:40:30.520+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:30.593+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:40:30.594+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:40:30.598+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:30.628+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:40:30.629+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:40:30.634+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:32.807+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&ciclabile=true
+2026-08-25T10:40:32.808+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=&ciclabile=true
+2026-08-25T10:40:32.814+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:40:32.815+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:40:32.816+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:40:32.816+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2026-08-25T10:40:32.816+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [20]
+2026-08-25T10:40:32.818+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:40:32.819+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-3] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:40:32.847+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:32.905+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:40:32.906+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:40:32.912+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:32.952+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:40:32.957+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:40:32.965+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:37.636+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_NATURALE&areaMin=&areaMax=&ciclabile=true
+2026-08-25T10:40:37.637+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_NATURALE&areaMin=&areaMax=&ciclabile=true
+2026-08-25T10:40:37.642+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+        and zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:40:37.643+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_NATURALE]
+2026-08-25T10:40:37.643+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:BOOLEAN) <- [true]
+2026-08-25T10:40:37.644+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [0]
+2026-08-25T10:40:37.644+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (4:INTEGER) <- [20]
+2026-08-25T10:40:37.659+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:37.748+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:40:37.749+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:40:37.753+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:37.785+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:40:37.785+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:40:37.789+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:40.508+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=&ciclabile=true
+2026-08-25T10:40:40.509+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=&ciclabile=true
+2026-08-25T10:40:40.515+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:40:40.516+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T10:40:40.517+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:40:40.517+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:40:40.519+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:40:40.519+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:40:40.541+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:40.613+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:40:40.614+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:40:40.616+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:40:40.647+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:40:40.648+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:40:40.650+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:37.765+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-08-25T10:41:37.766+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /
+2026-08-25T10:41:37.789+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:37.886+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:41:37.887+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:41:37.890+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:37.938+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /images/torino-hero.jpg
+2026-08-25T10:41:37.940+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /images/torino-hero.jpg
+2026-08-25T10:41:37.951+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:37.958+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-25T10:41:37.959+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-25T10:41:38.000+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:40.390+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi
+2026-08-25T10:41:40.391+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi
+2026-08-25T10:41:40.399+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    limit
+        ?, ?
+2026-08-25T10:41:40.400+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [0]
+2026-08-25T10:41:40.401+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [20]
+2026-08-25T10:41:40.403+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:41:40.404+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:41:40.413+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.ciclabile=? 
+    limit
+        ?, ?
+2026-08-25T10:41:40.414+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T10:41:40.415+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:41:40.415+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T10:41:40.420+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.dog_friendly=? 
+    limit
+        ?, ?
+2026-08-25T10:41:40.422+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T10:41:40.423+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:41:40.423+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T10:41:40.433+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.ristoro=? 
+    limit
+        ?, ?
+2026-08-25T10:41:40.434+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T10:41:40.435+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:41:40.435+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T10:41:40.440+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_1.sempre_aperto=? 
+    limit
+        ?, ?
+2026-08-25T10:41:40.441+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T10:41:40.442+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:41:40.442+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-6] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T10:41:40.460+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:40.577+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:41:40.577+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:41:40.578+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:41:40.578+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:41:40.583+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:40.583+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:45.409+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=
+2026-08-25T10:41:45.410+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_URBANO&areaMin=&areaMax=
+2026-08-25T10:41:45.417+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:41:45.418+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_URBANO]
+2026-08-25T10:41:45.418+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:41:45.419+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:41:45.421+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:41:45.421+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:41:45.447+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:45.568+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:41:45.568+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:41:45.569+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:41:45.569+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:41:45.574+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:45.574+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:49.391+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=PARCO_STORICO&areaMin=&areaMax=
+2026-08-25T10:41:49.394+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=PARCO_STORICO&areaMin=&areaMax=
+2026-08-25T10:41:49.403+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.tipologia=? 
+    limit
+        ?, ?
+2026-08-25T10:41:49.409+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [PARCO_STORICO]
+2026-08-25T10:41:49.410+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:41:49.411+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:41:49.416+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:41:49.417+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-2] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:41:49.445+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:49.527+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:41:49.533+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:41:49.541+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:49.550+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:41:49.562+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:41:49.571+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:52.058+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=
+2026-08-25T10:41:52.058+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=
+2026-08-25T10:41:52.063+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    limit
+        ?, ?
+2026-08-25T10:41:52.064+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [0]
+2026-08-25T10:41:52.065+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [20]
+2026-08-25T10:41:52.067+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:41:52.069+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-5] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:41:52.087+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:52.158+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:41:52.159+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:41:52.162+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:52.198+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:41:52.199+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:41:52.201+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:56.886+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=&dogFriendly=true
+2026-08-25T10:41:56.886+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=&dogFriendly=true
+2026-08-25T10:41:56.890+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    where
+        zv1_0.dog_friendly=? 
+    limit
+        ?, ?
+2026-08-25T10:41:56.891+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T10:41:56.891+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T10:41:56.891+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [20]
+2026-08-25T10:41:56.893+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:41:56.894+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-8] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:41:56.912+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:56.975+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:41:56.975+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:41:56.977+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:56.997+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:41:56.997+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:41:57.000+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:58.854+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=
+2026-08-25T10:41:58.854+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /zoneVerdi/filtri?nome=&tipologia=&areaMin=&areaMax=
+2026-08-25T10:41:58.857+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        zv1_0.id,
+        zv1_1.accessibilita,
+        zv1_1.id_citta,
+        zv1_1.created_at,
+        zv1_1.descrizione,
+        zv1_1.email,
+        zv1_1.indirizzo,
+        zv1_1.link_sito,
+        zv1_1.id_manager,
+        zv1_1.nome,
+        zv1_1.numero_telefono,
+        zv1_1.sempre_aperto,
+        zv1_1.tipo,
+        zv1_1.updated_at,
+        zv1_1.version,
+        zv1_0.area_mq,
+        zv1_0.ciclabile,
+        zv1_0.dog_friendly,
+        zv1_0.ristoro,
+        zv1_0.tipologia 
+    from
+        zone_verdi zv1_0 
+    join
+        luoghi_interesse zv1_1 
+            on zv1_0.id=zv1_1.id 
+    limit
+        ?, ?
+2026-08-25T10:41:58.858+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [0]
+2026-08-25T10:41:58.858+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [20]
+2026-08-25T10:41:58.860+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T10:41:58.861+02:00 TRACE 19860 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T10:41:58.879+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:58.953+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T10:41:58.954+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T10:41:58.957+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T10:41:58.985+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/parchi.css
+2026-08-25T10:41:58.985+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/parchi.css
+2026-08-25T10:41:58.988+02:00 DEBUG 19860 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
