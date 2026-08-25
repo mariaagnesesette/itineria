@@ -38,6 +38,12 @@ public class SecurityConfig {
                     "/contattaci"
                 ).permitAll()
 
+                // Ricerca globale (luoghi ed eventi)
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/ricerca"
+                ).permitAll()
+
                 // Risorse statiche
                 .requestMatchers(
                     "/css/**",

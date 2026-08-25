@@ -1,5 +1,7 @@
 package com.quattromoschettieri.itineria.repository.eventoRepository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import com.quattromoschettieri.itineria.entities.evento.Evento;
 
 public interface EventoRepository extends JpaRepository<Evento, Long>, JpaSpecificationExecutor<Evento>{
+
+    List<Evento> findByNomeContainingIgnoreCase(String nome);
 
     @Query("""
            SELECT e
@@ -20,10 +24,12 @@ public interface EventoRepository extends JpaRepository<Evento, Long>, JpaSpecif
     Page<Evento> findStoricoEventi(Pageable pageable);
 
     @Query("""
-           SELECT DISTINCT e
+           SELECT e
            FROM Evento e
            JOIN e.dateEvento d
            WHERE d.dataInizio > CURRENT_DATE
+           GROUP BY e
+           ORDER BY MIN(d.dataInizio) ASC
            """)
     Page<Evento> findEventiFuturi(Pageable pageable);
 

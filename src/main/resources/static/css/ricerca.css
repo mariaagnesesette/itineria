@@ -1,0 +1,100 @@
+.page-intro {
+  background: var(--color-card);
+  padding: 48px 0 40px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-gray);
+  margin-bottom: 18px;
+}
+
+.breadcrumb a { color: var(--color-text-gray); }
+.breadcrumb a:hover { color: var(--color-accent); }
+.breadcrumb i { font-size: 10px; }
+.breadcrumb span { color: var(--color-text-dark); font-weight: 600; }
+
+.page-intro__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 38px);
+  color: var(--color-text-dark);
+  margin-bottom: 10px;
+}
+
+.page-intro__desc {
+  color: var(--color-text-gray);
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+
+.ricerca-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-white);
+  border-radius: var(--radius-pill);
+  padding: 14px 22px;
+  max-width: 480px;
+  box-shadow: var(--shadow-card);
+}
+
+.ricerca-search i { color: var(--color-text-gray); }
+
+.ricerca-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  color: var(--color-text-dark);
+  background: transparent;
+}
+
+.ricerca-search input::placeholder { color: #999; }
+
+.ricerca-results-count {
+  color: var(--color-text-gray);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.ricerca-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  color: var(--color-text-gray);
+  font-size: 15px;
+  padding: 60px 24px;
+}
+
+.ricerca-empty-state i {
+  font-size: 32px;
+  color: #ccc;
+  margin-bottom: 6px;
+}
+
+/* Nei risultati, le descrizioni possono essere lunghe: limitiamo a 3 righe */
+.category-card__desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.category-card__meta {
+  display: block;
+  font-size: 12px;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-top: 4px;
+}

@@ -13,4 +13,6 @@ public interface LuogoInteresseRepository extends JpaRepository<LuogoInteresse, 
 
     List<LuogoInteresse> findByManagerId(Long managerId);
 
+    List<LuogoInteresse> findByNomeContainingIgnoreCase(String nome);
+
 }
