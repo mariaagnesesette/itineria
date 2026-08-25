@@ -2,265 +2,763 @@
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblioteche di Torino - Itineria</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS del progetto -->
-   <link rel="stylesheet" th:href="@{/css/style.css}">
-  <link rel="stylesheet" th:href="@{/css/biblioteche.css}">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+    <title>Biblioteche di Torino — Itineraria</title>
 
-  <!-- FontAwesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/biblioteche.css}">
 </head>
 
+
 <body>
-  <section class="page-intro">
+
+
+<!-- ==========================================================================
+     NAVBAR
+     ========================================================================== -->
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<!-- ==========================================================================
+     PAGE INTRO
+     ========================================================================== -->
+
+<section class="page-intro">
+
     <div class="container">
-      <nav class="breadcrumb" aria-label="breadcrumb">
-        <a th:href="@{/}" href="index.html">Home</a>
-        <i class="fa-solid fa-chevron-right"></i>
-        <span>Biblioteche</span>
-      </nav>
 
-      <h1 class="page-intro__title"><i class="fa-solid fa-landmark"></i> Biblioteche di Torino</h1>
-      <p class="page-intro__desc">
-        Le Migliori Biblioteche di Torino: <span th:text="${#lists.size(risultati.content) ?: 0} + ' biblioteche'">
-          Biblioteche</span>
-        Tutte da scoprire.
-      </p>
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="breadcrumb">
 
-      <div class="biblioteche-search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="bibliotecheSearchInput" placeholder="Cerca una biblioteca per nome...">
-      </div>
+            <a th:href="@{/}">
+                Home
+            </a>
 
-      <div class="filter-chips" id="filterChips">
-        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-        <button type="button" class="filter-chip" data-filter="pubblico">Biblioteche Pubbliche</button>
-        <button type="button" class="filter-chip" data-filter="wifi">Con WiFi</button>
-        <button type="button" class="filter-chip" data-filter="area-computer">Area Computer</button>
-        <button type="button" class="filter-chip" data-filter="area-bambini">Area Bambini</button>
-        <button type="button" class="filter-chip" data-filter="sempre-aperto">Sempre Aperto</button>
-        <button type="button" class="filter-chip" data-filter="accessibile">Accessibili</button>
-      </div>
-    </div>
-  </section>
+            <i class="fa-solid fa-chevron-right"></i>
 
-  <!-- Form di filtri: invia query GET a /biblioteche/filtri -->
-  <section class="section">
-    <div class="container">
-      <form th:action="@{/biblioteche/filtri}" method="get" class="biblioteche-filter-form" id="bibliotecheFilterForm">
-        <div class="biblioteche-filter-row">
-          <input type="text" name="nome" placeholder="Cerca per nome" id="nomeInput" />
+            <span>
+                Biblioteche
+            </span>
 
-          <!-- Input nascosti per i filtri booleani -->
-          <input type="hidden" name="pubblico" id="pubblicoInput" />
-          <input type="hidden" name="wifi" id="wifiInput" />
-          <input type="hidden" name="areaComputer" id="areaComputerInput" />
-          <input type="hidden" name="areaBambini" id="areaBambiniInput" />
-          <input type="hidden" name="sempreAperto" id="sempreApertoInput" />
+        </nav>
 
-          <!-- Select per accessibilità -->
-          <select name="accessibilita" id="accessibilitaInput">
-            <option value="">Accessibilità</option>
-            <option value="COMPLETA">Totale</option>
-            <option value="PARZIALE">Parziale</option>
-            <option value="NON_ACCESSIBILE">Non accessibile</option>
-          </select>
 
-          <button type="submit" class="btn-search">Cerca</button>
+        <!-- Titolo -->
+        <h1 class="page-intro__title">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            Biblioteche di Torino
+
+        </h1>
+
+
+        <!-- Descrizione -->
+        <p class="page-intro__desc">
+
+            Scopri le biblioteche di Torino:
+            spazi dedicati alla lettura, allo studio e alla cultura.
+
+            <span th:if="${risultati != null}"
+                  th:text="${risultati.totalElements} + ' biblioteche'">
+                0 biblioteche
+            </span>
+
+        </p>
+
+
+        <!-- Ricerca live -->
+        <div class="biblioteche-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="bibliotecheSearchInput"
+                placeholder="Cerca una biblioteca per nome...">
+
         </div>
-      </form>
-    </div>
-  </section>
 
-  <!-- 1. BIBLIOTECHE PUBBLICHE -->
-<section class="section biblioteca-category" id="pubbliche">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-users"></i> Biblioteche Pubbliche</h2>
-    <div class="biblioteca-grid">
-      <a th:each="biblioteca : ${biblioPubbliche}"
-         th:href="@{'/biblioteche/' + ${biblioteca.id}}"
-         class="biblioteca-card" href="#">
-        <span class="biblioteca-card__icon">
-          <i class="fa-solid fa-book"></i>
-        </span>
-        <span class="biblioteca-card__body">
-          <span class="biblioteca-card__title" th:text="${biblioteca.nome}">Nome biblioteca</span>
-          <span class="biblioteca-card__desc" th:text="${biblioteca.descrizione}">Descrizione breve</span>
-        </span>
-        <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
-      </a>
+
+        <!-- Chips -->
+        <div class="filter-chips"
+             id="filterChips">
+
+            <button
+                type="button"
+                class="filter-chip active"
+                data-filter="all">
+                Tutte
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="pubblico">
+                Biblioteche pubbliche
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="wifi">
+                Con WiFi
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="area-computer">
+                Area computer
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="area-bambini">
+                Area bambini
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="sempre-aperto">
+                Sempre aperte
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="accessibile">
+                Accessibili
+            </button>
+
+        </div>
+
     </div>
-  </div>
+
 </section>
 
-<!-- 2. CON WIFI -->
-<section class="section biblioteca-category" id="wifi">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-wifi"></i> Con WiFi Gratuito</h2>
-    <div class="biblioteca-grid">
-      <a th:each="biblioteca : ${biblioWifi}"
-         th:href="@{'/biblioteche/' + ${biblioteca.id}}"
-         class="biblioteca-card" href="#">
-        <span class="biblioteca-card__icon">
-          <i class="fa-solid fa-wifi"></i>
-        </span>
-        <span class="biblioteca-card__body">
-          <span class="biblioteca-card__title" th:text="${biblioteca.nome}">Nome biblioteca</span>
-          <span class="biblioteca-card__desc" th:text="${biblioteca.descrizione}">Descrizione breve</span>
-        </span>
-        <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- 3. CON AREA COMPUTER -->
-<section class="section biblioteca-category" id="area-computer">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-computer"></i> Con Area Computer</h2>
-    <div class="biblioteca-grid">
-      <a th:each="biblioteca : ${biblioComputer}"
-         th:href="@{'/biblioteche/' + ${biblioteca.id}}"
-         class="biblioteca-card" href="#">
-        <span class="biblioteca-card__icon">
-          <i class="fa-solid fa-computer"></i>
-        </span>
-        <span class="biblioteca-card__body">
-          <span class="biblioteca-card__title" th:text="${biblioteca.nome}">Nome biblioteca</span>
-          <span class="biblioteca-card__desc" th:text="${biblioteca.descrizione}">Descrizione breve</span>
-        </span>
-        <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
-      </a>
-    </div>
-  </div>
-</section>
+<!-- ==========================================================================
+     FILTRI
+     ========================================================================== -->
 
-<!-- 4. CON AREA BAMBINI -->
-<section class="section biblioteca-category" id="area-bambini">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-child"></i> Con Area Bambini</h2>
-    <div class="biblioteca-grid">
-      <a th:each="biblioteca : ${biblioBambini}"
-         th:href="@{'/biblioteche/' + ${biblioteca.id}}"
-         class="biblioteca-card" href="#">
-        <span class="biblioteca-card__icon">
-          <i class="fa-solid fa-child"></i>
-        </span>
-        <span class="biblioteca-card__body">
-          <span class="biblioteca-card__title" th:text="${biblioteca.nome}">Nome biblioteca</span>
-          <span class="biblioteca-card__desc" th:text="${biblioteca.descrizione}">Descrizione breve</span>
-        </span>
-        <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
-      </a>
-    </div>
-  </div>
-</section>
+<section class="section">
 
-<!-- 5. SEMPRE APERTO -->
-<section class="section biblioteca-category" id="sempre-aperto">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-clock"></i> Sempre Aperto (24/24)</h2>
-    <div class="biblioteca-grid">
-      <a th:each="biblioteca : ${biblio24h}"
-         th:href="@{'/biblioteche/' + ${biblioteca.id}}"
-         class="biblioteca-card" href="#">
-        <span class="biblioteca-card__icon">
-          <i class="fa-solid fa-clock"></i>
-        </span>
-        <span class="biblioteca-card__body">
-          <span class="biblioteca-card__title" th:text="${biblioteca.nome}">Nome biblioteca</span>
-          <span class="biblioteca-card__desc" th:text="${biblioteca.descrizione}">Descrizione breve</span>
-        </span>
-        <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- 6. ACCESSIBILI -->
-<section class="section biblioteca-category" id="accessibile">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-wheelchair"></i> Completamente Accessibili</h2>
-    <div class="biblioteca-grid">
-      <a th:each="biblioteca : ${biblioAccessibili}"
-         th:href="@{'/biblioteche/' + ${biblioteca.id}}"
-         class="biblioteca-card" href="#">
-        <span class="biblioteca-card__icon">
-          <i class="fa-solid fa-wheelchair"></i>
-        </span>
-        <span class="biblioteca-card__body">
-          <span class="biblioteca-card__title" th:text="${biblioteca.nome}">Nome biblioteca</span>
-          <span class="biblioteca-card__desc" th:text="${biblioteca.descrizione}">Descrizione breve</span>
-        </span>
-        <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-  <!-- Risultati biblioteche -->
-  <section class="section">
     <div class="container">
-      <!-- Messaggio se non ci sono risultati -->
-      <div th:if="${risultati.isEmpty()}" class="no-results">
-        <p>Nessuna biblioteca trovata con questi criteri.</p>
-      </div>
 
-      <!-- Griglia biblioteche -->
-      <div th:if="${!risultati.isEmpty()}" class="biblioteche-grid">
-        <a th:each="biblioteca : ${risultati.content}"
-           th:href="@{'/biblioteche/' + ${biblioteca.id}}"
-           class="biblioteca-card" href="#">
-          
-          <span class="biblioteca-card__icon">
-            <i class="fa-solid fa-book"></i>
-          </span>
+        <form
+            th:action="@{/biblioteche/filtri}"
+            method="get"
+            class="biblioteche-filter-form"
+            id="bibliotecheFilterForm">
 
-          <span class="biblioteca-card__body">
-            <span class="biblioteca-card__title" th:text="${biblioteca.nome}">Nome biblioteca</span>
-            <span class="biblioteca-card__desc" th:text="${biblioteca.descrizione}">Descrizione breve</span>
+            <div class="biblioteche-filter-row">
 
-            <!-- Badge per i filtri -->
-            <div class="biblioteca-card__badges">
-              <span th:if="${biblioteca.pubblico}" class="badge badge--pubblico">
-                <i class="fa-solid fa-users"></i> Pubblica
-              </span>
-              <span th:if="${biblioteca.wifi}" class="badge badge--wifi">
-                <i class="fa-solid fa-wifi"></i> WiFi
-              </span>
-              <span th:if="${biblioteca.areaComputer}" class="badge badge--computer">
-                <i class="fa-solid fa-computer"></i> Computer
-              </span>
-              <span th:if="${biblioteca.areaBambini}" class="badge badge--bambini">
-                <i class="fa-solid fa-child"></i> Bambini
-              </span>
-              <span th:if="${biblioteca.sempreAperto}" class="badge badge--24h">
-                <i class="fa-solid fa-clock"></i> 24/24
-              </span>
+
+                <!-- Nome -->
+                <input
+                    type="text"
+                    name="nome"
+                    id="nomeInput"
+                    placeholder="Cerca per nome">
+
+
+                <!-- Hidden usati dal tuo biblioteche.js -->
+
+                <input
+                    type="hidden"
+                    name="pubblico"
+                    id="pubblicoInput">
+
+                <input
+                    type="hidden"
+                    name="wifi"
+                    id="wifiInput">
+
+                <input
+                    type="hidden"
+                    name="areaComputer"
+                    id="areaComputerInput">
+
+                <input
+                    type="hidden"
+                    name="areaBambini"
+                    id="areaBambiniInput">
+
+                <input
+                    type="hidden"
+                    name="sempreAperto"
+                    id="sempreApertoInput">
+
+
+                <!-- Accessibilità -->
+                <select
+                    name="accessibilita"
+                    id="accessibilitaInput">
+
+                    <option value="">
+                        Tutte le accessibilità
+                    </option>
+
+                    <option value="TOTALE">
+                        Totale
+                    </option>
+
+                    <option value="PARZIALE">
+                        Parziale
+                    </option>
+
+                    <option value="NON_ACCESSIBILE">
+                        Non accessibile
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="submit"
+                    class="btn-search">
+
+                    Cerca
+
+                </button>
+
             </div>
-          </span>
 
-          <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
-        </a>
-      </div>
+        </form>
+
     </div>
-  </section>
 
-  <!-- Script esterno -->
-  <script th:src="@{/js/biblioteche.js}"></script>
+</section>
+
+
+<!-- ==========================================================================
+     BIBLIOTECHE PUBBLICHE
+     ========================================================================== -->
+
+<section
+    class="section biblioteca-category"
+    id="pubbliche"
+    th:if="${biblioPubbliche != null && !#lists.isEmpty(biblioPubbliche)}">
+
+    <div class="container">
+
+        <h2 class="section__title">
+
+            <i class="fa-solid fa-building-columns"></i>
+
+            Biblioteche pubbliche
+
+        </h2>
+
+
+        <div class="biblioteca-grid">
+
+            <a
+                th:each="biblioteca : ${biblioPubbliche}"
+                th:href="@{'/biblioteche/' + ${biblioteca.id}}"
+                class="biblioteca-card">
+
+                <span class="biblioteca-card__icon">
+
+                    <i class="fa-solid fa-book"></i>
+
+                </span>
+
+
+                <span class="biblioteca-card__body">
+
+                    <span
+                        class="biblioteca-card__title"
+                        th:text="${biblioteca.nome}">
+                        Nome biblioteca
+                    </span>
+
+                    <span
+                        class="biblioteca-card__desc"
+                        th:text="${biblioteca.descrizione}">
+                        Descrizione breve
+                    </span>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================================
+     WIFI
+     ========================================================================== -->
+
+<section
+    class="section biblioteca-category"
+    id="wifi"
+    th:if="${biblioWifi != null && !#lists.isEmpty(biblioWifi)}">
+
+    <div class="container">
+
+        <h2 class="section__title">
+
+            <i class="fa-solid fa-wifi"></i>
+
+            Con WiFi gratuito
+
+        </h2>
+
+
+        <div class="biblioteca-grid">
+
+            <a
+                th:each="biblioteca : ${biblioWifi}"
+                th:href="@{'/biblioteche/' + ${biblioteca.id}}"
+                class="biblioteca-card">
+
+                <span class="biblioteca-card__icon">
+
+                    <i class="fa-solid fa-wifi"></i>
+
+                </span>
+
+
+                <span class="biblioteca-card__body">
+
+                    <span
+                        class="biblioteca-card__title"
+                        th:text="${biblioteca.nome}">
+                        Nome biblioteca
+                    </span>
+
+                    <span
+                        class="biblioteca-card__desc"
+                        th:text="${biblioteca.descrizione}">
+                        Descrizione breve
+                    </span>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================================
+     AREA COMPUTER
+     ========================================================================== -->
+
+<section
+    class="section biblioteca-category"
+    id="area-computer"
+    th:if="${biblioComputer != null && !#lists.isEmpty(biblioComputer)}">
+
+    <div class="container">
+
+        <h2 class="section__title">
+
+            <i class="fa-solid fa-computer"></i>
+
+            Con area computer
+
+        </h2>
+
+
+        <div class="biblioteca-grid">
+
+            <a
+                th:each="biblioteca : ${biblioComputer}"
+                th:href="@{'/biblioteche/' + ${biblioteca.id}}"
+                class="biblioteca-card">
+
+                <span class="biblioteca-card__icon">
+
+                    <i class="fa-solid fa-computer"></i>
+
+                </span>
+
+
+                <span class="biblioteca-card__body">
+
+                    <span
+                        class="biblioteca-card__title"
+                        th:text="${biblioteca.nome}">
+                        Nome biblioteca
+                    </span>
+
+                    <span
+                        class="biblioteca-card__desc"
+                        th:text="${biblioteca.descrizione}">
+                        Descrizione breve
+                    </span>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================================
+     AREA BAMBINI
+     ========================================================================== -->
+
+<section
+    class="section biblioteca-category"
+    id="area-bambini"
+    th:if="${biblioBambini != null && !#lists.isEmpty(biblioBambini)}">
+
+    <div class="container">
+
+        <h2 class="section__title">
+
+            <i class="fa-solid fa-child-reaching"></i>
+
+            Con area bambini
+
+        </h2>
+
+
+        <div class="biblioteca-grid">
+
+            <a
+                th:each="biblioteca : ${biblioBambini}"
+                th:href="@{'/biblioteche/' + ${biblioteca.id}}"
+                class="biblioteca-card">
+
+                <span class="biblioteca-card__icon">
+
+                    <i class="fa-solid fa-child-reaching"></i>
+
+                </span>
+
+
+                <span class="biblioteca-card__body">
+
+                    <span
+                        class="biblioteca-card__title"
+                        th:text="${biblioteca.nome}">
+                        Nome biblioteca
+                    </span>
+
+                    <span
+                        class="biblioteca-card__desc"
+                        th:text="${biblioteca.descrizione}">
+                        Descrizione breve
+                    </span>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================================
+     SEMPRE APERTE
+     ========================================================================== -->
+
+<section
+    class="section biblioteca-category"
+    id="sempre-aperto"
+    th:if="${biblio24h != null && !#lists.isEmpty(biblio24h)}">
+
+    <div class="container">
+
+        <h2 class="section__title">
+
+            <i class="fa-solid fa-clock"></i>
+
+            Sempre aperte
+
+        </h2>
+
+
+        <div class="biblioteca-grid">
+
+            <a
+                th:each="biblioteca : ${biblio24h}"
+                th:href="@{'/biblioteche/' + ${biblioteca.id}}"
+                class="biblioteca-card">
+
+                <span class="biblioteca-card__icon">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </span>
+
+
+                <span class="biblioteca-card__body">
+
+                    <span
+                        class="biblioteca-card__title"
+                        th:text="${biblioteca.nome}">
+                        Nome biblioteca
+                    </span>
+
+                    <span
+                        class="biblioteca-card__desc"
+                        th:text="${biblioteca.descrizione}">
+                        Descrizione breve
+                    </span>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================================
+     ACCESSIBILI
+     ========================================================================== -->
+
+<section
+    class="section biblioteca-category"
+    id="accessibile"
+    th:if="${biblioAccessibili != null && !#lists.isEmpty(biblioAccessibili)}">
+
+    <div class="container">
+
+        <h2 class="section__title">
+
+            <i class="fa-solid fa-wheelchair"></i>
+
+            Completamente accessibili
+
+        </h2>
+
+
+        <div class="biblioteca-grid">
+
+            <a
+                th:each="biblioteca : ${biblioAccessibili}"
+                th:href="@{'/biblioteche/' + ${biblioteca.id}}"
+                class="biblioteca-card">
+
+                <span class="biblioteca-card__icon">
+
+                    <i class="fa-solid fa-wheelchair"></i>
+
+                </span>
+
+
+                <span class="biblioteca-card__body">
+
+                    <span
+                        class="biblioteca-card__title"
+                        th:text="${biblioteca.nome}">
+                        Nome biblioteca
+                    </span>
+
+                    <span
+                        class="biblioteca-card__desc"
+                        th:text="${biblioteca.descrizione}">
+                        Descrizione breve
+                    </span>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================================
+     RISULTATI DEL FORM
+     ========================================================================== -->
+
+<section
+    class="section biblioteca-category"
+    th:if="${risultati != null}">
+
+    <div class="container">
+
+        <h2 class="section__title">
+
+            <i class="fa-solid fa-book"></i>
+
+            Tutte le biblioteche
+
+        </h2>
+
+
+        <div
+            class="biblioteca-grid"
+            th:if="${!risultati.isEmpty()}">
+
+            <a
+                th:each="biblioteca : ${risultati.content}"
+                th:href="@{'/biblioteche/' + ${biblioteca.id}}"
+                class="biblioteca-card">
+
+                <span class="biblioteca-card__icon">
+
+                    <i class="fa-solid fa-book"></i>
+
+                </span>
+
+
+                <span class="biblioteca-card__body">
+
+                    <span
+                        class="biblioteca-card__title"
+                        th:text="${biblioteca.nome}">
+                        Nome biblioteca
+                    </span>
+
+                    <span
+                        class="biblioteca-card__desc"
+                        th:text="${biblioteca.descrizione}">
+                        Descrizione breve
+                    </span>
+
+
+                    <span class="biblioteca-card__badges">
+
+                        <span
+                            class="badge"
+                            th:if="${biblioteca.pubblico}">
+
+                            <i class="fa-solid fa-building-columns"></i>
+
+                            Pubblica
+
+                        </span>
+
+
+                        <span
+                            class="badge"
+                            th:if="${biblioteca.wifi}">
+
+                            <i class="fa-solid fa-wifi"></i>
+
+                            WiFi
+
+                        </span>
+
+
+                        <span
+                            class="badge"
+                            th:if="${biblioteca.areaComputer}">
+
+                            <i class="fa-solid fa-computer"></i>
+
+                            Computer
+
+                        </span>
+
+
+                        <span
+                            class="badge"
+                            th:if="${biblioteca.areaBambini}">
+
+                            <i class="fa-solid fa-child-reaching"></i>
+
+                            Bambini
+
+                        </span>
+
+                    </span>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right biblioteca-card__arrow"></i>
+
+            </a>
+
+        </div>
+
+
+        <!-- EMPTY STATE -->
+        <p
+            class="biblioteca-empty-state"
+            th:if="${risultati.isEmpty()}">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            Nessuna biblioteca trovata.
+            Prova con un altro filtro.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+
+<!-- ==========================================================================
+     JS
+     ========================================================================== -->
+
+<script th:src="@{/js/biblioteche.js}" defer></script>
+
 
 </body>
 
