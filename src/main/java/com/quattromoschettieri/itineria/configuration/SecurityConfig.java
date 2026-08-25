@@ -9,55 +9,54 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
+
             .authorizeHttpRequests(auth -> auth
 
+
                 // =====================================================
-                // PAGINE PUBBLICHE
+                // RISORSE STATICHE
                 // =====================================================
 
-                .requestMatchers(
-                    "/",
-                    "/index.html",
-                    "/contattaci.html",
-                    "/faq.html",
-                    "/supporto.html"
-                ).permitAll()
-
-                // Risorse statiche
                 .requestMatchers(
                     "/css/**",
                     "/js/**",
-                    "/images/**"
+                    "/images/**",
+                    "/favicon.ico"
                 ).permitAll()
 
 
+
                 // =====================================================
-                // AUTENTICAZIONE
+                // LOGIN / REGISTRAZIONE
                 // =====================================================
 
                 .requestMatchers(
                     "/accedi",
-                    "/registrazione"
-                ).anonymous()
+                    "/registrazione",
+                    "/login"
+                ).permitAll()
 
-                .requestMatchers(HttpMethod.POST, "/utenti")
-                    .anonymous()
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/utenti"
+                ).permitAll()
 
-                .requestMatchers("/login")
-                    .anonymous()
 
 
                 // =====================================================
@@ -65,7 +64,12 @@ public class SecurityConfig {
                 // =====================================================
 
                 .requestMatchers("/utente/**")
-                    .hasAnyRole("USER", "MANAGER", "ADMIN")
+                    .hasAnyRole(
+                        "USER",
+                        "MANAGER",
+                        "ADMIN"
+                    )
+
 
 
                 // =====================================================
@@ -73,7 +77,12 @@ public class SecurityConfig {
                 // =====================================================
 
                 .requestMatchers("/documenti/**")
-                    .hasAnyRole("USER", "MANAGER", "ADMIN")
+                    .hasAnyRole(
+                        "USER",
+                        "MANAGER",
+                        "ADMIN"
+                    )
+
 
 
                 // =====================================================
@@ -81,7 +90,12 @@ public class SecurityConfig {
                 // =====================================================
 
                 .requestMatchers("/api/utenti/**")
-                    .hasAnyRole("USER", "MANAGER", "ADMIN")
+                    .hasAnyRole(
+                        "USER",
+                        "MANAGER",
+                        "ADMIN"
+                    )
+
 
 
                 // =====================================================
@@ -94,154 +108,45 @@ public class SecurityConfig {
                     "/api/recensioni/**"
                 ).permitAll()
 
+
                 // Creazione
                 .requestMatchers(
                     HttpMethod.POST,
                     "/api/recensioni/**"
-                ).hasAnyRole("USER", "MANAGER", "ADMIN")
+                ).hasAnyRole(
+                    "USER",
+                    "MANAGER",
+                    "ADMIN"
+                )
+
 
                 // Modifica
                 .requestMatchers(
                     HttpMethod.PUT,
                     "/api/recensioni/**"
-                ).hasAnyRole("USER", "MANAGER", "ADMIN")
+                ).hasAnyRole(
+                    "USER",
+                    "MANAGER",
+                    "ADMIN"
+                )
+
 
                 // Eliminazione
                 .requestMatchers(
                     HttpMethod.DELETE,
                     "/api/recensioni/**"
-                ).hasAnyRole("USER", "MANAGER", "ADMIN")
+                ).hasAnyRole(
+                    "USER",
+                    "MANAGER",
+                    "ADMIN"
+                )
 
-
-                // =====================================================
-                // LUOGHI DI INTERESSE
-                // =====================================================
-
-                // -------------------------
-                // LETTURA PUBBLICA
-                // -------------------------
-
-                .requestMatchers(
-                    HttpMethod.GET,
-                    "/biblioteche/**",
-                    "/musei/**",
-                    "/ristoranti/**",
-                    "/locali/**",
-                    "/zoneVerdi/**"
-                ).permitAll()
-
-
-                // -------------------------
-                // CREAZIONE
-                // -------------------------
-
-                // Il MANAGER può creare un luogo.
-                // Il service assegnerà il manager autenticato
-                // come proprietario del luogo.
-                .requestMatchers(
-                    HttpMethod.POST,
-                    "/biblioteche/**",
-                    "/musei/**",
-                    "/ristoranti/**",
-                    "/locali/**",
-                    "/zoneVerdi/**"
-                ).hasAnyRole("MANAGER", "ADMIN")
-
-
-                // -------------------------
-                // MODIFICA
-                // -------------------------
-
-                // MANAGER e ADMIN possono modificare.
-                // Il service deve verificare che il MANAGER
-                // sia effettivamente il manager del luogo.
-                .requestMatchers(
-                    HttpMethod.PUT,
-                    "/biblioteche/**",
-                    "/musei/**",
-                    "/ristoranti/**",
-                    "/locali/**",
-                    "/zoneVerdi/**"
-                ).hasAnyRole("MANAGER", "ADMIN")
-
-
-                // -------------------------
-                // ELIMINAZIONE
-                // -------------------------
-
-                .requestMatchers(
-                    HttpMethod.POST,
-                    "/biblioteche/*/delete",
-                    "/musei/*/delete",
-                    "/ristoranti/*/delete",
-                    "/locali/*/delete",
-                    "/zoneVerdi/*/delete"
-                ).hasAnyRole("MANAGER", "ADMIN")
-
-
-                // =====================================================
-                // EVENTI
-                // =====================================================
-
-                // Consultazione pubblica
-                .requestMatchers(
-                    HttpMethod.GET,
-                    "/eventi/**"
-                ).permitAll()
-
-                // Per ora SOLO ADMIN può creare eventi
-                .requestMatchers(
-                    HttpMethod.POST,
-                    "/eventi/**"
-                ).hasRole("ADMIN")
-
-                // SOLO ADMIN può modificare eventi
-                .requestMatchers(
-                    HttpMethod.PUT,
-                    "/eventi/**"
-                ).hasRole("ADMIN")
-
-                // SOLO ADMIN può eliminare eventi
-                .requestMatchers(
-                    HttpMethod.POST,
-                    "/eventi/*/delete"
-                ).hasRole("ADMIN")
-
-
-                // =====================================================
-                // CITTÀ
-                // =====================================================
-
-                // Le città possono essere consultate pubblicamente
-                .requestMatchers(
-                    HttpMethod.GET,
-                    "/citta/**"
-                ).permitAll()
-
-                // La gestione delle città è dell'ADMIN
-                .requestMatchers(
-                    HttpMethod.POST,
-                    "/citta/**"
-                ).hasRole("ADMIN")
-
-                .requestMatchers(
-                    HttpMethod.PUT,
-                    "/citta/**"
-                ).hasRole("ADMIN")
-
-                .requestMatchers(
-                    HttpMethod.DELETE,
-                    "/citta/**"
-                ).hasRole("ADMIN")
 
 
                 // =====================================================
                 // GESTIONE UTENTI - ADMIN
                 // =====================================================
 
-                // L'ADMIN può gestire gli utenti.
-                // L'endpoint POST /utenti per la registrazione
-                // è già stato gestito sopra come anonymous.
                 .requestMatchers(
                     HttpMethod.GET,
                     "/utenti/**"
@@ -258,12 +163,146 @@ public class SecurityConfig {
                 ).hasRole("ADMIN")
 
 
+
+                // =====================================================
+                // CREAZIONE / MODIFICA LUOGHI
+                // =====================================================
+
+                .requestMatchers(
+                    HttpMethod.POST,
+
+                    "/biblioteche/**",
+                    "/musei/**",
+                    "/ristoranti/**",
+                    "/locali/**",
+                    "/zoneVerdi/**",
+                    "/parchi/**"
+                ).hasAnyRole(
+                    "MANAGER",
+                    "ADMIN"
+                )
+
+
+                .requestMatchers(
+                    HttpMethod.PUT,
+
+                    "/biblioteche/**",
+                    "/musei/**",
+                    "/ristoranti/**",
+                    "/locali/**",
+                    "/zoneVerdi/**",
+                    "/parchi/**"
+                ).hasAnyRole(
+                    "MANAGER",
+                    "ADMIN"
+                )
+
+
+                .requestMatchers(
+                    HttpMethod.DELETE,
+
+                    "/biblioteche/**",
+                    "/musei/**",
+                    "/ristoranti/**",
+                    "/locali/**",
+                    "/zoneVerdi/**",
+                    "/parchi/**"
+                ).hasAnyRole(
+                    "MANAGER",
+                    "ADMIN"
+                )
+
+
+
+                // =====================================================
+                // EVENTI - MODIFICA SOLO ADMIN
+                // =====================================================
+
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/eventi/**"
+                ).hasRole("ADMIN")
+
+
+                .requestMatchers(
+                    HttpMethod.PUT,
+                    "/eventi/**"
+                ).hasRole("ADMIN")
+
+
+                .requestMatchers(
+                    HttpMethod.DELETE,
+                    "/eventi/**"
+                ).hasRole("ADMIN")
+
+
+
+                // =====================================================
+                // CITTÀ - MODIFICA SOLO ADMIN
+                // =====================================================
+
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/citta/**"
+                ).hasRole("ADMIN")
+
+
+                .requestMatchers(
+                    HttpMethod.PUT,
+                    "/citta/**"
+                ).hasRole("ADMIN")
+
+
+                .requestMatchers(
+                    HttpMethod.DELETE,
+                    "/citta/**"
+                ).hasRole("ADMIN")
+
+
+
+                // =====================================================
+                // TUTTE LE PAGINE VISUALIZZABILI SONO PUBBLICHE
+                // =====================================================
+
+                /*
+                 * Questo comprende:
+                 *
+                 * /
+                 * /eventi
+                 * /contatti
+                 * /biblioteche
+                 * /musei
+                 * /ristoranti
+                 * /locali
+                 * /parchi
+                 * /zoneVerdi
+                 * /luoghi/...
+                 * /faq
+                 * ecc.
+                 *
+                 * Quindi navigare nel sito NON richiede login.
+                 */
+
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/**"
+                ).permitAll()
+
+
+
                 // =====================================================
                 // DEFAULT
                 // =====================================================
 
+                /*
+                 * Tutte le altre richieste non previste
+                 * vengono bloccate.
+                 */
+
                 .anyRequest().denyAll()
+
             )
+
 
 
             // =========================================================
@@ -271,14 +310,28 @@ public class SecurityConfig {
             // =========================================================
 
             .formLogin(form -> form
+
                 .loginPage("/accedi")
+
                 .loginProcessingUrl("/login")
+
                 .usernameParameter("email")
+
                 .passwordParameter("password")
-                .defaultSuccessUrl("/utente", true)
-                .failureUrl("/accedi?errore=true")
+
+                .defaultSuccessUrl(
+                    "/utente",
+                    true
+                )
+
+                .failureUrl(
+                    "/accedi?errore=true"
+                )
+
                 .permitAll()
+
             )
+
 
 
             // =========================================================
@@ -286,11 +339,17 @@ public class SecurityConfig {
             // =========================================================
 
             .logout(logout -> logout
+
                 .logoutUrl("/logout")
+
                 .logoutSuccessUrl("/")
+
                 .permitAll()
+
             );
+
 
         return http.build();
     }
+
 }
