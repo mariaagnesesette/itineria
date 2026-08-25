@@ -33,9 +33,9 @@ public class SecurityConfig {
                 .requestMatchers(
                     "/",
                     "/index.html",
-                    "/contattaci.html",
-                    "/faq.html",
-                    "/supporto.html"
+                    "/supporto",
+                    "/faq",
+                    "/contattaci"
                 ).permitAll()
 
                 // Risorse statiche
