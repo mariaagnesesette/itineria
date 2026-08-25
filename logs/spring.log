@@ -22172,3 +22172,309 @@ Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (usi
 	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:73) ~[flyway-core-12.4.0.jar:na]
 	... 27 common frames omitted
 
+2026-08-25T14:47:38.882+02:00  INFO 44228 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Starting ItineriaApplication using Java 21.0.11 with PID 44228 (/Users/giuliabalaban/itineria_recuperato/itineria/target/classes started by giuliabalaban in /Users/giuliabalaban/itineria_recuperato/itineria)
+2026-08-25T14:47:38.887+02:00  INFO 44228 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-08-25T14:47:38.976+02:00  INFO 44228 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-08-25T14:47:38.977+02:00  INFO 44228 --- [itineria] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-08-25T14:47:39.841+02:00  INFO 44228 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-25T14:47:39.929+02:00  INFO 44228 --- [itineria] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 12 JPA repository interfaces.
+2026-08-25T14:47:40.636+02:00  INFO 44228 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-08-25T14:47:40.661+02:00  INFO 44228 --- [itineria] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-25T14:47:40.661+02:00  INFO 44228 --- [itineria] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-25T14:47:40.703+02:00  INFO 44228 --- [itineria] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1726 ms
+2026-08-25T14:47:40.953+02:00  INFO 44228 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-25T14:47:41.165+02:00  INFO 44228 --- [itineria] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76e81371
+2026-08-25T14:47:41.166+02:00  INFO 44228 --- [itineria] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-25T14:47:41.198+02:00  INFO 44228 --- [itineria] [restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true (MySQL 9.7)
+2026-08-25T14:47:41.283+02:00  WARN 44228 --- [itineria] [restartedMain] o.f.c.internal.database.base.Database    : Using MySQL 9.7 which is newer than the version Flyway has been verified with. The latest verified version of MySQL is 9.4.
+2026-08-25T14:47:41.351+02:00  INFO 44228 --- [itineria] [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.039s)
+2026-08-25T14:47:41.370+02:00  INFO 44228 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema `itineria`: 2
+2026-08-25T14:47:41.374+02:00  INFO 44228 --- [itineria] [restartedMain] o.f.core.internal.command.DbMigrate      : Schema `itineria` is up to date. No migration necessary.
+2026-08-25T14:47:41.481+02:00  INFO 44228 --- [itineria] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-08-25T14:47:41.532+02:00  INFO 44228 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+2026-08-25T14:47:41.845+02:00  INFO 44228 --- [itineria] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-25T14:47:41.930+02:00  WARN 44228 --- [itineria] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-25T14:47:41.941+02:00  INFO 44228 --- [itineria] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/itineria?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 9.7
+	Default catalog/schema: itineria/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-25T14:47:43.772+02:00  INFO 44228 --- [itineria] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-25T14:47:43.867+02:00  INFO 44228 --- [itineria] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-25T14:47:43.969+02:00  INFO 44228 --- [itineria] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-08-25T14:47:45.282+02:00  WARN 44228 --- [itineria] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-25T14:47:45.400+02:00  INFO 44228 --- [itineria] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-08-25T14:47:45.552+02:00 DEBUG 44228 --- [itineria] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-25T14:47:45.592+02:00  INFO 44228 --- [itineria] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-08-25T14:47:45.928+02:00  INFO 44228 --- [itineria] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-08-25T14:47:45.937+02:00  INFO 44228 --- [itineria] [restartedMain] c.q.itineria.ItineriaApplication         : Started ItineriaApplication in 7.633 seconds (process running for 8.01)
+2026-08-25T14:48:55.825+02:00  INFO 44228 --- [itineria] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-25T14:48:55.827+02:00  INFO 44228 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-25T14:48:55.839+02:00  INFO 44228 --- [itineria] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2026-08-25T14:48:55.867+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /biblioteche
+2026-08-25T14:48:55.894+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /biblioteche
+2026-08-25T14:48:56.087+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_1.accessibilita,
+        b1_1.id_citta,
+        b1_1.created_at,
+        b1_1.descrizione,
+        b1_1.email,
+        b1_1.indirizzo,
+        b1_1.link_sito,
+        b1_1.id_manager,
+        b1_1.nome,
+        b1_1.numero_telefono,
+        b1_1.sempre_aperto,
+        b1_1.tipo,
+        b1_1.updated_at,
+        b1_1.version,
+        b1_0.area_bambini,
+        b1_0.area_computer,
+        b1_0.pubblico,
+        b1_0.wifi 
+    from
+        biblioteche b1_0 
+    join
+        luoghi_interesse b1_1 
+            on b1_0.id=b1_1.id 
+    limit
+        ?, ?
+2026-08-25T14:48:56.089+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:INTEGER) <- [0]
+2026-08-25T14:48:56.090+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [20]
+2026-08-25T14:48:56.152+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.created_at,
+        c1_0.descrizione,
+        c1_0.nome,
+        c1_0.regione,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        citta c1_0 
+    where
+        c1_0.id=?
+2026-08-25T14:48:56.152+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [1]
+2026-08-25T14:48:56.198+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_1.accessibilita,
+        b1_1.id_citta,
+        b1_1.created_at,
+        b1_1.descrizione,
+        b1_1.email,
+        b1_1.indirizzo,
+        b1_1.link_sito,
+        b1_1.id_manager,
+        b1_1.nome,
+        b1_1.numero_telefono,
+        b1_1.sempre_aperto,
+        b1_1.tipo,
+        b1_1.updated_at,
+        b1_1.version,
+        b1_0.area_bambini,
+        b1_0.area_computer,
+        b1_0.pubblico,
+        b1_0.wifi 
+    from
+        biblioteche b1_0 
+    join
+        luoghi_interesse b1_1 
+            on b1_0.id=b1_1.id 
+    where
+        b1_0.pubblico=? 
+    limit
+        ?, ?
+2026-08-25T14:48:56.199+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T14:48:56.199+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T14:48:56.199+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T14:48:56.209+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_1.accessibilita,
+        b1_1.id_citta,
+        b1_1.created_at,
+        b1_1.descrizione,
+        b1_1.email,
+        b1_1.indirizzo,
+        b1_1.link_sito,
+        b1_1.id_manager,
+        b1_1.nome,
+        b1_1.numero_telefono,
+        b1_1.sempre_aperto,
+        b1_1.tipo,
+        b1_1.updated_at,
+        b1_1.version,
+        b1_0.area_bambini,
+        b1_0.area_computer,
+        b1_0.pubblico,
+        b1_0.wifi 
+    from
+        biblioteche b1_0 
+    join
+        luoghi_interesse b1_1 
+            on b1_0.id=b1_1.id 
+    where
+        b1_0.wifi=? 
+    limit
+        ?, ?
+2026-08-25T14:48:56.211+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T14:48:56.211+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T14:48:56.212+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T14:48:56.228+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_1.accessibilita,
+        b1_1.id_citta,
+        b1_1.created_at,
+        b1_1.descrizione,
+        b1_1.email,
+        b1_1.indirizzo,
+        b1_1.link_sito,
+        b1_1.id_manager,
+        b1_1.nome,
+        b1_1.numero_telefono,
+        b1_1.sempre_aperto,
+        b1_1.tipo,
+        b1_1.updated_at,
+        b1_1.version,
+        b1_0.area_bambini,
+        b1_0.area_computer,
+        b1_0.pubblico,
+        b1_0.wifi 
+    from
+        biblioteche b1_0 
+    join
+        luoghi_interesse b1_1 
+            on b1_0.id=b1_1.id 
+    where
+        b1_0.area_computer=? 
+    limit
+        ?, ?
+2026-08-25T14:48:56.229+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T14:48:56.229+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T14:48:56.229+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T14:48:56.242+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_1.accessibilita,
+        b1_1.id_citta,
+        b1_1.created_at,
+        b1_1.descrizione,
+        b1_1.email,
+        b1_1.indirizzo,
+        b1_1.link_sito,
+        b1_1.id_manager,
+        b1_1.nome,
+        b1_1.numero_telefono,
+        b1_1.sempre_aperto,
+        b1_1.tipo,
+        b1_1.updated_at,
+        b1_1.version,
+        b1_0.area_bambini,
+        b1_0.area_computer,
+        b1_0.pubblico,
+        b1_0.wifi 
+    from
+        biblioteche b1_0 
+    join
+        luoghi_interesse b1_1 
+            on b1_0.id=b1_1.id 
+    where
+        b1_0.area_bambini=? 
+    limit
+        ?, ?
+2026-08-25T14:48:56.244+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T14:48:56.245+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T14:48:56.245+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T14:48:56.252+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_1.accessibilita,
+        b1_1.id_citta,
+        b1_1.created_at,
+        b1_1.descrizione,
+        b1_1.email,
+        b1_1.indirizzo,
+        b1_1.link_sito,
+        b1_1.id_manager,
+        b1_1.nome,
+        b1_1.numero_telefono,
+        b1_1.sempre_aperto,
+        b1_1.tipo,
+        b1_1.updated_at,
+        b1_1.version,
+        b1_0.area_bambini,
+        b1_0.area_computer,
+        b1_0.pubblico,
+        b1_0.wifi 
+    from
+        biblioteche b1_0 
+    join
+        luoghi_interesse b1_1 
+            on b1_0.id=b1_1.id 
+    where
+        b1_1.sempre_aperto=? 
+    limit
+        ?, ?
+2026-08-25T14:48:56.253+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:BOOLEAN) <- [true]
+2026-08-25T14:48:56.253+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T14:48:56.253+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T14:48:56.259+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        b1_0.id,
+        b1_1.accessibilita,
+        b1_1.id_citta,
+        b1_1.created_at,
+        b1_1.descrizione,
+        b1_1.email,
+        b1_1.indirizzo,
+        b1_1.link_sito,
+        b1_1.id_manager,
+        b1_1.nome,
+        b1_1.numero_telefono,
+        b1_1.sempre_aperto,
+        b1_1.tipo,
+        b1_1.updated_at,
+        b1_1.version,
+        b1_0.area_bambini,
+        b1_0.area_computer,
+        b1_0.pubblico,
+        b1_0.wifi 
+    from
+        biblioteche b1_0 
+    join
+        luoghi_interesse b1_1 
+            on b1_0.id=b1_1.id 
+    where
+        b1_1.accessibilita=? 
+    limit
+        ?, ?
+2026-08-25T14:48:56.260+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (1:ENUM) <- [COMPLETA]
+2026-08-25T14:48:56.260+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (2:INTEGER) <- [0]
+2026-08-25T14:48:56.261+02:00 TRACE 44228 --- [itineria] [http-nio-8080-exec-1] org.hibernate.orm.jdbc.bind              : binding parameter (3:INTEGER) <- [6]
+2026-08-25T14:48:56.753+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /css/biblioteche.css
+2026-08-25T14:48:56.755+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /css/biblioteche.css
+2026-08-25T14:48:56.753+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /css/style.css
+2026-08-25T14:48:56.758+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /css/style.css
+2026-08-25T14:48:56.801+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /js/biblioteche.js
+2026-08-25T14:48:56.802+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /js/biblioteche.js
+2026-08-25T14:48:56.802+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T14:48:56.819+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T14:48:56.823+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T14:48:56.827+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T14:48:56.829+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-25T14:48:56.833+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-25T14:48:56.842+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /accedi
+2026-08-25T14:48:56.877+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /accedi
+2026-08-25T14:48:56.877+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /accedi
+2026-08-25T14:48:56.902+02:00 DEBUG 44228 --- [itineria] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
