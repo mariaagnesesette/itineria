@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Locali — Itineria</title>
+  <link rel="stylesheet" th:href="@{/css/locali.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<section class="page-intro">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a th:href="@{/}">Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Locali</span>
+    </nav>
+    <h1>Locali, Bar e Caffeterie</h1>
+    <p>Scopri locali, bar e caffeterie con servizi come posti esterni, apertura serale e menu per celiaci.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form th:object="${localeDTO}" th:action="@{/locali/filtri}" method="get" class="locali-filter-form">
+      <div class="locali-filter-row">
+        <input type="text" th:field="*{nome}" placeholder="Cerca per nome">
+        <select th:field="*{tipoLocale}">
+          <option value="">Tutti i tipi</option>
+          <option th:each="t : ${T(com.quattromoschettieri.itineria.entities.locale.TipoLocale).values()}" th:value="${t}" th:text="${t}"></option>
+        </select>
+        <select th:field="*{fasciaPrezzo}">
+          <option value="">Fascia prezzo</option>
+          <option th:each="p : ${T(com.quattromoschettieri.itineria.entities.locale.FasciaPrezzoLocale).values()}" th:value="${p}" th:text="${p}"></option>
+        </select>
+        <label><input type="checkbox" th:field="*{aperturaSerale}"> Apertura serale</label>
+        <label><input type="checkbox" th:field="*{postiEsterni}"> Posti esterni</label>
+        <label><input type="checkbox" th:field="*{perCeliaci}"> Menu per celiaci</label>
+        <button type="submit" class="btn-search">Filtra</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Section anteprime -->
+<section class="section" th:if="${localiSerali != null}">
+  <div class="container">
+    <h2>Locali serali</h2>
+    <div class="card-grid">
+      <article th:each="l : ${localiSerali}" class="card">
+        <a th:href="@{/locali/{id}(id=${l.id})}">
+          <h3 th:text="${l.nome}">Nome locale</h3>
+          <p th:text="${l.descrizione}">Descrizione breve</p>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Lista completa / fallback -->
+<section class="section">
+  <div class="container">
+    <h2>Risultati</h2>
+    <div class="card-grid">
+      <article th:each="l : ${tuttiLocali}" class="card">
+        <a th:href="@{/locali/{id}(id=${l.id})}">
+          <h3 th:text="${l.nome}">Nome</h3>
+          <p th:text="${l.descrizione}">Breve</p>
+          <div class="meta">
+            <span th:if="${l.aperturaSerale}">Apertura serale</span>
+            <span th:if="${l.postiEsterni}"> • Posti esterni</span>
+            <span th:if="${l.perCeliaci}"> • Per celiaci</span>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>
