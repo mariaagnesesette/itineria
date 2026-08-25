@@ -38,7 +38,6 @@
       <h1 class="page-intro__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</h1>
       <p class="page-intro__desc">
         Spazi verdi, parchi cittadini e aree naturali da scoprire.
-        <span th:text="${parchi != null ? #lists.size(parchi) + ' luoghi' : '0 luoghi'}"> luoghi</span>
       </p>
 
       <div class="park-search">
@@ -112,12 +111,27 @@
             <span class="park-card__body">
               <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
               <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>
-              <span class="park-card__meta">
-                <span th:if="${parco.areaMq != null}"
-                  th:text="${#numbers.formatDecimal(parco.areaMq, 1, 'COMMA', 2, 'POINT')} + ' m²'"></span>
-                <span th:if="${parco.dogFriendly}"> • Dog friendly</span>
-                <span th:if="${parco.ristoro}"> • Ristoro</span>
-                <span th:if="${parco.ciclabile}"> • Ciclabile</span>
+              <span class="park-card__badges">
+                <span class="badge" th:if="${parco.areaMq != null}">
+                  <i class="fa-solid fa-ruler-combined"></i>
+                  <span th:text="${#numbers.formatDecimal(parco.areaMq, 1, 'COMMA', 2, 'POINT')} + ' m²'"></span>
+                </span>
+                <span class="badge" th:if="${parco.dogFriendly}">
+                  <i class="fa-solid fa-dog"></i>
+                  Dog friendly
+                </span>
+                <span class="badge" th:if="${parco.ristoro}">
+                  <i class="fa-solid fa-mug-saucer"></i>
+                  Ristoro
+                </span>
+                <span class="badge" th:if="${parco.ciclabile}">
+                  <i class="fa-solid fa-person-biking"></i>
+                  Ciclabile
+                </span>
+                <span class="badge" th:if="${parco.accessibilita != null}">
+                  <i class="fa-solid fa-wheelchair"></i>
+                  Accessibile
+                </span>
               </span>
             </span>
             <i class="fa-solid fa-arrow-right park-card__arrow"></i>
@@ -146,12 +160,27 @@
           <span class="park-card__body">
             <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
             <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>
-            <span class="park-card__meta">
-              <span th:if="${parco.areaMq != null}"
-                th:text="${#numbers.formatDecimal(parco.areaMq, 1, 'COMMA', 2, 'POINT')} + ' m²'"></span>
-              <span th:if="${parco.dogFriendly}"> • Dog friendly</span>
-              <span th:if="${parco.ristoro}"> • Ristoro</span>
-              <span th:if="${parco.ciclabile}"> • Ciclabile</span>
+            <span class="park-card__badges">
+              <span class="badge" th:if="${parco.areaMq != null}">
+                <i class="fa-solid fa-ruler-combined"></i>
+                <span th:text="${#numbers.formatDecimal(parco.areaMq, 1, 'COMMA', 2, 'POINT')} + ' m²'"></span>
+              </span>
+              <span class="badge" th:if="${parco.dogFriendly}">
+                <i class="fa-solid fa-dog"></i>
+                Dog friendly
+              </span>
+              <span class="badge" th:if="${parco.ristoro}">
+                <i class="fa-solid fa-mug-saucer"></i>
+                Ristoro
+              </span>
+              <span class="badge" th:if="${parco.ciclabile}">
+                <i class="fa-solid fa-person-biking"></i>
+                Ciclabile
+              </span>
+              <span class="badge" th:if="${parco.accessibilita != null}">
+                <i class="fa-solid fa-wheelchair"></i>
+                Accessibile
+              </span>
             </span>
           </span>
           <i class="fa-solid fa-arrow-right park-card__arrow"></i>

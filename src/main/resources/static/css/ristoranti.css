@@ -91,6 +91,31 @@
   color: var(--color-white);
 }
 
+.filter-divider {
+  width: 1px;
+  align-self: stretch;
+  background: #e2ded4;
+  margin: 0 2px;
+}
+
+.filter-chip--toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-chip__check {
+  font-size: 10px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.filter-chip--toggle.active .filter-chip__check {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .restaurant-category { padding: 40px 0 8px; scroll-margin-top: 100px; }
 
 .restaurant-grid {
@@ -161,10 +186,38 @@
 }
 
 .restaurant-card__desc {
-  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
   font-size: 12.5px;
   color: var(--color-text-gray);
   line-height: 1.5;
+}
+
+.restaurant-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  background: var(--color-white);
+  border: 1px solid #ded9d0;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-gray);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.badge i {
+  color: var(--color-accent);
+  font-size: 10px;
 }
 
 .restaurant-card__arrow {

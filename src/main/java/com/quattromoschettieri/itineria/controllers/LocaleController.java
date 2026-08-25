@@ -77,10 +77,14 @@ public class LocaleController {
                 risultati);
 
         model.addAttribute(
+                "tuttiLocali",
+                risultati.getContent());
+
+        model.addAttribute(
                 "localeDTO",
                 dto);
 
-        return "locali/lista";
+        return "luoghi_interesse/locali";
     }
 
     @GetMapping

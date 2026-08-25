@@ -96,11 +96,6 @@
             Scopri le biblioteche di Torino:
             spazi per leggere, studiare, lavorare e dedicarsi alla cultura.
 
-            <span th:if="${risultati != null}"
-                  th:text="${risultati.totalElements} + ' biblioteche'">
-                0 biblioteche
-            </span>
-
         </p>
 
 
@@ -201,7 +196,7 @@
                 data-filter="accessibile">
 
                 <i class="fa-solid fa-wheelchair"></i>
-                Accessibili
+                Accessibile
 
             </button>
 
@@ -424,6 +419,17 @@
                             <i class="fa-solid fa-clock"></i>
 
                             24/24
+
+                        </span>
+
+
+                        <span
+                            class="badge"
+                            th:if="${biblioteca.accessibilita != null}">
+
+                            <i class="fa-solid fa-wheelchair"></i>
+
+                            Accessibile
 
                         </span>
 

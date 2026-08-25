@@ -1,85 +1,190 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Locali — Itineria</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locali, Bar e Caffetterie di Torino — Itineria</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS del progetto -->
   <link rel="stylesheet" th:href="@{/css/locali.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<section class="page-intro">
-  <div class="container">
-    <nav class="breadcrumb">
-      <a th:href="@{/}">Home</a>
-      <i class="fa-solid fa-chevron-right"></i>
-      <span>Locali</span>
-    </nav>
-    <h1>Locali, Bar e Caffeterie</h1>
-    <p>Scopri locali, bar e caffeterie con servizi come posti esterni, apertura serale e menu per celiaci.</p>
-  </div>
-</section>
+  <!-- HEADER / NAVBAR (server-side fragment) -->
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<section class="section">
-  <div class="container">
-    <form th:object="${localeDTO}" th:action="@{/locali/filtri}" method="get" class="locali-filter-form">
-      <div class="locali-filter-row">
-        <input type="text" th:field="*{nome}" placeholder="Cerca per nome">
-        <select th:field="*{tipoLocale}">
-          <option value="">Tutti i tipi</option>
-          <option th:each="t : ${T(com.quattromoschettieri.itineria.entities.locale.TipoLocale).values()}" th:value="${t}" th:text="${t}"></option>
-        </select>
-        <select th:field="*{fasciaPrezzo}">
-          <option value="">Fascia prezzo</option>
-          <option th:each="p : ${T(com.quattromoschettieri.itineria.entities.locale.FasciaPrezzoLocale).values()}" th:value="${p}" th:text="${p}"></option>
-        </select>
-        <label><input type="checkbox" th:field="*{aperturaSerale}"> Apertura serale</label>
-        <label><input type="checkbox" th:field="*{postiEsterni}"> Posti esterni</label>
-        <label><input type="checkbox" th:field="*{perCeliaci}"> Menu per celiaci</label>
-        <button type="submit" class="btn-search">Filtra</button>
+  <!-- PAGE INTRO — Breadcrumb + titolo + ricerca locali -->
+  <section class="page-intro">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="breadcrumb">
+        <a th:href="@{/}">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Locali</span>
+      </nav>
+
+      <h1 class="page-intro__title"><i class="fa-solid fa-mug-hot"></i> Locali, Bar e Caffetterie</h1>
+      <p class="page-intro__desc">
+        Scopri locali, bar e caffetterie con servizi come posti esterni, apertura serale e menu per celiaci.
+      </p>
+
+      <div class="locali-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="localeSearchInput" placeholder="Cerca un locale per nome...">
       </div>
-    </form>
-  </div>
-</section>
 
-<!-- Section anteprime -->
-<section class="section" th:if="${localiSerali != null}">
-  <div class="container">
-    <h2>Locali serali</h2>
-    <div class="card-grid">
-      <article th:each="l : ${localiSerali}" class="card">
-        <a th:href="@{/locali/{id}(id=${l.id})}">
-          <h3 th:text="${l.nome}">Nome locale</h3>
-          <p th:text="${l.descrizione}">Descrizione breve</p>
-        </a>
-      </article>
+      <div class="filter-chips category-filters" id="filterChips">
+        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
+        <button type="button" class="filter-chip" data-filter="BAR">Bar</button>
+        <button type="button" class="filter-chip" data-filter="PUB">Pub</button>
+        <button type="button" class="filter-chip" data-filter="CAFFE">Caffè</button>
+        <button type="button" class="filter-chip" data-filter="COCKTAIL_BAR">Cocktail bar</button>
+        <button type="button" class="filter-chip" data-filter="ENOTECA">Enoteca</button>
+        <button type="button" class="filter-chip" data-filter="ALTRO">Altro</button>
+      </div>
+
+      <div class="filter-chips feature-filters">
+        <span class="filter-divider" aria-hidden="true"></span>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="serale">
+          <i class="fa-solid fa-check filter-chip__check"></i> Apertura serale
+        </button>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="esterni">
+          <i class="fa-solid fa-check filter-chip__check"></i> Posti esterni
+        </button>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="celiaci">
+          <i class="fa-solid fa-check filter-chip__check"></i> Per celiaci
+        </button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Lista completa / fallback -->
-<section class="section">
-  <div class="container">
-    <h2>Risultati</h2>
-    <div class="card-grid">
-      <article th:each="l : ${tuttiLocali}" class="card">
-        <a th:href="@{/locali/{id}(id=${l.id})}">
-          <h3 th:text="${l.nome}">Nome</h3>
-          <p th:text="${l.descrizione}">Breve</p>
-          <div class="meta">
-            <span th:if="${l.aperturaSerale}">Apertura serale</span>
-            <span th:if="${l.postiEsterni}"> • Posti esterni</span>
-            <span th:if="${l.perCeliaci}"> • Per celiaci</span>
-          </div>
+  <!-- RISULTATI -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title"><i class="fa-solid fa-mug-hot"></i> Tutti i locali</h2>
+      <div class="locale-grid">
+        <a th:each="locale : ${tuttiLocali}" th:href="@{/locali/{id}(id=${locale.id})}" class="locale-card"
+          th:attr="data-category=${locale.tipoLocale}, data-serale=${locale.aperturaSerale}, data-esterni=${locale.postiEsterni}, data-celiaci=${locale.perCeliaci}">
+          <span class="locale-card__icon"><i class="fa-solid fa-mug-hot"></i></span>
+          <span class="locale-card__body">
+            <span class="locale-card__title" th:text="${locale.nome}">Nome locale</span>
+            <span class="locale-card__desc" th:text="${locale.descrizione}">Descrizione breve</span>
+            <span class="locale-card__meta">
+              <span class="badge" th:if="${locale.aperturaSerale}">
+                <i class="fa-solid fa-moon"></i>
+                Apertura serale
+              </span>
+              <span class="badge" th:if="${locale.postiEsterni}">
+                <i class="fa-solid fa-umbrella-beach"></i>
+                Posti esterni
+              </span>
+              <span class="badge" th:if="${locale.perCeliaci}">
+                <i class="fa-solid fa-wheat-awn"></i>
+                Per celiaci
+              </span>
+              <span class="badge" th:if="${locale.accessibilita != null}">
+                <i class="fa-solid fa-wheelchair"></i>
+                Accessibile
+              </span>
+            </span>
+          </span>
+          <i class="fa-solid fa-arrow-right locale-card__arrow"></i>
         </a>
-      </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer th:replace="~{fragments/footer :: footer}"></footer>
+  <p class="locale-empty-state" id="localeEmptyState" th:if="${tuttiLocali == null || #lists.isEmpty(tuttiLocali)}">
+    <i class="fa-solid fa-magnifying-glass"></i> Nessun locale trovato. Prova con un altro filtro.
+  </p>
+
+  <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var categoryChips = Array.prototype.slice.call(
+        document.querySelectorAll('.category-filters .filter-chip')
+      );
+      var toggleChips = Array.prototype.slice.call(
+        document.querySelectorAll('.filter-chip--toggle')
+      );
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.locale-card'));
+      var searchInput = document.getElementById('localeSearchInput');
+      var emptyState = document.getElementById('localeEmptyState');
+      var activeFeatures = {};
+      var activeCategory = 'all';
+
+      function applyFilters() {
+        var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        var anyVisible = false;
+
+        cards.forEach(function (card) {
+          var titleEl = card.querySelector('.locale-card__title');
+          var title = titleEl ? titleEl.textContent.toLowerCase() : '';
+          var matchesQuery = query === '' || title.indexOf(query) !== -1;
+
+          var matchesCategory = activeCategory === 'all' ||
+            card.getAttribute('data-category') === activeCategory;
+
+          var matchesFeatures = Object.keys(activeFeatures).every(function (feature) {
+            return card.getAttribute('data-' + feature) === 'true';
+          });
+
+          var visible = matchesQuery && matchesCategory && matchesFeatures;
+          card.style.display = visible ? '' : 'none';
+          if (visible) anyVisible = true;
+        });
+
+        if (emptyState) emptyState.hidden = anyVisible;
+      }
+
+      categoryChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          categoryChips.forEach(function (c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+
+          activeCategory = chip.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+
+      toggleChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var feature = chip.getAttribute('data-feature');
+          var isActive = chip.classList.toggle('active');
+
+          if (isActive) {
+            activeFeatures[feature] = true;
+          } else {
+            delete activeFeatures[feature];
+          }
+
+          applyFilters();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', applyFilters);
+      }
+
+      applyFilters();
+    })();
+  </script>
 
 </body>
+
 </html>
