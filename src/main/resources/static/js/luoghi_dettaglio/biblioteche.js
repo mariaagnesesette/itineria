@@ -37,7 +37,7 @@ document.querySelectorAll('.filter-chip').forEach(chip => {
           document.getElementById('sempreApertoInput').value = 'true';
           break;
         case 'accessibile':
-          document.getElementById('accessibilitaInput').value = 'TOTALE';
+          document.getElementById('accessibilitaInput').value = 'COMPLETA';
           break;
       }
     }

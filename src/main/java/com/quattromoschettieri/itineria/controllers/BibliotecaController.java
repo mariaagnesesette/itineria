@@ -108,7 +108,7 @@ public class BibliotecaController {
 
         model.addAttribute("biblioteca", risultato);
 
-        return "luoghi_interesse/luoghi_dettaglio/bibliotecaDettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/bibliotecheDettaglio";
     }
 
     // ricerca per nome

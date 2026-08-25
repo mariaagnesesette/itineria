@@ -34,6 +34,15 @@ public class SecurityConfig {
                 // =====================================================
 
                 .requestMatchers(
+                    "/",
+                    "/index.html",
+                    "/supporto",
+                    "/faq",
+                    "/contattaci"
+                ).permitAll()
+
+                // Risorse statiche
+                .requestMatchers(
                     "/css/**",
                     "/js/**",
                     "/images/**",
@@ -56,7 +65,6 @@ public class SecurityConfig {
                     HttpMethod.POST,
                     "/utenti"
                 ).permitAll()
-
 
 
                 // =====================================================

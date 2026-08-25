@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,210 +9,209 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- CSS del progetto -->
-<link rel="stylesheet" th:href="@{/css/musei.css}">
-<link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/musei.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 
-<!-- HEADER / NAVBAR (server-side fragment) -->
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+  <!-- HEADER / NAVBAR (server-side fragment) -->
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<!-- PAGE INTRO — Breadcrumb + titolo + ricerca musei -->
-<section class="page-intro">
-  <div class="container">
-    <nav class="breadcrumb" aria-label="breadcrumb">
-      <a th:href="@{/}" href="index.html">Home</a>
-      <i class="fa-solid fa-chevron-right"></i>
-      <span>Musei</span>
-    </nav>
+  <!-- PAGE INTRO — Breadcrumb + titolo + ricerca musei -->
+  <section class="page-intro">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="breadcrumb">
+        <a th:href="@{/}" href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Musei</span>
+      </nav>
 
-    <h1 class="page-intro__title"><i class="fa-solid fa-landmark"></i> Musei di Torino</h1>
-    <p class="page-intro__desc">
-      Da Museo Egizio alle Residenze Reali UNESCO: collezioni da scoprire in città, organizzati per categoria.
-      <span th:text="${musei != null ? #lists.size(musei) + ' musei' : '0 musei'}"> musei</span>
-    </p>
+      <h1 class="page-intro__title"><i class="fa-solid fa-landmark"></i> Musei di Torino</h1>
+      <p class="page-intro__desc">
+        Da Museo Egizio alle Residenze Reali UNESCO: collezioni da scoprire in città, organizzati per categoria.
+        <span th:text="${musei != null ? #lists.size(musei) + ' musei' : '0 musei'}"> musei</span>
+      </p>
 
-    <div class="museum-search">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="museumSearchInput" placeholder="Cerca un museo per nome...">
-    </div>
-
-    <!-- Chips: genera dinamicamente le categorie se presenti -->
-    <div class="filter-chips" id="filterChips" th:if="${categorieMusei != null}">
-      <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-      <button type="button" th:each="categoria : ${categorieMusei}"
-              th:attr="data-filter=${categoria.id}"
-              th:text="${categoria.nome}"
-              class="filter-chip"></button>
-    </div>
-
-    <!-- Fallback chips statici -->
-    <div class="filter-chips" id="filterChips" th:if="${categorieMusei == null}">
-      <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-      <button type="button" class="filter-chip" data-filter="grandi-musei-principali">Grandi Musei</button>
-      <button type="button" class="filter-chip" data-filter="arte-fotografia-e-fondazioni-contemporanee">Arte e Fotografia</button>
-      <button type="button" class="filter-chip" data-filter="scienza-medicina-e-natura">Scienza e Natura</button>
-      <button type="button" class="filter-chip" data-filter="storia-memoria-e-sport">Storia e Sport</button>
-      <button type="button" class="filter-chip" data-filter="tecnica-industria-e-collezioni-tematiche">Tecnica e Industria</button>
-      <button type="button" class="filter-chip" data-filter="religione-e-arte-sacra">Arte Sacra</button>
-      <button type="button" class="filter-chip" data-filter="residenze-reali-e-dintorni">Residenze Reali</button>
-    </div>
-  </div>
-</section>
-
-<!-- Form di filtri: bind a MuseoDTO passato dal Controller (th:object) -->
-<section class="section">
-  <div class="container">
-    <form th:action="@{/musei/filtri}" th:object="${museoDTO}" method="get" class="musei-filter-form">
-      <div class="musei-filter-row">
-        <input type="text" th:field="*{nome}" placeholder="Cerca per nome" />
-
-        <select th:field="*{tipologia}">
-          <option value="">Tutte le tipologie</option>
-          <option th:each="t : ${tipologieMuseo}" th:value="${t}" th:text="${t}"></option>
-        </select>
-
-        <input type="number" th:field="*{prezzoMin}" placeholder="Prezzo minimo" min="0" step="0.01">
-        <input type="number" th:field="*{prezzoMax}" placeholder="Prezzo massimo" min="0" step="0.01">
-
-        <label class="musei-filter-check">
-          <input type="checkbox" th:field="*{guidaPrenotabile}"> Guida prenotabile
-        </label>
-        <label class="musei-filter-check">
-          <input type="checkbox" th:field="*{barInterno}"> Bar interno
-        </label>
-
-        <button type="submit" class="btn-search">Cerca</button>
+      <div class="museum-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="museumSearchInput" placeholder="Cerca un museo per nome...">
       </div>
-    </form>
-  </div>
-</section>
 
-<!-- RENDER DINAMICO: cicla le categorie e le card dei musei -->
-<section class="section" th:if="${categorieMusei != null}">
-  <div class="container">
-    <div th:each="categoria : ${categorieMusei}" class="museum-category" th:id="${categoria.id}">
-      <h2 class="section__title">
-        <i th:class="'fa-solid ' + ${categoria.icona}"></i>
-        <span th:text="${categoria.nome}">Nome categoria</span>
-      </h2>
+      <!-- Chips: genera dinamicamente le categorie se presenti -->
+      <div class="filter-chips" id="filterChips" th:if="${categorieMusei != null}">
+        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
+        <button type="button" th:each="categoria : ${categorieMusei}" th:attr="data-filter=${categoria.id}"
+          th:text="${categoria.nome}" class="filter-chip"></button>
+      </div>
+
+      <!-- Fallback chips statici -->
+      <div class="filter-chips" id="filterChips" th:if="${categorieMusei == null}">
+        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
+        <button type="button" class="filter-chip" data-filter="grandi-musei-principali">Grandi Musei</button>
+        <button type="button" class="filter-chip" data-filter="arte-fotografia-e-fondazioni-contemporanee">Arte e
+          Fotografia</button>
+        <button type="button" class="filter-chip" data-filter="scienza-medicina-e-natura">Scienza e Natura</button>
+        <button type="button" class="filter-chip" data-filter="storia-memoria-e-sport">Storia e Sport</button>
+        <button type="button" class="filter-chip" data-filter="tecnica-industria-e-collezioni-tematiche">Tecnica e
+          Industria</button>
+        <button type="button" class="filter-chip" data-filter="religione-e-arte-sacra">Arte Sacra</button>
+        <button type="button" class="filter-chip" data-filter="residenze-reali-e-dintorni">Residenze Reali</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form di filtri: bind a MuseoDTO passato dal Controller (th:object) -->
+  <section class="section">
+    <div class="container">
+      <form th:action="@{/musei/filtri}" th:object="${museoDTO}" method="get" class="musei-filter-form">
+        <div class="musei-filter-row">
+          <input type="hidden" th:field="*{nome}" id="nomeMuseoInput">
+
+          <select th:field="*{tipologia}">
+            <option value="">Tutte le tipologie</option>
+            <option th:each="t : ${tipologieMuseo}" th:value="${t}" th:text="${t}"></option>
+          </select>
+
+          <input type="number" th:field="*{prezzoMin}" placeholder="Prezzo minimo" min="0" step="0.01">
+          <input type="number" th:field="*{prezzoMax}" placeholder="Prezzo massimo" min="0" step="0.01">
+
+          <label class="musei-filter-check">
+            <input type="checkbox" th:field="*{guidaPrenotabile}"> Guida prenotabile
+          </label>
+          <label class="musei-filter-check">
+            <input type="checkbox" th:field="*{barInterno}"> Bar interno
+          </label>
+
+          <button type="submit" class="btn-search">Cerca</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- RENDER DINAMICO: cicla le categorie e le card dei musei -->
+  <section class="section" th:if="${categorieMusei != null}">
+    <div class="container">
+      <div th:each="categoria : ${categorieMusei}" class="museum-category" th:id="${categoria.id}">
+        <h2 class="section__title">
+          <i th:class="'fa-solid ' + ${categoria.icona}"></i>
+          <span th:text="${categoria.nome}">Nome categoria</span>
+        </h2>
+        <div class="museum-grid">
+          <a th:each="museo : ${categoria.musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card">
+            <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
+            <span class="museum-card__body">
+              <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
+              <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
+              <span class="museum-card__meta">
+                <span th:if="${museo.prezzo != null}"
+                  th:text="${#numbers.formatDecimal(museo.prezzo, 1, 'COMMA', 2, 'POINT')} + ' €'"></span>
+                <span th:if="${museo.guidaPrenotabile}"> • Guida</span>
+                <span th:if="${museo.barInterno}"> • Bar</span>
+              </span>
+            </span>
+            <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Se non ci sono categorie dinamiche, mostra elenco piatto dei musei se fornito -->
+  <section class="section" th:if="${categorieMusei == null}">
+    <div class="container">
+      <h2 class="section__title"><i class="fa-solid fa-landmark"></i> Tutti i musei</h2>
       <div class="museum-grid">
-        <a th:each="museo : ${categoria.musei}"
-           th:href="@{'/musei/' + ${museo.slug}}"
-           th:classappend="${museo.preferito} ? ' museum-card--featured' : ''"
-           class="museum-card">
-          <span class="museum-card__badge" th:if="${museo.preferito}">Preferito</span>
-          <span class="museum-card__icon"><i th:class="'fa-solid ' + ${museo.icona}"></i></span>
+        <a th:each="museo : ${musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card">
+          <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
           <span class="museum-card__body">
             <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
             <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
-            <span class="museum-card__meta">
-              <span th:if="${museo.prezzo != null}" th:text="${#numbers.formatDecimal(museo.prezzo, 1, 'COMMA', 2, 'POINT')} + ' €'"></span>
-              <span th:if="${museo.guidaPrenotabile}"> • Guida</span>
-              <span th:if="${museo.barInterno}"> • Bar</span>
-            </span>
           </span>
           <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Se non ci sono categorie dinamiche, mostra elenco piatto dei musei se fornito -->
-<section class="section" th:if="${categorieMusei == null}">
-  <div class="container">
-    <h2 class="section__title"><i class="fa-solid fa-landmark"></i> Tutti i musei</h2>
-    <div class="museum-grid">
-      <a th:each="museo : ${musei}" th:href="@{'/musei/' + ${museo.slug}}"
-         th:classappend="${museo.preferito} ? ' museum-card--featured' : ''"
-         class="museum-card">
-        <span class="museum-card__badge" th:if="${museo.preferito}">Preferito</span>
-        <span class="museum-card__icon"><i th:class="'fa-solid ' + ${museo.icona}"></i></span>
-        <span class="museum-card__body">
-          <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
-          <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
-        </span>
-        <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
-      </a>
-    </div>
-  </div>
-</section>
+  <p class="museum-empty-state" id="museumEmptyState"
+    th:if="${(musei == null || #lists.isEmpty(musei)) && (categorieMusei == null || #lists.isEmpty(categorieMusei))}">
+    <i class="fa-solid fa-magnifying-glass"></i> Nessun museo trovato. Prova con un altro filtro.
+  </p>
 
-<p class="museum-empty-state" id="museumEmptyState" th:if="${(musei == null || #lists.isEmpty(musei)) && (categorieMusei == null || #lists.isEmpty(categorieMusei))}">
-  <i class="fa-solid fa-magnifying-glass"></i> Nessun museo trovato. Prova con un altro filtro.
-</p>
-
-<!-- FOOTER -->
-<footer th:replace="~{fragments/footer :: footer}"></footer>
-<!-- JAVASCRIPT — filtri per categoria + ricerca live
+  <!-- FOOTER -->
+  <footer th:replace="~{fragments/footer :: footer}"></footer>
+  <!-- JAVASCRIPT — filtri per categoria + ricerca live
      Suggerimento: spostare in /js/musei.js e includere con <script th:src="@{/js/musei.js}" defer></script>
 -->
-<script>
-(function () {
-  "use strict";
+  <script>
+    (function () {
+      "use strict";
 
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
-  var categories = Array.prototype.slice.call(document.querySelectorAll('.museum-category'));
-  var searchInput = document.getElementById('museumSearchInput');
-  var emptyState = document.getElementById('museumEmptyState');
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
+      var categories = Array.prototype.slice.call(document.querySelectorAll('.museum-category'));
+      var searchInput = document.getElementById('museumSearchInput');
+      var emptyState = document.getElementById('museumEmptyState');
 
-  if (chips.length) {
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        chips.forEach(function (c) { c.classList.remove('active'); });
-        chip.classList.add('active');
-        var target = chip.getAttribute('data-filter');
-        categories.forEach(function (cat) {
-          cat.style.display = (target === 'all' || cat.id === target) ? '' : 'none';
+      if (chips.length) {
+        chips.forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            chips.forEach(function (c) { c.classList.remove('active'); });
+            chip.classList.add('active');
+            var target = chip.getAttribute('data-filter');
+            categories.forEach(function (cat) {
+              cat.style.display = (target === 'all' || cat.id === target) ? '' : 'none';
+            });
+            if (target !== 'all') {
+              var el = document.getElementById(target);
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
         });
-        if (target !== 'all') {
-          var el = document.getElementById(target);
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  }
-
-  if (searchInput) {
-    searchInput.addEventListener('input', function () {
-      var query = searchInput.value.trim().toLowerCase();
-      var anyVisible = false;
-
-      categories.forEach(function (cat) { cat.style.display = ''; });
-      if (query.length > 0) {
-        chips.forEach(function (c) { c.classList.remove('active'); });
-      } else {
-        if (chips[0]) chips[0].classList.add('active');
       }
 
-      categories.forEach(function (cat) {
-        var cards = Array.prototype.slice.call(cat.querySelectorAll('.museum-card'));
-        var visibleCount = 0;
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          var query = searchInput.value.trim().toLowerCase();
+          var anyVisible = false;
 
-        cards.forEach(function (card) {
-          var titleEl = card.querySelector('.museum-card__title');
-          var title = titleEl ? titleEl.textContent.toLowerCase() : '';
-          var match = query === '' || title.indexOf(query) !== -1;
-          card.style.display = match ? '' : 'none';
-          if (match) visibleCount++;
+          categories.forEach(function (cat) { cat.style.display = ''; });
+          if (query.length > 0) {
+            chips.forEach(function (c) { c.classList.remove('active'); });
+          } else {
+            if (chips[0]) chips[0].classList.add('active');
+          }
+
+          categories.forEach(function (cat) {
+            var cards = Array.prototype.slice.call(cat.querySelectorAll('.museum-card'));
+            var visibleCount = 0;
+
+            cards.forEach(function (card) {
+              var titleEl = card.querySelector('.museum-card__title');
+              var title = titleEl ? titleEl.textContent.toLowerCase() : '';
+              var match = query === '' || title.indexOf(query) !== -1;
+              card.style.display = match ? '' : 'none';
+              if (match) visibleCount++;
+            });
+
+            cat.style.display = visibleCount > 0 ? '' : 'none';
+            if (visibleCount > 0) anyVisible = true;
+          });
+
+          if (emptyState) emptyState.hidden = (query === '' || anyVisible);
         });
-
-        cat.style.display = visibleCount > 0 ? '' : 'none';
-        if (visibleCount > 0) anyVisible = true;
-      });
-
-      if (emptyState) emptyState.hidden = (query === '' || anyVisible);
-    });
-  }
-})();
-</script>
+      }
+    })();
+  </script>
 
 </body>
+
 </html>

@@ -9,7 +9,7 @@
 <body>
 
     <header>
-        <a href="../index.html" class="logo">ITINERARIA</a>
+        <a th:href="@{/}" class="logo">ITINERARIA</a>
         <nav>
             <a th:href="@{/}" href="../index.html">Home</a>
             <a href="#">Luoghi d'interesse</a>
@@ -49,6 +49,6 @@
         </p>
     </footer>
 
-    <script src="/js/accedi.js" defer></script>
+    <script th:src="@{/js/utente/accedi.js}" defer></script>
 </body>
 </html>

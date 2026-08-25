@@ -1,70 +1,560 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="utf-8">
-  <title th:text="${evento.nome} + ' | Itineria'">Evento</title>
-  <link rel="stylesheet" th:href="@{/css/eventi.css}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${evento.nome} + ' | Itineria'">
+        Evento | Itineria
+    </title>
+
+    <!-- CSS globale -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- CSS specifico del dettaglio evento -->
+    <link rel="stylesheet" th:href="@{/css/eventoDettaglio.css}">
 </head>
+
 <body>
+
+<!-- ==========================================================
+     NAVBAR
+     ========================================================== -->
+
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
+
+<!-- ==========================================================
+     CONTENUTO PRINCIPALE
+     ========================================================== -->
+
 <main class="detail-wrapper" th:fragment="eventoDetailFragment">
-  <section class="hero">
-    <h1 th:text="${evento.nome}">Titolo</h1>
-    <p th:text="${evento.descrizione}">Sottotitolo</p>
-    <div class="meta">
-      <span th:if="${evento.luogoInteresse != null}" th:text="${evento.luogoInteresse.citta.nome}"></span>
-      <div th:if="${!#lists.isEmpty(evento.dateEvento)}" th:each="d : ${evento.dateEvento}">
-        <span th:text="${#temporals.format(d.dataInizio,'dd/MM/yyyy')}"></span>
-        <span th:if="${d.dataFine != null && !d.dataFine.equals(d.dataInizio)}"> - <span th:text="${#temporals.format(d.dataFine,'dd/MM/yyyy')}"></span></span>
-        <span> — </span>
-        <span th:text="${#temporals.format(d.oraInizio,'HH:mm') + ' - ' + #temporals.format(d.oraFine,'HH:mm')}"></span>
-      </div>
-    </div>
-  </section>
 
-  <section class="card">
-    <h2>Descrizione</h2>
-    <div th:utext="${evento.descrizione}"></div>
-  </section>
 
-  <section class="card">
-    <h3>Informazioni rapide</h3>
-    <ul>
-      <li th:if="${evento.tipologiaEvento != null}"><strong>Tipo:</strong> <span th:text="${evento.tipologiaEvento}">Tipo</span></li>
-      <li th:if="${evento.pubblicoEvento != null}"><strong>Pubblico:</strong> <span th:text="${evento.pubblicoEvento}">Pubblico</span></li>
-      <li>
-        <strong>Prezzo:</strong>
-        <span th:text="${evento.prezzo != null ? #numbers.formatDecimal(evento.prezzo, 1, 'COMMA', 2, 'POINT') + ' €' : 'Gratis'}">Prezzo</span>
-      </li>
-      <li>
-        <strong>Fascia prezzo:</strong>
-        <span th:text="${evento.prezzo == null ? 'N/A' : (evento.prezzo < 10 ? 'Economico' : (evento.prezzo < 30 ? 'Medio' : 'Costoso'))}">
-          Fascia
-        </span>
-      </li>
-      <li th:if="${evento.prenotazione}"><strong>Richiede prenotazione</strong></li>
-    </ul>
-  </section>
+    <!-- ======================================================
+         HERO EVENTO
+         ====================================================== -->
 
-  <section class="card">
-    <h3>Dove si trova</h3>
-    <div th:if="${evento.luogoInteresse != null}">
-      <p>
-        <strong th:text="${evento.luogoInteresse.nome}">Nome luogo</strong>
-        <span th:if="${evento.luogoInteresse.indirizzo != null}"> — <span th:text="${evento.luogoInteresse.indirizzo}">Indirizzo</span></span>
-        <span th:if="${evento.luogoInteresse.citta != null}"> (<span th:text="${evento.luogoInteresse.citta.nome}">Città</span>)</span>
-      </p>
-      <div th:if="${evento.luogoInteresse.link}">
-        <a th:href="${evento.luogoInteresse.link}" target="_blank" rel="noopener noreferrer">Sito luogo</a>
-      </div>
-    </div>
-    <div th:unless="${evento.luogoInteresse != null}">
-      <p>Luogo non disponibile.</p>
-    </div>
-  </section>
+    <section class="event-detail-hero">
+
+        <div class="event-detail-hero__content">
+
+            <!-- Tipologia evento -->
+            <span
+                    class="event-detail-badge"
+                    th:if="${evento.tipologiaEvento != null}">
+
+                <i class="fa-solid fa-calendar-star"></i>
+
+                <span th:text="${evento.tipologiaEvento}">
+                    Evento
+                </span>
+
+            </span>
+
+
+            <!-- Titolo -->
+            <h1 th:text="${evento.nome}">
+                Nome evento
+            </h1>
+
+
+            <!-- Meta principali -->
+            <div class="event-detail-meta">
+
+                <!-- Luogo / città -->
+                <span th:if="${evento.luogoInteresse != null
+                              && evento.luogoInteresse.citta != null}">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span th:text="${evento.luogoInteresse.citta.nome}">
+                        Città
+                    </span>
+
+                </span>
+
+
+                <!-- Pubblico -->
+                <span th:if="${evento.pubblicoEvento != null}">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span th:text="${evento.pubblicoEvento}">
+                        Pubblico
+                    </span>
+
+                </span>
+
+
+                <!-- Prenotazione -->
+                <span th:if="${evento.prenotazione}">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    Prenotazione richiesta
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         GRIGLIA PRINCIPALE
+         ====================================================== -->
+
+    <section class="event-detail-grid">
+
+
+        <!-- ==================================================
+             COLONNA PRINCIPALE
+             ================================================== -->
+
+        <div>
+
+
+            <!-- DESCRIZIONE -->
+            <article class="event-detail-card">
+
+                <h2>
+                    <i class="fa-solid fa-align-left"></i>
+                    Descrizione
+                </h2>
+
+                <div
+                        class="event-description"
+                        th:text="${evento.descrizione}">
+                    Descrizione dell'evento
+                </div>
+
+            </article>
+
+
+
+            <!-- DATE -->
+            <article class="event-detail-card">
+
+                <h2>
+                    <i class="fa-regular fa-calendar"></i>
+                    Date e orari
+                </h2>
+
+
+                <div
+                        class="event-dates"
+                        th:if="${evento.dateEvento != null
+                                && !#lists.isEmpty(evento.dateEvento)}">
+
+
+                    <div
+                            class="event-date"
+                            th:each="d : ${evento.dateEvento}">
+
+
+                        <!-- Icona -->
+                        <div class="event-date__icon">
+
+                            <i class="fa-regular fa-calendar-days"></i>
+
+                        </div>
+
+
+                        <!-- Informazioni data -->
+                        <div class="event-date__content">
+
+                            <span class="event-date__day">
+
+                                <!-- Data iniziale -->
+                                <span
+                                        th:text="${#temporals.format(d.dataInizio,'dd/MM/yyyy')}">
+                                    25/08/2026
+                                </span>
+
+
+                                <!-- Data finale -->
+                                <span
+                                        th:if="${d.dataFine != null
+                                                && !d.dataFine.equals(d.dataInizio)}">
+
+                                    -
+                                    <span
+                                            th:text="${#temporals.format(d.dataFine,'dd/MM/yyyy')}">
+                                        27/08/2026
+                                    </span>
+
+                                </span>
+
+                            </span>
+
+
+                            <!-- Orario -->
+                            <span class="event-date__time">
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                <span
+                                        th:text="${#temporals.format(d.oraInizio,'HH:mm')
+                                        + ' - '
+                                        + #temporals.format(d.oraFine,'HH:mm')}">
+                                    18:00 - 20:00
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Nessuna data -->
+                <div
+                        class="event-empty"
+                        th:if="${evento.dateEvento == null
+                                || #lists.isEmpty(evento.dateEvento)}">
+
+                    <i class="fa-solid fa-calendar-xmark"></i>
+
+                    <span>
+                        Date e orari non disponibili.
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- LUOGO -->
+            <article class="event-detail-card">
+
+                <h2>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Dove si trova
+                </h2>
+
+
+                <div
+                        class="event-location"
+                        th:if="${evento.luogoInteresse != null}">
+
+
+                    <!-- Nome luogo -->
+                    <div class="event-location__name">
+
+                        <i class="fa-solid fa-landmark"></i>
+
+                        <span th:text="${evento.luogoInteresse.nome}">
+                            Nome luogo
+                        </span>
+
+                    </div>
+
+
+                    <!-- Indirizzo -->
+                    <div
+                            class="event-location__address"
+                            th:if="${evento.luogoInteresse.indirizzo != null}">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <span th:text="${evento.luogoInteresse.indirizzo}">
+                            Indirizzo
+                        </span>
+
+                    </div>
+
+
+                    <!-- Città -->
+                    <div
+                            class="event-location__city"
+                            th:if="${evento.luogoInteresse.citta != null}">
+
+                        <i class="fa-solid fa-city"></i>
+
+                        <span
+                                th:text="${evento.luogoInteresse.citta.nome}">
+                            Città
+                        </span>
+
+                    </div>
+
+
+                    <!-- Link sito -->
+                    <a
+                            class="event-location__link"
+                            th:if="${evento.luogoInteresse.link}"
+                            th:href="${evento.luogoInteresse.link}"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        Visita il sito del luogo
+
+                    </a>
+
+                </div>
+
+
+                <!-- Luogo non disponibile -->
+                <div
+                        class="event-empty"
+                        th:unless="${evento.luogoInteresse != null}">
+
+                    <i class="fa-solid fa-location-crosshairs"></i>
+
+                    <span>
+                        Luogo non disponibile.
+                    </span>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             SIDEBAR
+             ================================================== -->
+
+        <aside>
+
+
+            <!-- INFORMAZIONI RAPIDE -->
+            <article class="event-detail-card">
+
+                <h2>
+                    <i class="fa-solid fa-circle-info"></i>
+                    Informazioni
+                </h2>
+
+
+                <div class="event-info-list">
+
+
+                    <!-- TIPOLOGIA -->
+                    <div
+                            class="event-info-item"
+                            th:if="${evento.tipologiaEvento != null}">
+
+                        <div class="event-info-item__icon">
+
+                            <i class="fa-solid fa-shapes"></i>
+
+                        </div>
+
+                        <div class="event-info-item__content">
+
+                            <span class="event-info-item__label">
+                                Tipologia
+                            </span>
+
+                            <span
+                                    class="event-info-item__value"
+                                    th:text="${evento.tipologiaEvento}">
+                                Tipologia
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PUBBLICO -->
+                    <div
+                            class="event-info-item"
+                            th:if="${evento.pubblicoEvento != null}">
+
+                        <div class="event-info-item__icon">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+                        <div class="event-info-item__content">
+
+                            <span class="event-info-item__label">
+                                Pubblico
+                            </span>
+
+                            <span
+                                    class="event-info-item__value"
+                                    th:text="${evento.pubblicoEvento}">
+                                Pubblico
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PREZZO -->
+                    <div class="event-info-item">
+
+                        <div class="event-info-item__icon">
+
+                            <i class="fa-solid fa-euro-sign"></i>
+
+                        </div>
+
+                        <div class="event-info-item__content">
+
+                            <span class="event-info-item__label">
+                                Prezzo
+                            </span>
+
+                            <span
+                                    class="event-info-item__value"
+                                    th:if="${evento.prezzo != null}">
+
+                                <span
+                                        class="event-price"
+                                        th:text="${#numbers.formatDecimal(
+                                            evento.prezzo,
+                                            1,
+                                            'COMMA',
+                                            2,
+                                            'POINT'
+                                        ) + ' €'}">
+                                    10,00 €
+                                </span>
+
+                            </span>
+
+
+                            <span
+                                    class="event-info-item__value"
+                                    th:unless="${evento.prezzo != null}">
+
+                                <span class="event-price event-price--free">
+
+                                    <i class="fa-solid fa-gift"></i>
+
+                                    Gratis
+
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FASCIA PREZZO -->
+                    <div class="event-info-item">
+
+                        <div class="event-info-item__icon">
+
+                            <i class="fa-solid fa-chart-simple"></i>
+
+                        </div>
+
+                        <div class="event-info-item__content">
+
+                            <span class="event-info-item__label">
+                                Fascia di prezzo
+                            </span>
+
+                            <span
+                                    class="event-info-item__value"
+                                    th:text="${
+                                        evento.prezzo == null
+                                        ? 'N/A'
+                                        : (
+                                            evento.prezzo < 10
+                                            ? 'Economico'
+                                            : (
+                                                evento.prezzo < 30
+                                                ? 'Medio'
+                                                : 'Costoso'
+                                            )
+                                        )
+                                    }">
+
+                                Fascia
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PRENOTAZIONE -->
+                    <div
+                            class="event-info-item"
+                            th:if="${evento.prenotazione}">
+
+                        <div class="event-info-item__icon">
+
+                            <i class="fa-solid fa-ticket"></i>
+
+                        </div>
+
+                        <div class="event-info-item__content">
+
+                            <span class="event-info-item__label">
+                                Prenotazione
+                            </span>
+
+                            <span class="event-info-item__value">
+                                Richiesta
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- AVVISO PRENOTAZIONE -->
+                <div
+                        class="event-booking"
+                        th:if="${evento.prenotazione}">
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                    <span>
+                        Per partecipare è richiesta la prenotazione.
+                    </span>
+
+                </div>
+
+            </article>
+
+
+        </aside>
+
+    </section>
+
 </main>
 
+
+<!-- ==========================================================
+     FOOTER
+     ========================================================== -->
+
 <div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/js/eventoDettaglio.js}"></script>
+
 </body>
 </html>

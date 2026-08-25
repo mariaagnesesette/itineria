@@ -66,7 +66,7 @@ public class MuseoController {
     // Lista generica
     @GetMapping
     public String listMusei(Pageable pageable, Model model) {
-        Page<Museo> tuttiMusei = museoService.findAll(pageable);
+                Page<Museo> tuttiMusei = museoService.findAll(Pageable.unpaged());
         Pageable anteprime = PageRequest.of(0, 6);
 
         MuseoDTO dtoGuidati = new MuseoDTO();
@@ -127,7 +127,7 @@ public class MuseoController {
 
         model.addAttribute("museo", risultato);
 
-        return "musei/dettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/museoDettaglio";
     }
 
     // Ricerca per nome

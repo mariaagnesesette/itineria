@@ -85,7 +85,7 @@
 
         <div class="container">
 
-            <form th:action="@{/eventi/filtri}"
+            <form th:action="@{/eventi/search}"
                   th:object="${eventoDTO}"
                   method="get"
                   class="eventi-filter-form">
@@ -131,6 +131,7 @@
                     <!-- PREZZO MIN -->
                     <input type="number"
                            name="prezzoMinimo"
+                           th:value="${prezzoMinimo}"
                            placeholder="Prezzo minimo"
                            min="0"
                            step="0.01">
@@ -139,6 +140,7 @@
                     <!-- PREZZO MAX -->
                     <input type="number"
                            name="prezzoMassimo"
+                           th:value="${prezzoMassimo}"
                            placeholder="Prezzo massimo"
                            min="0"
                            step="0.01">
@@ -155,6 +157,7 @@
                     </label>
 
 
+                    <!-- CERCA -->
                     <button type="submit"
                             class="btn-search">
 
@@ -177,6 +180,7 @@
 
         <div class="container">
 
+            <!-- INTESTAZIONE RISULTATI -->
             <div class="section__heading">
 
                 <h2 class="section__title">
@@ -187,6 +191,8 @@
 
                 </h2>
 
+
+                <!-- NUMERO RISULTATI -->
                 <span th:if="${risultati != null}"
                       class="results-count">
 
@@ -202,7 +208,7 @@
 
 
             <!-- NESSUN RISULTATO -->
-            <div th:if="${eventi == null || #lists.isEmpty(eventi)}"
+            <div th:if="${risultati == null || risultati.isEmpty()}"
                  class="empty-state">
 
                 <i class="fa-solid fa-calendar-xmark"></i>
@@ -217,7 +223,7 @@
 
 
             <!-- GRIGLIA EVENTI -->
-            <div th:if="${eventi != null && !#lists.isEmpty(eventi)}"
+            <div th:if="${risultati != null && !risultati.isEmpty()}"
                  class="event-grid">
 
                 <a th:each="evento : ${eventi}"
@@ -236,17 +242,22 @@
                     <!-- CORPO -->
                     <div class="event-card__body">
 
+
                         <!-- TITOLO -->
                         <h3 class="event-card__title"
                             th:text="${evento.nome}">
+
                             Nome evento
+
                         </h3>
 
 
                         <!-- DESCRIZIONE -->
                         <p class="event-card__description"
                            th:text="${evento.descrizione}">
+
                             Descrizione evento
+
                         </p>
 
 
@@ -254,27 +265,33 @@
                         <span class="event-card__type"
                               th:if="${evento.tipologiaEvento != null}"
                               th:text="${evento.tipologiaEvento}">
+
                             Tipologia
+
                         </span>
 
 
                         <!-- DATE -->
                         <div class="event-card__dates"
-                             th:if="${evento.dateEvento != null && !#lists.isEmpty(evento.dateEvento)}">
+                             th:if="${evento.dateEvento != null
+                                     && !evento.dateEvento.isEmpty()}">
 
                             <div th:each="data : ${evento.dateEvento}"
                                  class="event-card__date">
 
                                 <i class="fa-solid fa-calendar"></i>
 
+
                                 <span th:text="${data.dataInizio}">
                                     01/01/2026
                                 </span>
+
 
                                 <span th:if="${data.dataFine != null
                                              && !data.dataFine.equals(data.dataInizio)}">
 
                                     -
+
                                     <span th:text="${data.dataFine}">
                                         02/01/2026
                                     </span>
@@ -302,7 +319,9 @@
                                     2,
                                     'POINT'
                                 )}">
+
                                     0,00
+
                                 </span>
 
                             </span>
@@ -346,8 +365,18 @@
             <div th:if="${risultati != null && risultati.totalPages > 1}"
                  class="pagination">
 
+
+                <!-- PAGINA PRECEDENTE -->
                 <a th:if="${risultati.hasPrevious()}"
-                   th:href="@{/eventi(page=${risultati.number - 1})}"
+                   th:href="@{/eventi/search(
+                       page=${risultati.number - 1},
+                       nome=${eventoDTO.nome},
+                       tipologiaEvento=${eventoDTO.tipologiaEvento},
+                       pubblicoEvento=${eventoDTO.pubblicoEvento},
+                       prenotazione=${eventoDTO.prenotazione},
+                       prezzoMinimo=${prezzoMinimo},
+                       prezzoMassimo=${prezzoMassimo}
+                   )}"
                    class="pagination__button">
 
                     <i class="fa-solid fa-chevron-left"></i>
@@ -355,13 +384,17 @@
                 </a>
 
 
+                <!-- PAGINA CORRENTE -->
                 <span class="pagination__current">
 
                     Pagina
+
                     <strong th:text="${risultati.number + 1}">
                         1
                     </strong>
+
                     di
+
                     <strong th:text="${risultati.totalPages}">
                         1
                     </strong>
@@ -369,8 +402,17 @@
                 </span>
 
 
+                <!-- PAGINA SUCCESSIVA -->
                 <a th:if="${risultati.hasNext()}"
-                   th:href="@{/eventi(page=${risultati.number + 1})}"
+                   th:href="@{/eventi/search(
+                       page=${risultati.number + 1},
+                       nome=${eventoDTO.nome},
+                       tipologiaEvento=${eventoDTO.tipologiaEvento},
+                       pubblicoEvento=${eventoDTO.pubblicoEvento},
+                       prenotazione=${eventoDTO.prenotazione},
+                       prezzoMinimo=${prezzoMinimo},
+                       prezzoMassimo=${prezzoMassimo}
+                   )}"
                    class="pagination__button">
 
                     <i class="fa-solid fa-chevron-right"></i>
@@ -390,4 +432,5 @@
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
+
 </html>
