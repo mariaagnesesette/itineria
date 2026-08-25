@@ -91,6 +91,7 @@ public class MuseoController {
                 museoService.search(dtoSempreAperti, anteprime).getContent());
         model.addAttribute("musei", tuttiMusei.getContent());
         model.addAttribute("risultati", tuttiMusei);
+        model.addAttribute("museoDTO", new MuseoDTO());
 
         return "luoghi_interesse/musei";
     }
