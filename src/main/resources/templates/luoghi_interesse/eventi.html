@@ -272,7 +272,7 @@
                                 </span>
 
                                 <span th:if="${data.dataFine != null
-                                             && data.dataFine != data.dataInizio}">
+                                             && !data.dataFine.equals(data.dataInizio)}">
 
                                     -
                                     <span th:text="${data.dataFine}">

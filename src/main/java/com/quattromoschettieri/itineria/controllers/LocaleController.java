@@ -110,8 +110,9 @@ public class LocaleController {
         model.addAttribute("localiSempreAperti",
                 localeService.search(dtoSempreAperti, anteprime).getContent());
         model.addAttribute("risultati", tuttiLocali);
+        model.addAttribute("localeDTO", new LocaleDTO());
 
-        return "locali/lista";
+        return "luoghi_interesse/locali";
     }
 
     @GetMapping("/{id}")
@@ -126,7 +127,7 @@ public class LocaleController {
                 "locale",
                 locale);
 
-        return "locali/dettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/luoghiDettaglio";
     }
 
     @GetMapping("/searchByNome/{nome}")
@@ -137,11 +138,11 @@ public class LocaleController {
 
         Page<Locale> risultati = localeService.findByNome(nome, pageable);
 
-        model.addAttribute(
-                "risultati",
-                risultati);
+        model.addAttribute("locali", risultati.getContent());
+        model.addAttribute("localiDTO", new LocaleDTO());
+        model.addAttribute("risultati", risultati);
 
-        return "locali/byNome";
+        return "luoghi_interesse/locali";
     }
 
     // UPDATE

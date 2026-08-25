@@ -2,7 +2,7 @@
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title th:text="${evento.titolo} + ' | Itineria'">Evento</title>
+  <title th:text="${evento.nome} + ' | Itineria'">Evento</title>
   <link rel="stylesheet" th:href="@{/css/eventi.css}">
 </head>
 <body>
@@ -10,15 +10,15 @@
 
 <main class="detail-wrapper" th:fragment="eventoDetailFragment">
   <section class="hero">
-    <h1 th:text="${evento.titolo}">Titolo</h1>
-    <p th:text="${evento.sottotitolo}">Sottotitolo</p>
+    <h1 th:text="${evento.nome}">Titolo</h1>
+    <p th:text="${evento.descrizione}">Sottotitolo</p>
     <div class="meta">
-      <span th:if="${evento.citta != null}" th:text="${evento.citta.nome}"></span>
+      <span th:if="${evento.luogoInteresse != null}" th:text="${evento.luogoInteresse.citta.nome}"></span>
       <div th:if="${!#lists.isEmpty(evento.dateEvento)}" th:each="d : ${evento.dateEvento}">
         <span th:text="${#temporals.format(d.dataInizio,'dd/MM/yyyy')}"></span>
-        <span th:if="${d.dataFine != null && d.dataFine != d.dataInizio}"> - <span th:text="${#temporals.format(d.dataFine,'dd/MM/yyyy')}"></span></span>
+        <span th:if="${d.dataFine != null && !d.dataFine.equals(d.dataInizio)}"> - <span th:text="${#temporals.format(d.dataFine,'dd/MM/yyyy')}"></span></span>
         <span> — </span>
-        <span th:text="${#temporals.format(d.oraInizio,'HH:mm')} + ' - ' + #temporals.format(d.oraFine,'HH:mm')}"></span>
+        <span th:text="${#temporals.format(d.oraInizio,'HH:mm') + ' - ' + #temporals.format(d.oraFine,'HH:mm')}"></span>
       </div>
     </div>
   </section>
@@ -39,7 +39,9 @@
       </li>
       <li>
         <strong>Fascia prezzo:</strong>
-        <span th:text="${evento.prezzo != null ? (evento.prezzo.compareTo(T(java.math.BigDecimal).valueOf(10)) &lt; 0 ? 'Economico' : (evento.prezzo.compareTo(T(java.math.BigDecimal).valueOf(30)) &lt; 0 ? 'Medio' : 'Costoso')) : 'N/A'}">Fascia</span>
+        <span th:text="${evento.prezzo == null ? 'N/A' : (evento.prezzo < 10 ? 'Economico' : (evento.prezzo < 30 ? 'Medio' : 'Costoso'))}">
+          Fascia
+        </span>
       </li>
       <li th:if="${evento.prenotazione}"><strong>Richiede prenotazione</strong></li>
     </ul>
