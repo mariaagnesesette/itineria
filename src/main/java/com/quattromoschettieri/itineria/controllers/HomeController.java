@@ -36,4 +36,19 @@ public class HomeController {
 
         return "index";
     }
+
+        @GetMapping("/supporto")
+    public String supporto() {
+        return "footer/supporto";
+    }
+
+    @GetMapping("/faq")
+    public String faq() {
+        return "footer/faq";
+    }
+
+    @GetMapping("/contattaci")
+    public String contattaci() {
+        return "footer/contattaci";
+    }
 }
