@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it"
       xmlns:th="http://www.thymeleaf.org">
@@ -9,10 +10,12 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title th:text="${parco.nome} + ' | Itineria'">
+    <title th:text="${zonaVerde.nome} + ' | Itineria'">
         Parco | Itineria
     </title>
 
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    
     <link rel="stylesheet"
           th:href="@{/css/parchi.css}">
 
@@ -775,8 +778,8 @@
 
 
             <span class="place-type"
-                  th:if="${parco.tipologia != null}"
-                  th:text="${parco.tipologia}">
+                  th:if="${zonaVerde.tipologia != null}"
+                  th:text="${zonaVerde.tipologia}">
 
                 Tipologia
 
@@ -784,7 +787,7 @@
 
 
             <h1 class="place-title"
-                th:text="${parco.nome}">
+                th:text="${zonaVerde.nome}">
 
                 Nome parco
 
@@ -792,8 +795,8 @@
 
 
             <div class="place-city"
-                 th:if="${parco.citta != null}"
-                 th:text="${parco.citta.nome}">
+                 th:if="${zonaVerde.citta != null}"
+                 th:text="${zonaVerde.citta.nome}">
 
                 Città
 
@@ -818,7 +821,7 @@
             <h2>Informazioni sul parco</h2>
 
             <p class="place-description"
-               th:text="${parco.descrizione}">
+               th:text="${zonaVerde.descrizione}">
 
                 Descrizione del parco.
 
@@ -839,7 +842,7 @@
                 <!-- INDIRIZZO -->
 
                 <div class="contact-item"
-                     th:if="${parco.indirizzo != null}">
+                     th:if="${zonaVerde.indirizzo != null}">
 
                     <div class="contact-icon">
                         📍
@@ -852,7 +855,7 @@
                         </span>
 
                         <span class="contact-value"
-                              th:text="${parco.indirizzo}">
+                              th:text="${zonaVerde.indirizzo}">
 
                             Indirizzo
 
@@ -867,7 +870,7 @@
                 <!-- TELEFONO -->
 
                 <div class="contact-item"
-                     th:if="${parco.numero != null}">
+                     th:if="${zonaVerde.numero != null}">
 
                     <div class="contact-icon">
                         ☎
@@ -880,8 +883,8 @@
                         </span>
 
                         <a class="contact-value"
-                           th:href="'tel:' + ${parco.numero}"
-                           th:text="${parco.numero}">
+                           th:href="'tel:' + ${zonaVerde.numero}"
+                           th:text="${zonaVerde.numero}">
 
                             Telefono
 
@@ -896,7 +899,7 @@
                 <!-- EMAIL -->
 
                 <div class="contact-item"
-                     th:if="${parco.email != null}">
+                     th:if="${zonaVerde.email != null}">
 
                     <div class="contact-icon">
                         ✉
@@ -909,8 +912,8 @@
                         </span>
 
                         <a class="contact-value"
-                           th:href="'mailto:' + ${parco.email}"
-                           th:text="${parco.email}">
+                           th:href="'mailto:' + ${zonaVerde.email}"
+                           th:text="${zonaVerde.email}">
 
                             Email
 
@@ -925,7 +928,7 @@
                 <!-- SITO -->
 
                 <div class="contact-item"
-                     th:if="${parco.link != null}">
+                     th:if="${zonaVerde.link != null}">
 
                     <div class="contact-icon">
                         🌐
@@ -938,7 +941,7 @@
                         </span>
 
                         <a class="contact-value"
-                           th:href="${parco.link}"
+                           th:href="${zonaVerde.link}"
                            target="_blank"
                            rel="noopener noreferrer">
 
@@ -979,7 +982,7 @@
                 </span>
 
                 <span class="info-value"
-                      th:text="${parco.tipologia}">
+                      th:text="${zonaVerde.tipologia}">
 
                     Tipologia
 
@@ -996,7 +999,7 @@
 
                 <span class="info-value">
 
-                    <span th:text="${parco.areaMq}">
+                    <span th:text="${zonaVerde.areaMq}">
                         0
                     </span>
 
@@ -1027,7 +1030,7 @@
 
 
             <span class="service-badge"
-                  th:if="${parco.dogFriendly}">
+                  th:if="${zonaVerde.dogFriendly}">
 
                 🐕 Dog friendly
 
@@ -1035,7 +1038,7 @@
 
 
             <span class="service-badge"
-                  th:if="${parco.ristoro}">
+                  th:if="${zonaVerde.ristoro}">
 
                 ☕ Punto ristoro
 
@@ -1043,7 +1046,7 @@
 
 
             <span class="service-badge"
-                  th:if="${parco.ciclabile}">
+                  th:if="${zonaVerde.ciclabile}">
 
                 🚲 Percorso ciclabile
 
@@ -1051,7 +1054,7 @@
 
 
             <span class="service-badge"
-                  th:if="${parco.accessibilita != null}">
+                  th:if="${zonaVerde.accessibilita != null}">
 
                 ♿ Accessibilità
 
@@ -1059,10 +1062,10 @@
 
 
             <span
-                th:if="${!parco.dogFriendly
-                        && !parco.ristoro
-                        && !parco.ciclabile
-                        && parco.accessibilita == null}">
+                th:if="${!zonaVerde.dogFriendly
+                        && !zonaVerde.ristoro
+                        && !zonaVerde.ciclabile
+                        && zonaVerde.accessibilita == null}">
 
                 Nessun servizio disponibile.
 
@@ -1086,7 +1089,7 @@
 
 
         <div class="always-open"
-             th:if="${parco.sempreAperto}">
+             th:if="${zonaVerde.sempreAperto}">
 
             Aperto sempre
 
@@ -1094,11 +1097,11 @@
 
 
         <div class="opening-hours"
-             th:unless="${parco.sempreAperto}">
+             th:unless="${zonaVerde.sempreAperto}">
 
 
             <div class="opening-row"
-                 th:each="orario : ${parco.orariApertura}">
+                 th:each="orario : ${zonaVerde.orariApertura}">
 
                 <span class="opening-day"
                       th:text="${orario.giorno}">
@@ -1124,8 +1127,8 @@
             </div>
 
 
-            <div th:if="${parco.orariApertura == null
-                         || parco.orariApertura.isEmpty()}">
+            <div th:if="${zonaVerde.orariApertura == null
+                         || zonaVerde.orariApertura.isEmpty()}">
 
                 Gli orari non sono disponibili.
 
@@ -1182,11 +1185,11 @@
 
 
             <div class="map-wrapper"
-                 th:if="${parco.indirizzo != null}">
+                 th:if="${zonaVerde.indirizzo != null}">
 
                 <iframe
                     th:src="'https://www.google.com/maps?q='
-                            + ${parco.indirizzo}
+                            + ${zonaVerde.indirizzo}
                             + '&output=embed'"
                     loading="lazy"
                     allowfullscreen>
@@ -1195,7 +1198,7 @@
             </div>
 
 
-            <p th:if="${parco.indirizzo == null}">
+            <p th:if="${zonaVerde.indirizzo == null}">
 
                 Posizione non disponibile.
 
@@ -1275,8 +1278,8 @@
 
 
             <div class="no-reviews"
-                 th:if="${parco.recensioni == null
-                         || parco.recensioni.isEmpty()}">
+                 th:if="${zonaVerde.recensioni == null
+                         || zonaVerde.recensioni.isEmpty()}">
 
                 <p>
                     Nessuna recensione ancora.
@@ -1291,17 +1294,17 @@
 
 
             <div class="reviews-list"
-                 th:unless="${parco.recensioni == null
-                             || parco.recensioni.isEmpty()}">
+                 th:unless="${zonaVerde.recensioni == null
+                             || zonaVerde.recensioni.isEmpty()}">
 
 
                 <article class="review-card"
-                         th:each="recensione : ${parco.recensioni}">
+                         th:each="recensione : ${zonaVerde.recensioni}">
 
                     <div class="review-top">
 
                         <span class="review-user"
-                              th:text="${recensione.utente}">
+                              th:text="${recensione.utente.nome}">
                             Utente
                         </span>
 
@@ -1353,7 +1356,7 @@
 
             <input type="hidden"
                    name="luogoInteresseId"
-                   th:value="${parco.id}">
+                   th:value="${zonaVerde.id}">
 
 
             <div class="form-group">
