@@ -32,7 +32,6 @@ public class SecurityConfig {
 
                 .requestMatchers(
                     "/",
-                    "/index.html",
                     "/contattaci.html",
                     "/faq.html",
                     "/supporto.html"
@@ -52,13 +51,11 @@ public class SecurityConfig {
 
                 .requestMatchers(
                     "/accedi",
-                    "/registrazione"
-                ).anonymous()
+                    "/registrazione",
+                    "/login"
+                ).permitAll()
 
                 .requestMatchers(HttpMethod.POST, "/utenti")
-                    .anonymous()
-
-                .requestMatchers("/login")
                     .anonymous()
 
 

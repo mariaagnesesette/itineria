@@ -32,45 +32,79 @@ public class EventoController {
 
 
     // =========================
+    // METODI DI SUPPORTO
+    // =========================
+
+    private void aggiungiFiltri(Model model) {
+
+        model.addAttribute(
+                "tipologieEvento",
+                TipologiaEvento.values()
+        );
+
+        model.addAttribute(
+                "pubbliciEvento",
+                PubblicoEvento.values()
+        );
+    }
+
+
+    private void aggiungiRisultati(
+            Model model,
+            Page<Evento> eventi) {
+
+        model.addAttribute("eventi", eventi);
+        model.addAttribute("risultati", eventi);
+    }
+
+
+    // =========================
     // VISUALIZZAZIONE EVENTI
     // =========================
 
-    /*
-     * Mostra la pagina principale con tutti gli eventi.
-     */
     @GetMapping
     public String findAll(
             Pageable pageable,
             Model model) {
 
-        Page<Evento> eventi = eventoService.findAll(pageable);
+        Page<Evento> eventi =
+                eventoService.findAll(pageable);
 
-        model.addAttribute("eventi", eventi);
+        aggiungiRisultati(model, eventi);
+        aggiungiFiltri(model);
 
-        return "luoghi_interesse/eventi"; // CORRETTO: file eventi.html è in luoghi_interesse/
+        model.addAttribute(
+                "eventoDTO",
+                new EventoDTO()
+        );
+
+        return "luoghi_interesse/eventi";
     }
 
 
-    /*
-     * Mostra il dettaglio di un singolo evento.
-     */
+    // =========================
+    // DETTAGLIO
+    // =========================
+
     @GetMapping("/{id}")
     public String findById(
             @PathVariable Long id,
             Model model) {
 
-        Evento evento = eventoService.findById(id);
+        Evento evento =
+                eventoService.findById(id);
 
         model.addAttribute("evento", evento);
 
-        return "luoghi_interesse/luoghi_dettaglio/eventoDettaglio"; // CORRETTO: percorso + nome file
+        return "luoghi_interesse/luoghi_dettaglio/eventoDettaglio";
     }
 
 
-    /*
-     * Mostra gli eventi conclusi.
-     */
-    @GetMapping("/storico")
+    // =========================
+    // EVENTI STORICI
+    // =========================
+
+    @GetMapping("/storici")
     public String findStoricoEventi(
             Pageable pageable,
             Model model) {
@@ -78,15 +112,22 @@ public class EventoController {
         Page<Evento> eventi =
                 eventoService.findStoricoEventi(pageable);
 
-        model.addAttribute("eventi", eventi);
+        aggiungiRisultati(model, eventi);
+        aggiungiFiltri(model);
 
-        return "eventi/storico"; // DA VERIFICARE: non visibile nello screenshot
+        model.addAttribute(
+                "eventoDTO",
+                new EventoDTO()
+        );
+
+        return "luoghi_interesse/eventi";
     }
 
 
-    /*
-     * Mostra gli eventi futuri.
-     */
+    // =========================
+    // EVENTI FUTURI
+    // =========================
+
     @GetMapping("/futuri")
     public String findEventiFuturi(
             Pageable pageable,
@@ -95,15 +136,22 @@ public class EventoController {
         Page<Evento> eventi =
                 eventoService.findEventiFuturi(pageable);
 
-        model.addAttribute("eventi", eventi);
+        aggiungiRisultati(model, eventi);
+        aggiungiFiltri(model);
 
-        return "eventi/futuri"; // DA VERIFICARE: non visibile nello screenshot
+        model.addAttribute(
+                "eventoDTO",
+                new EventoDTO()
+        );
+
+        return "luoghi_interesse/eventi";
     }
 
 
-    /*
-     * Mostra gli eventi attualmente in corso.
-     */
+    // =========================
+    // EVENTI IN CORSO
+    // =========================
+
     @GetMapping("/in-corso")
     public String findEventiInCorso(
             Pageable pageable,
@@ -112,14 +160,20 @@ public class EventoController {
         Page<Evento> eventi =
                 eventoService.findEventiInCorso(pageable);
 
-        model.addAttribute("eventi", eventi);
+        aggiungiRisultati(model, eventi);
+        aggiungiFiltri(model);
 
-        return "eventi/in-corso"; // DA VERIFICARE: non visibile nello screenshot
+        model.addAttribute(
+                "eventoDTO",
+                new EventoDTO()
+        );
+
+        return "luoghi_interesse/eventi";
     }
 
 
     // =========================
-    // RICERCA EVENTI
+    // RICERCA / FILTRI
     // =========================
 
     @GetMapping("/search")
@@ -136,18 +190,22 @@ public class EventoController {
 
             Model model) {
 
-        Page<Evento> eventi = eventoService.search(
-                dto,
-                prezzoMinimo,
-                prezzoMassimo,
-                pageable
-        );
+        Page<Evento> eventi =
+                eventoService.search(
+                        dto,
+                        prezzoMinimo,
+                        prezzoMassimo,
+                        pageable
+                );
 
-        model.addAttribute("eventi", eventi);
+        aggiungiRisultati(model, eventi);
+        aggiungiFiltri(model);
 
         model.addAttribute("eventoDTO", dto);
+        model.addAttribute("prezzoMinimo", prezzoMinimo);
+        model.addAttribute("prezzoMassimo", prezzoMassimo);
 
-        return "luoghi_interesse/eventi"; // CORRETTO: stesso file di findAll
+        return "luoghi_interesse/eventi";
     }
 
 
@@ -163,17 +221,9 @@ public class EventoController {
                 new EventoDTO()
         );
 
-        model.addAttribute(
-                "tipologieEvento",
-                TipologiaEvento.values()
-        );
+        aggiungiFiltri(model);
 
-        model.addAttribute(
-                "pubbliciEvento",
-                PubblicoEvento.values()
-        );
-
-        return "eventi/nuovo"; // DA VERIFICARE: non visibile nello screenshot
+        return "eventi/nuovo";
     }
 
 
@@ -202,21 +252,17 @@ public class EventoController {
             @PathVariable Long id,
             Model model) {
 
-        EventoDTO dto = eventoService.findDtoById(id);
-
-        model.addAttribute("eventoDTO", dto);
-
-        model.addAttribute(
-                "tipologieEvento",
-                TipologiaEvento.values()
-        );
+        EventoDTO dto =
+                eventoService.findDtoById(id);
 
         model.addAttribute(
-                "pubbliciEvento",
-                PubblicoEvento.values()
+                "eventoDTO",
+                dto
         );
 
-        return "eventi/modifica"; // DA VERIFICARE: non visibile nello screenshot
+        aggiungiFiltri(model);
+
+        return "eventi/modifica";
     }
 
 
@@ -258,7 +304,7 @@ public class EventoController {
 
 
     // =========================
-    // GESTIONE DATE EVENTO
+    // GESTIONE DATE
     // =========================
 
     @GetMapping("/{id}/date/nuova")
@@ -266,16 +312,20 @@ public class EventoController {
             @PathVariable Long id,
             Model model) {
 
-        Evento evento = eventoService.findById(id);
+        Evento evento =
+                eventoService.findById(id);
 
-        model.addAttribute("evento", evento);
+        model.addAttribute(
+                "evento",
+                evento
+        );
 
         model.addAttribute(
                 "dataEventoDTO",
                 new DataEventoDTO()
         );
 
-        return "eventi/date/nuova"; // DA VERIFICARE: non visibile nello screenshot
+        return "eventi/date/nuova";
     }
 
 
@@ -302,7 +352,8 @@ public class EventoController {
             @PathVariable Long idDataEvento,
             Model model) {
 
-        Evento evento = eventoService.findById(id);
+        Evento evento =
+                eventoService.findById(id);
 
         DataEventoDTO dto =
                 eventoService.findDataEventoById(
@@ -310,10 +361,17 @@ public class EventoController {
                         idDataEvento
                 );
 
-        model.addAttribute("evento", evento);
-        model.addAttribute("dataEventoDTO", dto);
+        model.addAttribute(
+                "evento",
+                evento
+        );
 
-        return "eventi/date/modifica"; // DA VERIFICARE: non visibile nello screenshot
+        model.addAttribute(
+                "dataEventoDTO",
+                dto
+        );
+
+        return "eventi/date/modifica";
     }
 
 
