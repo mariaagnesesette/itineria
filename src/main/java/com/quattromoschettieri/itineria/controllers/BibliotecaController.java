@@ -40,7 +40,7 @@ public class BibliotecaController {
         model.addAttribute("risultati", risultati);
         model.addAttribute("bibliotecaDTO", bibliotecaDTO);
 
-        return "biblioteche/lista";
+        return "luoghi_interesse/biblioteche";
     }
 
     @GetMapping
@@ -90,6 +90,8 @@ public class BibliotecaController {
         model.addAttribute("biblioBambini", biblioBambini.getContent());
         model.addAttribute("biblio24h", biblio24h.getContent());
         model.addAttribute("biblioAccessibili", biblioAccessibili.getContent());
+        model.addAttribute("risultati", tutteBiblioteche);
+        model.addAttribute("bibliotecaDTO", new BibliotecaDTO());
 
         return "luoghi_interesse/biblioteche";
     }
@@ -102,7 +104,7 @@ public class BibliotecaController {
 
         model.addAttribute("biblioteca", risultato);
 
-        return "biblioteche/dettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/bibliotecaDettaglio";
     }
 
     // ricerca per nome
@@ -113,7 +115,7 @@ public class BibliotecaController {
 
         model.addAttribute("risultati", risultati);
 
-        return "biblioteche/byNome";
+        return "luoghi_interesse/searchByNome";
     }
 
     // CREATE
