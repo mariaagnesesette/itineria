@@ -1,66 +1,580 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title th:text="${locale.nome} + ' | Itineria'">Locale | Itineria</title>
-  <link rel="stylesheet" th:href="@{/css/locali.css}">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${locale.nome} + ' | Itineria'">
+        Locale | Itineria
+    </title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/luogoDettaglio.css}">
+    <link rel="stylesheet" th:href="@{/css/locali.css}">
+
+    <style>
+        /* =====================================================
+           REGOLE SPECIFICHE DI QUESTA PAGINA (LOCALE)
+           Il layout comune (.luogo-*, contatti, orari, servizi,
+           recensioni, ecc.) è in /css/luogoDettaglio.css.
+           Qui sotto solo le CARATTERISTICHE (specifiche del Locale).
+           ===================================================== */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 16px;
+        }
+
+        .info-item {
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #f7f7f7;
+        }
+
+        .info-label {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 12px;
+
+            color: #888;
+
+            text-transform: uppercase;
+
+            letter-spacing: .04em;
+        }
+
+        .info-value {
+
+            font-weight: 600;
+
+            color: #222;
+        }
+    </style>
+
 </head>
+
+
 <body>
-<div th:replace="~{fragments/navbar :: navbar}"></div>
-<main class="detail-wrapper">
-  <section class="hero">
-    <div class="hero-content">
-      <span class="type" th:text="${locale.tipoLocale}">Tipo</span>
-      <h1 th:text="${locale.nome}">Nome locale</h1>
-      <div th:if="${locale.citta != null}" th:text="${locale.citta.nome}"></div>
-    </div>
-  </section>
 
-  <section class="main-grid">
-    <article class="card">
-      <h2>Informazioni</h2>
-      <p th:text="${locale.descrizione}">Descrizione</p>
-      <h3>Atmosfera</h3>
-      <p th:text="${locale.atmosfera}">Atmosfera</p>
-      <h3>Fascia prezzo</h3>
-      <p th:text="${locale.fasciaPrezzo}">€</p>
 
-      <h3>Servizi</h3>
-      <div class="services-grid">
-        <span class="service" th:if="${locale.aperturaSerale}">Apertura serale</span>
-        <span class="service" th:if="${locale.postiEsterni}">Posti esterni</span>
-        <span class="service" th:if="${locale.perCeliaci}">Menu per celiaci</span>
-      </div>
-    </article>
+    <!-- NAVBAR -->
 
-    <aside class="card">
-      <h2>Contatti</h2>
-      <div th:if="${locale.indirizzo}"><strong>Indirizzo</strong><div th:text="${locale.indirizzo}"></div></div>
-      <div th:if="${locale.numero}" style="margin-top:12px"><strong>Telefono</strong><div th:text="${locale.numero}"></div></div>
-      <div th:if="${locale.email}" style="margin-top:12px"><strong>Email</strong><div th:text="${locale.email}"></div></div>
-      <div th:if="${locale.link}" style="margin-top:12px"><strong>Sito</strong><a th:href="${locale.link}">Visita</a></div>
-    </aside>
-  </section>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-  <section class="card map-section">
-    <h2>Come arrivare</h2>
-    <div class="map-wrapper" th:if="${locale.indirizzo}">
-      <iframe th:src="'https://www.google.com/maps?q=' + ${locale.indirizzo} + '&output=embed'" loading="lazy" allowfullscreen></iframe>
-    </div>
-  </section>
 
-  <section class="card reviews-section">
-    <h2>Recensioni</h2>
-    <div th:if="${locale.recensioni == null || locale.recensioni.isEmpty()}" class="no-reviews">Nessuna recensione ancora.</div>
-    <div th:each="rec : ${locale.recensioni}" class="review-card">
-      <strong th:text="${rec.utente}">Utente</strong>
-      <div th:each="i : ${#numbers.sequence(1,5)}" th:text="${i <= rec.voto ? '★' : '☆'}">★</div>
-      <p th:text="${rec.commento}">Commento</p>
-    </div>
-  </section>
+    <main class="luogo-detail">
 
-</main>
-<div th:replace="~{fragments/footer :: footer}"></div>
+
+        <!-- HERO -->
+
+        <section class="luogo-hero">
+
+            <!-- IMMAGINE: da definire con il gruppo -->
+
+            <div class="luogo-image-placeholder">
+
+                Immagine del locale
+
+            </div>
+
+
+            <div class="luogo-hero-content">
+
+                <span class="luogo-type" th:if="${locale.tipoLocale != null}" th:text="${locale.tipoLocale}">
+
+                    Tipo locale
+
+                </span>
+
+
+                <h1 class="luogo-title" th:text="${locale.nome}">
+
+                    Nome locale
+
+                </h1>
+
+
+                <div class="luogo-city" th:if="${locale.citta != null}" th:text="${locale.citta.nome}">
+
+                    Città
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DESCRIZIONE + CONTATTI -->
+
+        <section class="luogo-main-grid">
+
+            <article class="luogo-card">
+
+                <h2>Informazioni sul locale</h2>
+
+                <p class="luogo-description" th:text="${locale.descrizione}">
+
+                    Descrizione del locale.
+
+                </p>
+
+            </article>
+
+
+            <aside class="luogo-card">
+
+                <h2>Informazioni</h2>
+
+                <div class="contact-list">
+
+                    <!-- INDIRIZZO -->
+
+                    <div class="contact-item" th:if="${locale.indirizzo != null}">
+
+                        <div class="contact-icon">📍</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Indirizzo</span>
+
+                            <span class="contact-value" th:text="${locale.indirizzo}">
+                                Indirizzo
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TELEFONO -->
+
+                    <div class="contact-item" th:if="${locale.numero != null}">
+
+                        <div class="contact-icon">☎</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Telefono</span>
+
+                            <a class="contact-value" th:href="'tel:' + ${locale.numero}"
+                                th:text="${locale.numero}">
+                                Telefono
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="contact-item" th:if="${locale.email != null}">
+
+                        <div class="contact-icon">✉</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Email</span>
+
+                            <a class="contact-value" th:href="'mailto:' + ${locale.email}"
+                                th:text="${locale.email}">
+                                Email
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SITO -->
+
+                    <div class="contact-item" th:if="${locale.link != null}">
+
+                        <div class="contact-icon">🌐</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Sito ufficiale</span>
+
+                            <a class="contact-value" th:href="${locale.link}" target="_blank"
+                                rel="noopener noreferrer">
+                                Visita il sito
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+
+        <!-- CARATTERISTICHE (specifico Locale) -->
+
+        <section class="luogo-card" style="margin-bottom: 50px;">
+
+            <h2>Caratteristiche</h2>
+
+            <div class="info-grid">
+
+                <div class="info-item">
+
+                    <span class="info-label">Tipo di locale</span>
+
+                    <span class="info-value" th:text="${locale.tipoLocale}">
+                        Tipo
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-label">Atmosfera</span>
+
+                    <span class="info-value" th:text="${locale.atmosfera}">
+                        Atmosfera
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-label">Fascia di prezzo</span>
+
+                    <span class="info-value" th:text="${locale.fasciaPrezzo}">
+                        Fascia prezzo
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ORARI -->
+
+        <section class="luogo-card" style="margin-bottom: 50px;">
+
+            <h2>Orari di apertura</h2>
+
+            <div class="always-open" th:if="${locale.sempreAperto}">
+
+                Aperto sempre
+
+            </div>
+
+            <div class="opening-hours" th:unless="${locale.sempreAperto}">
+
+                <div class="opening-row" th:each="orario : ${locale.orariApertura}">
+
+                    <span class="opening-day" th:text="${orario.giorno}">
+                        Giorno
+                    </span>
+
+                    <span class="opening-time">
+                        <span th:text="${orario.orarioApertura}">10:00</span>
+                        -
+                        <span th:text="${orario.orarioChiusura}">18:00</span>
+                    </span>
+
+                </div>
+
+                <div th:if="${locale.orariApertura == null
+                             || locale.orariApertura.isEmpty()}">
+
+                    Gli orari non sono disponibili.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SERVIZI -->
+
+        <section class="luogo-card" style="margin-bottom: 50px;">
+
+            <h2>Servizi e caratteristiche</h2>
+
+            <div class="services-grid">
+
+                <span class="service-badge" th:if="${locale.aperturaSerale}">
+                    🌙 Apertura serale
+                </span>
+
+                <span class="service-badge" th:if="${locale.postiEsterni}">
+                    ☀️ Posti esterni
+                </span>
+
+                <span class="service-badge" th:if="${locale.perCeliaci}">
+                    🌾 Opzioni per celiaci
+                </span>
+
+                <span class="service-badge" th:if="${locale.accessibilita != null}">
+                    ♿ Accessibilità
+                </span>
+
+                <span th:if="${!locale.aperturaSerale
+                        && !locale.postiEsterni
+                        && !locale.perCeliaci
+                        && locale.accessibilita == null}">
+                    Nessun servizio disponibile.
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- GALLERIA -->
+
+        <section class="gallery-section">
+
+            <div class="luogo-card">
+
+                <h2>Galleria</h2>
+
+                <div class="gallery-placeholder">
+
+                    <div>
+
+                        <strong>Galleria del locale</strong>
+
+                        <p>Le immagini verranno collegate dal database.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MAPPA -->
+
+        <section class="map-section">
+
+            <div class="luogo-card">
+
+                <h2>Come arrivare</h2>
+
+                <div class="map-wrapper" th:if="${locale.indirizzo != null}">
+
+                    <iframe th:src="'https://www.google.com/maps?q='
+                            + ${locale.indirizzo}
+                            + '&output=embed'" loading="lazy" allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <p th:if="${locale.indirizzo == null}">
+                    Posizione non disponibile.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RECENSIONI -->
+
+        <section class="reviews-section">
+
+            <div class="luogo-card">
+
+                <div class="reviews-header">
+
+                    <div>
+
+                        <h2>Recensioni</h2>
+
+                        <div class="rating-summary">
+
+                            <span class="rating-number" th:text="${mediaRecensioni}">
+                                0.0
+                            </span>
+
+                            <span class="rating-stars">★★★★★</span>
+
+                            <span class="rating-count">
+                                Basato su
+                                <strong th:text="${numeroRecensioni}">0</strong>
+                                recensioni
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a class="luogo-button" th:if="${!#authorization.expression('isAuthenticated()')}"
+                        th:href="@{/accedi}">
+
+                        Accedi per recensire
+
+                    </a>
+
+
+                    <button class="luogo-button" type="button" th:if="${#authorization.expression('isAuthenticated()')}"
+                        onclick="apriFormRecensione()">
+
+                        Scrivi una recensione
+
+                    </button>
+
+                </div>
+
+
+                <div class="no-reviews" th:if="${locale.recensioni == null
+                         || locale.recensioni.isEmpty()}">
+
+                    <p>Nessuna recensione ancora.</p>
+                    <p>Sii il primo a lasciare una recensione!</p>
+
+                </div>
+
+
+                <div class="reviews-list" th:unless="${locale.recensioni == null
+                             || locale.recensioni.isEmpty()}">
+
+                    <article class="review-card" th:each="recensione : ${locale.recensioni}">
+
+                        <div class="review-top">
+
+                            <span class="review-user" th:text="${recensione.utente.nome}">
+                                Utente
+                            </span>
+
+                            <div class="review-stars">
+
+                                <span th:each="i : ${#numbers.sequence(1,5)}"
+                                    th:text="${i <= recensione.voto ? '★' : '☆'}">
+                                    ★
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <p class="review-comment" th:text="${recensione.commento}">
+                            Commento
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FORM RECENSIONE -->
+
+        <section id="reviewForm" class="luogo-card review-form">
+
+            <h2>Lascia una recensione</h2>
+
+            <form method="post" th:action="@{/recensioni}">
+
+                <input type="hidden" name="luogoInteresseId" th:value="${locale.id}">
+
+                <div class="form-group">
+
+                    <label for="voto">Valutazione</label>
+
+                    <select id="voto" name="voto" required>
+
+                        <option value="">Seleziona una valutazione</option>
+                        <option value="5">★★★★★ - 5</option>
+                        <option value="4">★★★★☆ - 4</option>
+                        <option value="3">★★★☆☆ - 3</option>
+                        <option value="2">★★☆☆☆ - 2</option>
+                        <option value="1">★☆☆☆☆ - 1</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="commento">La tua recensione</label>
+
+                    <textarea id="commento" name="commento" rows="6" maxlength="5000"
+                        placeholder="Racconta la tua esperienza..." required></textarea>
+
+                </div>
+
+                <button type="submit" class="luogo-button">
+                    Pubblica recensione
+                </button>
+
+            </form>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+
+    <script>
+
+        function apriFormRecensione() {
+
+            const form = document.getElementById("reviewForm");
+
+            if (!form) {
+                return;
+            }
+
+            form.style.display = "block";
+
+            form.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    </script>
+
+
 </body>
+
 </html>

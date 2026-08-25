@@ -175,11 +175,29 @@
   line-height: 1.5;
 }
 
-.park-card__meta {
-  display: block;
-  font-size: 12px;
+.park-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  background: var(--color-white);
+  border: 1px solid #ded9d0;
+  border-radius: var(--radius-pill);
   color: var(--color-text-gray);
-  margin-top: 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.badge i {
+  color: var(--color-accent);
+  font-size: 10px;
 }
 
 .park-card__arrow {

@@ -6,7 +6,7 @@
       <a href="/" class="main-nav__link">Home</a>
 
       <div class="main-nav__item">
-        <a href="/luoghi" class="main-nav__link main-nav__link--dropdown">
+        <a href="#" class="main-nav__link main-nav__link--dropdown" onclick="return false;">
           Luoghi d'interesse <i class="fa-solid fa-chevron-down"></i>
         </a>
 
@@ -14,10 +14,10 @@
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-book"></i> Biblioteche</div>
             <ul class="mega-dropdown__list">
-              <li><a href="/luoghi/biblioteche/comunali">Biblioteche comunali</a></li>
-              <li><a href="/luoghi/biblioteche/sale-studio">Sale studio</a></li>
-              <li><a href="/luoghi/biblioteche/aule-studio">Aule studio</a></li>
-              <li><a href="/luoghi/biblioteche/coworking">Spazi coworking</a></li>
+              <li><a href="/biblioteche/filtri?pubblico=true">Biblioteche comunali</a></li>
+              <li><a href="/biblioteche">Sale studio</a></li>
+              <li><a href="/biblioteche">Aule studio</a></li>
+              <li><a href="/biblioteche/filtri?areaComputer=true">Spazi coworking</a></li>
               <li><a href="/biblioteche" style="font-weight:700; color: var(--color-accent);">Vedi tutte le biblioteche
                   →</a></li>
             </ul>
@@ -26,9 +26,9 @@
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-mug-hot"></i> Bar e Caffetterie</div>
             <ul class="mega-dropdown__list">
-              <li><a href="/luoghi/bar">Bar</a></li>
-              <li><a href="/luoghi/caffetterie">Caffetterie</a></li>
-              <li><a href="/bar" style="font-weight:700; color: var(--color-accent);">Vedi tutti i bar e caffetterie
+              <li><a href="/locali/filtri?tipoLocale=BAR">Bar</a></li>
+              <li><a href="/locali/filtri?tipoLocale=CAFFE">Caffetterie</a></li>
+              <li><a href="/locali" style="font-weight:700; color: var(--color-accent);">Vedi tutti i bar e caffetterie
                   →</a></li>
             </ul>
           </div>
@@ -36,9 +36,9 @@
           <div class="mega-dropdown__group">
             <div class="mega-dropdown__title"><i class="fa-solid fa-utensils"></i> Ristoranti</div>
             <ul class="mega-dropdown__list">
-              <li><a href="/luoghi/ristoranti/tipici">Ristoranti tipici</a></li>
-              <li><a href="/luoghi/ristoranti/pizzerie">Pizzerie</a></li>
-              <li><a href="/luoghi/ristoranti/internazionali">Cucine internazionali</a></li>
+              <li><a href="/ristoranti/filtri?tipoCucina=ITALIANA">Ristoranti tipici</a></li>
+              <li><a href="/ristoranti/filtri?tipoCucina=PIZZERIA">Pizzerie</a></li>
+              <li><a href="/ristoranti">Cucine internazionali</a></li>
               <li><a href="/ristoranti" style="font-weight:700; color: var(--color-accent);">Vedi tutti i ristoranti
                   →</a></li>
             </ul>

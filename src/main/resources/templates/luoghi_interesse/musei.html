@@ -38,7 +38,6 @@
       <h1 class="page-intro__title"><i class="fa-solid fa-landmark"></i> Musei di Torino</h1>
       <p class="page-intro__desc">
         Da Museo Egizio alle Residenze Reali UNESCO: collezioni da scoprire in città, organizzati per categoria.
-        <span th:text="${musei != null ? #lists.size(musei) + ' musei' : '0 musei'}"> musei</span>
       </p>
 
       <div class="museum-search">
@@ -53,47 +52,36 @@
           th:text="${categoria.nome}" class="filter-chip"></button>
       </div>
 
-      <!-- Fallback chips statici -->
-      <div class="filter-chips" id="filterChips" th:if="${categorieMusei == null}">
+      <!-- Fallback chips statici: una per ciascuna TipologiaMuseo realmente presente sui musei -->
+      <div class="filter-chips category-filters" id="filterChips" th:if="${categorieMusei == null}">
         <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-        <button type="button" class="filter-chip" data-filter="grandi-musei-principali">Grandi Musei</button>
-        <button type="button" class="filter-chip" data-filter="arte-fotografia-e-fondazioni-contemporanee">Arte e
-          Fotografia</button>
-        <button type="button" class="filter-chip" data-filter="scienza-medicina-e-natura">Scienza e Natura</button>
-        <button type="button" class="filter-chip" data-filter="storia-memoria-e-sport">Storia e Sport</button>
-        <button type="button" class="filter-chip" data-filter="tecnica-industria-e-collezioni-tematiche">Tecnica e
-          Industria</button>
-        <button type="button" class="filter-chip" data-filter="religione-e-arte-sacra">Arte Sacra</button>
-        <button type="button" class="filter-chip" data-filter="residenze-reali-e-dintorni">Residenze Reali</button>
+        <button type="button" class="filter-chip" data-filter="ARTE">Arte</button>
+        <button type="button" class="filter-chip" data-filter="STORIA">Storia</button>
+        <button type="button" class="filter-chip" data-filter="SCIENZA">Scienza</button>
+        <button type="button" class="filter-chip" data-filter="ARCHEOLOGIA">Archeologia</button>
+        <button type="button" class="filter-chip" data-filter="STORIA_NATURALE">Storia naturale</button>
+        <button type="button" class="filter-chip" data-filter="ETNOGRAFICO">Etnografia</button>
+        <button type="button" class="filter-chip" data-filter="MILITARE">Militare</button>
+        <button type="button" class="filter-chip" data-filter="SCIENZE_NATURALI">Scienze naturali</button>
+        <button type="button" class="filter-chip" data-filter="MUSICA">Musica</button>
+        <button type="button" class="filter-chip" data-filter="RELIGIOSO_SACRO">Arte Sacra</button>
+        <button type="button" class="filter-chip" data-filter="CASA_MUSEO">Casa museo</button>
+        <button type="button" class="filter-chip" data-filter="TRASPORTI">Trasporti</button>
+        <button type="button" class="filter-chip" data-filter="MULTIDISCIPLINARE">Multidisciplinare</button>
       </div>
-    </div>
-  </section>
 
-  <!-- Form di filtri: bind a MuseoDTO passato dal Controller (th:object) -->
-  <section class="section">
-    <div class="container">
-      <form th:action="@{/musei/filtri}" th:object="${museoDTO}" method="get" class="musei-filter-form">
-        <div class="musei-filter-row">
-          <input type="hidden" th:field="*{nome}" id="nomeMuseoInput">
-
-          <select th:field="*{tipologia}">
-            <option value="">Tutte le tipologie</option>
-            <option th:each="t : ${tipologieMuseo}" th:value="${t}" th:text="${t}"></option>
-          </select>
-
-          <input type="number" th:field="*{prezzoMin}" placeholder="Prezzo minimo" min="0" step="0.01">
-          <input type="number" th:field="*{prezzoMax}" placeholder="Prezzo massimo" min="0" step="0.01">
-
-          <label class="musei-filter-check">
-            <input type="checkbox" th:field="*{guidaPrenotabile}"> Guida prenotabile
-          </label>
-          <label class="musei-filter-check">
-            <input type="checkbox" th:field="*{barInterno}"> Bar interno
-          </label>
-
-          <button type="submit" class="btn-search">Cerca</button>
-        </div>
-      </form>
+      <div class="filter-chips feature-filters">
+        <span class="filter-divider" aria-hidden="true"></span>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="guida">
+          <i class="fa-solid fa-check filter-chip__check"></i> Guida prenotabile
+        </button>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="bar">
+          <i class="fa-solid fa-check filter-chip__check"></i> Bar interno
+        </button>
+        <button type="button" class="filter-chip filter-chip--toggle" data-feature="accessibile">
+          <i class="fa-solid fa-check filter-chip__check"></i> Accessibile
+        </button>
+      </div>
     </div>
   </section>
 
@@ -130,11 +118,26 @@
     <div class="container">
       <h2 class="section__title"><i class="fa-solid fa-landmark"></i> Tutti i musei</h2>
       <div class="museum-grid">
-        <a th:each="museo : ${musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card">
+        <a th:each="museo : ${musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card"
+          th:attr="data-category=${museo.tipologia}, data-guida=${museo.guidaPrenotabile}, data-bar=${museo.barInterno}, data-accessibile=${museo.accessibilita != null}">
           <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
           <span class="museum-card__body">
             <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
             <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
+            <span class="museum-card__badges">
+              <span class="badge" th:if="${museo.accessibilita != null}">
+                <i class="fa-solid fa-wheelchair"></i>
+                Accessibile
+              </span>
+              <span class="badge" th:if="${museo.guidaPrenotabile}">
+                <i class="fa-solid fa-headset"></i>
+                Guida prenotabile
+              </span>
+              <span class="badge" th:if="${museo.barInterno}">
+                <i class="fa-solid fa-mug-saucer"></i>
+                Bar interno
+              </span>
+            </span>
           </span>
           <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
         </a>
@@ -156,59 +159,72 @@
     (function () {
       "use strict";
 
-      var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
-      var categories = Array.prototype.slice.call(document.querySelectorAll('.museum-category'));
+      var categoryChips = Array.prototype.slice.call(
+        document.querySelectorAll('.category-filters .filter-chip')
+      );
+      var toggleChips = Array.prototype.slice.call(
+        document.querySelectorAll('.filter-chip--toggle')
+      );
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.museum-card'));
       var searchInput = document.getElementById('museumSearchInput');
       var emptyState = document.getElementById('museumEmptyState');
+      var activeFeatures = {};
+      var activeCategory = 'all';
 
-      if (chips.length) {
-        chips.forEach(function (chip) {
-          chip.addEventListener('click', function () {
-            chips.forEach(function (c) { c.classList.remove('active'); });
-            chip.classList.add('active');
-            var target = chip.getAttribute('data-filter');
-            categories.forEach(function (cat) {
-              cat.style.display = (target === 'all' || cat.id === target) ? '' : 'none';
-            });
-            if (target !== 'all') {
-              var el = document.getElementById(target);
-              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+      function applyFilters() {
+        var query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        var anyVisible = false;
+
+        cards.forEach(function (card) {
+          var titleEl = card.querySelector('.museum-card__title');
+          var title = titleEl ? titleEl.textContent.toLowerCase() : '';
+          var matchesQuery = query === '' || title.indexOf(query) !== -1;
+
+          var matchesCategory = activeCategory === 'all' ||
+            card.getAttribute('data-category') === activeCategory;
+
+          var matchesFeatures = Object.keys(activeFeatures).every(function (feature) {
+            return card.getAttribute('data-' + feature) === 'true';
           });
+
+          var visible = matchesQuery && matchesCategory && matchesFeatures;
+          card.style.display = visible ? '' : 'none';
+          if (visible) anyVisible = true;
         });
+
+        if (emptyState) emptyState.hidden = anyVisible;
       }
 
-      if (searchInput) {
-        searchInput.addEventListener('input', function () {
-          var query = searchInput.value.trim().toLowerCase();
-          var anyVisible = false;
+      categoryChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          categoryChips.forEach(function (c) { c.classList.remove('active'); });
+          chip.classList.add('active');
 
-          categories.forEach(function (cat) { cat.style.display = ''; });
-          if (query.length > 0) {
-            chips.forEach(function (c) { c.classList.remove('active'); });
+          activeCategory = chip.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+
+      toggleChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var feature = chip.getAttribute('data-feature');
+          var isActive = chip.classList.toggle('active');
+
+          if (isActive) {
+            activeFeatures[feature] = true;
           } else {
-            if (chips[0]) chips[0].classList.add('active');
+            delete activeFeatures[feature];
           }
 
-          categories.forEach(function (cat) {
-            var cards = Array.prototype.slice.call(cat.querySelectorAll('.museum-card'));
-            var visibleCount = 0;
-
-            cards.forEach(function (card) {
-              var titleEl = card.querySelector('.museum-card__title');
-              var title = titleEl ? titleEl.textContent.toLowerCase() : '';
-              var match = query === '' || title.indexOf(query) !== -1;
-              card.style.display = match ? '' : 'none';
-              if (match) visibleCount++;
-            });
-
-            cat.style.display = visibleCount > 0 ? '' : 'none';
-            if (visibleCount > 0) anyVisible = true;
-          });
-
-          if (emptyState) emptyState.hidden = (query === '' || anyVisible);
+          applyFilters();
         });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', applyFilters);
       }
+
+      applyFilters();
     })();
   </script>
 

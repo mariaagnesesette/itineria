@@ -1,340 +1,27 @@
 <!DOCTYPE html>
-<html lang="it"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title th:text="${museo.nome} + ' | Itineria'">
         Museo | Itineria
     </title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet"
-          th:href="@{/css/musei.css}">
-    
-    
+    <link rel="stylesheet" th:href="@{/css/luogoDettaglio.css}">
+    <link rel="stylesheet" th:href="@{/css/musei.css}">
 
     <style>
-
         /* =====================================================
-           MUSEO DETTAGLIO
-           ===================================================== */
-
-        .museum-detail {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 24px 80px;
-        }
-
-        /* =====================================================
-           HERO
-           ===================================================== */
-
-        .museum-hero {
-            position: relative;
-            min-height: 480px;
-            border-radius: 28px;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            margin-bottom: 40px;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0,0,0,.78),
-                    rgba(0,0,0,.08)
-                );
-
-            background-color: #e9e9e9;
-        }
-
-        /*
-         * LE IMMAGINI VERRANNO COLLEGATE QUI
-         * quando il gruppo avrà deciso come gestirle.
-         */
-
-        .museum-hero-placeholder {
-            position: absolute;
-            inset: 0;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            color: #777;
-            font-size: 16px;
-        }
-
-        .museum-hero-content {
-            position: relative;
-            z-index: 2;
-
-            width: 100%;
-            padding: 50px;
-            color: white;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0,0,0,.75),
-                    transparent
-                );
-        }
-
-        .museum-type {
-            display: inline-block;
-
-            padding: 7px 14px;
-            margin-bottom: 14px;
-
-            border-radius: 50px;
-
-            background: rgba(255,255,255,.18);
-
-            backdrop-filter: blur(8px);
-
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .museum-title {
-            margin: 0 0 12px;
-
-            font-size: clamp(36px, 5vw, 64px);
-            line-height: 1.05;
-        }
-
-        .museum-city {
-            font-size: 18px;
-            opacity: .9;
-        }
-
-
-        /* =====================================================
-           INFO PRINCIPALI
-           ===================================================== */
-
-        .museum-main-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                minmax(0, 1.5fr)
-                minmax(300px, .8fr);
-
-            gap: 32px;
-
-            margin-bottom: 50px;
-        }
-
-
-        .museum-card {
-
-            background: #fff;
-
-            border-radius: 22px;
-
-            padding: 30px;
-
-            box-shadow:
-                0 8px 30px rgba(0,0,0,.06);
-        }
-
-        .museum-card h2 {
-
-            margin-top: 0;
-            margin-bottom: 22px;
-
-            font-size: 25px;
-        }
-
-
-        /* =====================================================
-           DESCRIZIONE
-           ===================================================== */
-
-        .museum-description {
-
-            font-size: 16px;
-            line-height: 1.8;
-
-            color: #555;
-
-            white-space: pre-line;
-        }
-
-
-        /* =====================================================
-           CONTATTI
-           ===================================================== */
-
-        .museum-contact-list {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 18px;
-        }
-
-        .museum-contact-item {
-
-            display: flex;
-
-            gap: 14px;
-
-            align-items: flex-start;
-        }
-
-        .museum-contact-icon {
-
-            width: 42px;
-            height: 42px;
-
-            flex-shrink: 0;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 12px;
-
-            background: #f3f3f3;
-
-            font-size: 18px;
-        }
-
-        .museum-contact-content {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 4px;
-        }
-
-        .museum-contact-label {
-
-            font-size: 12px;
-
-            color: #888;
-
-            text-transform: uppercase;
-
-            letter-spacing: .05em;
-        }
-
-        .museum-contact-value {
-
-            color: #222;
-
-            text-decoration: none;
-
-            line-height: 1.4;
-        }
-
-        .museum-contact-value:hover {
-
-            text-decoration: underline;
-        }
-
-
-        /* =====================================================
-           ORARI
-           ===================================================== */
-
-        .opening-hours {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 0;
-        }
-
-        .opening-row {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 20px;
-
-            padding: 14px 0;
-
-            border-bottom: 1px solid #eee;
-        }
-
-        .opening-row:last-child {
-
-            border-bottom: none;
-        }
-
-        .opening-day {
-
-            font-weight: 600;
-        }
-
-        .opening-time {
-
-            color: #666;
-        }
-
-        .always-open {
-
-            padding: 15px;
-
-            border-radius: 12px;
-
-            background: #f4f8f4;
-
-            font-weight: 600;
-        }
-
-
-        /* =====================================================
-           SERVIZI
-           ===================================================== */
-
-        .services-grid {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 12px;
-        }
-
-        .service-badge {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            padding: 11px 15px;
-
-            border-radius: 50px;
-
-            background: #f5f5f5;
-
-            color: #333;
-
-            font-size: 14px;
-
-            font-weight: 600;
-        }
-
-
-        /* =====================================================
-           PREZZI
+           REGOLE SPECIFICHE DI QUESTA PAGINA (MUSEO)
+           Il layout comune (.luogo-*, contatti, orari, servizi,
+           recensioni, ecc.) è in /css/luogo-dettaglio.css e viene
+           condiviso con parchiDettaglio.html.
+           Qui sotto solo i PREZZI (specifici del Museo).
            ===================================================== */
 
         .prices-list {
@@ -363,309 +50,6 @@
 
             border-bottom: none;
         }
-
-
-        /* =====================================================
-           GALLERIA
-           ===================================================== */
-
-        .gallery-section {
-
-            margin-bottom: 50px;
-        }
-
-        .gallery-placeholder {
-
-            min-height: 260px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border-radius: 22px;
-
-            background: #f3f3f3;
-
-            color: #888;
-
-            text-align: center;
-
-            padding: 30px;
-        }
-
-
-        /* =====================================================
-           MAPPA
-           ===================================================== */
-
-        .map-section {
-
-            margin-bottom: 50px;
-        }
-
-        .map-wrapper {
-
-            overflow: hidden;
-
-            border-radius: 22px;
-
-            min-height: 400px;
-
-            background: #eee;
-        }
-
-        .map-wrapper iframe {
-
-            width: 100%;
-
-            height: 420px;
-
-            display: block;
-
-            border: 0;
-        }
-
-
-        /* =====================================================
-           RECENSIONI
-           ===================================================== */
-
-        .reviews-section {
-
-            margin-bottom: 50px;
-        }
-
-        .reviews-header {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: flex-start;
-
-            gap: 30px;
-
-            margin-bottom: 30px;
-        }
-
-        .rating-summary {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 6px;
-        }
-
-        .rating-number {
-
-            font-size: 42px;
-
-            font-weight: 700;
-
-            line-height: 1;
-        }
-
-        .rating-stars {
-
-            letter-spacing: 3px;
-
-            font-size: 20px;
-        }
-
-        .rating-count {
-
-            color: #777;
-
-            font-size: 14px;
-        }
-
-
-        /* =====================================================
-           RECENSIONE SINGOLA
-           ===================================================== */
-
-        .reviews-list {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 18px;
-        }
-
-        .review-card {
-
-            padding: 24px;
-
-            border-radius: 18px;
-
-            background: #fafafa;
-
-            border: 1px solid #eee;
-        }
-
-        .review-top {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 20px;
-
-            margin-bottom: 12px;
-        }
-
-        .review-user {
-
-            font-weight: 700;
-        }
-
-        .review-stars {
-
-            letter-spacing: 2px;
-        }
-
-        .review-comment {
-
-            margin: 0;
-
-            color: #555;
-
-            line-height: 1.7;
-
-            white-space: pre-line;
-        }
-
-
-        /* =====================================================
-           NESSUNA RECENSIONE
-           ===================================================== */
-
-        .no-reviews {
-
-            padding: 35px;
-
-            text-align: center;
-
-            border-radius: 18px;
-
-            background: #f7f7f7;
-
-            color: #777;
-        }
-
-
-        /* =====================================================
-           BOTTONI
-           ===================================================== */
-
-        .museum-button {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 13px 22px;
-
-            border: none;
-
-            border-radius: 50px;
-
-            background: #222;
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 14px;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            transition: .2s ease;
-        }
-
-        .museum-button:hover {
-
-            transform: translateY(-1px);
-
-            opacity: .9;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-           ===================================================== */
-
-        @media (max-width: 850px) {
-
-            .museum-main-grid {
-
-                grid-template-columns: 1fr;
-            }
-
-            .museum-hero {
-
-                min-height: 400px;
-            }
-
-            .museum-hero-content {
-
-                padding: 30px;
-            }
-
-            .reviews-header {
-
-                flex-direction: column;
-            }
-        }
-
-
-        @media (max-width: 550px) {
-
-            .museum-detail {
-
-                padding: 25px 15px 60px;
-            }
-
-            .museum-hero {
-
-                min-height: 350px;
-
-                border-radius: 20px;
-            }
-
-            .museum-hero-content {
-
-                padding: 25px;
-            }
-
-            .museum-card {
-
-                padding: 22px;
-            }
-
-            .opening-row {
-
-                flex-direction: column;
-
-                gap: 5px;
-            }
-
-            .review-top {
-
-                flex-direction: column;
-
-                gap: 8px;
-            }
-        }
-
     </style>
 
 </head>
@@ -674,862 +58,483 @@
 <body>
 
 
-<!-- =========================================================
-     NAVBAR
-     ========================================================= -->
+    <!-- NAVBAR -->
 
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 
 
-<main class="museum-detail">
+    <main class="luogo-detail">
 
 
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
+        <!-- HERO -->
 
-    <section class="museum-hero">
-
-
-        <!--
-
-            IMMAGINE:
-
-            Per ora NON inseriamo la gestione delle immagini,
-            perché deve essere ancora decisa dal gruppo.
-
-            Quando avrete deciso come salvarle nel database,
-            questa parte verrà sostituita con il relativo
-            th:src.
-
-        -->
-
-        <div class="museum-hero-placeholder">
-
-            Immagine del museo
-
-        </div>
-
-
-        <div class="museum-hero-content">
-
-
-            <!-- TIPOLOGIA -->
-
-            <span class="museum-type"
-                  th:if="${museo.tipologia != null}"
-                  th:text="${museo.tipologia}">
-
-                Tipologia museo
-
-            </span>
-
-
-            <!-- NOME -->
-
-            <h1 class="museum-title"
-                th:text="${museo.nome}">
-
-                Museo
-
-            </h1>
-
-
-            <!-- CITTA -->
-
-            <div class="museum-city"
-                 th:if="${museo.citta != null}"
-                 th:text="${museo.citta.nome}">
-
-                Città
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         INFORMAZIONI PRINCIPALI
-         ===================================================== -->
-
-    <section class="museum-main-grid">
-
-
-        <!-- =================================================
-             DESCRIZIONE
-             ================================================= -->
-
-        <article class="museum-card">
-
-            <h2>Informazioni sul museo</h2>
-
-            <p class="museum-description"
-               th:text="${museo.descrizione}">
-
-                Descrizione del museo.
-
-            </p>
-
-        </article>
-
-
-
-        <!-- =================================================
-             CONTATTI
-             ================================================= -->
-
-        <aside class="museum-card">
-
-            <h2>Informazioni</h2>
-
-
-            <div class="museum-contact-list">
-
-
-                <!-- INDIRIZZO -->
-
-                <div class="museum-contact-item"
-                     th:if="${museo.indirizzo != null}">
-
-                    <div class="museum-contact-icon">
-                        📍
-                    </div>
-
-                    <div class="museum-contact-content">
-
-                        <span class="museum-contact-label">
-                            Indirizzo
-                        </span>
-
-                        <span class="museum-contact-value"
-                              th:text="${museo.indirizzo}">
-
-                            Indirizzo
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- TELEFONO -->
-
-                <div class="museum-contact-item"
-                     th:if="${museo.numero != null}">
-
-                    <div class="museum-contact-icon">
-                        ☎
-                    </div>
-
-                    <div class="museum-contact-content">
-
-                        <span class="museum-contact-label">
-                            Telefono
-                        </span>
-
-                        <a class="museum-contact-value"
-                           th:href="'tel:' + ${museo.numero}"
-                           th:text="${museo.numero}">
-
-                            Telefono
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- EMAIL -->
-
-                <div class="museum-contact-item"
-                     th:if="${museo.email != null}">
-
-                    <div class="museum-contact-icon">
-                        ✉
-                    </div>
-
-                    <div class="museum-contact-content">
-
-                        <span class="museum-contact-label">
-                            Email
-                        </span>
-
-                        <a class="museum-contact-value"
-                           th:href="'mailto:' + ${museo.email}"
-                           th:text="${museo.email}">
-
-                            Email
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- SITO -->
-
-                <div class="museum-contact-item"
-                     th:if="${museo.link != null}">
-
-                    <div class="museum-contact-icon">
-                        🌐
-                    </div>
-
-                    <div class="museum-contact-content">
-
-                        <span class="museum-contact-label">
-                            Sito ufficiale
-                        </span>
-
-                        <a class="museum-contact-value"
-                           th:href="${museo.link}"
-                           target="_blank"
-                           rel="noopener noreferrer">
-
-                            Visita il sito
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </aside>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ORARI
-         ===================================================== -->
-
-    <section class="museum-card"
-             style="margin-bottom: 50px;">
-
-        <h2>Orari di apertura</h2>
-
-
-        <!-- SEMPRE APERTO -->
-
-        <div class="always-open"
-             th:if="${museo.sempreAperto}">
-
-            Aperto sempre
-
-        </div>
-
-
-        <!-- ORARI NORMALI -->
-
-        <div class="opening-hours"
-             th:unless="${museo.sempreAperto}">
-
+        <section class="luogo-hero">
 
             <!--
+            IMMAGINE: da collegare quando il gruppo deciderà
+            come salvarla nel database.
+        -->
 
-                ATTENZIONE:
+            <div class="luogo-image-placeholder">
 
-                Qui ho utilizzato:
-
-                orario.giorno
-                orario.oraApertura
-                orario.oraChiusura
-
-                Se nel tuo OrarioApertura.java i campi hanno
-                nomi diversi, bisogna sostituirli.
-
-            -->
-
-            <div class="opening-row"
-                 th:each="orario : ${museo.orariApertura}">
-
-
-                <span class="opening-day"
-                      th:text="${orario.giorno}">
-
-                    Giorno
-
-                </span>
-
-
-                <span class="opening-time">
-
-                    <span th:text="${orario.oraApertura}">
-                        10:00
-                    </span>
-
-                    -
-
-                    <span th:text="${orario.oraChiusura}">
-                        18:00
-                    </span>
-
-                </span>
-
+                Immagine del museo
 
             </div>
 
 
-            <!-- NESSUN ORARIO -->
+            <div class="luogo-hero-content">
 
-            <div th:if="${museo.orariApertura == null
+                <span class="luogo-type" th:if="${museo.tipologia != null}" th:text="${museo.tipologia}">
+
+                    Tipologia museo
+
+                </span>
+
+
+                <h1 class="luogo-title" th:text="${museo.nome}">
+
+                    Museo
+
+                </h1>
+
+
+                <div class="luogo-city" th:if="${museo.citta != null}" th:text="${museo.citta.nome}">
+
+                    Città
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DESCRIZIONE + CONTATTI -->
+
+        <section class="luogo-main-grid">
+
+            <article class="luogo-card">
+
+                <h2>Informazioni sul museo</h2>
+
+                <p class="luogo-description" th:text="${museo.descrizione}">
+
+                    Descrizione del museo.
+
+                </p>
+
+            </article>
+
+
+            <aside class="luogo-card">
+
+                <h2>Informazioni</h2>
+
+                <div class="contact-list">
+
+                    <!-- INDIRIZZO -->
+
+                    <div class="contact-item" th:if="${museo.indirizzo != null}">
+
+                        <div class="contact-icon">📍</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Indirizzo</span>
+
+                            <span class="contact-value" th:text="${museo.indirizzo}">
+                                Indirizzo
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TELEFONO -->
+
+                    <div class="contact-item" th:if="${museo.numero != null}">
+
+                        <div class="contact-icon">☎</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Telefono</span>
+
+                            <a class="contact-value" th:href="'tel:' + ${museo.numero}" th:text="${museo.numero}">
+                                Telefono
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="contact-item" th:if="${museo.email != null}">
+
+                        <div class="contact-icon">✉</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Email</span>
+
+                            <a class="contact-value" th:href="'mailto:' + ${museo.email}" th:text="${museo.email}">
+                                Email
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SITO -->
+
+                    <div class="contact-item" th:if="${museo.link != null}">
+
+                        <div class="contact-icon">🌐</div>
+
+                        <div class="contact-content">
+
+                            <span class="contact-label">Sito ufficiale</span>
+
+                            <a class="contact-value" th:href="${museo.link}" target="_blank" rel="noopener noreferrer">
+                                Visita il sito
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+
+        <!-- ORARI -->
+
+        <section class="luogo-card" style="margin-bottom: 50px;">
+
+            <h2>Orari di apertura</h2>
+
+            <div class="always-open" th:if="${museo.sempreAperto}">
+
+                Aperto sempre
+
+            </div>
+
+            <div class="opening-hours" th:unless="${museo.sempreAperto}">
+
+                <div class="opening-row" th:each="orario : ${museo.orariApertura}">
+
+                    <span class="opening-day" th:text="${orario.giorno}">
+                        Giorno
+                    </span>
+
+                    <span class="opening-time">
+                        <span th:text="${orario.orarioApertura}">10:00</span>
+                        -
+                        <span th:text="${orario.orarioChiusura}">18:00</span>
+                    </span>
+
+                </div>
+
+                <div th:if="${museo.orariApertura == null
                          || museo.orariApertura.isEmpty()}">
 
-                Gli orari non sono disponibili.
+                    Gli orari non sono disponibili.
+
+                </div>
 
             </div>
 
-
-        </div>
-
-    </section>
+        </section>
 
 
 
-    <!-- =====================================================
-         SERVIZI
-         ===================================================== -->
+        <!-- SERVIZI -->
 
-    <section class="museum-card"
-             style="margin-bottom: 50px;">
+        <section class="luogo-card" style="margin-bottom: 50px;">
 
-        <h2>Servizi</h2>
+            <h2>Servizi</h2>
 
+            <div class="services-grid">
 
-        <div class="services-grid">
-
-
-            <!-- ACCESSIBILITA -->
-
-            <span class="service-badge"
-                  th:if="${museo.accessibilita != null}">
-
-                ✓ Accessibilità
-
-            </span>
-
-
-            <!-- GUIDE -->
-
-            <span class="service-badge"
-                  th:if="${museo.guidaPrenotabile}">
-
-                ✓ Visite guidate prenotabili
-
-            </span>
-
-
-            <!-- BAR -->
-
-            <span class="service-badge"
-                  th:if="${museo.barInterno}">
-
-                ✓ Bar interno
-
-            </span>
-
-
-            <!--
-
-                NON AGGIUNGIAMO:
-
-                - Wi-Fi
-                - Bagni
-                - Guardaroba
-                - Bookshop
-                - Audioguida
-
-                perché al momento non sono presenti
-                nell'entità Museo che mi hai fornito.
-
-            -->
-
-
-            <!-- NESSUN SERVIZIO -->
-
-            <span th:if="${museo.accessibilita == null
-                         && !museo.guidaPrenotabile
-                         && !museo.barInterno}">
-
-                Nessun servizio disponibile.
-
-            </span>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         PREZZI
-         ===================================================== -->
-
-    <section class="museum-card"
-             style="margin-bottom: 50px;"
-             th:if="${museo.prezzi != null
-                     && !museo.prezzi.isEmpty()}">
-
-        <h2>Prezzi</h2>
-
-
-        <div class="prices-list">
-
-
-            <div class="price-row"
-                 th:each="prezzo : ${museo.prezzi}">
-
-
-                <!--
-
-                    Anche qui dobbiamo verificare i nomi esatti
-                    dei campi di PrezzoMuseo.java.
-
-                    Per ora NON inventiamo una struttura
-                    complessa.
-
-                -->
-
-                <span th:text="${prezzo}">
-                    Prezzo
+                <span class="service-badge" th:if="${museo.accessibilita != null}">
+                    ✓ Accessibilità
                 </span>
 
+                <span class="service-badge" th:if="${museo.guidaPrenotabile}">
+                    ✓ Visite guidate prenotabili
+                </span>
+
+                <span class="service-badge" th:if="${museo.barInterno}">
+                    ✓ Bar interno
+                </span>
+
+                <span th:if="${museo.accessibilita == null
+                         && !museo.guidaPrenotabile
+                         && !museo.barInterno}">
+                    Nessun servizio disponibile.
+                </span>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
 
-    <!-- =====================================================
-         GALLERIA
-         ===================================================== -->
+        <!-- PREZZI (specifico Museo) -->
 
-    <section class="gallery-section">
+        <section class="luogo-card" style="margin-bottom: 50px;" th:if="${museo.prezzi != null
+                     && !museo.prezzi.isEmpty()}">
 
+            <h2>Prezzi</h2>
 
-        <div class="museum-card">
+            <div class="prices-list">
 
-            <h2>Galleria</h2>
+                <div class="price-row" th:each="prezzo : ${museo.prezzi}">
 
+                    <span th:text="${prezzo.fasciaPrezzo.nome}">Intero</span>
 
-            <!--
-
-                LE IMMAGINI VERRANNO COLLEGATE QUI.
-
-                Per ora il gruppo deve ancora decidere
-                come salvare e gestire le immagini nel DB.
-
-            -->
-
-            <div class="gallery-placeholder">
-
-                <div>
-
-                    <strong>
-                        Galleria del museo
-                    </strong>
-
-                    <p>
-                        Le immagini verranno caricate
-                        dal database.
-                    </p>
+                    <span th:text="${#numbers.formatDecimal(prezzo.prezzo, 1, 2)} + ' €'">0,00 €</span>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
 
-    <!-- =====================================================
-         GOOGLE MAPS
-         ===================================================== -->
+        <!-- GALLERIA -->
 
-    <section class="map-section">
+        <section class="gallery-section">
 
+            <div class="luogo-card">
 
-        <div class="museum-card">
+                <h2>Galleria</h2>
 
-            <h2>Come arrivare</h2>
+                <div class="gallery-placeholder">
 
+                    <div>
 
-            <div class="map-wrapper"
-                 th:if="${museo.indirizzo != null}">
+                        <strong>Galleria del museo</strong>
 
-
-                <iframe
-                    th:src="'https://www.google.com/maps?q='
-                            + ${museo.indirizzo}
-                            + '&output=embed'"
-                    loading="lazy"
-                    allowfullscreen>
-                </iframe>
-
-
-            </div>
-
-
-            <p th:if="${museo.indirizzo == null}">
-
-                Posizione non disponibile.
-
-            </p>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         RECENSIONI
-         ===================================================== -->
-
-    <section class="reviews-section">
-
-
-        <div class="museum-card">
-
-
-            <div class="reviews-header">
-
-
-                <div>
-
-                    <h2>Recensioni</h2>
-
-
-                    <div class="rating-summary">
-
-
-                        <!-- MEDIA -->
-
-                        <span class="rating-number"
-                              th:text="${mediaRecensioni}">
-
-                            0.0
-
-                        </span>
-
-
-                        <span class="rating-stars">
-                            ★★★★★
-                        </span>
-
-
-                        <!-- NUMERO RECENSIONI -->
-
-                        <span class="rating-count">
-
-                            Basato su
-
-                            <strong
-                                th:text="${numeroRecensioni}">
-                                0
-                            </strong>
-
-                            recensioni
-
-                        </span>
-
+                        <p>Le immagini verranno caricate dal database.</p>
 
                     </div>
 
                 </div>
 
+            </div>
 
-
-                <!-- UTENTE NON AUTENTICATO -->
-
-                <a class="museum-button"
-                   th:if="${!#authorization.expression('isAuthenticated()')}"
-                   th:href="@{/accedi}">
-
-                    Accedi per recensire
-
-                </a>
+        </section>
 
 
 
-                <!-- UTENTE AUTENTICATO -->
+        <!-- MAPPA -->
 
-                <button
-                    class="museum-button"
-                    type="button"
-                    th:if="${#authorization.expression('isAuthenticated()')}"
-                    onclick="apriFormRecensione()">
+        <section class="map-section">
 
-                    Scrivi una recensione
+            <div class="luogo-card">
 
-                </button>
+                <h2>Come arrivare</h2>
 
+                <div class="map-wrapper" th:if="${museo.indirizzo != null}">
+
+                    <iframe th:src="'https://www.google.com/maps?q='
+                            + ${museo.indirizzo}
+                            + '&output=embed'" loading="lazy" allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <p th:if="${museo.indirizzo == null}">
+                    Posizione non disponibile.
+                </p>
 
             </div>
 
+        </section>
 
 
-            <!-- =================================================
-                 NESSUNA RECENSIONE
-                 ================================================= -->
 
-            <div class="no-reviews"
-                 th:if="${museo.recensioni == null
+        <!-- RECENSIONI -->
+
+        <section class="reviews-section">
+
+            <div class="luogo-card">
+
+                <div class="reviews-header">
+
+                    <div>
+
+                        <h2>Recensioni</h2>
+
+                        <div class="rating-summary">
+
+                            <span class="rating-number" th:text="${mediaRecensioni}">
+                                0.0
+                            </span>
+
+                            <span class="rating-stars">★★★★★</span>
+
+                            <span class="rating-count">
+                                Basato su
+                                <strong th:text="${numeroRecensioni}">0</strong>
+                                recensioni
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a class="luogo-button" th:if="${!#authorization.expression('isAuthenticated()')}"
+                        th:href="@{/accedi}">
+
+                        Accedi per recensire
+
+                    </a>
+
+
+                    <button class="luogo-button" type="button" th:if="${#authorization.expression('isAuthenticated()')}"
+                        onclick="apriFormRecensione()">
+
+                        Scrivi una recensione
+
+                    </button>
+
+                </div>
+
+
+                <div class="no-reviews" th:if="${museo.recensioni == null
                          || museo.recensioni.isEmpty()}">
 
-                <p>
-                    Nessuna recensione ancora.
-                </p>
+                    <p>Nessuna recensione ancora.</p>
+                    <p>Sii il primo a lasciare una recensione!</p>
 
-                <p>
-                    Sii il primo a lasciare una recensione!
-                </p>
-
-            </div>
+                </div>
 
 
-
-            <!-- =================================================
-                 RECENSIONI
-                 ================================================= -->
-
-            <div class="reviews-list"
-                 th:unless="${museo.recensioni == null
+                <div class="reviews-list" th:unless="${museo.recensioni == null
                              || museo.recensioni.isEmpty()}">
 
+                    <article class="review-card" th:each="recensione : ${museo.recensioni}">
 
-                <article class="review-card"
-                         th:each="recensione : ${museo.recensioni}">
+                        <div class="review-top">
 
-
-                    <div class="review-top">
-
-
-                        <div>
-
-                            <!--
-
-                                QUI DOBBIAMO VERIFICARE
-                                IL CAMPO ESATTO DI UTENTE.
-
-                            -->
-
-                            <span class="review-user"
-                                  th:text="${recensione.utente}">
-
+                            <span class="review-user" th:text="${recensione.utente.nome}">
                                 Utente
-
                             </span>
+
+                            <div class="review-stars">
+
+                                <span th:each="i : ${#numbers.sequence(1,5)}"
+                                    th:text="${i <= recensione.voto ? '★' : '☆'}">
+                                    ★
+                                </span>
+
+                            </div>
 
                         </div>
 
+                        <p class="review-comment" th:text="${recensione.commento}">
+                            Commento recensione
+                        </p>
 
-                        <div class="review-stars">
+                    </article>
 
-                            <span th:each="i : ${#numbers.sequence(1,5)}"
-                                  th:text="${i <= recensione.voto ? '★' : '☆'}">
-
-                                ★
-
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <p class="review-comment"
-                       th:text="${recensione.commento}">
-
-                        Commento recensione
-
-                    </p>
-
-
-                </article>
-
+                </div>
 
             </div>
 
-
-        </div>
-
-    </section>
+        </section>
 
 
 
-    <!-- =====================================================
-         FORM RECENSIONE
-         ===================================================== -->
+        <!-- FORM RECENSIONE -->
 
-    <section id="reviewForm"
-             class="museum-card"
-             style="display: none; margin-bottom: 50px;">
+        <section id="reviewForm" class="luogo-card review-form">
 
-        <h2>Lascia una recensione</h2>
+            <h2>Lascia una recensione</h2>
 
+            <form method="post" th:action="@{/recensioni}">
 
-        <!--
+                <input type="hidden" name="luogoInteresseId" th:value="${museo.id}">
 
-            QUESTA PARTE È LA STRUTTURA GRAFICA.
+                <div class="form-group">
 
-            L'endpoint POST definitivo per salvare
-            Recensione dobbiamo collegarlo al tuo
-            RecensioneController/Service quando
-            vediamo come avete implementato la parte
-            recensioni.
+                    <label for="voto">Valutazione</label>
 
-        -->
+                    <select id="voto" name="voto" required>
 
-        <form method="post"
-              th:action="@{/recensioni}">
+                        <option value="">Seleziona una valutazione</option>
+                        <option value="5">★★★★★ - 5</option>
+                        <option value="4">★★★★☆ - 4</option>
+                        <option value="3">★★★☆☆ - 3</option>
+                        <option value="2">★★☆☆☆ - 2</option>
+                        <option value="1">★☆☆☆☆ - 1</option>
 
+                    </select>
 
-            <!-- ID DEL MUSEO -->
+                </div>
 
-            <input type="hidden"
-                   name="luogoInteresseId"
-                   th:value="${museo.id}">
+                <div class="form-group">
 
+                    <label for="commento">La tua recensione</label>
 
-            <!-- VOTO -->
+                    <textarea id="commento" name="commento" rows="6" maxlength="5000"
+                        placeholder="Racconta la tua esperienza..." required></textarea>
 
-            <div style="margin-bottom: 20px;">
+                </div>
 
-                <label for="voto">
+                <button type="submit" class="luogo-button">
+                    Pubblica recensione
+                </button>
 
-                    Valutazione
+            </form>
 
-                </label>
-
-
-                <select id="voto"
-                        name="voto"
-                        required>
-
-                    <option value="">
-                        Seleziona una valutazione
-                    </option>
-
-                    <option value="5">
-                        ★★★★★ - 5
-                    </option>
-
-                    <option value="4">
-                        ★★★★☆ - 4
-                    </option>
-
-                    <option value="3">
-                        ★★★☆☆ - 3
-                    </option>
-
-                    <option value="2">
-                        ★★☆☆☆ - 2
-                    </option>
-
-                    <option value="1">
-                        ★☆☆☆☆ - 1
-                    </option>
-
-                </select>
-
-            </div>
+        </section>
 
 
-            <!-- COMMENTO -->
-
-            <div style="margin-bottom: 20px;">
-
-                <label for="commento">
-
-                    La tua recensione
-
-                </label>
-
-
-                <textarea id="commento"
-                          name="commento"
-                          rows="6"
-                          maxlength="5000"
-                          placeholder="Racconta la tua esperienza..."
-                          required>
-                </textarea>
-
-            </div>
-
-
-            <button type="submit"
-                    class="museum-button">
-
-                Pubblica recensione
-
-            </button>
-
-
-        </form>
-
-    </section>
-
-
-</main>
+    </main>
 
 
 
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
+    <!-- FOOTER -->
 
-<div th:replace="~{fragments/footer :: footer}"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 
 
 
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
+    <script>
 
-<script>
+        function apriFormRecensione() {
 
-    function apriFormRecensione() {
+            const form = document.getElementById("reviewForm");
 
-        const form = document.getElementById("reviewForm");
+            if (!form) {
+                return;
+            }
 
-        if (!form) {
-            return;
+            form.style.display = "block";
+
+            form.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
         }
 
-        form.style.display = "block";
-
-        form.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }
-
-</script>
+    </script>
 
 
 </body>
