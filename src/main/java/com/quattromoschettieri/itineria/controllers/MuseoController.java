@@ -91,6 +91,7 @@ public class MuseoController {
         model.addAttribute("museiSempreAperti",
                 museoService.search(dtoSempreAperti, anteprime).getContent());
         model.addAttribute("musei", tuttiMusei.getContent());
+        //
         model.addAttribute("risultati", tuttiMusei);
         model.addAttribute("museoDTO", new MuseoDTO());
 
@@ -109,6 +110,8 @@ public class MuseoController {
 
         model.addAttribute("musei", risultati.getContent());
         model.addAttribute("risultati", risultati);
+        //
+        model.addAttribute("museoDTO", dto);
 
         return "luoghi_interesse/musei";
     }
