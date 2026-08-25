@@ -1,18 +1,26 @@
 package com.quattromoschettieri.itineria.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.utenteDTO.UtenteDTO;
 import com.quattromoschettieri.itineria.converters.utenteConverter.UtenteConverter;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
+import com.quattromoschettieri.itineria.services.BibliotecaService;
+import com.quattromoschettieri.itineria.services.LocaleService;
+import com.quattromoschettieri.itineria.services.MuseoService;
+import com.quattromoschettieri.itineria.services.RistoranteService;
+import com.quattromoschettieri.itineria.services.ZonaVerdeService;
 import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
 import lombok.RequiredArgsConstructor;
+
 
 @Controller
 @RequestMapping("/utente")
@@ -21,6 +29,12 @@ public class UtenteController {
 
     private final UtenteService utenteService;
     private final UtenteConverter utenteConverter;
+
+    private final BibliotecaService bibliotecaService;
+    private final MuseoService museoService;
+    private final RistoranteService ristoranteService;
+    private final LocaleService localeService;
+    private final ZonaVerdeService zonaVerdeService;
 
     // Mostra la pagina principale dell'area personale
     @GetMapping
@@ -109,4 +123,44 @@ public class UtenteController {
 
         return "redirect:/";
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/admin/{utenteId}/manager/{tipoLuogo}/{luogoId}")
+    public String rendiManager(
+        @PathVariable Long utenteId,
+        @PathVariable String tipoLuogo,
+        @PathVariable Long luogoId) {
+
+        Utente utente = utenteService.findById(utenteId);
+
+        // L'utente deve diventare MANAGER
+        utenteService.assegnaRuoloManager(utenteId);
+
+        // Assegna il manager al luogo specifico
+        switch (tipoLuogo.toLowerCase()) {
+
+            case "biblioteca" ->
+                bibliotecaService.assegnaManager(luogoId, utente);
+
+            case "museo" ->
+                museoService.assegnaManager(luogoId, utente);
+
+            case "ristorante" ->
+                ristoranteService.assegnaManager(luogoId, utente);
+
+            case "locale" ->
+                localeService.assegnaManager(luogoId, utente);
+
+            case "zonaverde" ->
+                zonaVerdeService.assegnaManager(luogoId, utente);
+
+            default ->
+                throw new IllegalArgumentException(
+                    "Tipo di luogo non valido: " + tipoLuogo
+                );
+        }
+
+        return "redirect:/utente/area-persoale";
+    }
+    
 }

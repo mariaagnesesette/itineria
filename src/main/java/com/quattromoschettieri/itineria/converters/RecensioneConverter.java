@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 import com.quattromoschettieri.itineria.DTO.RecensioneDTO;
 import com.quattromoschettieri.itineria.entities.recensione.Recensione;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.repository.LuogoInteresseRepository;
-import com.quattromoschettieri.itineria.repository.utenteRepository.UtenteRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,17 +13,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public final class RecensioneConverter {
 
-    private final UtenteRepository utenteRepository;
-
     private final LuogoInteresseRepository luogoInteresseRepository;
 
-       public Recensione toEntity(RecensioneDTO dto) {
+       public Recensione toEntity(RecensioneDTO dto, Utente utente) {
         Recensione recensione = Recensione.builder()
                 .voto(dto.getVoto())
                 .commento(dto.getCommento())
-                .utente(utenteRepository
-                        .findById(dto.getIdUtente())
-                        .orElseThrow(() -> new RuntimeException("Utente non trovato")))
+                .utente(utente)
                 .luogoInteresse(luogoInteresseRepository
                         .findById(dto.getIdLuogoInteresse())
                         .orElseThrow(() -> new RuntimeException("Luogo di interesse non trovato")))

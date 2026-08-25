@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.quattromoschettieri.itineria.DTO.ZonaVerdeDTO;
 import com.quattromoschettieri.itineria.converters.ZonaVerdeConverter;
 import com.quattromoschettieri.itineria.entities.citta.Citta;
+import com.quattromoschettieri.itineria.entities.utente.Ruolo;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.entities.zonaVerde.ZonaVerde;
 import com.quattromoschettieri.itineria.repository.CittaRepository;
 import com.quattromoschettieri.itineria.repository.ZonaVerdeRepository;
@@ -23,8 +25,11 @@ public class ZonaVerdeService {
     private final CittaRepository cittaRepository;
     private final ZonaVerdeConverter zonaVerdeConverter;
 
-    //CREATE
-    public ZonaVerdeDTO create(ZonaVerdeDTO dto) {
+    // CREATE
+    public ZonaVerdeDTO create(
+            ZonaVerdeDTO dto,
+            Utente manager) {
+
         Citta citta = cittaRepository.findById(dto.getIdCitta())
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Città non trovata: " + dto.getIdCitta()));
@@ -40,13 +45,18 @@ public class ZonaVerdeService {
                             + " nella città di " + citta.getNome());
         }
 
-        ZonaVerde zonaVerde = zonaVerdeConverter.toEntity(dto, citta);
-        ZonaVerde salvata = zonaVerdeRepository.save(zonaVerde);
+        ZonaVerde zonaVerde =
+                zonaVerdeConverter.toEntity(dto, citta);
+
+        zonaVerde.setManager(manager);
+
+        ZonaVerde salvata =
+                zonaVerdeRepository.save(zonaVerde);
 
         return zonaVerdeConverter.toDto(salvata);
     }
 
-    //READ
+    // READ
     public Page<ZonaVerde> findAll(Pageable pageable) {
         return zonaVerdeRepository.findAll(pageable);
     }
@@ -65,8 +75,9 @@ public class ZonaVerdeService {
             String nome,
             Pageable pageable) {
 
-        return zonaVerdeRepository
-                .findByNomeContainingIgnoreCase(nome, pageable);
+        return zonaVerdeRepository.findByNomeContainingIgnoreCase(
+                nome,
+                pageable);
     }
 
     public Page<ZonaVerde> search(
@@ -97,9 +108,15 @@ public class ZonaVerdeService {
         return zonaVerdeRepository.findAll(spec, pageable);
     }
 
-    //UPDATE
-    public ZonaVerdeDTO update(Long id, ZonaVerdeDTO dto) {
-        ZonaVerde esistente = findById(id);
+    // UPDATE
+    public ZonaVerdeDTO update(
+            Long id,
+            ZonaVerdeDTO dto,
+            Utente manager) {
+
+        ZonaVerde zonaVerde = findById(id);
+
+        verificaPermesso(zonaVerde, manager);
 
         Citta citta = cittaRepository.findById(dto.getIdCitta())
                 .orElseThrow(() -> new IllegalArgumentException(
@@ -114,18 +131,64 @@ public class ZonaVerdeService {
         if (giaEsistente) {
             throw new IllegalArgumentException(
                     "Esiste già un'altra zona verde con nome "
-                            + dto.getNome() + " nella città di "
+                            + dto.getNome()
+                            + " nella città di "
                             + citta.getNome());
         }
 
-        zonaVerdeConverter.updateEntity(esistente, dto, citta);
-        ZonaVerde salvata = zonaVerdeRepository.save(esistente);
+        zonaVerdeConverter.updateEntity(
+                zonaVerde,
+                dto,
+                citta);
+
+        ZonaVerde salvata =
+                zonaVerdeRepository.save(zonaVerde);
 
         return zonaVerdeConverter.toDto(salvata);
     }
 
-    //DELETE
-    public void delete(Long id) {
-        zonaVerdeRepository.delete(findById(id));
+    // DELETE
+    public void delete(
+            Long id,
+            Utente manager) {
+
+        ZonaVerde zonaVerde = findById(id);
+
+        verificaPermesso(zonaVerde, manager);
+
+        zonaVerdeRepository.delete(zonaVerde);
     }
+
+    // CONTROLLO PERMESSI
+    private void verificaPermesso(
+            ZonaVerde zonaVerde,
+            Utente manager) {
+
+        if (manager.getRuolo() == Ruolo.ADMIN) {
+            return;
+        }
+
+        if (manager.getRuolo() == Ruolo.MANAGER
+                && zonaVerde.getManager() != null
+                && zonaVerde.getManager().getId().equals(manager.getId())) {
+            return;
+        }
+
+        throw new SecurityException(
+                "Non hai i permessi per modificare questa zona verde");
+    }
+
+    public void assegnaManager(Long zonaVerdeId, Utente manager) {
+
+        ZonaVerde zonaVerde = findById(zonaVerdeId);
+
+        if (manager.getRuolo() != Ruolo.MANAGER) {
+                throw new IllegalArgumentException(
+                        "L'utente deve avere ruolo MANAGER");
+        }
+
+        zonaVerde.setManager(manager);
+
+        zonaVerdeRepository.save(zonaVerde);
+        }
 }

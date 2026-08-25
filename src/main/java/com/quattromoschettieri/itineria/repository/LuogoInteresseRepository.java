@@ -12,4 +12,5 @@ public interface LuogoInteresseRepository extends JpaRepository<LuogoInteresse, 
     List<LuogoInteresse> findByManager(Utente manager);
 
     List<LuogoInteresse> findByManagerId(Long managerId);
+
 }

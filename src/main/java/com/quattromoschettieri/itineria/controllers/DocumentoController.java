@@ -33,109 +33,157 @@ public class DocumentoController {
     private final UtenteService utenteService;
     private final DocumentoConverter documentoConverter;
 
-    // Mostra tutti i documenti dell'utente autenticato
+
+    // =========================
+    // LISTA DOCUMENTI
+    // =========================
+
+    // Mostra tutti i documenti dell'utente autenticato.
     @GetMapping
     public String listaDocumenti(
             Authentication authentication,
             Model model) {
 
-        Utente utente = utenteService.findByEmail(authentication.getName());
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
 
-        List<DocumentoDTO> documenti = documentoService.findByUtente(utente)
-                .stream()
-                .map(documentoConverter::toDto)
-                .toList();
+        List<DocumentoDTO> documenti =
+                documentoService.findByUtente(utente)
+                        .stream()
+                        .map(documentoConverter::toDto)
+                        .toList();
 
         model.addAttribute("documenti", documenti);
 
         return "utente/documenti";
     }
 
-    // Mostra il form per caricare un nuovo documento
+
+    // =========================
+    // NUOVO DOCUMENTO
+    // =========================
+
+    // Mostra il form per caricare un nuovo documento.
     @GetMapping("/nuovo")
     public String nuovoDocumento(Model model) {
 
-        model.addAttribute("documento", new DocumentoDTO());
+        model.addAttribute(
+                "documento",
+                new DocumentoDTO()
+        );
 
         return "utente/documento-form";
     }
 
-    // Mostra il dettaglio di un documento dell'utente autenticato
+
+    // =========================
+    // DETTAGLIO
+    // =========================
+
+    // Mostra il dettaglio di un documento.
+    //
+    // L'utente può visualizzare solo i propri documenti.
     @GetMapping("/{id}")
     public String dettaglioDocumento(
             @PathVariable Long id,
             Authentication authentication,
             Model model) {
 
-        Utente utente = utenteService.findByEmail(authentication.getName());
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
 
-        Documento documento = documentoService.findById(id);
+        Documento documento =
+                documentoService.findById(id);
 
-        // Verifica che il documento appartenga all'utente autenticato
         if (!documento.getUtente().getId().equals(utente.getId())) {
             return "redirect:/documenti";
         }
 
-        DocumentoDTO dto = documentoConverter.toDto(documento);
+        DocumentoDTO dto =
+                documentoConverter.toDto(documento);
 
         model.addAttribute("documento", dto);
 
         return "utente/documento-dettaglio";
     }
 
-    // Carica un nuovo documento
+
+    // =========================
+    // CREAZIONE
+    // =========================
+
+    // Carica un nuovo documento.
+    //
+    // L'utente viene ricavato dall'autenticazione.
+    // Il fileKey viene generato dal backend.
     @PostMapping
     public String salvaDocumento(
             Authentication authentication,
             DocumentoDTO dto,
             @RequestParam("file") MultipartFile file) {
 
-        Utente utente = utenteService.findByEmail(authentication.getName());
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
 
-        documentoService.save(dto, utente, file);
+        documentoService.save(
+                dto,
+                utente,
+                file
+        );
 
         return "redirect:/documenti";
     }
 
-    // Elimina un documento dell'utente autenticato
+
+    // =========================
+    // ELIMINAZIONE
+    // =========================
+
+    // Elimina un documento.
+    //
+    // Il controllo di proprietà viene effettuato
+    // dal DocumentoService.
     @PostMapping("/{id}/elimina")
     public String eliminaDocumento(
             @PathVariable Long id,
             Authentication authentication) {
 
-        Utente utente = utenteService.findByEmail(authentication.getName());
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
 
-        Documento documento = documentoService.findById(id);
-
-        // Verifica che il documento appartenga all'utente autenticato
-        if (!documento.getUtente().getId().equals(utente.getId())) {
-            return "redirect:/documenti";
-        }
-
-        documentoService.delete(id);
+        documentoService.delete(
+                id,
+                utente
+        );
 
         return "redirect:/documenti";
     }
 
-    // Permette di visualizzare/scaricare il file del documento
+
+    // =========================
+    // FILE
+    // =========================
+
+    // Permette di visualizzare/scaricare il file.
+    //
+    // Il controllo di proprietà viene effettuato
+    // dal DocumentoService.
     @GetMapping("/{id}/file")
     public ResponseEntity<Resource> fileDocumento(
             @PathVariable Long id,
             Authentication authentication) {
 
-        Utente utente = utenteService.findByEmail(authentication.getName());
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
 
-        Documento documento = documentoService.findById(id);
-
-        // Verifica che il documento appartenga all'utente autenticato
-        if (!documento.getUtente().getId().equals(utente.getId())) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Resource file = documentoService.readFile(id);
+        Resource file =
+                documentoService.readFile(
+                        id,
+                        utente
+                );
 
         return ResponseEntity.ok()
-                             .contentType(MediaType.APPLICATION_PDF)
-                             .body(file);
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(file);
     }
 }

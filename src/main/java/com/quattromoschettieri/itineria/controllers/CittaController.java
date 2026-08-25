@@ -95,6 +95,7 @@ public class CittaController {
         return "citta/form";
     }
 
+    @PostMapping("/{id}/modifica")
     public String updateCitta(@PathVariable Long id, @Valid @ModelAttribute CittaDTO dto,
             BindingResult bindingResult) {
 

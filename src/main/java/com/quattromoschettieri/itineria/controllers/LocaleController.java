@@ -3,6 +3,7 @@ package com.quattromoschettieri.itineria.controllers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.LocaleDTO;
 import com.quattromoschettieri.itineria.entities.locale.Locale;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.services.LocaleService;
+import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,19 +29,60 @@ import lombok.RequiredArgsConstructor;
 public class LocaleController {
 
     private final LocaleService localeService;
+    private final UtenteService utenteService;
+
+    // CREATE
+
+    @GetMapping("/nuovo")
+    public String formNuovoLocale(Model model) {
+
+        model.addAttribute(
+                "localeDTO",
+                new LocaleDTO());
+
+        return "locali/form";
+    }
+
+    @PostMapping
+    public String createLocale(
+            @Valid @ModelAttribute LocaleDTO dto,
+            BindingResult bindingResult,
+            Authentication authentication) {
+
+        if (bindingResult.hasErrors()) {
+            return "locali/form";
+        }
+
+        Utente manager =
+                utenteService.findByEmail(authentication.getName());
+
+        localeService.create(dto, manager);
+
+        return "redirect:/locali";
+    }
 
     // READ
 
     @GetMapping("/filtri")
     public String filterLocali(
-            @ModelAttribute LocaleDTO localeDTO,
+            @ModelAttribute("localeDTO") LocaleDTO dto,
             Pageable pageable,
             Model model) {
 
+<<<<<<< Updated upstream
         Page<Locale> risultati = localeService.search(localeDTO, pageable);
+=======
+        Page<Locale> risultati =
+                localeService.search(dto, pageable);
+>>>>>>> Stashed changes
 
-        model.addAttribute("risultati", risultati);
-        model.addAttribute("localeDTO", localeDTO);
+        model.addAttribute(
+                "risultati",
+                risultati);
+
+        model.addAttribute(
+                "localeDTO",
+                dto);
 
         return "locali/lista";
     }
@@ -51,6 +95,7 @@ public class LocaleController {
         LocaleDTO dtoSerali = new LocaleDTO();
         dtoSerali.setAperturaSerale(true);
 
+<<<<<<< Updated upstream
         LocaleDTO dtoEsterni = new LocaleDTO();
         dtoEsterni.setPostiEsterni(true);
 
@@ -70,6 +115,11 @@ public class LocaleController {
         model.addAttribute("localiSempreAperti",
                 localeService.search(dtoSempreAperti, anteprime).getContent());
         model.addAttribute("risultati", tuttiLocali);
+=======
+        model.addAttribute(
+                "risultati",
+                risultati);
+>>>>>>> Stashed changes
 
         return "locali/lista";
     }
@@ -79,9 +129,12 @@ public class LocaleController {
             @PathVariable Long id,
             Model model) {
 
-        Locale locale = localeService.findById(id);
+        Locale locale =
+                localeService.findById(id);
 
-        model.addAttribute("locale", locale);
+        model.addAttribute(
+                "locale",
+                locale);
 
         return "locali/dettaglio";
     }
@@ -92,34 +145,20 @@ public class LocaleController {
             Pageable pageable,
             Model model) {
 
+<<<<<<< Updated upstream
         Page<Locale> risultati = localeService.findByNome(nome, pageable);
+=======
+        Page<Locale> risultati =
+                localeService.findByNome(
+                        nome,
+                        pageable);
+>>>>>>> Stashed changes
 
-        model.addAttribute("risultati", risultati);
+        model.addAttribute(
+                "risultati",
+                risultati);
 
         return "locali/byNome";
-    }
-
-    // CREATE
-
-    @GetMapping("/nuovo")
-    public String formNuovoLocale(Model model) {
-        model.addAttribute("localeDTO", new LocaleDTO());
-
-        return "locali/form";
-    }
-
-    @PostMapping
-    public String createLocale(
-            @Valid @ModelAttribute LocaleDTO dto,
-            BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return "locali/form";
-        }
-
-        localeService.create(dto);
-
-        return "redirect:/locali";
     }
 
     // UPDATE
@@ -140,13 +179,17 @@ public class LocaleController {
     public String updateLocale(
             @PathVariable Long id,
             @Valid @ModelAttribute LocaleDTO dto,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,
+            Authentication authentication) {
 
         if (bindingResult.hasErrors()) {
             return "locali/form";
         }
 
-        localeService.update(id, dto);
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
+
+        localeService.update(id, dto, utente);
 
         return "redirect:/locali/" + id;
     }
@@ -154,9 +197,14 @@ public class LocaleController {
     // DELETE
 
     @PostMapping("/{id}/delete")
-    public String deleteLocale(@PathVariable Long id) {
+    public String deleteLocale(
+            @PathVariable Long id,
+            Authentication authentication) {
 
-        localeService.delete(id);
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
+
+        localeService.delete(id, utente);
 
         return "redirect:/locali";
     }

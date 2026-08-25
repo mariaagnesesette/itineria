@@ -23,10 +23,13 @@ import lombok.RequiredArgsConstructor;
 public class DocumentoService {
 
     private final DocumentoRepository documentoRepository;
-
     private final DocumentoConverter documentoConverter;
-
     private final FileStorageService fileStorageService;
+
+
+    // =========================
+    // READ
+    // =========================
 
     public Page<Documento> findAll(Pageable pageable) {
         return documentoRepository.findAll(pageable);
@@ -34,16 +37,25 @@ public class DocumentoService {
 
     public Documento findById(Long id) {
         return documentoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Documento non trovato"));
+                .orElseThrow(() ->
+                        new RuntimeException("Documento non trovato"));
     }
 
-    public Documento findByCodiceIdentificativo(String codiceIdentificativo) {
-        return documentoRepository.findByCodiceIdentificativo(codiceIdentificativo)
-                .orElseThrow(() -> new RuntimeException("Documento non trovato"));
+    public Documento findByCodiceIdentificativo(
+            String codiceIdentificativo) {
+
+        return documentoRepository
+                .findByCodiceIdentificativo(codiceIdentificativo)
+                .orElseThrow(() ->
+                        new RuntimeException("Documento non trovato"));
     }
 
-    public Page<Documento> findByTipoDocumento(TipoDocumento tipoDocumento, Pageable pageable) {
-        return documentoRepository.findByTipoDocumento(tipoDocumento, pageable);
+    public Page<Documento> findByTipoDocumento(
+            TipoDocumento tipoDocumento,
+            Pageable pageable) {
+
+        return documentoRepository
+                .findByTipoDocumento(tipoDocumento, pageable);
     }
 
     public List<Documento> findByUtenteId(Long id) {
@@ -54,38 +66,102 @@ public class DocumentoService {
         return documentoRepository.findByUtente(utente);
     }
 
-    public DocumentoDTO save(DocumentoDTO dto, Utente utente, MultipartFile file) {
+
+    // =========================
+    // CREATE
+    // =========================
+
+    public DocumentoDTO save(
+            DocumentoDTO dto,
+            Utente utente,
+            MultipartFile file) {
+
+        // Il fileKey viene generato dal backend.
         String fileKey = fileStorageService.save(file);
 
-        Documento documento = documentoConverter.toEntity(dto, utente);
+        Documento documento =
+                documentoConverter.toEntity(dto, utente);
+
         documento.setFileKey(fileKey);
-        
-        Documento salvato = documentoRepository.save(documento);
+
+        Documento salvato =
+                documentoRepository.save(documento);
 
         return documentoConverter.toDto(salvato);
     }
 
-    public void delete(Long id) {
+
+    // =========================
+    // DELETE
+    // =========================
+
+    public void delete(
+            Long id,
+            Utente utente) {
+
         Documento documento = findById(id);
+
+        // L'utente può eliminare solo i propri documenti.
+        if (!documento.getUtente().getId().equals(utente.getId())) {
+            throw new SecurityException(
+                    "Non puoi eliminare il documento di un altro utente"
+            );
+        }
 
         fileStorageService.delete(documento.getFileKey());
 
         documentoRepository.delete(documento);
     }
 
-    public DocumentoDTO setStato(Long id, StatoDocumento stato) {
+
+    // =========================
+    // STATO
+    // =========================
+
+    public DocumentoDTO setStato(
+            Long id,
+            StatoDocumento stato) {
+
         Documento documento = findById(id);
 
         documento.setStato(stato);
 
-        Documento aggiornato = documentoRepository.save(documento);
+        Documento aggiornato =
+                documentoRepository.save(documento);
 
         return documentoConverter.toDto(aggiornato);
     }
 
-    public Resource readFile(Long id) {
+
+    // =========================
+    // FILE
+    // =========================
+
+    public Resource readFile(
+            Long id,
+            Utente utente) {
+
         Documento documento = findById(id);
 
-        return fileStorageService.read(documento.getFileKey());
+        // L'utente può accedere solo ai propri documenti.
+        if (!documento.getUtente().getId().equals(utente.getId())) {
+            throw new SecurityException(
+                    "Non puoi accedere al documento di un altro utente"
+            );
+        }
+
+        return fileStorageService.read(
+                documento.getFileKey()
+        );
+    }
+    
+    public void deleteAllByUtente(Utente utente) {
+
+        List<Documento> documenti =
+                documentoRepository.findByUtente(utente);
+
+        for (Documento documento : documenti) {
+            fileStorageService.delete(documento.getFileKey());
+        }
     }
 }

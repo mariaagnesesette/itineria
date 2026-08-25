@@ -3,6 +3,7 @@ package com.quattromoschettieri.itineria.controllers;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.ZonaVerdeDTO;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.entities.zonaVerde.ZonaVerde;
 import com.quattromoschettieri.itineria.services.ZonaVerdeService;
+import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,20 +29,64 @@ import lombok.RequiredArgsConstructor;
 public class ZonaVerdeController {
 
     private final ZonaVerdeService zonaVerdeService;
+    private final UtenteService utenteService;
+
+    // CREATE
+
+    @GetMapping("/nuovo")
+    public String formNuovaZonaVerde(Model model) {
+
+        model.addAttribute(
+                "zonaVerdeDTO",
+                new ZonaVerdeDTO());
+
+        return "zoneVerdi/form";
+    }
+
+    @PostMapping
+    public String createZonaVerde(
+            @Valid @ModelAttribute ZonaVerdeDTO dto,
+            BindingResult bindingResult,
+            Authentication authentication) {
+
+        if (bindingResult.hasErrors()) {
+            return "zoneVerdi/form";
+        }
+
+        Utente manager =
+                utenteService.findByEmail(authentication.getName());
+
+        zonaVerdeService.create(dto, manager);
+
+        return "redirect:/zoneVerdi";
+    }
 
     // READ
 
     @GetMapping("/filtri")
     public String filterZoneVerdi(
-            @ModelAttribute ZonaVerdeDTO zonaVerdeDTO,
+            @ModelAttribute("zonaVerdeDTO") ZonaVerdeDTO dto,
             Pageable pageable,
             Model model) {
 
+<<<<<<< Updated upstream
         Page<ZonaVerde> risultati = zonaVerdeService.search(zonaVerdeDTO, pageable);
 
         model.addAttribute("risultati", risultati);
         model.addAttribute("parchi", risultati.getContent());
         model.addAttribute("zonaVerdeDTO", zonaVerdeDTO);
+=======
+        Page<ZonaVerde> risultati =
+                zonaVerdeService.search(dto, pageable);
+
+        model.addAttribute(
+                "risultati",
+                risultati);
+
+        model.addAttribute(
+                "zonaVerdeDTO",
+                dto);
+>>>>>>> Stashed changes
 
         return "luoghi_interesse/zoneVerdi";
     }
@@ -52,8 +99,14 @@ public class ZonaVerdeController {
         ZonaVerdeDTO dtoCiclabili = new ZonaVerdeDTO();
         dtoCiclabili.setCiclabile(true);
 
+<<<<<<< Updated upstream
         ZonaVerdeDTO dtoCani = new ZonaVerdeDTO();
         dtoCani.setDogFriendly(true);
+=======
+        model.addAttribute(
+                "risultati",
+                risultati);
+>>>>>>> Stashed changes
 
         ZonaVerdeDTO dtoRistoro = new ZonaVerdeDTO();
         dtoRistoro.setRistoro(true);
@@ -84,7 +137,9 @@ public class ZonaVerdeController {
 
         ZonaVerde risultato = zonaVerdeService.findById(id);
 
-        model.addAttribute("zonaVerde", risultato);
+        model.addAttribute(
+                "zonaVerde",
+                risultato);
 
         return "luoghi_interesse/luoghi_dettaglio/parchiDettaglio";
     }
@@ -95,34 +150,23 @@ public class ZonaVerdeController {
             Pageable pageable,
             Model model) {
 
+<<<<<<< Updated upstream
         Page<ZonaVerde> risultati = zonaVerdeService.findByNome(nome, pageable);
 
         model.addAttribute("parchi", risultati.getContent());
         model.addAttribute("zonaVerdeDTO", new ZonaVerde());
+=======
+        Page<ZonaVerde> risultati =
+                zonaVerdeService.findByNome(
+                        nome,
+                        pageable);
+
+        model.addAttribute(
+                "risultati",
+                risultati);
+>>>>>>> Stashed changes
 
         return "luoghi_interesse/zoneVerdi";
-    }
-
-    // CREATE
-
-    @GetMapping("/nuovo")
-    public String formNuovaZonaVerde(Model model) {
-        model.addAttribute("zonaVerdeDTO", new ZonaVerdeDTO());
-        return "zoneVerdi/form";
-    }
-
-    @PostMapping
-    public String createZonaVerde(
-            @Valid @ModelAttribute ZonaVerdeDTO dto,
-            BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return "zoneVerdi/form";
-        }
-
-        zonaVerdeService.create(dto);
-
-        return "redirect:/zoneVerdi";
     }
 
     // UPDATE
@@ -143,13 +187,17 @@ public class ZonaVerdeController {
     public String updateZonaVerde(
             @PathVariable Long id,
             @Valid @ModelAttribute ZonaVerdeDTO dto,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,
+            Authentication authentication) {
 
         if (bindingResult.hasErrors()) {
             return "zoneVerdi/form";
         }
 
-        zonaVerdeService.update(id, dto);
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
+
+        zonaVerdeService.update(id, dto, utente);
 
         return "redirect:/zoneVerdi/" + id;
     }
@@ -157,9 +205,14 @@ public class ZonaVerdeController {
     // DELETE
 
     @PostMapping("/{id}/delete")
-    public String deleteZonaVerde(@PathVariable Long id) {
+    public String deleteZonaVerde(
+            @PathVariable Long id,
+            Authentication authentication) {
 
-        zonaVerdeService.delete(id);
+        Utente utente =
+                utenteService.findByEmail(authentication.getName());
+
+        zonaVerdeService.delete(id, utente);
 
         return "redirect:/zoneVerdi";
     }
