@@ -70,8 +70,8 @@ public class EventoController {
         Page<Evento> eventi =
                 eventoService.findAll(pageable);
 
-        aggiungiRisultati(model, eventi);
-        aggiungiFiltri(model);
+        model.addAttribute("eventi", eventi);
+        model.addAttribute("eventoDTO", new EventoDTO());
 
         model.addAttribute(
                 "eventoDTO",
