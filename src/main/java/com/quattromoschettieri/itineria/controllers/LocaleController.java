@@ -1,6 +1,7 @@
 package com.quattromoschettieri.itineria.controllers;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,8 +35,7 @@ public class LocaleController {
             Pageable pageable,
             Model model) {
 
-        Page<Locale> risultati =
-                localeService.search(localeDTO, pageable);
+        Page<Locale> risultati = localeService.search(localeDTO, pageable);
 
         model.addAttribute("risultati", risultati);
         model.addAttribute("localeDTO", localeDTO);
@@ -44,14 +44,32 @@ public class LocaleController {
     }
 
     @GetMapping
-    public String listLocali(
-            Pageable pageable,
-            Model model) {
+    public String listLocali(Pageable pageable, Model model) {
+        Page<Locale> tuttiLocali = localeService.findAll(pageable);
+        Pageable anteprime = PageRequest.of(0, 6);
 
-        Page<Locale> risultati =
-                localeService.findAll(pageable);
+        LocaleDTO dtoSerali = new LocaleDTO();
+        dtoSerali.setAperturaSerale(true);
 
-        model.addAttribute("risultati", risultati);
+        LocaleDTO dtoEsterni = new LocaleDTO();
+        dtoEsterni.setPostiEsterni(true);
+
+        LocaleDTO dtoCeliaci = new LocaleDTO();
+        dtoCeliaci.setPerCeliaci(true);
+
+        LocaleDTO dtoSempreAperti = new LocaleDTO();
+        dtoSempreAperti.setSempreAperto(true);
+
+        model.addAttribute("tuttiLocali", tuttiLocali.getContent());
+        model.addAttribute("localiSerali",
+                localeService.search(dtoSerali, anteprime).getContent());
+        model.addAttribute("localiEsterni",
+                localeService.search(dtoEsterni, anteprime).getContent());
+        model.addAttribute("localiCeliaci",
+                localeService.search(dtoCeliaci, anteprime).getContent());
+        model.addAttribute("localiSempreAperti",
+                localeService.search(dtoSempreAperti, anteprime).getContent());
+        model.addAttribute("risultati", tuttiLocali);
 
         return "locali/lista";
     }
@@ -74,8 +92,7 @@ public class LocaleController {
             Pageable pageable,
             Model model) {
 
-        Page<Locale> risultati =
-                localeService.findByNome(nome, pageable);
+        Page<Locale> risultati = localeService.findByNome(nome, pageable);
 
         model.addAttribute("risultati", risultati);
 

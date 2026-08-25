@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parchi e Zone Verdi — Itineraria</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- css style globale per rendere funzionante tutto (forse)-->
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
+
+  <!-- CSS progetto (crea zoneVerdi.css in static/css oppure usa style.css) -->
+  <link rel="stylesheet" th:href="@{/css/parchi.css}">
+</head>
+
+<body>
+
+  <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+  <section class="page-intro">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="breadcrumb">
+        <a th:href="@{/}" href="/">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Parchi e Zone Verdi</span>
+      </nav>
+
+      <h1 class="page-intro__title"><i class="fa-solid fa-tree"></i> Parchi e Zone Verdi</h1>
+      <p class="page-intro__desc">
+        Spazi verdi, parchi cittadini e aree naturali da scoprire.
+        <span th:text="${parchi != null ? #lists.size(parchi) + ' luoghi' : '0 luoghi'}"> luoghi</span>
+      </p>
+
+      <div class="park-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="parkSearchInput" placeholder="Cerca un parco per nome...">
+      </div>
+
+      <div class="filter-chips" id="filterChips" th:if="${categorieParchi != null}">
+        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
+        <button type="button" th:each="cat : ${categorieParchi}" th:attr="data-filter=${cat.id}" th:text="${cat.nome}"
+          class="filter-chip"></button>
+      </div>
+
+      <div class="filter-chips" id="filterChips" th:if="${categorieParchi == null}">
+        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
+        <button type="button" class="filter-chip" data-filter="parchi-urbani">Parchi urbani</button>
+        <button type="button" class="filter-chip" data-filter="aree-naturali">Aree naturali</button>
+        <button type="button" class="filter-chip" data-filter="giardini-storici">Giardini storici</button>
+        <button type="button" class="filter-chip" data-filter="aree-sportive">Aree sportive</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <form th:object="${zonaVerdeDTO}" th:action="@{/zoneVerdi/filtri}" method="get" class="parchi-filter-form">
+        <div class="parchi-filter-row">
+          <input type="text" th:field="*{nome}" id="parkSearchInputDuplicate" placeholder="Cerca per nome" />
+
+          <select th:field="*{tipologia}">
+            <option value="">Tutte le tipologie</option>
+            <option th:each="t : ${T(com.quattromoschettieri.itineria.entities.zonaVerde.TipoZonaVerde).values()}"
+              th:value="${t}" th:text="${t}"></option>
+          </select>
+
+          <input type="number" th:field="*{areaMin}" placeholder="Area min (mq)" min="0" step="0.1">
+          <input type="number" th:field="*{areaMax}" placeholder="Area max (mq)" min="0" step="0.1">
+
+          <label><input type="checkbox" th:field="*{dogFriendly}"> Dog friendly</label>
+          <label><input type="checkbox" th:field="*{ristoro}"> Ristoro</label>
+          <label><input type="checkbox" th:field="*{ciclabile}"> Ciclabile</label>
+
+          <button type="submit" class="btn-search">Applica filtri</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Ciclo dinamico: categorie con fallback lista piatta -->
+  <section class="section" th:if="${categorieParchi != null}">
+    <div class="container">
+      <div th:each="categoria : ${categorieParchi}" class="park-category" th:id="${categoria.id}">
+        <h2 class="section__title">
+          <i th:class="'fa-solid ' + ${categoria.icona}"></i>
+          <span th:text="${categoria.nome}">Nome categoria</span>
+        </h2>
+        <div class="park-grid">
+          <a th:each="parco : ${categoria.parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}"
+            th:classappend="${parco.preferito} ? ' park-card--featured' : ''" class="park-card">
+            <span class="park-card__badge" th:if="${parco.preferito}">Consigliato</span>
+            <span class="park-card__icon"><i th:class="'fa-solid ' + ${parco.icona}"></i></span>
+            <span class="park-card__body">
+              <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
+              <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>
+              <span class="park-card__meta">
+                <span th:if="${parco.areaMq != null}"
+                  th:text="${#numbers.formatDecimal(parco.areaMq, 1, 'COMMA', 2, 'POINT')} + ' m²'"></span>
+                <span th:if="${parco.dogFriendly}"> • Dog friendly</span>
+                <span th:if="${parco.ristoro}"> • Ristoro</span>
+                <span th:if="${parco.ciclabile}"> • Ciclabile</span>
+              </span>
+            </span>
+            <i class="fa-solid fa-arrow-right park-card__arrow"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fallback: lista piatta -->
+  <section class="section" th:if="${parchi != null}">
+    <div class="container">
+      <div class="park-grid">
+        <a th:each="parco : ${parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}" class="park-card">
+          <span class="park-card__body">
+            <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
+            <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>
+            <span class="park-card__meta">
+              <span th:if="${parco.areaMq != null}"
+                th:text="${#numbers.formatDecimal(parco.areaMq, 1, 'COMMA', 2, 'POINT')} + ' m²'"></span>
+              <span th:if="${parco.dogFriendly}"> • Dog friendly</span>
+              <span th:if="${parco.ristoro}"> • Ristoro</span>
+              <span th:if="${parco.ciclabile}"> • Ciclabile</span>
+            </span>
+          </span>
+          <i class="fa-solid fa-arrow-right park-card__arrow"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <p class="park-empty-state" id="parkEmptyState"
+    th:if="${(parchi == null || #lists.isEmpty(parchi)) && (categorieParchi == null || #lists.isEmpty(categorieParchi))}">
+    <i class="fa-solid fa-magnifying-glass"></i> Nessun parco trovato. Prova con un altro filtro.
+  </p>
+
+  <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
+      var categories = Array.prototype.slice.call(document.querySelectorAll('.park-category'));
+      var searchInput = document.getElementById('parkSearchInput') || document.getElementById('parkSearchInputDuplicate');
+      var emptyState = document.getElementById('parkEmptyState');
+
+      if (chips.length) {
+        chips.forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            chips.forEach(function (c) { c.classList.remove('active'); });
+            chip.classList.add('active');
+            var target = chip.getAttribute('data-filter');
+            categories.forEach(function (cat) {
+              cat.style.display = (target === 'all' || cat.id === target) ? '' : 'none';
+            });
+            if (target !== 'all') {
+              var el = document.getElementById(target);
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          var query = searchInput.value.trim().toLowerCase();
+          var anyVisible = false;
+
+          categories.forEach(function (cat) { cat.style.display = ''; });
+          if (query.length > 0) {
+            chips.forEach(function (c) { c.classList.remove('active'); });
+          } else {
+            if (chips[0]) chips[0].classList.add('active');
+          }
+
+          categories.forEach(function (cat) {
+            var cards = Array.prototype.slice.call(cat.querySelectorAll('.park-card'));
+            var visibleCount = 0;
+
+            cards.forEach(function (card) {
+              var titleEl = card.querySelector('.park-card__title');
+              var title = titleEl ? titleEl.textContent.toLowerCase() : '';
+              var match = query === '' || title.indexOf(query) !== -1;
+              card.style.display = match ? '' : 'none';
+              if (match) visibleCount++;
+            });
+
+            cat.style.display = visibleCount > 0 ? '' : 'none';
+            if (visibleCount > 0) anyVisible = true;
+          });
+
+          if (emptyState) emptyState.hidden = (query === '' || anyVisible);
+        });
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

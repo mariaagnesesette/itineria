@@ -1,3 +1,6 @@
+/* ==========================================================================
+   PAGINA PARCHI — intro, ricerca, filtri, card
+   ========================================================================== */
 
 .page-intro {
   background: var(--color-card);
@@ -39,7 +42,8 @@
   margin-bottom: 24px;
 }
 
-.restaurant-search {
+/* Search */
+.park-search {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -51,9 +55,9 @@
   margin-bottom: 22px;
 }
 
-.restaurant-search i { color: var(--color-text-gray); }
+.park-search i { color: var(--color-text-gray); }
 
-.restaurant-search input {
+.park-search input {
   flex: 1;
   border: none;
   outline: none;
@@ -63,8 +67,9 @@
   background: transparent;
 }
 
-.restaurant-search input::placeholder { color: #999; }
+.park-search input::placeholder { color: #999; }
 
+/* Chips */
 .filter-chips {
   display: flex;
   flex-wrap: wrap;
@@ -91,16 +96,18 @@
   color: var(--color-white);
 }
 
-.restaurant-category { padding: 40px 0 8px; scroll-margin-top: 100px; }
+/* Categories & Grid */
+.park-category { padding: 40px 0 8px; scroll-margin-top: 100px; }
 
-.restaurant-grid {
+.park-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
   margin-top: 24px;
 }
 
-.restaurant-card {
+/* Card */
+.park-card {
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -110,19 +117,20 @@
   padding: 22px;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   text-decoration: none;
+  color: inherit;
 }
 
-.restaurant-card:hover {
+.park-card:hover {
   box-shadow: var(--shadow-card-hover);
   transform: translateY(-2px);
 }
 
-.restaurant-card--featured {
-  background: #FBEFE8;
+.park-card--featured {
+  background: #F0FBF0;
   border: 1.5px solid var(--color-accent);
 }
 
-.restaurant-card__badge {
+.park-card__badge {
   position: absolute;
   top: -10px;
   right: 16px;
@@ -134,7 +142,7 @@
   border-radius: var(--radius-pill);
 }
 
-.restaurant-card__icon {
+.park-card__icon {
   width: 44px;
   height: 44px;
   min-width: 44px;
@@ -147,11 +155,11 @@
   font-size: 18px;
 }
 
-.restaurant-card--featured .restaurant-card__icon { background: var(--color-accent); }
+.park-card--featured .park-card__icon { background: var(--color-accent); }
 
-.restaurant-card__body { flex: 1; }
+.park-card__body { flex: 1; }
 
-.restaurant-card__title {
+.park-card__title {
   display: block;
   font-weight: 700;
   font-size: 15px;
@@ -160,23 +168,30 @@
   line-height: 1.35;
 }
 
-.restaurant-card__desc {
+.park-card__desc {
   display: block;
   font-size: 12.5px;
   color: var(--color-text-gray);
   line-height: 1.5;
 }
 
-.restaurant-card__arrow {
+.park-card__meta {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-gray);
+  margin-top: 8px;
+}
+
+.park-card__arrow {
   color: var(--color-text-dark);
   font-size: 14px;
   margin-top: 4px;
   transition: transform 0.2s ease;
 }
 
-.restaurant-card:hover .restaurant-card__arrow { transform: translateX(4px); }
+.park-card:hover .park-card__arrow { transform: translateX(4px); }
 
-.restaurant-empty-state {
+.park-empty-state {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,4 +200,22 @@
   color: var(--color-text-gray);
   font-size: 14px;
   padding: 40px 24px 60px;
+}
+
+/* Filtri (form) */
+.parchi-filter-form { margin: 18px 0 28px; }
+.parchi-filter-row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.parchi-filter-row input[type="text"], .parchi-filter-row select, .parchi-filter-row input[type="number"] {
+  padding:10px 12px; border-radius:8px; border:1px solid #e6e2d8; background:var(--color-white);
+  font-size:14px; color:var(--color-text-dark);
+}
+.parchi-filter-row select { min-width:200px; }
+.parchi-filter-row label { display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--color-text-dark); }
+.parchi-filter-row .btn-search { background:var(--color-accent); color:var(--color-white); padding:10px 16px; border-radius:999px; font-weight:700; }
+
+/* Responsive */
+@media (max-width:700px) {
+  .parchi-filter-row { flex-direction:column; align-items:stretch; }
+  .parchi-filter-row select { width:100%; }
+  .park-grid { grid-template-columns: 1fr; }
 }

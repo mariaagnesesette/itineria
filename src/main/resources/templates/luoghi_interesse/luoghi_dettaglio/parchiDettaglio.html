@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="it"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${parco.nome} + ' | Itineria'">
+        Parco | Itineria
+    </title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/parchi.css}">
+
+    <style>
+
+        /* =====================================================
+           PAGINA DETTAGLIO PARCO
+           ===================================================== */
+
+        .place-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .place-hero {
+            position: relative;
+
+            min-height: 480px;
+
+            margin-bottom: 40px;
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            display: flex;
+            align-items: flex-end;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.78),
+                    rgba(0,0,0,.08)
+                );
+
+            background-color: #e9e9e9;
+        }
+
+        /*
+         * IMMAGINI:
+         *
+         * La gestione delle immagini verrà collegata
+         * quando il gruppo avrà deciso come salvarle
+         * e recuperarle dal database.
+         */
+
+        .place-image-placeholder {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #777;
+
+            font-size: 16px;
+        }
+
+        .place-hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            padding: 50px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.75),
+                    transparent
+                );
+        }
+
+        .place-type {
+
+            display: inline-block;
+
+            padding: 7px 14px;
+
+            margin-bottom: 14px;
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,.18);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .place-title {
+
+            margin: 0 0 12px;
+
+            font-size: clamp(36px, 5vw, 64px);
+
+            line-height: 1.05;
+        }
+
+        .place-city {
+
+            font-size: 18px;
+
+            opacity: .9;
+        }
+
+
+        /* =====================================================
+           GRID PRINCIPALE
+           ===================================================== */
+
+        .place-main-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.5fr)
+                minmax(300px, .8fr);
+
+            gap: 32px;
+
+            margin-bottom: 50px;
+        }
+
+        .place-card {
+
+            background: #fff;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,.06);
+        }
+
+        .place-card h2 {
+
+            margin-top: 0;
+
+            margin-bottom: 22px;
+
+            font-size: 25px;
+        }
+
+
+        /* =====================================================
+           DESCRIZIONE
+           ===================================================== */
+
+        .place-description {
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            color: #555;
+
+            white-space: pre-line;
+        }
+
+
+        /* =====================================================
+           CONTATTI
+           ===================================================== */
+
+        .contact-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .contact-item {
+
+            display: flex;
+
+            gap: 14px;
+
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #f3f3f3;
+
+            font-size: 18px;
+        }
+
+        .contact-content {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+        .contact-label {
+
+            font-size: 12px;
+
+            color: #888;
+
+            text-transform: uppercase;
+
+            letter-spacing: .05em;
+        }
+
+        .contact-value {
+
+            color: #222;
+
+            text-decoration: none;
+
+            line-height: 1.4;
+        }
+
+        .contact-value:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           INFORMAZIONI PARCO
+           ===================================================== */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 16px;
+        }
+
+        .info-item {
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #f7f7f7;
+        }
+
+        .info-label {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 12px;
+
+            color: #888;
+
+            text-transform: uppercase;
+
+            letter-spacing: .04em;
+        }
+
+        .info-value {
+
+            font-weight: 600;
+
+            color: #222;
+        }
+
+
+        /* =====================================================
+           SERVIZI
+           ===================================================== */
+
+        .services-grid {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .service-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 15px;
+
+            border-radius: 50px;
+
+            background: #f5f5f5;
+
+            color: #333;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           ORARI
+           ===================================================== */
+
+        .opening-hours {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .opening-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .opening-row:last-child {
+
+            border-bottom: none;
+        }
+
+        .opening-day {
+
+            font-weight: 600;
+        }
+
+        .opening-time {
+
+            color: #666;
+        }
+
+        .always-open {
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #f4f8f4;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           GALLERIA
+           ===================================================== */
+
+        .gallery-section {
+
+            margin-bottom: 50px;
+        }
+
+        .gallery-placeholder {
+
+            min-height: 260px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 22px;
+
+            background: #f3f3f3;
+
+            color: #888;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        /* =====================================================
+           MAPPA
+           ===================================================== */
+
+        .map-section {
+
+            margin-bottom: 50px;
+        }
+
+        .map-wrapper {
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            min-height: 400px;
+
+            background: #eee;
+        }
+
+        .map-wrapper iframe {
+
+            width: 100%;
+
+            height: 420px;
+
+            display: block;
+
+            border: 0;
+        }
+
+
+        /* =====================================================
+           RECENSIONI
+           ===================================================== */
+
+        .reviews-section {
+
+            margin-bottom: 50px;
+        }
+
+        .reviews-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 30px;
+
+            margin-bottom: 30px;
+        }
+
+        .rating-summary {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+        .rating-number {
+
+            font-size: 42px;
+
+            font-weight: 700;
+
+            line-height: 1;
+        }
+
+        .rating-stars {
+
+            letter-spacing: 3px;
+
+            font-size: 20px;
+        }
+
+        .rating-count {
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+        .reviews-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .review-card {
+
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background: #fafafa;
+
+            border: 1px solid #eee;
+        }
+
+        .review-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 12px;
+        }
+
+        .review-user {
+
+            font-weight: 700;
+        }
+
+        .review-stars {
+
+            letter-spacing: 2px;
+        }
+
+        .review-comment {
+
+            margin: 0;
+
+            color: #555;
+
+            line-height: 1.7;
+
+            white-space: pre-line;
+        }
+
+        .no-reviews {
+
+            padding: 35px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background: #f7f7f7;
+
+            color: #777;
+        }
+
+
+        /* =====================================================
+           BOTTONI
+           ===================================================== */
+
+        .place-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 13px 22px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            background: #222;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+        .place-button:hover {
+
+            transform: translateY(-1px);
+
+            opacity: .9;
+        }
+
+
+        /* =====================================================
+           FORM RECENSIONE
+           ===================================================== */
+
+        .review-form {
+
+            display: none;
+
+            margin-bottom: 50px;
+        }
+
+        .review-form textarea,
+        .review-form select {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            font-family: inherit;
+
+            margin-top: 8px;
+        }
+
+        .review-form textarea {
+
+            resize: vertical;
+        }
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .place-main-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .place-hero {
+
+                min-height: 400px;
+            }
+
+            .place-hero-content {
+
+                padding: 30px;
+            }
+
+            .reviews-header {
+
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .place-detail {
+
+                padding: 25px 15px 60px;
+            }
+
+            .place-hero {
+
+                min-height: 350px;
+
+                border-radius: 20px;
+            }
+
+            .place-hero-content {
+
+                padding: 25px;
+            }
+
+            .place-card {
+
+                padding: 22px;
+            }
+
+            .opening-row {
+
+                flex-direction: column;
+
+                gap: 5px;
+            }
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .review-top {
+
+                flex-direction: column;
+
+                gap: 8px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+<main class="place-detail">
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="place-hero">
+
+
+        <!-- IMMAGINE: DA DEFINIRE CON IL GRUPPO -->
+
+        <div class="place-image-placeholder">
+
+            Immagine del parco
+
+        </div>
+
+
+        <div class="place-hero-content">
+
+
+            <span class="place-type"
+                  th:if="${parco.tipologia != null}"
+                  th:text="${parco.tipologia}">
+
+                Tipologia
+
+            </span>
+
+
+            <h1 class="place-title"
+                th:text="${parco.nome}">
+
+                Nome parco
+
+            </h1>
+
+
+            <div class="place-city"
+                 th:if="${parco.citta != null}"
+                 th:text="${parco.citta.nome}">
+
+                Città
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DESCRIZIONE + CONTATTI
+         ===================================================== -->
+
+    <section class="place-main-grid">
+
+
+        <article class="place-card">
+
+            <h2>Informazioni sul parco</h2>
+
+            <p class="place-description"
+               th:text="${parco.descrizione}">
+
+                Descrizione del parco.
+
+            </p>
+
+        </article>
+
+
+
+        <aside class="place-card">
+
+            <h2>Informazioni</h2>
+
+
+            <div class="contact-list">
+
+
+                <!-- INDIRIZZO -->
+
+                <div class="contact-item"
+                     th:if="${parco.indirizzo != null}">
+
+                    <div class="contact-icon">
+                        📍
+                    </div>
+
+                    <div class="contact-content">
+
+                        <span class="contact-label">
+                            Indirizzo
+                        </span>
+
+                        <span class="contact-value"
+                              th:text="${parco.indirizzo}">
+
+                            Indirizzo
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TELEFONO -->
+
+                <div class="contact-item"
+                     th:if="${parco.numero != null}">
+
+                    <div class="contact-icon">
+                        ☎
+                    </div>
+
+                    <div class="contact-content">
+
+                        <span class="contact-label">
+                            Telefono
+                        </span>
+
+                        <a class="contact-value"
+                           th:href="'tel:' + ${parco.numero}"
+                           th:text="${parco.numero}">
+
+                            Telefono
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="contact-item"
+                     th:if="${parco.email != null}">
+
+                    <div class="contact-icon">
+                        ✉
+                    </div>
+
+                    <div class="contact-content">
+
+                        <span class="contact-label">
+                            Email
+                        </span>
+
+                        <a class="contact-value"
+                           th:href="'mailto:' + ${parco.email}"
+                           th:text="${parco.email}">
+
+                            Email
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SITO -->
+
+                <div class="contact-item"
+                     th:if="${parco.link != null}">
+
+                    <div class="contact-icon">
+                        🌐
+                    </div>
+
+                    <div class="contact-content">
+
+                        <span class="contact-label">
+                            Sito ufficiale
+                        </span>
+
+                        <a class="contact-value"
+                           th:href="${parco.link}"
+                           target="_blank"
+                           rel="noopener noreferrer">
+
+                            Visita il sito
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DATI DEL PARCO
+         ===================================================== -->
+
+    <section class="place-card"
+             style="margin-bottom: 50px;">
+
+        <h2>Caratteristiche</h2>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    Tipologia
+                </span>
+
+                <span class="info-value"
+                      th:text="${parco.tipologia}">
+
+                    Tipologia
+
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    Superficie
+                </span>
+
+                <span class="info-value">
+
+                    <span th:text="${parco.areaMq}">
+                        0
+                    </span>
+
+                    m²
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SERVIZI
+         ===================================================== -->
+
+    <section class="place-card"
+             style="margin-bottom: 50px;">
+
+        <h2>Servizi e caratteristiche</h2>
+
+
+        <div class="services-grid">
+
+
+            <span class="service-badge"
+                  th:if="${parco.dogFriendly}">
+
+                🐕 Dog friendly
+
+            </span>
+
+
+            <span class="service-badge"
+                  th:if="${parco.ristoro}">
+
+                ☕ Punto ristoro
+
+            </span>
+
+
+            <span class="service-badge"
+                  th:if="${parco.ciclabile}">
+
+                🚲 Percorso ciclabile
+
+            </span>
+
+
+            <span class="service-badge"
+                  th:if="${parco.accessibilita != null}">
+
+                ♿ Accessibilità
+
+            </span>
+
+
+            <span
+                th:if="${!parco.dogFriendly
+                        && !parco.ristoro
+                        && !parco.ciclabile
+                        && parco.accessibilita == null}">
+
+                Nessun servizio disponibile.
+
+            </span>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ORARI
+         ===================================================== -->
+
+    <section class="place-card"
+             style="margin-bottom: 50px;">
+
+        <h2>Orari di apertura</h2>
+
+
+        <div class="always-open"
+             th:if="${parco.sempreAperto}">
+
+            Aperto sempre
+
+        </div>
+
+
+        <div class="opening-hours"
+             th:unless="${parco.sempreAperto}">
+
+
+            <div class="opening-row"
+                 th:each="orario : ${parco.orariApertura}">
+
+                <span class="opening-day"
+                      th:text="${orario.giorno}">
+
+                    Giorno
+
+                </span>
+
+                <span class="opening-time">
+
+                    <span th:text="${orario.oraApertura}">
+                        10:00
+                    </span>
+
+                    -
+
+                    <span th:text="${orario.oraChiusura}">
+                        18:00
+                    </span>
+
+                </span>
+
+            </div>
+
+
+            <div th:if="${parco.orariApertura == null
+                         || parco.orariApertura.isEmpty()}">
+
+                Gli orari non sono disponibili.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         GALLERIA
+         ===================================================== -->
+
+    <section class="gallery-section">
+
+        <div class="place-card">
+
+            <h2>Galleria</h2>
+
+            <div class="gallery-placeholder">
+
+                <div>
+
+                    <strong>
+                        Galleria del parco
+                    </strong>
+
+                    <p>
+                        Le immagini verranno collegate
+                        dal database.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MAPPA
+         ===================================================== -->
+
+    <section class="map-section">
+
+        <div class="place-card">
+
+            <h2>Come arrivare</h2>
+
+
+            <div class="map-wrapper"
+                 th:if="${parco.indirizzo != null}">
+
+                <iframe
+                    th:src="'https://www.google.com/maps?q='
+                            + ${parco.indirizzo}
+                            + '&output=embed'"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+
+            <p th:if="${parco.indirizzo == null}">
+
+                Posizione non disponibile.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RECENSIONI
+         ===================================================== -->
+
+    <section class="reviews-section">
+
+        <div class="place-card">
+
+
+            <div class="reviews-header">
+
+                <div>
+
+                    <h2>Recensioni</h2>
+
+                    <div class="rating-summary">
+
+                        <span class="rating-number"
+                              th:text="${mediaRecensioni}">
+                            0.0
+                        </span>
+
+                        <span class="rating-stars">
+                            ★★★★★
+                        </span>
+
+                        <span class="rating-count">
+
+                            Basato su
+
+                            <strong
+                                th:text="${numeroRecensioni}">
+                                0
+                            </strong>
+
+                            recensioni
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <a class="place-button"
+                   th:if="${!#authorization.expression('isAuthenticated()')}"
+                   th:href="@{/accedi}">
+
+                    Accedi per recensire
+
+                </a>
+
+
+                <button
+                    class="place-button"
+                    type="button"
+                    th:if="${#authorization.expression('isAuthenticated()')}"
+                    onclick="apriFormRecensione()">
+
+                    Scrivi una recensione
+
+                </button>
+
+            </div>
+
+
+
+            <div class="no-reviews"
+                 th:if="${parco.recensioni == null
+                         || parco.recensioni.isEmpty()}">
+
+                <p>
+                    Nessuna recensione ancora.
+                </p>
+
+                <p>
+                    Sii il primo a lasciare una recensione!
+                </p>
+
+            </div>
+
+
+
+            <div class="reviews-list"
+                 th:unless="${parco.recensioni == null
+                             || parco.recensioni.isEmpty()}">
+
+
+                <article class="review-card"
+                         th:each="recensione : ${parco.recensioni}">
+
+                    <div class="review-top">
+
+                        <span class="review-user"
+                              th:text="${recensione.utente}">
+                            Utente
+                        </span>
+
+
+                        <div class="review-stars">
+
+                            <span th:each="i : ${#numbers.sequence(1,5)}"
+                                  th:text="${i <= recensione.voto ? '★' : '☆'}">
+                                ★
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="review-comment"
+                       th:text="${recensione.commento}">
+
+                        Commento
+
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FORM RECENSIONE
+         ===================================================== -->
+
+    <section id="reviewForm"
+             class="place-card review-form">
+
+
+        <h2>Lascia una recensione</h2>
+
+
+        <form method="post"
+              th:action="@{/recensioni}">
+
+
+            <input type="hidden"
+                   name="luogoInteresseId"
+                   th:value="${parco.id}">
+
+
+            <div class="form-group">
+
+                <label for="voto">
+                    Valutazione
+                </label>
+
+                <select id="voto"
+                        name="voto"
+                        required>
+
+                    <option value="">
+                        Seleziona una valutazione
+                    </option>
+
+                    <option value="5">
+                        ★★★★★ - 5
+                    </option>
+
+                    <option value="4">
+                        ★★★★☆ - 4
+                    </option>
+
+                    <option value="3">
+                        ★★★☆☆ - 3
+                    </option>
+
+                    <option value="2">
+                        ★★☆☆☆ - 2
+                    </option>
+
+                    <option value="1">
+                        ★☆☆☆☆ - 1
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="commento">
+                    La tua recensione
+                </label>
+
+                <textarea id="commento"
+                          name="commento"
+                          rows="6"
+                          maxlength="5000"
+                          placeholder="Racconta la tua esperienza..."
+                          required></textarea>
+
+            </div>
+
+
+            <button type="submit"
+                    class="place-button">
+
+                Pubblica recensione
+
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+<script>
+
+    function apriFormRecensione() {
+
+        const form =
+            document.getElementById("reviewForm");
+
+        if (!form) {
+            return;
+        }
+
+        form.style.display = "block";
+
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

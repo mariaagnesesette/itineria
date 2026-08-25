@@ -1,6 +1,7 @@
 package com.quattromoschettieri.itineria.controllers;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.MuseoDTO;
+import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
 import com.quattromoschettieri.itineria.entities.museo.Museo;
 import com.quattromoschettieri.itineria.services.MuseoService;
 
@@ -47,13 +49,33 @@ public class MuseoController {
     // READ
     // lista generica
     @GetMapping
-    public String listaMusei(@ModelAttribute MuseoDTO dto, Pageable pageable, Model model) {
+    public String listMusei(Pageable pageable, Model model) {
+        Page<Museo> tuttiMusei = museoService.findAll(pageable);
+        Pageable anteprime = PageRequest.of(0, 6);
 
-        Page<Museo> risultati = museoService.findAll(pageable);
+        MuseoDTO dtoGuidati = new MuseoDTO();
+        dtoGuidati.setGuidaPrenotabile(true);
 
-        model.addAttribute("musei", risultati.getContent());
-        model.addAttribute("risultati", risultati);
-        model.addAttribute("museoDTO", new MuseoDTO());
+        MuseoDTO dtoBar = new MuseoDTO();
+        dtoBar.setBarInterno(true);
+
+        MuseoDTO dtoAccessibili = new MuseoDTO();
+        dtoAccessibili.setAccessibilita(Accessibilita.COMPLETA);
+
+        MuseoDTO dtoSempreAperti = new MuseoDTO();
+        dtoSempreAperti.setSempreAperto(true);
+
+        model.addAttribute("tuttiMusei", tuttiMusei.getContent());
+        model.addAttribute("museiGuidati",
+                museoService.search(dtoGuidati, anteprime).getContent());
+        model.addAttribute("museiConBar",
+                museoService.search(dtoBar, anteprime).getContent());
+        model.addAttribute("museiAccessibili",
+                museoService.search(dtoAccessibili, anteprime).getContent());
+        model.addAttribute("museiSempreAperti",
+                museoService.search(dtoSempreAperti, anteprime).getContent());
+        model.addAttribute("musei", tuttiMusei.getContent());
+        model.addAttribute("risultati", tuttiMusei);
 
         return "luoghi_interesse/musei";
     }
@@ -81,7 +103,7 @@ public class MuseoController {
 
         model.addAttribute("museo", risultato);
 
-        return "biblioteche/dettaglio";
+        return "musei/dettaglio";
     }
 
     // ricerca per nome
