@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.MuseoDTO;
+import com.quattromoschettieri.itineria.entities.biblioteca.Biblioteca;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
 import com.quattromoschettieri.itineria.entities.museo.Museo;
 import com.quattromoschettieri.itineria.services.MuseoService;
@@ -91,6 +92,7 @@ public class MuseoController {
                 museoService.search(dtoSempreAperti, anteprime).getContent());
         model.addAttribute("musei", tuttiMusei.getContent());
         model.addAttribute("risultati", tuttiMusei);
+        model.addAttribute("museoDTO", new MuseoDTO());
 
         return "luoghi_interesse/musei";
     }
@@ -135,7 +137,8 @@ public class MuseoController {
         Page<Museo> risultati =
                 museoService.findByNome(nome, pageable);
 
-        model.addAttribute("risultati", risultati);
+        model.addAttribute("musei", risultati.getContent());
+        model.addAttribute("bibliotecaDTO", new Biblioteca());
 
         return "musei/byNome";
     }
