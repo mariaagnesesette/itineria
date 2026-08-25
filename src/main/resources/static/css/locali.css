@@ -1,0 +1,678 @@
+/* ==========================================================================
+   ITINERARIA — LOCALI
+   Utilizza le variabili globali definite in style.css
+   ========================================================================== */
+
+
+/* ==========================================================================
+   PAGE INTRO
+   ========================================================================== */
+
+.page-intro {
+    background: var(--color-card);
+    padding: 48px 0 40px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+    color: var(--color-text-gray);
+
+    margin-bottom: 18px;
+}
+
+.breadcrumb a {
+    color: var(--color-text-gray);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-accent);
+}
+
+.breadcrumb i {
+    font-size: 10px;
+}
+
+.breadcrumb span {
+    color: var(--color-text-dark);
+    font-weight: 600;
+}
+
+
+.page-intro__title,
+.page-intro h1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-family: var(--font-serif);
+    font-weight: 800;
+
+    font-size: clamp(30px, 4vw, 42px);
+
+    color: var(--color-text-dark);
+
+    margin-bottom: 10px;
+}
+
+.page-intro__title i,
+.page-intro h1 i {
+    color: var(--color-accent);
+    font-size: 0.8em;
+}
+
+
+.page-intro__desc {
+    font-size: 15px;
+    color: var(--color-text-gray);
+
+    max-width: 640px;
+
+    line-height: 1.6;
+
+    margin-bottom: 24px;
+}
+
+
+/* ==========================================================================
+   RICERCA LOCALE
+   ========================================================================== */
+
+.locale-search,
+.locali-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: var(--color-white);
+
+    border-radius: var(--radius-pill);
+
+    padding: 14px 22px;
+
+    max-width: 480px;
+
+    box-shadow: var(--shadow-card);
+
+    margin-bottom: 22px;
+}
+
+.locale-search i,
+.locali-search i {
+    color: var(--color-text-gray);
+}
+
+.locale-search input,
+.locali-search input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+
+    color: var(--color-text-dark);
+
+    background: transparent;
+}
+
+.locale-search input::placeholder,
+.locali-search input::placeholder {
+    color: #999;
+}
+
+
+/* ==========================================================================
+   FILTER CHIPS
+   ========================================================================== */
+
+.filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.filter-chip {
+    background: var(--color-white);
+
+    border: 1px solid #e2ded4;
+
+    color: var(--color-text-dark);
+
+    font-size: 13.5px;
+    font-weight: 600;
+
+    padding: 9px 18px;
+
+    border-radius: var(--radius-pill);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.filter-chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+
+    transform: translateY(-1px);
+}
+
+.filter-chip.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+
+    color: var(--color-white);
+}
+
+
+/* ==========================================================================
+   FORM FILTRI
+   ========================================================================== */
+
+.locali-filter-form {
+    margin: 18px 0 28px;
+}
+
+.locali-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+.locali-filter-row input[type="text"],
+.locali-filter-row input[type="number"],
+.locali-filter-row input[type="time"],
+.locali-filter-row select {
+
+    min-height: 42px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #e6e2d8;
+
+    border-radius: var(--radius-sm);
+
+    background: var(--color-white);
+
+    color: var(--color-text-dark);
+
+    font-family: var(--font-sans);
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.locali-filter-row input[type="text"] {
+    min-width: 220px;
+}
+
+.locali-filter-row select {
+    min-width: 180px;
+}
+
+.locali-filter-row input:focus,
+.locali-filter-row select:focus {
+    border-color: var(--color-accent);
+
+    box-shadow:
+        0 0 0 3px rgba(200, 90, 50, 0.10);
+}
+
+
+/* CHECKBOX */
+
+.locali-filter-row label {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+    color: var(--color-text-dark);
+
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+
+.locali-filter-row input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+
+    accent-color: var(--color-accent);
+
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   BOTTONE FILTRI
+   ========================================================================== */
+
+.locali-filter-row .btn-search,
+.locali-filter-row .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 42px;
+
+    background: var(--color-accent);
+
+    color: var(--color-white);
+
+    padding: 10px 18px;
+
+    border: none;
+
+    border-radius: var(--radius-pill);
+
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.locali-filter-row .btn-search:hover,
+.locali-filter-row .btn:hover {
+    background: var(--color-accent-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+   GRIGLIA LOCALI
+   ========================================================================== */
+
+.card-grid,
+.locale-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: 16px;
+
+    margin-top: 24px;
+}
+
+
+/* ==========================================================================
+   CARD LOCALE
+   ========================================================================== */
+
+.card-grid .card,
+.locale-card {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    background: var(--color-card);
+
+    border-radius: var(--radius-md);
+
+    padding: 22px;
+
+    color: var(--color-text-dark);
+
+    text-decoration: none;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.card-grid .card:hover,
+.locale-card:hover {
+    box-shadow: var(--shadow-card-hover);
+
+    transform: translateY(-2px);
+}
+
+
+/* ICONA */
+
+.locale-card__icon,
+.card-grid .card > i:first-child {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+
+    border-radius: var(--radius-sm);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-header-footer);
+
+    color: var(--color-white);
+
+    font-size: 18px;
+}
+
+
+/* BODY */
+
+.locale-card__body {
+    flex: 1;
+}
+
+
+/* TITOLO */
+
+.locale-card__title,
+.card-grid .card h3 {
+    display: block;
+
+    font-family: var(--font-sans);
+
+    font-weight: 700;
+    font-size: 15px;
+
+    color: var(--color-text-dark);
+
+    margin: 0 0 5px;
+
+    line-height: 1.35;
+}
+
+
+/* DESCRIZIONE */
+
+.locale-card__desc,
+.card-grid .card p {
+    display: block;
+
+    font-size: 12.5px;
+
+    color: var(--color-text-gray);
+
+    line-height: 1.5;
+}
+
+
+/* META */
+
+.meta,
+.locale-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 6px 12px;
+
+    margin-top: 8px;
+
+    color: var(--color-text-gray);
+
+    font-size: 12px;
+}
+
+.meta i,
+.locale-card__meta i {
+    color: var(--color-accent);
+}
+
+
+/* FRECCIA */
+
+.locale-card__arrow {
+    color: var(--color-text-dark);
+
+    font-size: 14px;
+
+    margin-top: 4px;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+.locale-card:hover .locale-card__arrow {
+    transform: translateX(4px);
+
+    color: var(--color-accent);
+}
+
+
+/* ==========================================================================
+   BADGE
+   ========================================================================== */
+
+.locale-card__badge {
+    position: absolute;
+
+    top: -10px;
+    right: 16px;
+
+    background: var(--color-accent);
+
+    color: var(--color-white);
+
+    padding: 4px 12px;
+
+    border-radius: var(--radius-pill);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   DETTAGLIO LOCALE
+   Manteniamo anche le classi che avevi già
+   ========================================================================== */
+
+.detail-wrapper {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 48px;
+}
+
+.hero {
+    background: var(--color-card);
+
+    padding: 32px;
+
+    border-radius: var(--radius-md);
+
+    margin-bottom: 24px;
+}
+
+.main-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 320px;
+
+    gap: 24px;
+}
+
+.main-grid .card {
+    background: var(--color-white);
+
+    border-radius: var(--radius-md);
+
+    padding: 22px;
+
+    box-shadow: var(--shadow-card);
+}
+
+
+/* ==========================================================================
+   SERVIZI
+   ========================================================================== */
+
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.service {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    background: var(--color-card);
+
+    color: var(--color-text-dark);
+
+    padding: 6px 11px;
+
+    border-radius: var(--radius-pill);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   MAPPA
+   ========================================================================== */
+
+.map-wrapper {
+    min-height: 240px;
+
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+
+    background: var(--color-card);
+
+    box-shadow: var(--shadow-card);
+}
+
+
+/* ==========================================================================
+   RECENSIONI
+   ========================================================================== */
+
+.review-card {
+    background: var(--color-white);
+
+    border: 1px solid #e6e2d8;
+
+    padding: 18px;
+
+    border-radius: var(--radius-md);
+
+    margin-bottom: 12px;
+}
+
+.no-reviews {
+    text-align: center;
+
+    padding: 28px;
+
+    background: var(--color-card);
+
+    border-radius: var(--radius-md);
+
+    color: var(--color-text-gray);
+}
+
+
+/* ==========================================================================
+   NESSUN RISULTATO
+   ========================================================================== */
+
+.locale-empty-state,
+.no-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    color: var(--color-text-gray);
+
+    font-size: 14px;
+
+    padding: 40px 24px 60px;
+}
+
+.locale-empty-state i,
+.no-results i {
+    color: var(--color-accent);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .locali-filter-row {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .locali-filter-row input[type="text"],
+    .locali-filter-row input[type="number"],
+    .locali-filter-row input[type="time"],
+    .locali-filter-row select {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .locali-filter-row .btn-search,
+    .locali-filter-row .btn {
+        width: 100%;
+    }
+
+    .card-grid,
+    .locale-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-wrapper {
+        padding: 30px 20px;
+    }
+
+}

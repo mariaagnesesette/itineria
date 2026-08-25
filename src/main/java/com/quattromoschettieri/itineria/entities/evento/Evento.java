@@ -1,9 +1,13 @@
 package com.quattromoschettieri.itineria.entities.evento;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import com.quattromoschettieri.itineria.entities.GenericEntity;
@@ -82,5 +86,28 @@ public class Evento extends GenericEntity{
     @ManyToMany(mappedBy = "eventiPreferiti")
     @EqualsAndHashCode.Exclude
     private Set<Utente> utentiPreferitori = new HashSet<>();
+
+    public String getDataTesto() {
+        if (dateEvento == null || dateEvento.isEmpty()) {
+            return "Data da definire";
+        }
+
+        DataEvento prossimaData = dateEvento.stream()
+            .min(Comparator.comparing(DataEvento::getDataInizio))
+            .orElseThrow();
+
+        DateTimeFormatter giornoMese = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ITALIAN);
+        LocalDate inizio = prossimaData.getDataInizio();
+        LocalDate fine = prossimaData.getDataFine();
+
+        if (inizio.equals(fine)) {
+            return inizio.format(giornoMese);
+        }
+        return inizio.format(DateTimeFormatter.ofPattern("d")) + " - " + fine.format(giornoMese);
+    }
+
+    public boolean isGratuito() {
+        return prezzo != null && prezzo.compareTo(BigDecimal.ZERO) == 0;
+    }
 
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title th:text="${locale.nome} + ' | Itineria'">Locale | Itineria</title>
+  <link rel="stylesheet" th:href="@{/css/locali.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<main class="detail-wrapper">
+  <section class="hero">
+    <div class="hero-content">
+      <span class="type" th:text="${locale.tipoLocale}">Tipo</span>
+      <h1 th:text="${locale.nome}">Nome locale</h1>
+      <div th:if="${locale.citta != null}" th:text="${locale.citta.nome}"></div>
+    </div>
+  </section>
+
+  <section class="main-grid">
+    <article class="card">
+      <h2>Informazioni</h2>
+      <p th:text="${locale.descrizione}">Descrizione</p>
+      <h3>Atmosfera</h3>
+      <p th:text="${locale.atmosfera}">Atmosfera</p>
+      <h3>Fascia prezzo</h3>
+      <p th:text="${locale.fasciaPrezzo}">€</p>
+
+      <h3>Servizi</h3>
+      <div class="services-grid">
+        <span class="service" th:if="${locale.aperturaSerale}">Apertura serale</span>
+        <span class="service" th:if="${locale.postiEsterni}">Posti esterni</span>
+        <span class="service" th:if="${locale.perCeliaci}">Menu per celiaci</span>
+      </div>
+    </article>
+
+    <aside class="card">
+      <h2>Contatti</h2>
+      <div th:if="${locale.indirizzo}"><strong>Indirizzo</strong><div th:text="${locale.indirizzo}"></div></div>
+      <div th:if="${locale.numero}" style="margin-top:12px"><strong>Telefono</strong><div th:text="${locale.numero}"></div></div>
+      <div th:if="${locale.email}" style="margin-top:12px"><strong>Email</strong><div th:text="${locale.email}"></div></div>
+      <div th:if="${locale.link}" style="margin-top:12px"><strong>Sito</strong><a th:href="${locale.link}">Visita</a></div>
+    </aside>
+  </section>
+
+  <section class="card map-section">
+    <h2>Come arrivare</h2>
+    <div class="map-wrapper" th:if="${locale.indirizzo}">
+      <iframe th:src="'https://www.google.com/maps?q=' + ${locale.indirizzo} + '&output=embed'" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="card reviews-section">
+    <h2>Recensioni</h2>
+    <div th:if="${locale.recensioni == null || locale.recensioni.isEmpty()}" class="no-reviews">Nessuna recensione ancora.</div>
+    <div th:each="rec : ${locale.recensioni}" class="review-card">
+      <strong th:text="${rec.utente}">Utente</strong>
+      <div th:each="i : ${#numbers.sequence(1,5)}" th:text="${i <= rec.voto ? '★' : '☆'}">★</div>
+      <p th:text="${rec.commento}">Commento</p>
+    </div>
+  </section>
+
+</main>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

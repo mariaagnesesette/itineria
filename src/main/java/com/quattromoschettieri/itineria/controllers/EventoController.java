@@ -47,7 +47,7 @@ public class EventoController {
 
         model.addAttribute("eventi", eventi);
 
-        return "eventi/eventi";
+        return "luoghi_interesse/eventi"; // CORRETTO: file eventi.html è in luoghi_interesse/
     }
 
 
@@ -63,7 +63,7 @@ public class EventoController {
 
         model.addAttribute("evento", evento);
 
-        return "eventi/dettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/eventoDettaglio"; // CORRETTO: percorso + nome file
     }
 
 
@@ -80,7 +80,7 @@ public class EventoController {
 
         model.addAttribute("eventi", eventi);
 
-        return "eventi/storico";
+        return "eventi/storico"; // DA VERIFICARE: non visibile nello screenshot
     }
 
 
@@ -97,7 +97,7 @@ public class EventoController {
 
         model.addAttribute("eventi", eventi);
 
-        return "eventi/futuri";
+        return "eventi/futuri"; // DA VERIFICARE: non visibile nello screenshot
     }
 
 
@@ -114,7 +114,7 @@ public class EventoController {
 
         model.addAttribute("eventi", eventi);
 
-        return "eventi/in-corso";
+        return "eventi/in-corso"; // DA VERIFICARE: non visibile nello screenshot
     }
 
 
@@ -122,18 +122,6 @@ public class EventoController {
     // RICERCA EVENTI
     // =========================
 
-    /*
-     * Ricerca gli eventi utilizzando i filtri
-     * presenti nel form.
-     *
-     * EventoDTO contiene già i campi utilizzati
-     * per la ricerca.
-     *
-     * Prezzo minimo e massimo vengono invece
-     * passati separatamente perché rappresentano
-     * i limiti della ricerca e non fanno parte
-     * dell'EventoDTO.
-     */
     @GetMapping("/search")
     public String search(
             @ModelAttribute EventoDTO dto,
@@ -157,14 +145,9 @@ public class EventoController {
 
         model.addAttribute("eventi", eventi);
 
-        /*
-         * Manteniamo il DTO nel Model per permettere
-         * al form di mantenere i valori inseriti
-         * dall'utente.
-         */
         model.addAttribute("eventoDTO", dto);
 
-        return "eventi/eventi";
+        return "luoghi_interesse/eventi"; // CORRETTO: stesso file di findAll
     }
 
 
@@ -172,25 +155,14 @@ public class EventoController {
     // CREAZIONE EVENTO
     // =========================
 
-    /*
-     * Mostra il form per creare un nuovo evento.
-     */
     @GetMapping("/nuovo")
     public String nuovoEvento(Model model) {
 
-        /*
-         * Il form viene associato ad un DTO vuoto.
-         */
         model.addAttribute(
                 "eventoDTO",
                 new EventoDTO()
         );
 
-        /*
-         * Passiamo gli enum al Model affinché
-         * Thymeleaf possa utilizzarli per creare
-         * le select del form.
-         */
         model.addAttribute(
                 "tipologieEvento",
                 TipologiaEvento.values()
@@ -201,22 +173,15 @@ public class EventoController {
                 PubblicoEvento.values()
         );
 
-        return "eventi/nuovo";
+        return "eventi/nuovo"; // DA VERIFICARE: non visibile nello screenshot
     }
 
 
-    /*
-     * Salva un nuovo evento.
-     */
     @PostMapping
     public String save(
             @ModelAttribute EventoDTO dto,
             RedirectAttributes redirectAttributes) {
 
-        /*
-         * Il service si occupa della conversione
-         * DTO -> Entity e del salvataggio.
-         */
         eventoService.save(dto);
 
         redirectAttributes.addFlashAttribute(
@@ -232,12 +197,6 @@ public class EventoController {
     // MODIFICA EVENTO
     // =========================
 
-    /*
-     * Mostra il form per modificare un evento esistente.
-     *
-     * Il service recupera l'evento e lo converte
-     * direttamente in EventoDTO.
-     */
     @GetMapping("/{id}/modifica")
     public String modificaEvento(
             @PathVariable Long id,
@@ -247,10 +206,6 @@ public class EventoController {
 
         model.addAttribute("eventoDTO", dto);
 
-        /*
-         * Gli enum servono al form per costruire
-         * le relative select.
-         */
         model.addAttribute(
                 "tipologieEvento",
                 TipologiaEvento.values()
@@ -261,13 +216,10 @@ public class EventoController {
                 PubblicoEvento.values()
         );
 
-        return "eventi/modifica";
+        return "eventi/modifica"; // DA VERIFICARE: non visibile nello screenshot
     }
 
 
-    /*
-     * Aggiorna un evento esistente.
-     */
     @PostMapping("/{id}")
     public String update(
             @PathVariable Long id,
@@ -289,12 +241,6 @@ public class EventoController {
     // ELIMINAZIONE EVENTO
     // =========================
 
-    /*
-     * Elimina un evento.
-     *
-     * Utilizziamo POST perché l'operazione modifica
-     * lo stato del database.
-     */
     @PostMapping("/{id}/elimina")
     public String delete(
             @PathVariable Long id,
@@ -315,18 +261,11 @@ public class EventoController {
     // GESTIONE DATE EVENTO
     // =========================
 
-    /*
-     * Mostra il form per aggiungere una nuova data
-     * ad un evento.
-     */
     @GetMapping("/{id}/date/nuova")
     public String nuovaDataEvento(
             @PathVariable Long id,
             Model model) {
 
-        /*
-         * findById verifica che l'evento esista.
-         */
         Evento evento = eventoService.findById(id);
 
         model.addAttribute("evento", evento);
@@ -336,13 +275,10 @@ public class EventoController {
                 new DataEventoDTO()
         );
 
-        return "eventi/date/nuova";
+        return "eventi/date/nuova"; // DA VERIFICARE: non visibile nello screenshot
     }
 
 
-    /*
-     * Aggiunge una nuova data all'evento.
-     */
     @PostMapping("/{id}/date")
     public String addDataEvento(
             @PathVariable Long id,
@@ -360,29 +296,14 @@ public class EventoController {
     }
 
 
-    /*
-     * Mostra il form per modificare una data
-     * appartenente all'evento.
-     */
     @GetMapping("/{id}/date/{idDataEvento}/modifica")
     public String modificaDataEvento(
             @PathVariable Long id,
             @PathVariable Long idDataEvento,
             Model model) {
 
-        /*
-         * Recuperiamo l'evento per mostrarne
-         * eventualmente le informazioni nella pagina.
-         */
         Evento evento = eventoService.findById(id);
 
-        /*
-         * Il service verifica che la data esista
-         * e che appartenga effettivamente all'evento.
-         *
-         * La data viene restituita direttamente
-         * come DataEventoDTO per il form.
-         */
         DataEventoDTO dto =
                 eventoService.findDataEventoById(
                         id,
@@ -392,13 +313,10 @@ public class EventoController {
         model.addAttribute("evento", evento);
         model.addAttribute("dataEventoDTO", dto);
 
-        return "eventi/date/modifica";
+        return "eventi/date/modifica"; // DA VERIFICARE: non visibile nello screenshot
     }
 
 
-    /*
-     * Aggiorna una data dell'evento.
-     */
     @PostMapping("/{id}/date/{idDataEvento}")
     public String updateDataEvento(
             @PathVariable Long id,
@@ -421,12 +339,6 @@ public class EventoController {
     }
 
 
-    /*
-     * Elimina una data appartenente all'evento.
-     *
-     * Utilizziamo POST perché l'operazione modifica
-     * il database.
-     */
     @PostMapping("/{id}/date/{idDataEvento}/elimina")
     public String deleteDataEvento(
             @PathVariable Long id,
