@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.MuseoDTO;
+import com.quattromoschettieri.itineria.entities.biblioteca.Biblioteca;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
 import com.quattromoschettieri.itineria.entities.museo.Museo;
 import com.quattromoschettieri.itineria.services.MuseoService;
@@ -136,7 +137,8 @@ public class MuseoController {
         Page<Museo> risultati =
                 museoService.findByNome(nome, pageable);
 
-        model.addAttribute("risultati", risultati);
+        model.addAttribute("musei", risultati.getContent());
+        model.addAttribute("bibliotecaDTO", new Biblioteca());
 
         return "musei/byNome";
     }
