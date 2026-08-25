@@ -7,7 +7,8 @@
   <title>Biblioteche di Torino - Itineria</title>
 
   <!-- CSS del progetto -->
-  <link rel="stylesheet" href="../static/css/biblioteche.css">
+   <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="../static/css/biblioteche.css">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +60,7 @@
   <!-- Form di filtri: invia query GET a /biblioteche/filtri -->
   <section class="section">
     <div class="container">
-      <form action="/biblioteche/filtri" method="get" class="biblioteche-filter-form" id="bibliotecheFilterForm">
+      <form th:action="/biblioteche/filtri" method="get" class="biblioteche-filter-form" id="bibliotecheFilterForm">
         <div class="biblioteche-filter-row">
           <input type="text" name="nome" placeholder="Cerca per nome" id="nomeInput" />
 

@@ -114,7 +114,7 @@ public class ZonaVerdeController {
     }
 
     @GetMapping("/{id}")
-    public String detailZonaVerde(
+    public String detailZonaVerdeId(
             @PathVariable Long id,
             Model model) {
 
