@@ -136,7 +136,7 @@ public class ZonaVerdeController {
         Page<ZonaVerde> risultati = zonaVerdeService.findByNome(nome, pageable);
 
         model.addAttribute("parchi", risultati.getContent());
-        model.addAttribute("zonaVerdeDTO", new ZonaVerde());
+        model.addAttribute("zonaVerdeDTO", new ZonaVerdeDTO());
         model.addAttribute(
                 "risultati",
                 risultati);
