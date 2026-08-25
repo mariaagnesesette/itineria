@@ -1,7 +1,6 @@
 package com.quattromoschettieri.itineria.controllers;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -44,101 +43,10 @@ public class RistoranteController {
     }
 
     @PostMapping
-<<<<<<< Updated upstream
-    public String createRistorante(@Valid @ModelAttribute RistoranteDTO dto, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return "musei/form";
-        }
-
-        ristoranteService.create(dto);
-        return "redirect:/ristoranti";
-    }
-
-    // READ
-    // lista generica
-    @GetMapping
-    public String listRistoranti(Pageable pageable, Model model) {
-        Page<Ristorante> tuttiRistoranti = ristoranteService.findAll(pageable);
-        Pageable anteprime = PageRequest.of(0, 6);
-
-        RistoranteDTO dtoDogFriendly = new RistoranteDTO();
-        dtoDogFriendly.setDogFriendly(true);
-
-        RistoranteDTO dtoCeliaci = new RistoranteDTO();
-        dtoCeliaci.setPerCeliaci(true);
-
-        RistoranteDTO dtoEsterni = new RistoranteDTO();
-        dtoEsterni.setPostiEsterni(true);
-
-        RistoranteDTO dtoSempreAperti = new RistoranteDTO();
-        dtoSempreAperti.setSempreAperto(true);
-
-        model.addAttribute("tuttiRistoranti", tuttiRistoranti.getContent());
-        model.addAttribute("ristorantiDogFriendly",
-                ristoranteService.search(dtoDogFriendly, anteprime).getContent());
-        model.addAttribute("ristorantiCeliaci",
-                ristoranteService.search(dtoCeliaci, anteprime).getContent());
-        model.addAttribute("ristorantiEsterni",
-                ristoranteService.search(dtoEsterni, anteprime).getContent());
-        model.addAttribute("ristorantiSempreAperti",
-                ristoranteService.search(dtoSempreAperti, anteprime).getContent());
-        model.addAttribute("risultati", tuttiRistoranti);
-
-        return "ristoranti/lista";
-    }
-
-    // ricerca con filtri
-    @GetMapping("/filtri")
-    public String filterMusei(@ModelAttribute RistoranteDTO dto, Pageable pageable, Model model) {
-
-        Page<Ristorante> risultati = ristoranteService.search(dto, pageable);
-
-        model.addAttribute("risultati", risultati);
-        model.addAttribute("ristoranteDTO", dto);
-
-        return "ristoranti/lista";
-    }
-
-    // ricerca per id
-    @GetMapping("/{id}")
-    public String detailRistoranteId(@PathVariable Long id, Model model) {
-
-        Ristorante risultato = ristoranteService.findById(id);
-
-        model.addAttribute("ristorante", risultato);
-
-        return "ristoranti/dettaglio";
-    }
-
-    // ricerca per nome
-    @GetMapping("searchByNome/{nome}")
-    public String detailRistoranteNome(@PathVariable String nome, Model model, Pageable pageable) {
-
-        Page<Ristorante> risultati = ristoranteService.findByNome(nome, pageable);
-
-        model.addAttribute("risultati", risultati);
-
-        return "ristoranti/byNome";
-    }
-
-    // UPDATE
-    @GetMapping("/{id}/modifica")
-    public String formModificaRistorante(@PathVariable Long id, Model model) {
-
-        model.addAttribute("museoDTO", ristoranteService.findById(id));
-        return "ristoranti/form";
-    }
-
-    @PutMapping("/{id}/modifica")
-    public String updateRistoranti(@PathVariable Long id, @Valid @ModelAttribute RistoranteDTO dto,
-            BindingResult bindingResult) {
-=======
     public String createRistorante(
             @Valid @ModelAttribute RistoranteDTO dto,
             BindingResult bindingResult,
             Authentication authentication) {
->>>>>>> Stashed changes
 
         if (bindingResult.hasErrors()) {
             return "ristoranti/form";

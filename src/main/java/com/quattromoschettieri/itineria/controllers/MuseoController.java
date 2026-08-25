@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-<<<<<<< Updated upstream
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.MuseoDTO;
@@ -17,23 +16,15 @@ import com.quattromoschettieri.itineria.services.MuseoService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-=======
->>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.quattromoschettieri.itineria.DTO.MuseoDTO;
-import com.quattromoschettieri.itineria.entities.museo.Museo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
-import com.quattromoschettieri.itineria.services.MuseoService;
 import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/musei")
@@ -73,21 +64,12 @@ public class MuseoController {
     // READ
     // Lista generica
     @GetMapping
-<<<<<<< Updated upstream
     public String listMusei(Pageable pageable, Model model) {
         Page<Museo> tuttiMusei = museoService.findAll(pageable);
         Pageable anteprime = PageRequest.of(0, 6);
 
         MuseoDTO dtoGuidati = new MuseoDTO();
         dtoGuidati.setGuidaPrenotabile(true);
-=======
-    public String listaMusei(
-            Pageable pageable,
-            Model model) {
-
-        Page<Museo> risultati =
-                museoService.findAll(pageable);
->>>>>>> Stashed changes
 
         MuseoDTO dtoBar = new MuseoDTO();
         dtoBar.setBarInterno(true);

@@ -69,24 +69,13 @@ public class ZonaVerdeController {
             Pageable pageable,
             Model model) {
 
-<<<<<<< Updated upstream
-        Page<ZonaVerde> risultati = zonaVerdeService.search(zonaVerdeDTO, pageable);
+        Page<ZonaVerde> risultati = zonaVerdeService.search(dto, pageable);
 
         model.addAttribute("risultati", risultati);
         model.addAttribute("parchi", risultati.getContent());
-        model.addAttribute("zonaVerdeDTO", zonaVerdeDTO);
-=======
-        Page<ZonaVerde> risultati =
-                zonaVerdeService.search(dto, pageable);
-
-        model.addAttribute(
-                "risultati",
-                risultati);
-
         model.addAttribute(
                 "zonaVerdeDTO",
                 dto);
->>>>>>> Stashed changes
 
         return "luoghi_interesse/zoneVerdi";
     }
@@ -99,14 +88,8 @@ public class ZonaVerdeController {
         ZonaVerdeDTO dtoCiclabili = new ZonaVerdeDTO();
         dtoCiclabili.setCiclabile(true);
 
-<<<<<<< Updated upstream
         ZonaVerdeDTO dtoCani = new ZonaVerdeDTO();
         dtoCani.setDogFriendly(true);
-=======
-        model.addAttribute(
-                "risultati",
-                risultati);
->>>>>>> Stashed changes
 
         ZonaVerdeDTO dtoRistoro = new ZonaVerdeDTO();
         dtoRistoro.setRistoro(true);
@@ -150,21 +133,13 @@ public class ZonaVerdeController {
             Pageable pageable,
             Model model) {
 
-<<<<<<< Updated upstream
         Page<ZonaVerde> risultati = zonaVerdeService.findByNome(nome, pageable);
 
         model.addAttribute("parchi", risultati.getContent());
         model.addAttribute("zonaVerdeDTO", new ZonaVerde());
-=======
-        Page<ZonaVerde> risultati =
-                zonaVerdeService.findByNome(
-                        nome,
-                        pageable);
-
         model.addAttribute(
                 "risultati",
                 risultati);
->>>>>>> Stashed changes
 
         return "luoghi_interesse/zoneVerdi";
     }

@@ -69,12 +69,8 @@ public class LocaleController {
             Pageable pageable,
             Model model) {
 
-<<<<<<< Updated upstream
-        Page<Locale> risultati = localeService.search(localeDTO, pageable);
-=======
         Page<Locale> risultati =
                 localeService.search(dto, pageable);
->>>>>>> Stashed changes
 
         model.addAttribute(
                 "risultati",
@@ -95,7 +91,6 @@ public class LocaleController {
         LocaleDTO dtoSerali = new LocaleDTO();
         dtoSerali.setAperturaSerale(true);
 
-<<<<<<< Updated upstream
         LocaleDTO dtoEsterni = new LocaleDTO();
         dtoEsterni.setPostiEsterni(true);
 
@@ -115,11 +110,6 @@ public class LocaleController {
         model.addAttribute("localiSempreAperti",
                 localeService.search(dtoSempreAperti, anteprime).getContent());
         model.addAttribute("risultati", tuttiLocali);
-=======
-        model.addAttribute(
-                "risultati",
-                risultati);
->>>>>>> Stashed changes
 
         return "locali/lista";
     }
@@ -145,14 +135,7 @@ public class LocaleController {
             Pageable pageable,
             Model model) {
 
-<<<<<<< Updated upstream
         Page<Locale> risultati = localeService.findByNome(nome, pageable);
-=======
-        Page<Locale> risultati =
-                localeService.findByNome(
-                        nome,
-                        pageable);
->>>>>>> Stashed changes
 
         model.addAttribute(
                 "risultati",
