@@ -127,7 +127,7 @@ public class MuseoController {
 
         model.addAttribute("museo", risultato);
 
-        return "musei/dettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/museoDettaglio";
     }
 
     // Ricerca per nome

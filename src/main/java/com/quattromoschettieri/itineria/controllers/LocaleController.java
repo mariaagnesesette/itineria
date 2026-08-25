@@ -127,7 +127,7 @@ public class LocaleController {
                 "locale",
                 locale);
 
-        return "luoghi_interesse/luoghi_dettaglio/luoghiDettaglio";
+        return "luoghi_interesse/luoghi_dettaglio/localiDettaglio";
     }
 
     @GetMapping("/searchByNome/{nome}")

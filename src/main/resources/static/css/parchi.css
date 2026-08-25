@@ -202,6 +202,28 @@
   padding: 40px 24px 60px;
 }
 
+.parchi-results-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.parchi-results-header .section__title {
+  margin-bottom: 0;
+}
+
+.parchi-results-header .section__title i {
+  color: var(--color-accent);
+}
+
+.parchi-results-count {
+  color: var(--color-text-gray);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 /* Filtri (form) */
 .parchi-filter-form { margin: 18px 0 28px; }
 .parchi-filter-row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
@@ -218,4 +240,45 @@
   .parchi-filter-row { flex-direction:column; align-items:stretch; }
   .parchi-filter-row select { width:100%; }
   .park-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width:600px) {
+  .parchi-results-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* Separatore tra filtri categoria e filtri "a spunta" */
+.filter-divider {
+  width: 1px;
+  align-self: stretch;
+  background: #e2ded4;
+  margin: 0 2px;
+}
+
+/* Chip a selezione multipla (dog friendly, ristoro, ciclabile) */
+.filter-chip--toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-chip__check {
+  font-size: 10px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.filter-chip--toggle.active .filter-chip__check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 600px) {
+  .page-intro { padding: 32px 0 28px; }
+  .filter-chips { gap: 8px; }
+  .filter-divider { display: none; } /* su mobile non serve, i chip vanno a capo */
 }
