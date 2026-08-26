@@ -46,11 +46,11 @@ public final class EventoSpecification {
             Boolean prenotazione) {
 
         return (root, query, cb) ->
-            prenotazione == null
+            (prenotazione == null || !prenotazione)
                 ? null
                 : cb.equal(
                     root.get("prenotazione"),
-                    prenotazione
+                    true
                 );
     }
 

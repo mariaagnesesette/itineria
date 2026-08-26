@@ -515,20 +515,33 @@ input:focus-visible {
    GRIGLIA CATEGORIE
    ========================================================================== */
 
+.categories-band {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #E0D6C8;
+  border-radius: var(--radius-lg);
+  padding: 72px 0;
+}
+
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 32px;
+  gap: 20px;
+  margin: 0;
+}
+
+.section:has(.categories-band) {
+  padding-top: 100px;
+  padding-bottom: 64px;
 }
 
 .category-card {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  align-items: center;
+  gap: 18px;
   background: var(--color-card);
   border-radius: var(--radius-md);
-  padding: 20px 22px;
+  padding: 24px 26px;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
@@ -538,15 +551,15 @@ input:focus-visible {
 }
 
 .category-card__icon {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-white);
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .category-card__icon--green { background: var(--color-header-footer); }
@@ -560,21 +573,21 @@ input:focus-visible {
 
 .category-card__title {
   font-weight: 700;
-  font-size: 15.5px;
+  font-size: 18px;
   color: var(--color-text-dark);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .category-card__desc {
-  font-size: 13px;
+  font-size: 14.5px;
   color: var(--color-text-gray);
   line-height: 1.5;
 }
 
 .category-card__arrow {
   color: var(--color-text-dark);
-  font-size: 14px;
-  margin-top: 4px;
+  font-size: 16px;
+  margin-top: 6px;
   transition: transform 0.2s ease;
 }
 
@@ -584,7 +597,7 @@ input:focus-visible {
    EVENTI IN ARRIVO
    ========================================================================== */
 
-.events-section { margin-bottom: 0; }
+.events-section { margin-bottom: 0; padding-top: 0; }
 
 /* Scroll-zoom: la sezione si ingrandisce a tutto schermo scorrendo (sotto la
    navbar), resta agganciata mentre si scorre e si rilascia rivelando il
@@ -593,8 +606,8 @@ input:focus-visible {
 
 .events-scroll-zoom {
   position: relative;
-  height: 160vh;
-  margin-top: 24px;
+  height: 130vh;
+  margin-top: 12px;
   /* full-bleed: esce dal max-width/padding del container */
   width: 100vw;
   margin-left: calc(50% - 50vw);
