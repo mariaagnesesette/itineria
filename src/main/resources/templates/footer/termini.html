@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Termini e condizioni | Itineraria</title>
+  <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/pages.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="legal-page">
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<section class="legal-hero legal-hero--terms">
+  <span>REGOLE DEL SERVIZIO</span>
+  <h1>Termini e condizioni</h1>
+  <p>Poche regole chiare per utilizzare Itineraria in modo corretto, sicuro e rispettoso.</p>
+</section>
+
+<main class="legal-layout">
+  <aside class="legal-index">
+    <span>IN QUESTA PAGINA</span>
+    <a href="#servizio">01. Il servizio</a>
+    <a href="#utilizzo">02. Utilizzo</a>
+    <a href="#account-termini">03. Account</a>
+    <a href="#recensioni">04. Recensioni</a>
+    <a href="#informazioni">05. Informazioni</a>
+    <a href="#responsabilita">06. Responsabilità</a>
+    <a href="#proprieta">07. Proprietà</a>
+    <a href="#modifiche">08. Modifiche</a>
+    <a href="#contatti-termini">09. Contatti</a>
+  </aside>
+
+  <article class="legal-content">
+    <div class="legal-notice"><i class="fa-solid fa-scale-balanced"></i><p>I presenti termini descrivono le regole generali del progetto Itineraria. In caso di pubblicazione come servizio reale dovranno essere adattati alle funzionalità effettivamente offerte e sottoposti a verifica professionale.</p></div>
+
+    <section id="servizio">
+      <span class="legal-number">01</span>
+      <h2>Il servizio Itineraria</h2>
+      <p>Itineraria è una piattaforma pensata per facilitare la scoperta di luoghi di interesse, eventi e attività presenti sul territorio, offrendo agli utenti strumenti di consultazione e funzionalità personali.</p>
+    </section>
+
+    <section id="utilizzo">
+      <span class="legal-number">02</span>
+      <h2>Utilizzo corretto della piattaforma</h2>
+      <p>L'utente si impegna a utilizzare Itineraria in maniera lecita e rispettosa, evitando attività che possano danneggiare il servizio, gli altri utenti o l'integrità dei contenuti presenti sulla piattaforma.</p>
+    </section>
+
+    <section id="account-termini">
+      <span class="legal-number">03</span>
+      <h2>Account personale</h2>
+      <p>L'utente è responsabile delle informazioni fornite durante la registrazione e della riservatezza delle proprie credenziali. Non è consentito utilizzare l'account di un'altra persona senza autorizzazione.</p>
+    </section>
+
+    <section id="recensioni">
+      <span class="legal-number">04</span>
+      <h2>Recensioni e comportamento</h2>
+      <p>Le recensioni devono essere pertinenti all'esperienza vissuta e rispettose degli altri. Non sono ammessi contenuti offensivi, discriminatori, illeciti, ingannevoli, spam o materiale pubblicato con lo scopo di danneggiare persone o attività.</p>
+      <p>Itineraria può prevedere la rimozione di contenuti che violano queste regole.</p>
+    </section>
+
+    <section id="informazioni">
+      <span class="legal-number">05</span>
+      <h2>Informazioni su luoghi ed eventi</h2>
+      <p>Itineraria mira a fornire informazioni accurate e aggiornate. Tuttavia orari, disponibilità, prezzi, eventi e altri dati possono cambiare. Prima di organizzare uno spostamento è consigliabile verificare le informazioni più importanti presso la fonte interessata.</p>
+    </section>
+
+    <section id="responsabilita">
+      <span class="legal-number">06</span>
+      <h2>Responsabilità</h2>
+      <p>Il servizio viene fornito con l'obiettivo di facilitare la scoperta del territorio. Nei limiti previsti dalla normativa applicabile, Itineraria non può garantire che ogni informazione sia sempre priva di errori o disponibile senza interruzioni.</p>
+    </section>
+
+    <section id="proprieta">
+      <span class="legal-number">07</span>
+      <h2>Proprietà del progetto</h2>
+      <p>Il nome Itineraria, l'interfaccia, il codice originale, gli elementi grafici e i contenuti prodotti dal team sono parte del progetto e non possono essere riprodotti o utilizzati impropriamente senza autorizzazione, salvo quanto consentito dalla legge.</p>
+    </section>
+
+    <section id="modifiche">
+      <span class="legal-number">08</span>
+      <h2>Modifiche del servizio</h2>
+      <p>Il progetto può evolvere nel tempo. Funzionalità, contenuti e presenti condizioni possono essere aggiornati per riflettere cambiamenti tecnici o nuove caratteristiche della piattaforma.</p>
+    </section>
+
+    <section id="contatti-termini">
+      <span class="legal-number">09</span>
+      <h2>Dubbi o segnalazioni</h2>
+      <p>Per domande sul funzionamento del servizio o sulle presenti condizioni puoi utilizzare il Centro assistenza di Itineraria.</p>
+      <a th:href="@{/supporto} + '#support-contact'" class="legal-button">Contatta il supporto <i class="fa-solid fa-arrow-right"></i></a>
+    </section>
+
+    <div class="legal-update">Ultimo aggiornamento: agosto 2026</div>
+  </article>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,198 +1,210 @@
 <!DOCTYPE html>
-<html lang="it">
-
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Supporto | Itineraria</title>
-
-    <link rel="stylesheet"
-          href="/css/pages.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Supporto | Itineraria</title>
+  <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/pages.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
+<body class="support-page">
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<body>
+<section class="support-hero">
+  <div class="support-hero__decor support-hero__decor--one"></div>
+  <div class="support-hero__decor support-hero__decor--two"></div>
+  <div class="support-hero__content">
+    <span class="support-eyebrow">ITINERARIA SUPPORT</span>
+    <h1>Come possiamo aiutarti?</h1>
+    <p>Tutto quello che ti serve per utilizzare Itineraria, trovare risposte e contattare il nostro team.</p>
+    <a href="#support-options" class="support-hero__button">Scopri il supporto <i class="fa-solid fa-arrow-down"></i></a>
+  </div>
+</section>
 
-<header>
+<main>
+<section class="support-options" id="support-options">
+  <div class="support-wrapper">
+    <div class="support-section-heading">
+      <span>ASSISTENZA RAPIDA</span>
+      <h2>Da dove vuoi iniziare?</h2>
+      <p>Scegli l'argomento che descrive meglio ciò di cui hai bisogno.</p>
+    </div>
+    <div class="support-cards">
+      <button class="support-card" type="button" data-target="faq-accesso">
+        <div class="support-card__icon"><i class="fa-solid fa-user-lock"></i></div>
+        <div><h3>Problemi di accesso</h3><p>Password, autenticazione e problemi con il tuo account.</p></div>
+        <i class="fa-solid fa-arrow-right support-card__arrow"></i>
+      </button>
+      <button class="support-card" type="button" data-target="faq-ricerca">
+        <div class="support-card__icon support-card__icon--orange"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div><h3>Ricerca luoghi</h3><p>Trova musei, parchi, ristoranti, biblioteche e molto altro.</p></div>
+        <i class="fa-solid fa-arrow-right support-card__arrow"></i>
+      </button>
+      <button class="support-card" type="button" data-target="support-contact" data-subject="Segnalazione luogo">
+        <div class="support-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div><h3>Segnalare un luogo</h3><p>Informazioni errate, nuovi luoghi o suggerimenti da inviarci.</p></div>
+        <i class="fa-solid fa-arrow-right support-card__arrow"></i>
+      </button>
+      <button class="support-card" type="button" data-target="support-contact" data-subject="Problema tecnico">
+        <div class="support-card__icon support-card__icon--orange"><i class="fa-solid fa-bug"></i></div>
+        <div><h3>Problemi tecnici</h3><p>Errori, malfunzionamenti o qualcosa che non funziona come dovrebbe.</p></div>
+        <i class="fa-solid fa-arrow-right support-card__arrow"></i>
+      </button>
+    </div>
+  </div>
+</section>
 
-    <nav>
+<section class="support-faq-section" id="faq">
+  <div class="support-wrapper support-wrapper--small">
+    <div class="support-section-heading">
+      <span>DOMANDE FREQUENTI</span>
+      <h2>Forse la risposta è già qui</h2>
+      <p>Abbiamo raccolto le domande più frequenti su Itineraria.</p>
+    </div>
 
-        <div class="logo">
+    <div class="support-faq" id="faq-ricerca">
+      <button class="support-question" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-magnifying-glass"></i> Come posso cercare un luogo?</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="support-answer">
+        <p>Puoi utilizzare la barra di ricerca nella homepage oppure aprire la sezione “Luoghi d'interesse” e scegliere la categoria che preferisci.</p>
+      </div>
+    </div>
 
-            <a href="index.html">ITINERARIA</a>
+    <div class="support-faq" id="faq-accesso">
+      <button class="support-question" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-user-lock"></i> Ho problemi ad accedere al mio account</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="support-answer">
+        <p>Controlla che email e password siano corrette. Se continui ad avere problemi puoi utilizzare il modulo di assistenza presente in fondo a questa pagina.</p>
+      </div>
+    </div>
 
+    <div class="support-faq" id="faq-account">
+      <button class="support-question" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-user"></i> È necessario creare un account?</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="support-answer">
+        <p>No. Puoi esplorare liberamente Itineraria senza registrarti. L'account serve per utilizzare funzionalità personali come preferiti e recensioni.</p>
+      </div>
+    </div>
+
+    <div class="support-faq" id="faq-preferiti">
+      <button class="support-question" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-heart"></i> Come posso salvare i miei luoghi preferiti?</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="support-answer">
+        <p>Accedi al tuo account e utilizza il pulsante dedicato ai preferiti nella scheda del luogo. Potrai poi ritrovarli nella tua Area personale.</p>
+      </div>
+    </div>
+
+    <div class="support-faq" id="faq-eventi">
+      <button class="support-question" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-calendar-days"></i> Come posso trovare gli eventi?</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="support-answer">
+        <p>Apri la sezione Eventi dalla navbar per visualizzare gli appuntamenti disponibili e gli eventi in programma.</p>
+      </div>
+    </div>
+
+    <div class="support-faq">
+      <button class="support-question" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-rotate"></i> Le informazioni vengono aggiornate?</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="support-answer">
+        <p>Sì. Le informazioni relative a luoghi, eventi e servizi possono essere aggiornate periodicamente.</p>
+      </div>
+    </div>
+
+    <div class="support-faq">
+      <button class="support-question" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-triangle-exclamation"></i> Come posso segnalare un'informazione errata?</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="support-answer">
+        <p>Utilizza il modulo qui sotto selezionando come oggetto “Segnalazione luogo” e spiegaci quale informazione deve essere verificata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="support-contact-section" id="support-contact">
+  <div class="support-wrapper">
+    <div class="support-contact-grid">
+      <div class="support-contact-info">
+        <span class="support-eyebrow support-eyebrow--orange">PARLIAMONE</span>
+        <h2>Non hai trovato quello che cercavi?</h2>
+        <p class="support-contact-intro">Scrivici. Il nostro team può aiutarti con segnalazioni, problemi tecnici e informazioni sull'utilizzo di Itineraria.</p>
+
+        <div class="support-contact-item">
+          <div><i class="fa-regular fa-envelope"></i></div>
+          <span><strong>Email</strong><small>info@itineraria.it</small></span>
         </div>
 
-        <ul>
+        <div class="support-contact-item">
+          <div><i class="fa-solid fa-phone"></i></div>
+          <span><strong>Telefono</strong><small>+39 011 123 4567</small></span>
+        </div>
 
-            <li><a href="index.html">Home</a></li>
+        <div class="support-contact-item">
+          <div><i class="fa-solid fa-location-dot"></i></div>
+          <span><strong>Dove siamo</strong><small>Torino, Italia</small></span>
+        </div>
+      </div>
 
-            <li><a href="#">Luoghi d'interesse</a></li>
+      <div class="support-form-card">
+        <div class="support-form-title">
+          <div><i class="fa-regular fa-paper-plane"></i></div>
+          <span><strong>Scrivici un messaggio</strong><small>Raccontaci come possiamo aiutarti.</small></span>
+        </div>
 
-            <li><a href="#">Eventi</a></li>
+        <form id="supportForm" novalidate>
+          <div class="support-form-row">
+            <div class="support-form-group">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+            </div>
+            <div class="support-form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="nome@email.it" required>
+            </div>
+          </div>
 
-            <li><a href="#">Contatti</a></li>
+          <div class="support-form-group">
+            <label for="oggetto">Oggetto</label>
+            <select id="oggetto" name="oggetto" required>
+              <option value="">Seleziona un argomento</option>
+              <option value="Problema di accesso">Problema di accesso</option>
+              <option value="Ricerca luoghi">Ricerca luoghi</option>
+              <option value="Segnalazione luogo">Segnalazione luogo</option>
+              <option value="Problema tecnico">Problema tecnico</option>
+              <option value="Altro">Altro</option>
+            </select>
+          </div>
 
-        </ul>
+          <div class="support-form-group">
+            <label for="messaggio">Messaggio</label>
+            <textarea id="messaggio" name="messaggio" rows="6" placeholder="Descrivi il problema o la tua richiesta..." required></textarea>
+          </div>
 
-    </nav>
-
-</header>
-
-<section class="hero">
-
-    <h1>Centro Assistenza</h1>
-
-    <p>Siamo qui per aiutarti.</p>
-
+          <button type="submit" class="support-submit">Invia richiesta <i class="fa-solid fa-arrow-right"></i></button>
+          <p id="supportFormMessage" class="support-form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
+</main>
 
-<section class="container">
-
-<h2>Come possiamo aiutarti?</h2>
-
-<div class="cards">
-
-<button class="card support-topic" type="button" data-topic="accesso">
-
-<i class="fa-solid fa-user-lock"></i>
-
-<h3>Problemi di accesso</h3>
-
-<p>Password dimenticata, accesso al proprio account e autenticazione.</p>
-
-</button>
-
-<button class="card support-topic" type="button" data-topic="ricerca">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-<h3>Ricerca luoghi</h3>
-
-<p>Problemi nella ricerca di luoghi ed eventi.</p>
-
-</button>
-
-<button class="card support-topic" type="button" data-topic="segnalazione">
-
-<i class="fa-solid fa-location-dot"></i>
-
-<h3>Segnalare un luogo</h3>
-
-<p>Invia suggerimenti o segnala informazioni errate.</p>
-
-</button>
-
-<button class="card support-topic" type="button" data-topic="tecnico">
-
-<i class="fa-solid fa-bug"></i>
-
-<h3>Problemi tecnici</h3>
-
-<p>Segnala errori o malfunzionamenti dell'applicazione.</p>
-
-</button>
-
-</div>
-
-</section>
-
-<section class="guides">
-
-<h2>Guide rapide</h2>
-
-<div class="guide-list">
-
-<a class="guide support-guide" href="faq.html#cercare-luogo">
-
-<i class="fa-solid fa-book"></i>
-
-<span>Come cercare un luogo</span>
-
-</a>
-
-<a class="guide support-guide" href="faq.html#eventi">
-
-<i class="fa-solid fa-calendar-days"></i>
-
-<span>Come trovare eventi</span>
-
-</a>
-
-<a class="guide support-guide" href="faq.html#preferiti">
-
-<i class="fa-solid fa-heart"></i>
-
-<span>Come salvare i preferiti</span>
-
-</a>
-
-<a class="guide support-guide" href="faq.html">
-
-<i class="fa-solid fa-circle-question"></i>
-
-<span>Domande frequenti</span>
-
-</a>
-
-</div>
-
-</section>
-
-<section class="contact">
-
-<h2>Non hai trovato la risposta?</h2>
-
-<p>Il nostro team sarà felice di aiutarti.</p>
-
-<a href="contattaci.html">
-
-<button>
-
-Contatta il Supporto
-
-</button>
-
-</a>
-
-</section>
-
-<footer>
-
-<div>
-
-<h3>ITINERARIA</h3>
-
-<p>La tua guida digitale.</p>
-
-</div>
-
-<div>
-
-<h4>Supporto</h4>
-
-<a href="faq.html">FAQ</a><br>
-<a href="contattaci.html">Contattaci</a>
-
-</div>
-
-<div>
-
-<p>© 2025 Itineraria</p>
-
-</div>
-
-</footer>
-
+<div th:replace="~{fragments/footer :: footer}"></div>
 <script th:src="@{/js/faq/supporto.js}" defer></script>
-
 </body>
-
 </html>

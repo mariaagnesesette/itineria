@@ -19,6 +19,9 @@
   <!-- CSS del progetto -->
   <link rel="stylesheet" th:href="@{/css/musei.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
+
+  <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+
 </head>
 
 <body>
@@ -108,7 +111,7 @@
   </p>
 
   <!-- FOOTER -->
-  <footer th:replace="~{fragments/footer :: footer}"></footer>
+  <div th:replace="~{fragments/footer :: footer}"></div>
   <!-- JAVASCRIPT — filtri per categoria + ricerca live
      Suggerimento: spostare in /js/musei.js e includere con <script th:src="@{/js/musei.js}" defer></script>
 -->

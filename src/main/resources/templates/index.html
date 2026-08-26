@@ -17,6 +17,8 @@
 
 <link rel="stylesheet" th:href="@{/css/style.css}">
 
+<link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+
 </head>
 <body>
 
@@ -24,6 +26,8 @@
      HEADER / NAVBAR
      ========================================================================== -->
 <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<body class="home-page"></body>
 <!-- ==========================================================================
      HERO
      ========================================================================== -->
@@ -63,23 +67,46 @@
      LUOGHI PRINCIPALI — Carousel
      ========================================================================== -->
 <section class="section">
+
   <div class="container">
 
     <div class="section__header">
-      <h2 class="section__title"><i class="fa-solid fa-location-dot"></i> Luoghi principali</h2>
+
+      <h2 class="section__title">
+        <i class="fa-solid fa-location-dot"></i>
+        Luoghi principali
+      </h2>
+
       <div class="section__controls">
-        <a th:href="@{/luoghi}" href="#" class="section__link">Vedi tutti</a>
-        <button class="nav-arrow" data-carousel-prev aria-label="Precedente"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="nav-arrow" data-carousel-next aria-label="Successivo"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <a th:href="@{/luoghi}" class="section__link">
+          Vedi tutti
+        </a>
+
+        <button class="nav-arrow" data-carousel-prev aria-label="Precedente">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <button class="nav-arrow" data-carousel-next aria-label="Successivo">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
       </div>
+
     </div>
 
+
     <div class="places-carousel" id="placesCarousel">
-      <button class="places-carousel__side-arrow" data-carousel-prev aria-label="Luogo precedente">
+
+      <button class="places-carousel__side-arrow"
+              data-carousel-prev
+              aria-label="Luogo precedente">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
 
+
       <div class="places-carousel__viewport">
+
         <div class="places-carousel__track" id="placesTrack">
 
           <a th:each="luogo : ${luoghiPrincipali}"
@@ -102,19 +129,28 @@
               <h3 th:text="${luogo.nome}">Nome luogo</h3>
               <p th:text="${luogo.descrizione}">Descrizione del luogo</p>
             </span>
+
           </a>
 
+
         </div>
+
       </div>
 
-      <button class="places-carousel__side-arrow" data-carousel-next aria-label="Luogo successivo">
+
+      <button class="places-carousel__side-arrow"
+              data-carousel-next
+              aria-label="Luogo successivo">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
+
     </div>
+
 
     <div class="carousel-dots" id="placesDots"></div>
 
   </div>
+
 </section>
 
 <!-- ==========================================================================
@@ -233,65 +269,7 @@
 <!-- ==========================================================================
      FOOTER
      ========================================================================== -->
-<footer class="site-footer">
-  <div class="container">
-
-    <div class="footer-grid">
-
-      <div class="footer-brand">
-        <div class="footer-brand__logo"><i class="fa-solid fa-location-dot"></i> Itineraria</div>
-        <p class="footer-brand__desc">La tua guida digitale per scoprire Torino in modo autentico e sostenibile.</p>
-        <div class="footer-social">
-          <a th:href="@{https://instagram.com/itineraria}" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a th:href="@{https://facebook.com/itineraria}" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a th:href="@{https://pinterest.com/itineraria}" href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col__title">Contatti</div>
-        <ul class="footer-col__list">
-          <li class="footer-contact-item"><i class="fa-regular fa-envelope"></i> info@itineraria.it</li>
-          <li class="footer-contact-item"><i class="fa-solid fa-phone"></i> +39 011 123 4567</li>
-          <li class="footer-contact-item"><i class="fa-solid fa-location-dot"></i> Torino, Italia</li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col__title">Esplora</div>
-        <ul class="footer-col__list">
-          <li><a th:href="@{/luoghi}" href="#">Luoghi d'interesse</a></li>
-          <li><a th:href="@{/eventi}" href="#">Eventi</a></li>
-          <li><a th:href="@{/forum}" href="#">Forum (coming soon)</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <div class="footer-col__title">Info</div>
-        <ul class="footer-col__list">
-          <li><a th:href="@{/chi-siamo}" href="#">Chi siamo</a></li>
-          <li><a th:href="@{/privacy}" href="#">Privacy Policy</a></li>
-          <li><a th:href="@{/termini}" href="#">Termini e condizioni</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-          <ul class="footer-col__list">
-              <li><a th:href="@{/supporto}">Supporto</a></li>
-              <li><a th:href="@{/faq}">FAQ</a></li>
-              <li><a th:href="@{/contattaci}">Contattaci</a></li>
-          </ul>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <span th:text="'© ' + ${#dates.year(#dates.createNow())} + ' Itineraria.'">© 2025 Itineraria.</span>
-      <span>Tutti i diritti riservati.</span>
-    </div>
-
-  </div>
-</footer>
+<div th:replace="~{fragments/footer :: footer}"></div>  
 <!-- ==========================================================================
      JAVASCRIPT — Carousel "Luoghi principali" + scroll "Eventi in arrivo"
      Nota per il backend: spostare questo blocco in /js/main.js e includerlo

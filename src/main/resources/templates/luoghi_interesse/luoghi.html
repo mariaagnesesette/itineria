@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Luoghi d'interesse | Itineraria</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/pages.css}">
+    <link rel="stylesheet" th:href="@{/css/luoghi.css}">
+
+    <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="luoghi-page">
+
+    <!-- HERO -->
+    <section class="luoghi-hero">
+
+        <div class="luoghi-hero__shape luoghi-hero__shape--one"></div>
+        <div class="luoghi-hero__shape luoghi-hero__shape--two"></div>
+
+        <div class="luoghi-hero__content">
+
+            <div class="luoghi-hero__eyebrow">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>ESPLORA TORINO</span>
+            </div>
+
+            <h1>
+                Trova il tuo prossimo
+                <span>posto speciale.</span>
+            </h1>
+
+            <p>
+                Cultura, natura, sapori e angoli da vivere.
+                Scegli ciò che ti ispira e scopri Torino attraverso
+                luoghi iconici e piccole gemme nascoste.
+            </p>
+
+            <div class="luoghi-hero__scroll">
+                <span>Scegli una categoria</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INTRO -->
+    <section class="luoghi-intro">
+
+        <div class="luoghi-shell">
+
+            <div class="luoghi-intro__heading">
+                <span class="luoghi-kicker">PER OGNI MOMENTO</span>
+
+                <h2>
+                    Che tipo di Torino
+                    <em>vuoi vivere oggi?</em>
+                </h2>
+            </div>
+
+            <p class="luoghi-intro__text">
+                Abbiamo organizzato i luoghi della città per aiutarti
+                a trovare subito quello che cerchi: una mostra, un posto
+                tranquillo dove studiare, un ristorante, un caffè storico
+                o semplicemente un po' di verde.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORIE -->
+    <section class="luoghi-categories">
+
+        <div class="luoghi-shell">
+
+            <div class="luoghi-grid">
+
+
+                <!-- MUSEI -->
+                <a th:href="@{/musei}"
+                   class="luogo-category luogo-category--museum">
+
+                    <div class="luogo-category__number">01</div>
+
+                    <div class="luogo-category__icon">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+
+                    <div class="luogo-category__content">
+
+                        <span class="luogo-category__label">
+                            ARTE · STORIA · CULTURA
+                        </span>
+
+                        <h3>Musei</h3>
+
+                        <p>
+                            Dall'Egitto antico all'arte contemporanea:
+                            attraversa secoli di storia senza lasciare Torino.
+                        </p>
+
+                        <span class="luogo-category__link">
+                            Scopri i musei
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- BIBLIOTECHE -->
+                <a th:href="@{/biblioteche}"
+                   class="luogo-category luogo-category--library">
+
+                    <div class="luogo-category__number">02</div>
+
+                    <div class="luogo-category__icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+
+                    <div class="luogo-category__content">
+
+                        <span class="luogo-category__label">
+                            STUDIO · LETTURA · TRANQUILLITÀ
+                        </span>
+
+                        <h3>Biblioteche</h3>
+
+                        <p>
+                            Spazi silenziosi, WiFi, sale studio e luoghi
+                            dove rallentare e concentrarsi.
+                        </p>
+
+                        <span class="luogo-category__link">
+                            Scopri le biblioteche
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- RISTORANTI -->
+                <a th:href="@{/ristoranti}"
+                   class="luogo-category luogo-category--restaurant">
+
+                    <div class="luogo-category__number">03</div>
+
+                    <div class="luogo-category__icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+
+                    <div class="luogo-category__content">
+
+                        <span class="luogo-category__label">
+                            SAPORI · TRADIZIONE · ESPERIENZE
+                        </span>
+
+                        <h3>Ristoranti</h3>
+
+                        <p>
+                            Cucina piemontese, pizzerie e proposte
+                            internazionali per ogni occasione.
+                        </p>
+
+                        <span class="luogo-category__link">
+                            Scopri i ristoranti
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- LOCALI -->
+                <a th:href="@{/locali}"
+                   class="luogo-category luogo-category--cafe">
+
+                    <div class="luogo-category__number">04</div>
+
+                    <div class="luogo-category__icon">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+
+                    <div class="luogo-category__content">
+
+                        <span class="luogo-category__label">
+                            CAFFÈ · APERITIVI · SOCIALITÀ
+                        </span>
+
+                        <h3>Bar e Caffetterie</h3>
+
+                        <p>
+                            Dai caffè storici alle atmosfere contemporanee:
+                            trova il posto giusto per una pausa.
+                        </p>
+
+                        <span class="luogo-category__link">
+                            Scopri i locali
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- ZONE VERDI -->
+                <a th:href="@{/zoneVerdi}"
+                   class="luogo-category luogo-category--park">
+
+                    <div class="luogo-category__number">05</div>
+
+                    <div class="luogo-category__icon">
+                        <i class="fa-solid fa-tree"></i>
+                    </div>
+
+                    <div class="luogo-category__content">
+
+                        <span class="luogo-category__label">
+                            NATURA · RELAX · ARIA APERTA
+                        </span>
+
+                        <h3>Parchi e Zone Verdi</h3>
+
+                        <p>
+                            Parchi urbani, giardini e angoli verdi
+                            per passeggiare, rilassarti o fare sport.
+                        </p>
+
+                        <span class="luogo-category__link">
+                            Scopri le zone verdi
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRASE FINALE -->
+    <section class="luoghi-quote">
+
+        <div class="luoghi-quote__decor">
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
+
+        <p>
+            Non serve andare lontano<br>
+            per trovare qualcosa di <em>speciale.</em>
+        </p>
+
+        <span>ITINERARIA · TORINO</span>
+
+    </section>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+
+</html>

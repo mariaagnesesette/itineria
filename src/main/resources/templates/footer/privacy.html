@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Privacy Policy | Itineraria</title>
+  <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/pages.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="legal-page">
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<section class="legal-hero">
+  <span>TRASPARENZA E PRIVACY</span>
+  <h1>Privacy Policy</h1>
+  <p>Vogliamo che sia chiaro quali informazioni possono essere trattate quando utilizzi Itineraria e per quale motivo.</p>
+</section>
+
+<main class="legal-layout">
+  <aside class="legal-index">
+    <span>IN QUESTA PAGINA</span>
+    <a href="#introduzione">01. Introduzione</a>
+    <a href="#dati">02. Dati trattati</a>
+    <a href="#finalita">03. Finalità</a>
+    <a href="#account">04. Account</a>
+    <a href="#contenuti">05. Contenuti utente</a>
+    <a href="#conservazione">06. Conservazione</a>
+    <a href="#diritti">07. Diritti</a>
+    <a href="#sicurezza">08. Sicurezza</a>
+    <a href="#contatti-privacy">09. Contatti</a>
+  </aside>
+
+  <article class="legal-content">
+    <div class="legal-notice"><i class="fa-solid fa-circle-info"></i><p>Questa informativa è predisposta per il progetto Itineraria. Prima di un eventuale utilizzo pubblico o commerciale con utenti reali dovrà essere verificata e adattata ai trattamenti effettivamente effettuati.</p></div>
+
+    <section id="introduzione">
+      <span class="legal-number">01</span>
+      <h2>Introduzione</h2>
+      <p>Itineraria attribuisce importanza alla protezione dei dati personali degli utenti e alla trasparenza nel loro utilizzo. Questa pagina descrive in modo generale quali informazioni possono essere raccolte durante l'utilizzo della piattaforma e per quali finalità.</p>
+    </section>
+
+    <section id="dati">
+      <span class="legal-number">02</span>
+      <h2>Dati che possono essere trattati</h2>
+      <p>In base alle funzionalità utilizzate, Itineraria può trattare informazioni fornite direttamente dall'utente, come nome, indirizzo email, credenziali necessarie alla gestione dell'account, recensioni, preferiti e informazioni trasmesse tramite i moduli di contatto.</p>
+      <p>Possono inoltre essere elaborati dati tecnici strettamente necessari al funzionamento dell'applicazione e alla sicurezza del servizio.</p>
+    </section>
+
+    <section id="finalita">
+      <span class="legal-number">03</span>
+      <h2>Perché utilizziamo questi dati</h2>
+      <p>Le informazioni possono essere utilizzate per consentire la registrazione e l'accesso, gestire l'Area personale, memorizzare preferiti e recensioni, rispondere alle richieste di assistenza, migliorare il servizio e proteggere l'applicazione da utilizzi impropri.</p>
+    </section>
+
+    <section id="account">
+      <span class="legal-number">04</span>
+      <h2>Account e autenticazione</h2>
+      <p>Quando viene creato un account, alcuni dati sono necessari per identificare l'utente e consentirgli di utilizzare le funzionalità personali di Itineraria. Le credenziali devono essere trattate con misure adeguate di sicurezza e non devono essere condivise con altri utenti.</p>
+    </section>
+
+    <section id="contenuti">
+      <span class="legal-number">05</span>
+      <h2>Recensioni e contenuti inseriti dagli utenti</h2>
+      <p>Le informazioni pubblicate volontariamente attraverso recensioni o altre funzionalità possono essere associate all'account e visualizzate all'interno della piattaforma secondo le modalità previste dal servizio.</p>
+    </section>
+
+    <section id="conservazione">
+      <span class="legal-number">06</span>
+      <h2>Conservazione dei dati</h2>
+      <p>I dati dovrebbero essere conservati esclusivamente per il periodo necessario alle finalità per cui sono stati raccolti, salvo eventuali obblighi normativi o esigenze legittime di sicurezza.</p>
+    </section>
+
+    <section id="diritti">
+      <span class="legal-number">07</span>
+      <h2>Diritti dell'utente</h2>
+      <p>Nei casi previsti dalla normativa applicabile, l'utente può richiedere accesso, rettifica, cancellazione o limitazione del trattamento dei propri dati, oltre agli ulteriori diritti riconosciuti dalla normativa sulla protezione dei dati personali.</p>
+    </section>
+
+    <section id="sicurezza">
+      <span class="legal-number">08</span>
+      <h2>Sicurezza</h2>
+      <p>Itineraria mira ad adottare misure tecniche e organizzative adeguate per ridurre il rischio di accessi non autorizzati, alterazione, perdita o utilizzo improprio delle informazioni gestite dalla piattaforma.</p>
+    </section>
+
+    <section id="contatti-privacy">
+      <span class="legal-number">09</span>
+      <h2>Contatti</h2>
+      <p>Per domande relative alla privacy o alla gestione delle informazioni puoi utilizzare il Centro assistenza.</p>
+      <a th:href="@{/supporto} + '#support-contact'" class="legal-button">Contatta il supporto <i class="fa-solid fa-arrow-right"></i></a>
+    </section>
+
+    <div class="legal-update">Ultimo aggiornamento: agosto 2026</div>
+  </article>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
