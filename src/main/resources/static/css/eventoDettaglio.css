@@ -18,13 +18,435 @@
 
 
 /* ==========================================================================
+   GALLERIA IMMAGINI EVENTO (carosello full-bleed, come nelle pagine luoghi)
+   ========================================================================== */
+
+.gallery-section {
+
+    margin-bottom: 50px;
+}
+
+.gallery-upload-row {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 16px;
+}
+
+.gallery-upload-row input[type="file"] {
+
+    flex: 1;
+
+    min-width: 200px;
+
+    font-size: 12.5px;
+}
+
+.gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.gallery-thumb {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.gallery-thumb.is-cover {
+    border: 2px solid var(--color-accent);
+}
+
+.gallery-thumb img {
+    display: block;
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+}
+
+.gallery-thumb-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 7px;
+    border-radius: 6px;
+}
+
+.gallery-thumb-actions {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    gap: 4px;
+}
+
+.gallery-thumb-actions form {
+    margin: 0;
+}
+
+.gallery-thumb-btn {
+    border: 0;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    cursor: pointer;
+    padding: 4px 7px;
+    font-size: 13px;
+    line-height: 1;
+}
+
+.gallery-thumb-btn:hover {
+    background: var(--color-accent);
+}
+
+/* Carosello galleria: a piena larghezza, senza box card, si ingrandisce a
+   tutto schermo scorrendo (effetto scroll-zoom) */
+
+.gallery-scroll-zoom {
+    position: relative;
+    height: 160vh;
+    margin-top: 24px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+.gallery-carousel {
+    position: sticky;
+    top: var(--navbar-height, 0px);
+    height: calc(100vh - var(--navbar-height, 0px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-carousel-viewport {
+    position: relative;
+    width: min(1100px, 92%);
+    height: 520px;
+    overflow: hidden;
+    border-radius: 22px;
+    transition: border-radius .1s linear;
+}
+
+.gallery-carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform .6s cubic-bezier(.25, 1, .5, 1);
+}
+
+.gallery-carousel-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: 100%;
+}
+
+.gallery-carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(0, 0, 0, .55);
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-carousel-arrow:hover {
+    background: var(--color-accent);
+}
+
+.gallery-carousel-arrow--prev {
+    left: 16px;
+}
+
+.gallery-carousel-arrow--next {
+    right: 16px;
+}
+
+.gallery-carousel-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.gallery-carousel-dots button {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.gallery-carousel-dots button.active {
+    background: var(--color-accent);
+    width: 22px;
+    border-radius: 999px;
+}
+
+@media (max-width: 600px) {
+    .gallery-carousel-viewport {
+        height: 380px;
+    }
+}
+
+
+/* ==========================================================================
+   PULSANTE "CAMBIA IMMAGINE"
+   ========================================================================== */
+
+.luogo-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 13px 22px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #222;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: transform .15s ease, opacity .2s ease;
+}
+
+.luogo-button:hover {
+
+    transform: translateY(-1px);
+
+    opacity: .9;
+}
+
+.hero-cover-controls {
+
+    position: relative;
+
+    margin-top: 14px;
+}
+
+.hero-cover-menu {
+
+    position: absolute;
+
+    top: calc(100% + 8px);
+
+    left: 0;
+
+    z-index: 5;
+
+    width: max-content;
+
+    max-width: 320px;
+
+    padding: 14px;
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    color: #222;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+.hero-cover-menu--floating {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 1000;
+}
+
+.hero-cover-menu-label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #888;
+
+    text-transform: uppercase;
+
+    letter-spacing: .04em;
+}
+
+.hero-cover-thumbs {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 6px;
+
+    max-height: 180px;
+
+    overflow-y: auto;
+}
+
+.hero-cover-thumbs form {
+
+    margin: 0;
+}
+
+.hero-cover-thumb-btn {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 0;
+
+    border: 2px solid transparent;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+.hero-cover-thumb-btn:hover {
+
+    border-color: var(--color-accent);
+}
+
+.hero-cover-thumb-btn img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 48px;
+
+    object-fit: cover;
+}
+
+.hero-cover-thumb-upload {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 48px;
+
+    border: 2px dashed #ccc;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    color: #999;
+}
+
+.hero-cover-thumb-upload:hover {
+
+    border-color: var(--color-accent);
+
+    color: var(--color-accent);
+}
+
+
+/* ==========================================================================
+   MAPPA
+   ========================================================================== */
+
+.event-map-wrapper {
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    min-height: 320px;
+
+    background: #eee;
+}
+
+.event-map-wrapper iframe {
+
+    width: 100%;
+
+    height: 340px;
+
+    display: block;
+
+    border: 0;
+}
+
+
+
+/* ==========================================================================
    HERO EVENTO
    ========================================================================== */
 
 .event-detail-hero {
     position: relative;
 
-    background: var(--color-header-footer);
+    min-height: 320px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    background: #e9e9e9;
 
     color: var(--color-white);
 
@@ -39,7 +461,45 @@
     box-shadow: var(--shadow-card);
 }
 
-.event-detail-hero::after {
+.event-detail-hero__image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 0;
+}
+
+.event-detail-hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, .78),
+            rgba(0, 0, 0, .15)
+        );
+}
+
+.event-detail-hero--no-image {
+    background: var(--color-header-footer);
+}
+
+.event-detail-hero--no-image::before {
+    background: none;
+}
+
+.event-detail-hero--no-image::after {
     content: "";
 
     position: absolute;
@@ -53,6 +513,8 @@
     border-radius: 50%;
 
     background: rgba(200, 90, 50, 0.18);
+
+    z-index: 1;
 }
 
 .event-detail-hero__content {
@@ -61,6 +523,54 @@
     z-index: 2;
 
     max-width: 850px;
+}
+
+
+/* PREFERITI */
+
+.favorite-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, .25);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: transform .15s ease, background .2s ease;
+}
+
+.favorite-badge:hover {
+    background: rgba(0, 0, 0, .4);
+    transform: scale(1.06);
+}
+
+.favorite-badge i {
+    font-size: 20px;
+    color: #fff;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.favorite-badge.is-favorite i {
+    color: #e0245e;
+}
+
+.favorite-badge.is-favorite {
+    animation: favorite-pop .3s ease;
+}
+
+@keyframes favorite-pop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.25); }
+    100% { transform: scale(1); }
 }
 
 

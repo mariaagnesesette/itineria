@@ -1,9 +1,11 @@
 package com.quattromoschettieri.itineria.controllers;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +19,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.quattromoschettieri.itineria.DTO.eventoDTO.DataEventoDTO;
 import com.quattromoschettieri.itineria.DTO.eventoDTO.EventoDTO;
 import com.quattromoschettieri.itineria.entities.evento.Evento;
+import com.quattromoschettieri.itineria.entities.evento.ImmagineEvento;
 import com.quattromoschettieri.itineria.entities.evento.PubblicoEvento;
 import com.quattromoschettieri.itineria.entities.evento.TipologiaEvento;
+import com.quattromoschettieri.itineria.entities.utente.Ruolo;
+import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.services.EventoService;
+import com.quattromoschettieri.itineria.services.ImmagineEventoService;
+import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +36,10 @@ import lombok.RequiredArgsConstructor;
 public class EventoController {
 
     private final EventoService eventoService;
+
+    private final UtenteService utenteService;
+
+    private final ImmagineEventoService immagineEventoService;
 
 
     // =========================
@@ -70,8 +81,8 @@ public class EventoController {
         Page<Evento> eventi =
                 eventoService.findAll(pageable);
 
-        model.addAttribute("eventi", eventi);
-        model.addAttribute("eventoDTO", new EventoDTO());
+        aggiungiRisultati(model, eventi);
+        aggiungiFiltri(model);
 
         model.addAttribute(
                 "eventoDTO",
@@ -89,14 +100,43 @@ public class EventoController {
     @GetMapping("/{id}")
     public String findById(
             @PathVariable Long id,
+            Authentication authentication,
             Model model) {
 
         Evento evento =
                 eventoService.findById(id);
 
+        Utente utenteAutenticato = (authentication != null && authentication.isAuthenticated())
+                ? utenteService.findByEmail(authentication.getName())
+                : null;
+
+        List<ImmagineEvento> immagini = immagineEventoService.findByEventoId(id);
+
         model.addAttribute("evento", evento);
+        model.addAttribute("immagini", immagini);
+        model.addAttribute("utenteId", utenteAutenticato != null ? utenteAutenticato.getId() : null);
+        model.addAttribute("isPreferito", utenteAutenticato != null
+                && utenteAutenticato.getEventiPreferiti().contains(evento));
+        model.addAttribute("puoModificare", puoModificare(evento, authentication));
 
         return "luoghi_interesse/luoghi_dettaglio/eventoDettaglio";
+    }
+
+    private boolean puoModificare(Evento evento, Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return false;
+        }
+
+        Utente utente = utenteService.findByEmail(authentication.getName());
+
+        if (utente.getRuolo() == Ruolo.ADMIN) {
+            return true;
+        }
+
+        return utente.getRuolo() == Ruolo.MANAGER
+                && evento.getLuogoInteresse() != null
+                && evento.getLuogoInteresse().getManager() != null
+                && evento.getLuogoInteresse().getManager().getId().equals(utente.getId());
     }
 
 

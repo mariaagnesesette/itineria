@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
     <title th:text="${evento.nome} + ' | Itineria'">
         Evento | Itineria
     </title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- CSS globale -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -36,7 +42,26 @@
          HERO EVENTO
          ====================================================== -->
 
-    <section class="event-detail-hero">
+    <section class="event-detail-hero"
+              th:classappend="${#lists.isEmpty(immagini)} ? ' event-detail-hero--no-image'">
+
+        <img th:if="${!#lists.isEmpty(immagini)}"
+             th:src="@{/eventi/{eventoId}/immagini/{immagineId}/file(eventoId=${evento.id},immagineId=${immagini[0].id})}"
+             alt=""
+             class="event-detail-hero__image">
+
+        <button type="button" class="favorite-badge" th:if="${#authorization.expression('isAuthenticated()')}"
+                th:classappend="${isPreferito} ? ' is-favorite' : ''"
+                th:attr="data-evento-id=${evento.id},data-utente-id=${utenteId}"
+                aria-label="Aggiungi ai preferiti">
+            <i th:class="${isPreferito} ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+        </button>
+
+        <a class="favorite-badge" th:unless="${#authorization.expression('isAuthenticated()')}"
+           th:href="@{/accedi}" aria-label="Accedi per salvare nei preferiti">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+
 
         <div class="event-detail-hero__content">
 
@@ -45,9 +70,9 @@
                     class="event-detail-badge"
                     th:if="${evento.tipologiaEvento != null}">
 
-                <i class="fa-solid fa-calendar-star"></i>
+                <i th:class="'fa-solid ' + ${evento.tipologiaEvento.icona}"></i>
 
-                <span th:text="${evento.tipologiaEvento}">
+                <span th:text="${#strings.toLowerCase(#strings.replace(evento.tipologiaEvento, '_', ' '))}">
                     Evento
                 </span>
 
@@ -81,7 +106,7 @@
 
                     <i class="fa-solid fa-users"></i>
 
-                    <span th:text="${evento.pubblicoEvento}">
+                    <span th:text="${#strings.toLowerCase(#strings.replace(evento.pubblicoEvento, '_', ' '))}">
                         Pubblico
                     </span>
 
@@ -93,9 +118,49 @@
 
                     <i class="fa-solid fa-ticket"></i>
 
-                    Prenotazione richiesta
+                    Con prenotazione
 
                 </span>
+
+            </div>
+
+
+            <!-- CAMBIA IMMAGINE -->
+            <div class="hero-cover-controls" th:if="${puoModificare}">
+
+                <button type="button" class="luogo-button hero-cover-toggle">📷 Cambia immagine</button>
+
+                <div class="hero-cover-menu" hidden>
+
+                    <span class="hero-cover-menu-label">Scegli l'immagine di copertina</span>
+
+                    <div class="hero-cover-thumbs">
+
+                        <form th:action="@{/eventi/{id}/immagini(id=${evento.id})}"
+                              method="POST" enctype="multipart/form-data">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="redirectUrl" th:value="@{/eventi/{id}(id=${evento.id})}"/>
+                            <input type="hidden" name="impostaCopertina" value="true"/>
+                            <label class="hero-cover-thumb-btn hero-cover-thumb-upload" title="Carica nuova immagine">
+                                <span>➕</span>
+                                <input type="file" name="files" accept="image/png,image/jpeg,image/webp" required
+                                       style="display:none;" onchange="this.form.requestSubmit()">
+                            </label>
+                        </form>
+
+                        <form th:each="immagine, iterStat : ${immagini}" th:if="${iterStat.index != 0}"
+                              th:action="@{/eventi/{id}/immagini/{immagineId}/copertina(id=${evento.id},immagineId=${immagine.id})}"
+                              method="POST">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="redirectUrl" th:value="@{/eventi/{id}(id=${evento.id})}"/>
+                            <button type="submit" class="hero-cover-thumb-btn" title="Imposta come copertina">
+                                <img th:src="@{/eventi/{eventoId}/immagini/{immagineId}/file(eventoId=${evento.id},immagineId=${immagine.id})}" alt="">
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -320,6 +385,43 @@
             </article>
 
 
+
+            <!-- MAPPA -->
+            <article class="event-detail-card"
+                      th:if="${evento.luogoInteresse != null}">
+
+                <h2>
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    Come arrivare
+                </h2>
+
+                <div class="event-map-wrapper"
+                     th:if="${evento.luogoInteresse.indirizzo != null}">
+
+                    <iframe th:src="'https://www.google.com/maps?q='
+                            + ${evento.luogoInteresse.indirizzo}
+                            + '&output=embed'"
+                            loading="lazy"
+                            allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <div class="event-empty"
+                     th:if="${evento.luogoInteresse.indirizzo == null}">
+
+                    <i class="fa-solid fa-location-crosshairs"></i>
+
+                    <span>
+                        Posizione non disponibile.
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
         </div>
 
 
@@ -350,7 +452,7 @@
 
                         <div class="event-info-item__icon">
 
-                            <i class="fa-solid fa-shapes"></i>
+                            <i th:class="'fa-solid ' + ${evento.tipologiaEvento.icona}"></i>
 
                         </div>
 
@@ -362,7 +464,7 @@
 
                             <span
                                     class="event-info-item__value"
-                                    th:text="${evento.tipologiaEvento}">
+                                    th:text="${#strings.toLowerCase(#strings.replace(evento.tipologiaEvento, '_', ' '))}">
                                 Tipologia
                             </span>
 
@@ -391,7 +493,7 @@
 
                             <span
                                     class="event-info-item__value"
-                                    th:text="${evento.pubblicoEvento}">
+                                    th:text="${#strings.toLowerCase(#strings.replace(evento.pubblicoEvento, '_', ' '))}">
                                 Pubblico
                             </span>
 
@@ -545,6 +647,98 @@
 
     </section>
 
+
+
+    <!-- ======================================================
+         GALLERIA IMMAGINI EVENTO
+         ====================================================== -->
+
+    <section class="gallery-section">
+
+        <div class="event-detail-card" th:if="${puoModificare}">
+
+            <h2>
+                <i class="fa-solid fa-images"></i>
+                Immagini dell'evento
+            </h2>
+
+            <div class="event-empty" th:if="${#lists.isEmpty(immagini)}">
+
+                <i class="fa-solid fa-image"></i>
+
+                <span>
+                    Nessuna immagine caricata.
+                </span>
+
+            </div>
+
+            <!-- Selezione copertina: visibile solo a chi gestisce l'evento -->
+            <div class="gallery-thumbs" th:if="${!#lists.isEmpty(immagini)}">
+
+                <div class="gallery-thumb" th:each="immagine, iterStat : ${immagini}"
+                     th:classappend="${iterStat.index == 0} ? ' is-cover'">
+
+                    <img th:src="@{/eventi/{eventoId}/immagini/{immagineId}/file(eventoId=${evento.id},immagineId=${immagine.id})}"
+                         alt="">
+
+                    <span class="gallery-thumb-badge" th:if="${iterStat.index == 0}">⭐ Copertina</span>
+
+                    <div class="gallery-thumb-actions">
+                        <form th:if="${iterStat.index != 0}"
+                              th:action="@{/eventi/{id}/immagini/{immagineId}/copertina(id=${evento.id},immagineId=${immagine.id})}"
+                              method="POST">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="redirectUrl" th:value="@{/eventi/{id}(id=${evento.id})}"/>
+                            <button type="submit" class="gallery-thumb-btn" title="Imposta come copertina">⭐</button>
+                        </form>
+                        <form th:action="@{/eventi/{id}/immagini/{immagineId}/elimina(id=${evento.id},immagineId=${immagine.id})}"
+                              method="POST">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="redirectUrl" th:value="@{/eventi/{id}(id=${evento.id})}"/>
+                            <button type="submit" class="gallery-thumb-btn" title="Elimina immagine">🗑</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+            <form th:action="@{/eventi/{id}/immagini(id=${evento.id})}"
+                  method="POST" enctype="multipart/form-data" style="margin-top:16px;">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type="hidden" name="redirectUrl" th:value="@{/eventi/{id}(id=${evento.id})}"/>
+                <div class="gallery-upload-row">
+                    <input type="file" name="files" accept="image/png,image/jpeg,image/webp" multiple required>
+                    <button type="submit" class="luogo-button">📤 Carica immagini</button>
+                </div>
+            </form>
+
+        </div>
+
+        <!-- Carosello con tutte le immagini caricate: si ingrandisce a tutto schermo scorrendo -->
+        <div class="gallery-scroll-zoom" th:unless="${#lists.isEmpty(immagini)}">
+
+            <div class="gallery-carousel">
+
+                <div class="gallery-carousel-viewport">
+                    <div class="gallery-carousel-track">
+                        <div class="gallery-carousel-slide" th:each="immagine : ${immagini}">
+                            <img th:src="@{/eventi/{eventoId}/immagini/{immagineId}/file(eventoId=${evento.id},immagineId=${immagine.id})}"
+                                 alt="">
+                        </div>
+                    </div>
+
+                    <button type="button" class="gallery-carousel-arrow gallery-carousel-arrow--prev" aria-label="Immagine precedente">‹</button>
+                    <button type="button" class="gallery-carousel-arrow gallery-carousel-arrow--next" aria-label="Immagine successiva">›</button>
+
+                    <div class="gallery-carousel-dots"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </main>
 
 
@@ -554,7 +748,7 @@
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 
-<script th:src="@{/js/eventoDettaglio.js}"></script>
+<script th:src="@{/js/luoghi_dettaglio/eventoDettaglio.js}"></script>
 
 </body>
 </html>

@@ -25,12 +25,6 @@
 <!-- PAGE INTRO — Breadcrumb + titolo + barra di ricerca -->
 <section class="page-intro">
   <div class="container">
-    <nav class="breadcrumb" aria-label="breadcrumb">
-      <a th:href="@{/}">Home</a>
-      <i class="fa-solid fa-chevron-right"></i>
-      <span>Ricerca</span>
-    </nav>
-
     <h1 class="page-intro__title"><i class="fa-solid fa-magnifying-glass"></i> Risultati della ricerca</h1>
     <p class="page-intro__desc" th:if="${!#strings.isEmpty(q)}">
       <span th:text="${totaleRisultati}">0</span> risultati trovati per

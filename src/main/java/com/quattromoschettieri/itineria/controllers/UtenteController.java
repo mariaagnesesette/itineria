@@ -14,6 +14,7 @@ import com.quattromoschettieri.itineria.converters.utenteConverter.UtenteConvert
 import com.quattromoschettieri.itineria.entities.utente.Ruolo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
 import com.quattromoschettieri.itineria.repository.LuogoInteresseRepository;
+import com.quattromoschettieri.itineria.repository.eventoRepository.EventoRepository;
 import com.quattromoschettieri.itineria.services.BibliotecaService;
 import com.quattromoschettieri.itineria.services.LocaleService;
 import com.quattromoschettieri.itineria.services.MuseoService;
@@ -33,6 +34,7 @@ public class UtenteController {
     private final UtenteService utenteService;
     private final UtenteConverter utenteConverter;
     private final LuogoInteresseRepository luogoInteresseRepository;
+    private final EventoRepository eventoRepository;
     private final PreferitiService preferitiService;
 
     private final BibliotecaService bibliotecaService;
@@ -61,8 +63,10 @@ public class UtenteController {
 
         if (utente.getRuolo() == Ruolo.ADMIN) {
             model.addAttribute("luoghiGestiti", luogoInteresseRepository.findAll());
+            model.addAttribute("eventiGestiti", eventoRepository.findAll());
         } else if (utente.getRuolo() == Ruolo.MANAGER) {
             model.addAttribute("luoghiGestiti", luogoInteresseRepository.findByManagerId(utente.getId()));
+            model.addAttribute("eventiGestiti", eventoRepository.findByLuogoInteresse_Manager_Id(utente.getId()));
         }
 
         return "utente/area-personale";

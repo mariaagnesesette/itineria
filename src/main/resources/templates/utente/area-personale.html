@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Area Personale</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="/css/pages.css">
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
@@ -11,11 +12,7 @@
 </head>
 <body>
 
-    <!-- Header Maintenu -->
-    <header>
-        <a th:href="@{/}" class="logo">ITINERARIA</a>
-          <div th:replace="~{fragments/navbar :: navbar}"></div>
-    </header>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <div class="area-personale-wrapper">
         
@@ -31,6 +28,8 @@
             <button class="tab-btn" type="button" data-tab="recensioni">Le mie recensioni</button>
             <button class="tab-btn" type="button" data-tab="luoghi"
                     th:if="${ruolo == 'MANAGER' or ruolo == 'ADMIN'}">I miei luoghi</button>
+            <button class="tab-btn" type="button" data-tab="eventi-gestiti"
+                    th:if="${ruolo == 'MANAGER' or ruolo == 'ADMIN'}">I miei eventi</button>
         </div>
 
         <div id="panel-dati" class="tab-panel active">
@@ -280,6 +279,24 @@
                                  (${luogo.tipoLuogo.name() == 'RISTORANTE'} ? @{/ristoranti/{id}(id=${luogo.id},gestione=true)} :
                                  (${luogo.tipoLuogo.name() == 'LOCALE'} ? @{/locali/{id}(id=${luogo.id},gestione=true)} :
                                  @{/zoneVerdi/{id}(id=${luogo.id},gestione=true)})))">✏️ Modifica</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-eventi-gestiti" class="tab-panel" th:if="${ruolo == 'MANAGER' or ruolo == 'ADMIN'}">
+
+            <p th:if="${#lists.isEmpty(eventiGestiti)}" class="form-message">
+                Nessun evento da gestire al momento.
+            </p>
+
+            <div class="cards-list-grid">
+                <div th:each="evento : ${eventiGestiti}" class="item-card">
+                    <div class="item-card-info">
+                        <h3 th:text="${evento.nome}">Nome evento</h3>
+                        <p th:text="${(evento.luogoInteresse != null ? evento.luogoInteresse.nome : '')} + ' · ' + ${evento.getDataTesto()}">Luogo · Data</p>
+                    </div>
+                    <a class="btn-action-sm"
+                       th:href="@{/eventi/{id}(id=${evento.id})}">✏️ Modifica</a>
                 </div>
             </div>
         </div>
