@@ -33,10 +33,24 @@ public class ImmagineLuogoController {
             @PathVariable Long luogoId,
             @RequestParam("files") List<MultipartFile> files,
             @RequestParam("redirectUrl") String redirectUrl,
+            @RequestParam(value = "impostaCopertina", required = false, defaultValue = "false") boolean impostaCopertina,
             Authentication authentication) {
 
         Utente utente = utenteService.findByEmail(authentication.getName());
-        immagineLuogoService.upload(luogoId, files, utente);
+        immagineLuogoService.upload(luogoId, files, utente, impostaCopertina);
+
+        return "redirect:" + safeRedirect(redirectUrl);
+    }
+
+    @PostMapping("/{immagineId}/copertina")
+    public String copertina(
+            @PathVariable Long luogoId,
+            @PathVariable Long immagineId,
+            @RequestParam("redirectUrl") String redirectUrl,
+            Authentication authentication) {
+
+        Utente utente = utenteService.findByEmail(authentication.getName());
+        immagineLuogoService.setCopertina(immagineId, utente);
 
         return "redirect:" + safeRedirect(redirectUrl);
     }

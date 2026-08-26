@@ -229,6 +229,21 @@ public class SecurityConfig {
 
 
                 // =====================================================
+                // IMMAGINI LUOGHI DI INTERESSE
+                // =====================================================
+
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/luoghi/**"
+                ).hasAnyRole(
+                    "USER",
+                    "MANAGER",
+                    "ADMIN"
+                )
+
+
+
+                // =====================================================
                 // EVENTI - MODIFICA SOLO ADMIN
                 // =====================================================
 

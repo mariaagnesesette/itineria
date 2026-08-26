@@ -32,11 +32,18 @@ public class ImmagineLuogoService {
 
     @Transactional
     public void upload(Long luogoId, List<MultipartFile> files, Utente utente) {
+        upload(luogoId, files, utente, false);
+    }
+
+    @Transactional
+    public void upload(Long luogoId, List<MultipartFile> files, Utente utente, boolean impostaComeCopertina) {
         LuogoInteresse luogo = findLuogo(luogoId);
         verificaPermesso(luogo, utente);
 
         int prossimoOrdine = immagineLuogoRepository
                 .findByLuogoInteresseIdOrderByOrdineAsc(luogoId).size();
+
+        ImmagineLuogo primaCaricata = null;
 
         for (MultipartFile file : files) {
             if (file == null || file.isEmpty()) {
@@ -51,8 +58,42 @@ public class ImmagineLuogoService {
                     .ordine(prossimoOrdine++)
                     .build();
 
-            immagineLuogoRepository.save(immagine);
+            immagine = immagineLuogoRepository.save(immagine);
+
+            if (primaCaricata == null) {
+                primaCaricata = immagine;
+            }
         }
+
+        if (impostaComeCopertina && primaCaricata != null) {
+            spostaInCopertina(primaCaricata, luogoId);
+        }
+    }
+
+    @Transactional
+    public void setCopertina(Long immagineId, Utente utente) {
+        ImmagineLuogo copertina = findImmagine(immagineId);
+        verificaPermesso(copertina.getLuogoInteresse(), utente);
+
+        spostaInCopertina(copertina, copertina.getLuogoInteresse().getId());
+    }
+
+    private void spostaInCopertina(ImmagineLuogo copertina, Long luogoId) {
+        List<ImmagineLuogo> immagini = immagineLuogoRepository
+                .findByLuogoInteresseIdOrderByOrdineAsc(luogoId);
+
+        copertina.setOrdine(0);
+
+        int ordine = 1;
+        for (ImmagineLuogo immagine : immagini) {
+            if (immagine.getId().equals(copertina.getId())) {
+                continue;
+            }
+            immagine.setOrdine(ordine++);
+        }
+
+        immagineLuogoRepository.saveAll(immagini);
+        immagineLuogoRepository.save(copertina);
     }
 
     @Transactional

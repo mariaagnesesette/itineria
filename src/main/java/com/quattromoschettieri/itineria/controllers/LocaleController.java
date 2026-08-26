@@ -13,15 +13,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quattromoschettieri.itineria.DTO.LocaleDTO;
 import com.quattromoschettieri.itineria.entities.locale.Locale;
+import com.quattromoschettieri.itineria.entities.utente.Ruolo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
+import com.quattromoschettieri.itineria.repository.CittaRepository;
 import com.quattromoschettieri.itineria.services.LocaleService;
+import com.quattromoschettieri.itineria.services.ImmagineLuogoService;
 import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/locali")
@@ -30,6 +35,8 @@ public class LocaleController {
 
     private final LocaleService localeService;
     private final UtenteService utenteService;
+    private final CittaRepository cittaRepository;
+    private final ImmagineLuogoService immagineLuogoService;
 
     // CREATE
 
@@ -122,16 +129,45 @@ public class LocaleController {
     @GetMapping("/{id}")
     public String detailLocale(
             @PathVariable Long id,
+            @RequestParam(value = "gestione", required = false, defaultValue = "false") boolean gestione,
+            Authentication authentication,
             Model model) {
 
         Locale locale =
                 localeService.findById(id);
 
+        Utente utenteAutenticato = (authentication != null && authentication.isAuthenticated())
+                ? utenteService.findByEmail(authentication.getName())
+                : null;
+
         model.addAttribute(
                 "locale",
                 locale);
+        model.addAttribute("localeDTO", localeService.findByIdDto(id));
+        model.addAttribute("citta", cittaRepository.findAll());
+        model.addAttribute("immagini", immagineLuogoService.findByLuogoId(id));
+        model.addAttribute("puoModificare", gestione && puoModificare(locale, authentication));
+        model.addAttribute("utenteId", utenteAutenticato != null ? utenteAutenticato.getId() : null);
+        model.addAttribute("isPreferito", utenteAutenticato != null
+                && utenteAutenticato.getLuoghiPreferiti().contains(locale));
 
         return "luoghi_interesse/luoghi_dettaglio/localiDettaglio";
+    }
+
+    private boolean puoModificare(Locale locale, Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return false;
+        }
+
+        Utente utente = utenteService.findByEmail(authentication.getName());
+
+        if (utente.getRuolo() == Ruolo.ADMIN) {
+            return true;
+        }
+
+        return utente.getRuolo() == Ruolo.MANAGER
+                && locale.getManager() != null
+                && locale.getManager().getId().equals(utente.getId());
     }
 
     @GetMapping("/searchByNome/{nome}")
@@ -151,16 +187,10 @@ public class LocaleController {
 
     // UPDATE
 
+    // La modifica avviene direttamente nella pagina di dettaglio del luogo
     @GetMapping("/{id}/modifica")
-    public String formModificaLocale(
-            @PathVariable Long id,
-            Model model) {
-
-        model.addAttribute(
-                "localeDTO",
-                localeService.findByIdDto(id));
-
-        return "locali/form";
+    public String formModificaLocale(@PathVariable Long id) {
+        return "redirect:/locali/" + id;
     }
 
     @PutMapping("/{id}/modifica")
@@ -168,18 +198,24 @@ public class LocaleController {
             @PathVariable Long id,
             @Valid @ModelAttribute LocaleDTO dto,
             BindingResult bindingResult,
-            Authentication authentication) {
+            Authentication authentication,
+            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            return "locali/form";
+            redirectAttributes.addFlashAttribute("erroreModifica", "Controlla i dati inseriti: alcuni campi non sono validi.");
+            return "redirect:/locali/" + id + "?gestione=true";
         }
 
         Utente utente =
                 utenteService.findByEmail(authentication.getName());
 
-        localeService.update(id, dto, utente);
+        try {
+            localeService.update(id, dto, utente);
+        } catch (IllegalArgumentException | SecurityException e) {
+            redirectAttributes.addFlashAttribute("erroreModifica", e.getMessage());
+        }
 
-        return "redirect:/locali/" + id;
+        return "redirect:/locali/" + id + "?gestione=true";
     }
 
     // DELETE

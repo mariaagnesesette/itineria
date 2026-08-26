@@ -11,18 +11,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quattromoschettieri.itineria.DTO.BibliotecaDTO;
 import com.quattromoschettieri.itineria.entities.biblioteca.Biblioteca;
 import com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita;
+import com.quattromoschettieri.itineria.entities.utente.Ruolo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
+import com.quattromoschettieri.itineria.repository.CittaRepository;
 import com.quattromoschettieri.itineria.services.BibliotecaService;
+import com.quattromoschettieri.itineria.services.ImmagineLuogoService;
 import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/biblioteche")
@@ -31,6 +36,8 @@ public class BibliotecaController {
 
     private final BibliotecaService bibliotecaService;
     private final UtenteService utenteService;
+    private final CittaRepository cittaRepository;
+    private final ImmagineLuogoService immagineLuogoService;
 
     // READ
     // ricerca con filtri
@@ -102,13 +109,44 @@ public class BibliotecaController {
 
     // ricerca per id
     @GetMapping("/{id}")
-    public String detailBibliotecaId(@PathVariable Long id, Model model) {
+    public String detailBibliotecaId(
+            @PathVariable Long id,
+            @RequestParam(value = "gestione", required = false, defaultValue = "false") boolean gestione,
+            Authentication authentication,
+            Model model) {
 
         Biblioteca risultato = bibliotecaService.findById(id);
 
+        Utente utenteAutenticato = (authentication != null && authentication.isAuthenticated())
+                ? utenteService.findByEmail(authentication.getName())
+                : null;
+
         model.addAttribute("biblioteca", risultato);
+        model.addAttribute("bibliotecaDTO", bibliotecaService.findByIdDto(id));
+        model.addAttribute("citta", cittaRepository.findAll());
+        model.addAttribute("immagini", immagineLuogoService.findByLuogoId(id));
+        model.addAttribute("puoModificare", gestione && puoModificare(risultato, authentication));
+        model.addAttribute("utenteId", utenteAutenticato != null ? utenteAutenticato.getId() : null);
+        model.addAttribute("isPreferito", utenteAutenticato != null
+                && utenteAutenticato.getLuoghiPreferiti().contains(risultato));
 
         return "luoghi_interesse/luoghi_dettaglio/bibliotecheDettaglio";
+    }
+
+    private boolean puoModificare(Biblioteca biblioteca, Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return false;
+        }
+
+        Utente utente = utenteService.findByEmail(authentication.getName());
+
+        if (utente.getRuolo() == Ruolo.ADMIN) {
+            return true;
+        }
+
+        return utente.getRuolo() == Ruolo.MANAGER
+                && biblioteca.getManager() != null
+                && biblioteca.getManager().getId().equals(utente.getId());
     }
 
     // ricerca per nome
@@ -148,30 +186,35 @@ public class BibliotecaController {
     }
 
     // UPDATE
+    // La modifica avviene direttamente nella pagina di dettaglio del luogo
     @GetMapping("/{id}/modifica")
-    public String formModificaBiblioteca(@PathVariable Long id, Model model) {
-        model.addAttribute("bibliotecaDTO", bibliotecaService.findByIdDto(id));
-        return "biblioteche/form";
+    public String formModificaBiblioteca(@PathVariable Long id) {
+        return "redirect:/biblioteche/" + id;
     }
 
     @PutMapping("/{id}/modifica")
     public String updateBiblioteca(
-            @PathVariable Long id, 
+            @PathVariable Long id,
             @Valid @ModelAttribute BibliotecaDTO dto,
             BindingResult bindingResult,
-            Authentication authentication) {
+            Authentication authentication,
+            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            return "biblioteche/form";
+            redirectAttributes.addFlashAttribute("erroreModifica", "Controlla i dati inseriti: alcuni campi non sono validi.");
+            return "redirect:/biblioteche/" + id + "?gestione=true";
         }
 
         Utente utente =
                 utenteService.findByEmail(authentication.getName());
 
-        bibliotecaService.update(id, dto, utente);
+        try {
+            bibliotecaService.update(id, dto, utente);
+        } catch (IllegalArgumentException | SecurityException e) {
+            redirectAttributes.addFlashAttribute("erroreModifica", e.getMessage());
+        }
 
-        return "redirect:/biblioteche/" + id;
-
+        return "redirect:/biblioteche/" + id + "?gestione=true";
     }
 
     // DELETE

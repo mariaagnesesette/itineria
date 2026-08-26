@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quattromoschettieri.itineria.DTO.utenteDTO.UtenteDTO;
 import com.quattromoschettieri.itineria.converters.utenteConverter.UtenteConverter;
+import com.quattromoschettieri.itineria.entities.utente.Ruolo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
+import com.quattromoschettieri.itineria.repository.LuogoInteresseRepository;
 import com.quattromoschettieri.itineria.services.BibliotecaService;
 import com.quattromoschettieri.itineria.services.LocaleService;
 import com.quattromoschettieri.itineria.services.MuseoService;
 import com.quattromoschettieri.itineria.services.RistoranteService;
 import com.quattromoschettieri.itineria.services.ZonaVerdeService;
+import com.quattromoschettieri.itineria.services.utenteService.PreferitiService;
 import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +32,8 @@ public class UtenteController {
 
     private final UtenteService utenteService;
     private final UtenteConverter utenteConverter;
+    private final LuogoInteresseRepository luogoInteresseRepository;
+    private final PreferitiService preferitiService;
 
     private final BibliotecaService bibliotecaService;
     private final MuseoService museoService;
@@ -49,6 +54,16 @@ public class UtenteController {
         UtenteDTO dto = utenteConverter.toDto(utente);
 
         model.addAttribute("utente", dto);
+        model.addAttribute("ruolo", utente.getRuolo().name());
+        model.addAttribute("utenteId", utente.getId());
+        model.addAttribute("luoghiPreferiti", preferitiService.findLuoghiPreferiti(utente.getId()));
+        model.addAttribute("eventiPreferiti", preferitiService.findEventiPreferiti(utente.getId()));
+
+        if (utente.getRuolo() == Ruolo.ADMIN) {
+            model.addAttribute("luoghiGestiti", luogoInteresseRepository.findAll());
+        } else if (utente.getRuolo() == Ruolo.MANAGER) {
+            model.addAttribute("luoghiGestiti", luogoInteresseRepository.findByManagerId(utente.getId()));
+        }
 
         return "utente/area-personale";
     }

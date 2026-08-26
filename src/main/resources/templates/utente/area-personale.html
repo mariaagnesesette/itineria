@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Area Personale</title>
     <link rel="stylesheet" href="/css/pages.css">
-    
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
 </head>
 <body>
 
@@ -27,6 +29,8 @@
             <button class="tab-btn" type="button" data-tab="documenti">I miei documenti</button>
             <button class="tab-btn" type="button" data-tab="preferiti">I miei preferiti</button>
             <button class="tab-btn" type="button" data-tab="recensioni">Le mie recensioni</button>
+            <button class="tab-btn" type="button" data-tab="luoghi"
+                    th:if="${ruolo == 'MANAGER' or ruolo == 'ADMIN'}">I miei luoghi</button>
         </div>
 
         <div id="panel-dati" class="tab-panel active">
@@ -191,30 +195,38 @@
                 <input type="search" id="favoriteSearch" class="search-input" placeholder="Filtra per nome o tipo (es. sushieria)">
             </div>
 
-            <div id="favoritesList" class="cards-list-grid">
-                <div class="item-card">
-                    <div class="item-card-info">
-                        <h3>Biblioteca dell'Archiginnasio</h3>
-                        <p>Bologna · Biblioteca universitaria</p>
-                    </div>
-                    <button class="btn-icon-trash" type="button" title="Elimina" aria-label="Elimina Biblioteca dell'Archiginnasio">🗑</button>
-                </div>
+            <div id="favoritesList" class="cards-list-grid" th:attr="data-utente-id=${utenteId}">
 
-                <div class="item-card">
-                    <div class="item-card-info">
-                        <h3>Sakura Sushi</h3>
-                        <p>Firenze · Sushieria</p>
-                    </div>
-                    <button class="btn-icon-trash" type="button" title="Elimina" aria-label="Elimina Sakura Sushi">🗑</button>
-                </div>
+                <p th:if="${(luoghiPreferiti == null or luoghiPreferiti.isEmpty()) and (eventiPreferiti == null or eventiPreferiti.isEmpty())}"
+                   class="form-message">
+                    Non hai ancora aggiunto nulla ai preferiti.
+                </p>
 
-                <div class="item-card">
+                <a class="item-card" th:each="luogo : ${luoghiPreferiti}" data-favorite-item="luoghi"
+                   th:href="${luogo.tipoLuogo.name() == 'BIBLIOTECA'} ? @{/biblioteche/{id}(id=${luogo.id})} :
+                             (${luogo.tipoLuogo.name() == 'MUSEO'} ? @{/musei/{id}(id=${luogo.id})} :
+                             (${luogo.tipoLuogo.name() == 'RISTORANTE'} ? @{/ristoranti/{id}(id=${luogo.id})} :
+                             (${luogo.tipoLuogo.name() == 'LOCALE'} ? @{/locali/{id}(id=${luogo.id})} :
+                             @{/zoneVerdi/{id}(id=${luogo.id})})))">
                     <div class="item-card-info">
-                        <h3>Parco dei Pini</h3>
-                        <p>Napoli · Parco urbano</p>
+                        <h3 th:text="${luogo.nome}">Nome luogo</h3>
+                        <p th:text="${luogo.citta != null ? luogo.citta.nome : ''} + ' · ' + ${luogo.tipoLuogo}">Città · Tipo</p>
                     </div>
-                    <button class="btn-icon-trash" type="button" title="Elimina" aria-label="Elimina Parco dei Pini">🗑</button>
-                </div>
+                    <button class="btn-icon-trash" type="button" title="Rimuovi dai preferiti"
+                            th:attr="aria-label='Rimuovi ' + ${luogo.nome} + ' dai preferiti', data-remove-luogo=${luogo.id}"
+                            onclick="event.preventDefault();">🗑</button>
+                </a>
+
+                <a class="item-card" th:each="evento : ${eventiPreferiti}" data-favorite-item="eventi" hidden
+                   th:href="@{/eventi/{id}(id=${evento.id})}">
+                    <div class="item-card-info">
+                        <h3 th:text="${evento.nome}">Nome evento</h3>
+                        <p th:text="${evento.luogoInteresse != null ? evento.luogoInteresse.nome : ''} + ' · ' + ${evento.getDataTesto()}">Luogo · Data</p>
+                    </div>
+                    <button class="btn-icon-trash" type="button" title="Rimuovi dai preferiti"
+                            th:attr="aria-label='Rimuovi ' + ${evento.nome} + ' dai preferiti', data-remove-evento=${evento.id}"
+                            onclick="event.preventDefault();">🗑</button>
+                </a>
             </div>
         </div>
 
@@ -250,10 +262,32 @@
             </div>
         </div>
 
+        <div id="panel-luoghi" class="tab-panel" th:if="${ruolo == 'MANAGER' or ruolo == 'ADMIN'}">
+
+            <p th:if="${#lists.isEmpty(luoghiGestiti)}" class="form-message">
+                Nessun luogo da gestire al momento.
+            </p>
+
+            <div class="cards-list-grid">
+                <div th:each="luogo : ${luoghiGestiti}" class="item-card">
+                    <div class="item-card-info">
+                        <h3 th:text="${luogo.nome}">Nome luogo</h3>
+                        <p th:text="${luogo.tipoLuogo} + ' · ' + (${luogo.citta} != null ? ${luogo.citta.nome} : '')">Tipo · Città</p>
+                    </div>
+                    <a class="btn-action-sm"
+                       th:href="${luogo.tipoLuogo.name() == 'BIBLIOTECA'} ? @{/biblioteche/{id}(id=${luogo.id},gestione=true)} :
+                                 (${luogo.tipoLuogo.name() == 'MUSEO'} ? @{/musei/{id}(id=${luogo.id},gestione=true)} :
+                                 (${luogo.tipoLuogo.name() == 'RISTORANTE'} ? @{/ristoranti/{id}(id=${luogo.id},gestione=true)} :
+                                 (${luogo.tipoLuogo.name() == 'LOCALE'} ? @{/locali/{id}(id=${luogo.id},gestione=true)} :
+                                 @{/zoneVerdi/{id}(id=${luogo.id},gestione=true)})))">✏️ Modifica</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
     
-    <script th:src="@{/js/utente/area-personale.js}" defer></script>
+    <script th:src="@{/js/utente/area-personale.js(v=3)}" defer></script>
 </body>
 </html>
