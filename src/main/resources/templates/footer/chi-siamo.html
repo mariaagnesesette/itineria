@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Chi siamo | Itineraria</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/pages.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="about-page">
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<section class="about-hero">
+  <div class="about-hero__glow about-hero__glow--one"></div>
+  <div class="about-hero__glow about-hero__glow--two"></div>
+  <div class="about-hero__content">
+    <span class="about-kicker">DIETRO ITINERARIA</span>
+    <h1>Quattro persone.<br><em>Una sola direzione.</em></h1>
+    <p>Viviamo in città diverse, abbiamo competenze diverse e lavoriamo spesso a chilometri di distanza. Itineraria è nata proprio dall'incontro di queste differenze.</p>
+    <a href="#nostra-storia" class="about-hero__button">Scopri la nostra storia <i class="fa-solid fa-arrow-down"></i></a>
+  </div>
+</section>
+
+<main>
+<section class="about-story" id="nostra-storia">
+  <div class="about-wrapper">
+    <div class="about-story-grid">
+      <div class="about-story-copy">
+        <span class="about-label">COME È INIZIATO</span>
+        <h2>Non serviva essere nella stessa città. Serviva voler costruire qualcosa insieme.</h2>
+        <p>Itineraria nasce dall'incontro di quattro persone unite dalla stessa voglia di imparare, sperimentare e trasformare un'idea in un progetto reale.</p>
+        <p>Durante lo sviluppo ognuno di noi ha portato competenze, punti di vista e soluzioni differenti. Samuele Pasquarelli e Maria Agnese Sette si sono concentrati soprattutto sul cuore backend dell'applicazione, mentre Giulia Balaban e Sami Takou hanno dato un contributo importante alla parte frontend e all'esperienza visiva del progetto.</p>
+        <p>Ma Itineraria non è il risultato di quattro lavori separati. È il risultato di confronto, errori risolti insieme, idee cambiate in corsa, problemi affrontati a distanza e tante decisioni prese come squadra.</p>
+      </div>
+
+      <div class="about-photo-card">
+        <div class="about-photo-placeholder">
+          <div class="about-photo-placeholder__icon"><i class="fa-solid fa-camera"></i></div>
+          <span>Qui arriverà la nostra foto</span>
+          <small>Il volto delle quattro persone dietro Itineraria.</small>
+        </div>
+        <div class="about-photo-caption">
+          <span>TEAM ITINERARIA</span>
+          <strong>Quattro città. Quattro storie. Un progetto.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-team">
+  <div class="about-wrapper">
+    <div class="about-heading">
+      <span>IL TEAM</span>
+      <h2>Le persone dietro il progetto</h2>
+      <p>Ruoli diversi, stesso obiettivo: rendere Itineraria utile, piacevole e semplice da usare.</p>
+    </div>
+
+    <div class="team-grid">
+      <article class="team-card" data-member="giulia">
+        <div class="team-card__number">01</div>
+        <div class="team-card__avatar"><i class="fa-solid fa-code"></i></div>
+        <span class="team-card__role">FRONTEND & UX</span>
+        <h3>Giulia Balaban</h3>
+        <p>Ha lavorato sull'identità visiva, sull'esperienza utente e sulla costruzione delle interfacce di Itineraria, trasformando funzionalità e idee in pagine semplici da esplorare.</p>
+        <div class="team-card__tags"><span>Frontend</span><span>UI</span><span>UX</span></div>
+      </article>
+
+      <article class="team-card" data-member="samuele">
+        <div class="team-card__number">02</div>
+        <div class="team-card__avatar"><i class="fa-solid fa-server"></i></div>
+        <span class="team-card__role">BACKEND</span>
+        <h3>Samuele Pasquarelli</h3>
+        <p>Ha contribuito in modo significativo alla struttura backend, alla logica applicativa e alla costruzione delle fondamenta che permettono alle funzionalità di Itineraria di comunicare tra loro.</p>
+        <div class="team-card__tags"><span>Java</span><span>Spring</span><span>Backend</span></div>
+      </article>
+
+      <article class="team-card" data-member="maria">
+        <div class="team-card__number">03</div>
+        <div class="team-card__avatar"><i class="fa-solid fa-database"></i></div>
+        <span class="team-card__role">BACKEND & DATA</span>
+        <h3>Maria Agnese Sette</h3>
+        <p>Si è concentrata in particolare sulla parte backend, sulla gestione dei dati e sulla solidità delle funzionalità che stanno dietro all'esperienza dell'utente.</p>
+        <div class="team-card__tags"><span>Backend</span><span>Database</span><span>Logic</span></div>
+      </article>
+
+      <article class="team-card" data-member="sami">
+        <div class="team-card__number">04</div>
+        <div class="team-card__avatar"><i class="fa-solid fa-palette"></i></div>
+        <span class="team-card__role">FRONTEND</span>
+        <h3>Sami Takou</h3>
+        <p>Ha contribuito allo sviluppo frontend e alla realizzazione delle interfacce, lavorando affinché il progetto fosse non solo funzionale ma anche intuitivo e piacevole da utilizzare.</p>
+        <div class="team-card__tags"><span>Frontend</span><span>Web</span><span>Design</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about-values">
+  <div class="about-wrapper">
+    <div class="about-heading">
+      <span>COSA CI HA GUIDATI</span>
+      <h2>Più di un progetto</h2>
+    </div>
+    <div class="about-values-grid">
+      <div class="about-value"><i class="fa-solid fa-lightbulb"></i><h3>Curiosità</h3><p>Ogni problema è diventato un'occasione per capire qualcosa che prima non conoscevamo.</p></div>
+      <div class="about-value"><i class="fa-solid fa-people-group"></i><h3>Collaborazione</h3><p>La distanza non è diventata un limite: abbiamo imparato a comunicare, confrontarci e costruire insieme.</p></div>
+      <div class="about-value"><i class="fa-solid fa-route"></i><h3>Evoluzione</h3><p>Itineraria è cambiata molte volte durante lo sviluppo. Ed è proprio questo che l'ha resa nostra.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="about-manifesto">
+  <div class="about-wrapper">
+    <span class="about-label">PERCHÉ ITINERARIA</span>
+    <blockquote>“Le città sono piene di luoghi. Noi volevamo costruire un modo migliore per scoprirli.”</blockquote>
+    <p>Itineraria vuole aiutare le persone a guardare una città con occhi diversi: non soltanto attraverso i luoghi più conosciuti, ma attraverso esperienze, spazi, eventi e piccoli angoli che possono trasformare una giornata.</p>
+  </div>
+</section>
+
+<section class="about-secret">
+  <div class="about-wrapper">
+    <div class="about-secret-box" id="secretBox">
+      <span class="about-label">PSST...</span>
+      <h2>C'è qualcosa che non ti abbiamo ancora raccontato.</h2>
+      <p>Abbiamo nascosto una piccola sorpresa in questa pagina.</p>
+      <button type="button" class="magic-button" id="magicButton">
+        <span><i class="fa-solid fa-wand-magic-sparkles"></i> Premi il bottone proibito</span>
+      </button>
+
+      <div class="secret-reveal" id="secretReveal" aria-hidden="true">
+        <div class="secret-reveal__icon"><i class="fa-solid fa-user-group"></i></div>
+        <span>I QUATTRO MOSCHETTIERI</span>
+        <h3>Uno per tutti. Tutti per Itineraria.</h3>
+        <p>Quattro persone, centinaia di righe di codice, qualche bug di troppo e una quantità non dichiarata di pazienza.</p>
+        <small>Hai trovato il nostro piccolo Easter Egg ✦</small>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/js/footer/chi-siamo.js}" defer></script>
+</body>
+</html>
