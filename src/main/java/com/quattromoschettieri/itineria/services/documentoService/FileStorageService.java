@@ -61,6 +61,42 @@ public class FileStorageService {
         }
     }
 
+    public String saveImmagine(MultipartFile file) {
+
+        if (file.isEmpty()) {
+            throw new RuntimeException("Il file è vuoto");
+        }
+
+        String contentType = file.getContentType();
+        String extension;
+        if ("image/png".equalsIgnoreCase(contentType)) {
+            extension = ".png";
+        } else if ("image/webp".equalsIgnoreCase(contentType)) {
+            extension = ".webp";
+        } else if ("image/jpeg".equalsIgnoreCase(contentType)) {
+            extension = ".jpg";
+        } else {
+            throw new RuntimeException("È possibile caricare solamente immagini JPEG, PNG o WEBP");
+        }
+
+        try {
+            Path immaginiPath = storagePath.resolve("immagini");
+
+            Files.createDirectories(immaginiPath);
+
+            String fileName = UUID.randomUUID() + extension;
+
+            Path filePath = immaginiPath.resolve(fileName);
+
+            Files.copy(file.getInputStream(), filePath);
+
+            return "immagini/" + fileName;
+
+        } catch (IOException e) {
+            throw new RuntimeException("Impossibile salvare il file", e);
+        }
+    }
+
     public Resource read(String fileKey) {
         try {
             Path filePath = storagePath.resolve(fileKey).normalize();

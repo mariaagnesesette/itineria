@@ -45,29 +45,21 @@
         <input type="text" id="museumSearchInput" placeholder="Cerca un museo per nome...">
       </div>
 
-      <!-- Chips: genera dinamicamente le categorie se presenti -->
-      <div class="filter-chips" id="filterChips" th:if="${categorieMusei != null}">
+      <div class="filter-chips category-filters" id="filterChips">
         <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-        <button type="button" th:each="categoria : ${categorieMusei}" th:attr="data-filter=${categoria.id}"
-          th:text="${categoria.nome}" class="filter-chip"></button>
-      </div>
-
-      <!-- Fallback chips statici: una per ciascuna TipologiaMuseo realmente presente sui musei -->
-      <div class="filter-chips category-filters" id="filterChips" th:if="${categorieMusei == null}">
-        <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-        <button type="button" class="filter-chip" data-filter="ARTE">Arte</button>
-        <button type="button" class="filter-chip" data-filter="STORIA">Storia</button>
-        <button type="button" class="filter-chip" data-filter="SCIENZA">Scienza</button>
-        <button type="button" class="filter-chip" data-filter="ARCHEOLOGIA">Archeologia</button>
-        <button type="button" class="filter-chip" data-filter="STORIA_NATURALE">Storia naturale</button>
-        <button type="button" class="filter-chip" data-filter="ETNOGRAFICO">Etnografia</button>
-        <button type="button" class="filter-chip" data-filter="MILITARE">Militare</button>
-        <button type="button" class="filter-chip" data-filter="SCIENZE_NATURALI">Scienze naturali</button>
-        <button type="button" class="filter-chip" data-filter="MUSICA">Musica</button>
-        <button type="button" class="filter-chip" data-filter="RELIGIOSO_SACRO">Arte Sacra</button>
-        <button type="button" class="filter-chip" data-filter="CASA_MUSEO">Casa museo</button>
-        <button type="button" class="filter-chip" data-filter="TRASPORTI">Trasporti</button>
-        <button type="button" class="filter-chip" data-filter="MULTIDISCIPLINARE">Multidisciplinare</button>
+        <button type="button" class="filter-chip" data-filter="ARTE"><i class="fa-solid fa-palette"></i> Arte</button>
+        <button type="button" class="filter-chip" data-filter="STORIA"><i class="fa-solid fa-scroll"></i> Storia</button>
+        <button type="button" class="filter-chip" data-filter="SCIENZA"><i class="fa-solid fa-flask"></i> Scienza</button>
+        <button type="button" class="filter-chip" data-filter="ARCHEOLOGIA"><i class="fa-solid fa-monument"></i> Archeologia</button>
+        <button type="button" class="filter-chip" data-filter="STORIA_NATURALE"><i class="fa-solid fa-dna"></i> Storia naturale</button>
+        <button type="button" class="filter-chip" data-filter="ETNOGRAFICO"><i class="fa-solid fa-globe"></i> Etnografia</button>
+        <button type="button" class="filter-chip" data-filter="MILITARE"><i class="fa-solid fa-shield-halved"></i> Militare</button>
+        <button type="button" class="filter-chip" data-filter="SCIENZE_NATURALI"><i class="fa-solid fa-leaf"></i> Scienze naturali</button>
+        <button type="button" class="filter-chip" data-filter="MUSICA"><i class="fa-solid fa-music"></i> Musica</button>
+        <button type="button" class="filter-chip" data-filter="RELIGIOSO_SACRO"><i class="fa-solid fa-place-of-worship"></i> Arte Sacra</button>
+        <button type="button" class="filter-chip" data-filter="CASA_MUSEO"><i class="fa-solid fa-house"></i> Casa museo</button>
+        <button type="button" class="filter-chip" data-filter="TRASPORTI"><i class="fa-solid fa-train"></i> Trasporti</button>
+        <button type="button" class="filter-chip" data-filter="MULTIDISCIPLINARE"><i class="fa-solid fa-shapes"></i> Multidisciplinare</button>
       </div>
 
       <div class="filter-chips feature-filters">
@@ -85,36 +77,7 @@
     </div>
   </section>
 
-  <!-- RENDER DINAMICO: cicla le categorie e le card dei musei -->
-  <section class="section" th:if="${categorieMusei != null}">
-    <div class="container">
-      <div th:each="categoria : ${categorieMusei}" class="museum-category" th:id="${categoria.id}">
-        <h2 class="section__title">
-          <i th:class="'fa-solid ' + ${categoria.icona}"></i>
-          <span th:text="${categoria.nome}">Nome categoria</span>
-        </h2>
-        <div class="museum-grid">
-          <a th:each="museo : ${categoria.musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card">
-            <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
-            <span class="museum-card__body">
-              <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
-              <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>
-              <span class="museum-card__meta">
-                <span th:if="${museo.prezzo != null}"
-                  th:text="${#numbers.formatDecimal(museo.prezzo, 1, 'COMMA', 2, 'POINT')} + ' €'"></span>
-                <span th:if="${museo.guidaPrenotabile}"> • Guida</span>
-                <span th:if="${museo.barInterno}"> • Bar</span>
-              </span>
-            </span>
-            <i class="fa-solid fa-arrow-right museum-card__arrow"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Se non ci sono categorie dinamiche, mostra elenco piatto dei musei se fornito -->
-  <section class="section" th:if="${categorieMusei == null}">
+  <section class="section">
     <div class="container">
       <h2 class="section__title"><i class="fa-solid fa-landmark"></i> Tutti i musei</h2>
       <div class="museum-grid">
@@ -146,7 +109,7 @@
   </section>
 
   <p class="museum-empty-state" id="museumEmptyState"
-    th:if="${(musei == null || #lists.isEmpty(musei)) && (categorieMusei == null || #lists.isEmpty(categorieMusei))}">
+    th:if="${musei == null || #lists.isEmpty(musei)}">
     <i class="fa-solid fa-magnifying-glass"></i> Nessun museo trovato. Prova con un altro filtro.
   </p>
 

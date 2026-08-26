@@ -23,9 +23,9 @@
         <h1 class="main-title">Crea il tuo account</h1>
 
         <div class="auth-card">
-            <form id="registrationForm" action="/utenti" method="POST">
+            <form id="registrationForm" th:action="@{/utenti}" method="POST">
 
-                
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
                 <!-- Nome & Cognome -->
                 <div class="form-row">
