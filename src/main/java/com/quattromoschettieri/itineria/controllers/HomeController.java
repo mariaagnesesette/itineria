@@ -1,6 +1,5 @@
 package com.quattromoschettieri.itineria.controllers;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +29,6 @@ public class HomeController {
     private final ImmagineEventoService immagineEventoService;
     private final LuogoInteresseRepository luogoInteresseRepository;
     private final ImmagineLuogoService immagineLuogoService;
-
-    private static final int LUOGHI_PRINCIPALI_MAX = 8;
 
     private static final List<String> IMMAGINI_EVENTI_FALLBACK = List.of(
         "https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=600",
@@ -72,9 +69,19 @@ public class HomeController {
             }
         }
 
-        List<LuogoInteresse> luoghiPrincipali = tuttiLuoghi.stream()
-                .sorted(Comparator.comparing((LuogoInteresse luogo) -> !immaginiLuoghi.containsKey(luogo.getId())))
-                .limit(LUOGHI_PRINCIPALI_MAX)
+        List<String> nomiLuoghiPrincipali = List.of(
+                "Museo Egizio",
+                "Mole Antonelliana e Museo Nazionale del Cinema",
+                "Parco del Valentino",
+                "Ristorante Del Cambio",
+                "Caffè Torino",
+                "Biblioteca Reale",
+                "Parco della Pellerina"
+        );
+
+        List<LuogoInteresse> luoghiPrincipali = nomiLuoghiPrincipali.stream()
+                .map(nome -> tuttiLuoghi.stream().filter(luogo -> nome.equals(luogo.getNome())).findFirst().orElse(null))
+                .filter(luogo -> luogo != null)
                 .toList();
 
         model.addAttribute("luoghiPrincipali", luoghiPrincipali);

@@ -236,7 +236,7 @@
 
 .luogo-category:hover{
     transform:translateY(-8px);
-    box-shadow:0 25px 65px rgba(38,47,40,.13);
+    box-shadow: 0 30px 50px -12px rgba(28, 33, 28, 0.35);
     border-color:rgba(183,79,39,.18);
 }
 

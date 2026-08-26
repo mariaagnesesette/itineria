@@ -48,7 +48,12 @@
                     <div class="form-group half">
                         <label for="password">Password</label>
 
-                        <input type="password" id="password" name="password" autocomplete="new-password" minlength="8" required>
+                        <div class="password-field">
+                            <input type="password" id="password" name="password" autocomplete="new-password" minlength="8" required>
+                            <button type="button" class="password-toggle" id="togglePassword" aria-label="Mostra password" aria-pressed="false">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="form-group half">
                         <label for="dob">Data di nascita</label>
@@ -82,5 +87,23 @@
   <div th:replace="~{fragments/footer :: footer}"></div>
 
     <script th:src="@{/js/utente/registrazione.js}" defer></script>
+    <script>
+        (function () {
+            "use strict";
+            var toggle = document.getElementById('togglePassword');
+            var input = document.getElementById('password');
+            if (!toggle || !input) return;
+
+            toggle.addEventListener('click', function () {
+                var isVisible = input.type === 'text';
+                input.type = isVisible ? 'password' : 'text';
+                toggle.setAttribute('aria-pressed', String(!isVisible));
+                toggle.setAttribute('aria-label', isVisible ? 'Mostra password' : 'Nascondi password');
+                toggle.innerHTML = isVisible
+                    ? '<i class="fa-solid fa-eye"></i>'
+                    : '<i class="fa-solid fa-eye-slash"></i>';
+            });
+        })();
+    </script>
 </body>
 </html>

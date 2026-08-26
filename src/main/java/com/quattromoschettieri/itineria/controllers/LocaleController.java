@@ -65,7 +65,7 @@ public class LocaleController {
 
         localeService.create(dto, manager);
 
-        return "redirect:/locali";
+        return "redirect:/utente#luoghi";
     }
 
     // READ
@@ -230,6 +230,6 @@ public class LocaleController {
 
         localeService.delete(id, utente);
 
-        return "redirect:/locali";
+        return "redirect:/utente#luoghi";
     }
 }

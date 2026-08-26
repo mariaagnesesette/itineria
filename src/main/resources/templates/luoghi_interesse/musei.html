@@ -80,7 +80,7 @@
       <div class="museum-grid">
         <a th:each="museo : ${musei}" th:href="@{'/musei/' + ${museo.id}}" class="museum-card"
           th:attr="data-category=${museo.tipologia}, data-guida=${museo.guidaPrenotabile}, data-bar=${museo.barInterno}, data-accessibile=${museo.accessibilita != null}">
-          <span class="museum-card__icon"><i class="fa-solid fa-landmark"></i></span>
+          <span class="museum-card__icon" th:style="'background-image:url(' + @{/img/placeholders/museo.svg} + ')'"><i class="fa-solid fa-landmark"></i></span>
           <span class="museum-card__body">
             <span class="museum-card__title" th:text="${museo.nome}">Nome museo</span>
             <span class="museum-card__desc" th:text="${museo.descrizione}">Descrizione breve</span>

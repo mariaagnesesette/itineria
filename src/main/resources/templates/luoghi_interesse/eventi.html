@@ -242,7 +242,7 @@
 
 
                     <!-- ICONA -->
-                    <div class="event-card__icon">
+                    <div class="event-card__icon" th:style="'background-image:url(' + @{/img/placeholders/evento.svg} + ')'">
 
                         <i th:if="${evento.tipologiaEvento != null}"
                            th:class="'fa-solid ' + ${evento.tipologiaEvento.icona}"></i>

@@ -88,7 +88,7 @@
       <div class="park-grid">
         <a th:each="parco : ${parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}" class="park-card"
           th:attr="data-category=${parco.tipologia}, data-dog-friendly=${parco.dogFriendly}, data-ristoro=${parco.ristoro}, data-ciclabile=${parco.ciclabile}">
-          <span class="park-card__icon"><i class="fa-solid fa-tree"></i></span>
+          <span class="park-card__icon" th:style="'background-image:url(' + @{/img/placeholders/zonaverde.svg} + ')'"><i class="fa-solid fa-tree"></i></span>
           <span class="park-card__body">
             <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
             <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>

@@ -245,25 +245,34 @@ public class SecurityConfig {
 
 
                 // =====================================================
-                // EVENTI - MODIFICA SOLO ADMIN
+                // EVENTI - CREAZIONE / MODIFICA MANAGER O ADMIN
                 // =====================================================
 
                 .requestMatchers(
                     HttpMethod.POST,
                     "/eventi/**"
-                ).hasRole("ADMIN")
+                ).hasAnyRole(
+                    "MANAGER",
+                    "ADMIN"
+                )
 
 
                 .requestMatchers(
                     HttpMethod.PUT,
                     "/eventi/**"
-                ).hasRole("ADMIN")
+                ).hasAnyRole(
+                    "MANAGER",
+                    "ADMIN"
+                )
 
 
                 .requestMatchers(
                     HttpMethod.DELETE,
                     "/eventi/**"
-                ).hasRole("ADMIN")
+                ).hasAnyRole(
+                    "MANAGER",
+                    "ADMIN"
+                )
 
 
 

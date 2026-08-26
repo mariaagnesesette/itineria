@@ -40,6 +40,28 @@ body {
   overflow-x: hidden;
 }
 
+/* Immagine segnaposto di categoria dietro l'icona delle card nelle pagine elenco luoghi */
+[class$="__icon"][style*="background-image"] {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+[class$="__icon"][style*="background-image"] i {
+  position: relative;
+  z-index: 1;
+  color: #fffdf7;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+}
+
+[class$="__icon"][style*="background-image"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(20, 30, 20, .28);
+}
+
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
@@ -247,10 +269,19 @@ input:focus-visible {
 }
 
 .home-page .site-header--solid{
-  position:absolute;
+  position:fixed;
   background:transparent;
   box-shadow:none;
   padding:28px 0;
+}
+
+.home-page .site-header--scrolled .main-nav__link,
+.home-page .site-header--scrolled .main-nav__link--dropdown .fa-chevron-down{
+  color:var(--color-text-dark);
+}
+
+.home-page .site-header--scrolled .account-menu form button{
+  color:var(--color-text-dark);
 }
 
 .home-page .site-header__inner{
@@ -403,6 +434,8 @@ input:focus-visible {
 }
 
 .section__title i { color: var(--color-accent); font-size: 20px; }
+
+.section--places .section__title { margin-left: -180px; font-size: 28.6px; }
 
 .section__controls {
   display: flex;
@@ -597,6 +630,10 @@ input:focus-visible {
 .section:has(.categories-band) {
   padding-top: 100px;
   padding-bottom: 64px;
+}
+
+.categories-band .luogo-category:hover {
+  box-shadow: 0 30px 50px -12px rgba(28, 33, 28, 0.35);
 }
 
 .category-card {
@@ -836,14 +873,14 @@ input:focus-visible {
 .event-card__title {
   color: var(--color-white);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 19.5px;
   margin-bottom: 4px;
   line-height: 1.3;
 }
 
 .event-card__date {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 12.5px;
+  font-size: 16.25px;
 }
 
 

@@ -66,7 +66,7 @@ public class MuseoController {
 
         museoService.create(dto, manager);
 
-        return "redirect:/musei";
+        return "redirect:/utente#luoghi";
     }
 
     // READ
@@ -225,6 +225,6 @@ public class MuseoController {
 
         museoService.delete(id, utente);
 
-        return "redirect:/musei";
+        return "redirect:/utente#luoghi";
     }
 }

@@ -1,6 +1,7 @@
 package com.quattromoschettieri.itineria.controllers;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -22,8 +23,10 @@ import com.quattromoschettieri.itineria.entities.evento.Evento;
 import com.quattromoschettieri.itineria.entities.evento.ImmagineEvento;
 import com.quattromoschettieri.itineria.entities.evento.PubblicoEvento;
 import com.quattromoschettieri.itineria.entities.evento.TipologiaEvento;
+import com.quattromoschettieri.itineria.entities.luogoInteresse.LuogoInteresse;
 import com.quattromoschettieri.itineria.entities.utente.Ruolo;
 import com.quattromoschettieri.itineria.entities.utente.Utente;
+import com.quattromoschettieri.itineria.repository.LuogoInteresseRepository;
 import com.quattromoschettieri.itineria.services.EventoService;
 import com.quattromoschettieri.itineria.services.ImmagineEventoService;
 import com.quattromoschettieri.itineria.services.utenteService.UtenteService;
@@ -40,6 +43,8 @@ public class EventoController {
     private final UtenteService utenteService;
 
     private final ImmagineEventoService immagineEventoService;
+
+    private final LuogoInteresseRepository luogoInteresseRepository;
 
 
     // =========================
@@ -255,16 +260,43 @@ public class EventoController {
     // =========================
 
     @GetMapping("/nuovo")
-    public String nuovoEvento(Model model) {
+    public String nuovoEvento(
+            Authentication authentication,
+            Model model) {
+
+        EventoDTO dto = new EventoDTO();
+        dto.setPrezzo(BigDecimal.ZERO);
+
+        DataEventoDTO dataIniziale = new DataEventoDTO();
+        List<DataEventoDTO> dateEvento = new ArrayList<>();
+        dateEvento.add(dataIniziale);
+        dto.setDateEvento(dateEvento);
 
         model.addAttribute(
                 "eventoDTO",
-                new EventoDTO()
+                dto
+        );
+
+        model.addAttribute(
+                "luoghi",
+                luoghiGestibili(authentication)
         );
 
         aggiungiFiltri(model);
 
         return "eventi/nuovo";
+    }
+
+
+    private List<LuogoInteresse> luoghiGestibili(Authentication authentication) {
+
+        Utente utente = utenteService.findByEmail(authentication.getName());
+
+        if (utente.getRuolo() == Ruolo.ADMIN) {
+            return luogoInteresseRepository.findAll();
+        }
+
+        return luogoInteresseRepository.findByManagerId(utente.getId());
     }
 
 
@@ -280,7 +312,7 @@ public class EventoController {
                 "Evento creato con successo"
         );
 
-        return "redirect:/eventi";
+        return "redirect:/utente#eventi-gestiti";
     }
 
 
@@ -340,7 +372,7 @@ public class EventoController {
                 "Evento eliminato con successo"
         );
 
-        return "redirect:/eventi";
+        return "redirect:/utente#eventi-gestiti";
     }
 
 

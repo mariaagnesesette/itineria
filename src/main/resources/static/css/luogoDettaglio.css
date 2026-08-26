@@ -9,9 +9,9 @@
    ===================================================== */
 
 .luogo-detail {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 40px 48px 80px;
 }
 
 /* HERO */
@@ -413,6 +413,15 @@
     flex-wrap: wrap;
 
     gap: 12px;
+}
+
+.services-grid label {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
 }
 
 .service-badge {

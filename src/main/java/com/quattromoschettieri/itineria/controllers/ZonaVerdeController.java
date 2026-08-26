@@ -65,7 +65,7 @@ public class ZonaVerdeController {
 
         zonaVerdeService.create(dto, manager);
 
-        return "redirect:/zoneVerdi";
+        return "redirect:/utente#luoghi";
     }
 
     // READ
@@ -225,6 +225,6 @@ public class ZonaVerdeController {
 
         zonaVerdeService.delete(id, utente);
 
-        return "redirect:/zoneVerdi";
+        return "redirect:/utente#luoghi";
     }
 }

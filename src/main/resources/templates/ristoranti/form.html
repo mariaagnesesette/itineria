@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itineraria - Nuovo ristorante</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css/pages.css">
+    <link rel="stylesheet" th:href="@{/css/luogoDettaglio.css}">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="account-page">
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="area-personale-wrapper">
+
+        <div class="profile-header-title">
+            <span>GESTIONE LUOGHI</span>
+            <h1>Nuovo ristorante</h1>
+        </div>
+
+        <div class="card-box">
+
+            <form th:action="@{/ristoranti}" th:object="${ristoranteDTO}" method="POST">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type="hidden" name="idCitta" value="1"/>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" th:field="*{nome}" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="descrizione">Descrizione</label>
+                        <textarea id="descrizione" th:field="*{descrizione}" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="indirizzo">Indirizzo</label>
+                        <input type="text" id="indirizzo" th:field="*{indirizzo}" placeholder="Via, numero civico">
+                    </div>
+                    <div class="form-group">
+                        <label for="numero">Telefono</label>
+                        <input type="text" id="numero" th:field="*{numero}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" th:field="*{email}">
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Sito web</label>
+                        <input type="url" id="link" th:field="*{link}">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipoCucina">Tipo di cucina</label>
+                        <select id="tipoCucina" th:field="*{tipoCucina}">
+                            <option th:each="t : ${T(com.quattromoschettieri.itineria.entities.ristorante.TipoCucina).values()}"
+                                    th:value="${t}" th:text="${t}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fasciaPrezzo">Fascia di prezzo</label>
+                        <select id="fasciaPrezzo" th:field="*{fasciaPrezzo}">
+                            <option th:each="f : ${T(com.quattromoschettieri.itineria.entities.ristorante.FasciaPrezzoRistorante).values()}"
+                                    th:value="${f}" th:text="${f}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="accessibilita">Accessibilità</label>
+                        <select id="accessibilita" th:field="*{accessibilita}">
+                            <option th:each="a : ${T(com.quattromoschettieri.itineria.entities.luogoInteresse.Accessibilita).values()}"
+                                    th:value="${a}" th:text="${a}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="services-grid" style="margin-bottom:18px;">
+                    <label><input type="checkbox" th:field="*{dogFriendly}"> Dog friendly</label>
+                    <label><input type="checkbox" th:field="*{perCeliaci}"> Opzioni per celiaci</label>
+                    <label><input type="checkbox" th:field="*{postiEsterni}"> Posti esterni</label>
+                    <label><input type="checkbox" th:field="*{sempreAperto}"> Sempre aperto</label>
+                </div>
+
+                <button type="submit" class="btn-submit-action">Crea ristorante</button>
+                <a th:href="@{/ristoranti}" class="btn-action-text" style="margin-left:14px;">Annulla</a>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

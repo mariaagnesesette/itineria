@@ -16,18 +16,17 @@
   <!-- CSS del progetto -->
 
 <link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/luoghi.css}">
 
 <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
 
 </head>
-<body>
+<body class="home-page">
 
 <!-- ==========================================================================
      HEADER / NAVBAR
      ========================================================================== -->
 <div th:replace="~{fragments/navbar :: navbar}"></div>
-
-<body class="home-page"></body>
 <!-- ==========================================================================
      HERO
      ========================================================================== -->
@@ -66,7 +65,7 @@
 <!-- ==========================================================================
      LUOGHI PRINCIPALI — Carousel
      ========================================================================== -->
-<section class="section">
+<section class="section section--places">
 
   <div class="container">
 
@@ -76,22 +75,6 @@
         <i class="fa-solid fa-location-dot"></i>
         Luoghi principali
       </h2>
-
-      <div class="section__controls">
-
-        <a th:href="@{/luoghi}" class="section__link">
-          Vedi tutti
-        </a>
-
-        <button class="nav-arrow" data-carousel-prev aria-label="Precedente">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
-
-        <button class="nav-arrow" data-carousel-next aria-label="Successivo">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
-
-      </div>
 
     </div>
 
@@ -159,51 +142,91 @@
 <section class="section">
   <div class="categories-band">
   <div class="container">
-    <div class="categories-grid">
+    <div class="luoghi-grid">
 
-      <a th:href="@{/biblioteche}"  class="category-card">
-        <span class="category-card__icon category-card__icon--green"><i class="fa-solid fa-book"></i></span>
-        <span class="category-card__body">
-          <span class="category-card__title">Biblioteche</span>
-          <span class="category-card__desc">Spazi di studio e lettura per ogni esigenza.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      <!-- MUSEI -->
+      <a th:href="@{/musei}" class="luogo-category luogo-category--museum">
+        <div class="luogo-category__number">01</div>
+        <div class="luogo-category__icon">
+          <i class="fa-solid fa-landmark"></i>
+        </div>
+        <div class="luogo-category__content">
+          <span class="luogo-category__label">ARTE · STORIA · CULTURA</span>
+          <h3>Musei</h3>
+          <p>Dall'Egitto antico all'arte contemporanea: attraversa secoli di storia senza lasciare Torino.</p>
+          <span class="luogo-category__link">
+            Scopri i musei
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
       </a>
 
-      <a th:href="@{/locali}" class="category-card">
-        <span class="category-card__icon category-card__icon--orange"><i class="fa-solid fa-mug-hot"></i></span>
-        <span class="category-card__body">
-          <span class="category-card__title">Bar e Caffetterie</span>
-          <span class="category-card__desc">I migliori luoghi dove gustare un buon caffè o rilassarsi.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      <!-- BIBLIOTECHE -->
+      <a th:href="@{/biblioteche}" class="luogo-category luogo-category--library">
+        <div class="luogo-category__number">02</div>
+        <div class="luogo-category__icon">
+          <i class="fa-solid fa-book-open"></i>
+        </div>
+        <div class="luogo-category__content">
+          <span class="luogo-category__label">STUDIO · LETTURA · TRANQUILLITÀ</span>
+          <h3>Biblioteche</h3>
+          <p>Spazi silenziosi, WiFi, sale studio e luoghi dove rallentare e concentrarsi.</p>
+          <span class="luogo-category__link">
+            Scopri le biblioteche
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
       </a>
 
-      <a th:href="@{/ristoranti}"  class="category-card">
-        <span class="category-card__icon category-card__icon--yellow"><i class="fa-solid fa-utensils"></i></span>
-        <span class="category-card__body">
-          <span class="category-card__title">Ristoranti</span>
-          <span class="category-card__desc">Dai sapori tipici alle cucine internazionali.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      <!-- RISTORANTI -->
+      <a th:href="@{/ristoranti}" class="luogo-category luogo-category--restaurant">
+        <div class="luogo-category__number">03</div>
+        <div class="luogo-category__icon">
+          <i class="fa-solid fa-utensils"></i>
+        </div>
+        <div class="luogo-category__content">
+          <span class="luogo-category__label">SAPORI · TRADIZIONE · ESPERIENZE</span>
+          <h3>Ristoranti</h3>
+          <p>Cucina piemontese, pizzerie e proposte internazionali per ogni occasione.</p>
+          <span class="luogo-category__link">
+            Scopri i ristoranti
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
       </a>
 
-      <a th:href="@{/zoneVerdi}"  class="category-card">
-        <span class="category-card__icon category-card__icon--forest"><i class="fa-solid fa-tree"></i></span>
-        <span class="category-card__body">
-          <span class="category-card__title">Parchi e Zone Verdi</span>
-          <span class="category-card__desc">Oasi di relax immersi nella natura.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      <!-- LOCALI -->
+      <a th:href="@{/locali}" class="luogo-category luogo-category--cafe">
+        <div class="luogo-category__number">04</div>
+        <div class="luogo-category__icon">
+          <i class="fa-solid fa-mug-hot"></i>
+        </div>
+        <div class="luogo-category__content">
+          <span class="luogo-category__label">CAFFÈ · APERITIVI · SOCIALITÀ</span>
+          <h3>Bar e Caffetterie</h3>
+          <p>Dai caffè storici alle atmosfere contemporanee: trova il posto giusto per una pausa.</p>
+          <span class="luogo-category__link">
+            Scopri i locali
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
       </a>
 
-      <a th:href="@{/musei}" class="category-card">
-        <span class="category-card__icon category-card__icon--purple"><i class="fa-solid fa-landmark"></i></span>
-        <span class="category-card__body">
-          <span class="category-card__title">Musei</span>
-          <span class="category-card__desc">Arte, storia e cultura nel cuore della città.</span>
-        </span>
-        <i class="fa-solid fa-arrow-right category-card__arrow"></i>
+      <!-- ZONE VERDI -->
+      <a th:href="@{/zoneVerdi}" class="luogo-category luogo-category--park">
+        <div class="luogo-category__number">05</div>
+        <div class="luogo-category__icon">
+          <i class="fa-solid fa-tree"></i>
+        </div>
+        <div class="luogo-category__content">
+          <span class="luogo-category__label">NATURA · RELAX · ARIA APERTA</span>
+          <h3>Parchi e Zone Verdi</h3>
+          <p>Parchi urbani, giardini e angoli verdi per passeggiare, rilassarti o fare sport.</p>
+          <span class="luogo-category__link">
+            Scopri le zone verdi
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </div>
       </a>
 
     </div>
@@ -279,6 +302,28 @@
 <script>
 (function () {
   "use strict";
+
+  /* ---------- Navbar: scritte nere sulle aree chiare, bianche su quelle scure (foto) ---------- */
+  var header = document.querySelector('.home-page .site-header--solid');
+  var darkAreas = document.querySelectorAll('.home-page .hero, .home-page .events-carousel-viewport, .home-page .places-carousel');
+  if (header && darkAreas.length) {
+    var onNavbarScroll = function () {
+      var headerRect = header.getBoundingClientRect();
+      var coveredHeight = 0;
+
+      for (var i = 0; i < darkAreas.length; i++) {
+        var rect = darkAreas[i].getBoundingClientRect();
+        var overlap = Math.min(headerRect.bottom, rect.bottom) - Math.max(headerRect.top, rect.top);
+        if (overlap > 0) coveredHeight += overlap;
+      }
+
+      var isOverDark = coveredHeight >= headerRect.height * 0.5;
+      header.classList.toggle('site-header--scrolled', !isOverDark);
+    };
+    window.addEventListener('scroll', onNavbarScroll, { passive: true });
+    window.addEventListener('resize', onNavbarScroll);
+    onNavbarScroll();
+  }
 
   /* ---------- Carousel "Luoghi principali" (scorrimento singolo + autoplay) ---------- */
   var track = document.getElementById('placesTrack');
@@ -380,7 +425,7 @@
 
       var eStartAutoplay = function () {
         if (eSlides.length <= 1) return;
-        eAutoplayId = setInterval(eNext, 4500);
+        eAutoplayId = setInterval(eNext, 5000);
       };
       var eResetAutoplay = function () {
         if (eAutoplayId) clearInterval(eAutoplayId);
@@ -475,6 +520,8 @@
           zHeaderOverlay.style.opacity = String(headerProgress);
           zHeaderOverlay.style.pointerEvents = headerProgress > 0.1 ? 'auto' : 'none';
         }
+
+        if (typeof onNavbarScroll === 'function') onNavbarScroll();
       };
 
       var zOnScroll = function () {

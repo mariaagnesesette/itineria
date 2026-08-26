@@ -74,7 +74,7 @@
       <div class="locale-grid">
         <a th:each="locale : ${tuttiLocali}" th:href="@{/locali/{id}(id=${locale.id})}" class="locale-card"
           th:attr="data-category=${locale.tipoLocale}, data-serale=${locale.aperturaSerale}, data-esterni=${locale.postiEsterni}, data-celiaci=${locale.perCeliaci}">
-          <span class="locale-card__icon"><i class="fa-solid fa-mug-hot"></i></span>
+          <span class="locale-card__icon" th:style="'background-image:url(' + @{/img/placeholders/locale.svg} + ')'"><i class="fa-solid fa-mug-hot"></i></span>
           <span class="locale-card__body">
             <span class="locale-card__title" th:text="${locale.nome}">Nome locale</span>
             <span class="locale-card__desc" th:text="${locale.descrizione}">Descrizione breve</span>

@@ -76,7 +76,7 @@
         <a th:each="ristorante : ${ristoranti}" th:href="@{/ristoranti/{id}(id=${ristorante.id})}"
           class="restaurant-card"
           th:attr="data-category=${ristorante.tipoCucina}, data-dogfriendly=${ristorante.dogFriendly}, data-celiaci=${ristorante.perCeliaci}, data-esterni=${ristorante.postiEsterni}">
-          <span class="restaurant-card__icon"><i class="fa-solid fa-utensils"></i></span>
+          <span class="restaurant-card__icon" th:style="'background-image:url(' + @{/img/placeholders/ristorante.svg} + ')'"><i class="fa-solid fa-utensils"></i></span>
           <span class="restaurant-card__body">
             <span class="restaurant-card__title" th:text="${ristorante.nome}">Nome ristorante</span>
             <span class="restaurant-card__desc" th:text="${ristorante.descrizione}">Descrizione breve</span>

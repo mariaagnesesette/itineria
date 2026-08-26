@@ -182,7 +182,7 @@ public class BibliotecaController {
                 utenteService.findByEmail(authentication.getName());
 
         bibliotecaService.create(dto, manager);
-        return "redirect:/biblioteche";
+        return "redirect:/utente#luoghi";
     }
 
     // UPDATE
@@ -228,7 +228,7 @@ public class BibliotecaController {
 
         bibliotecaService.delete(id, utente);
 
-        return "redirect:/biblioteche";
+        return "redirect:/utente#luoghi";
     }
 
 }

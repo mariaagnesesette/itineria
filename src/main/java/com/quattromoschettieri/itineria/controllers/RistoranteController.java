@@ -63,7 +63,7 @@ public class RistoranteController {
 
                 ristoranteService.create(dto, manager);
 
-                return "redirect:/ristoranti";
+                return "redirect:/utente#luoghi";
         }
 
         // READ
@@ -213,6 +213,6 @@ public class RistoranteController {
 
                 ristoranteService.delete(id, utente);
 
-                return "redirect:/ristoranti";
+                return "redirect:/utente#luoghi";
         }
 }
