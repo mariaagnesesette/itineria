@@ -51,4 +51,26 @@ public class HomeController {
     public String contattaci() {
         return "footer/contattaci";
     }
+
+   @GetMapping("/luoghi")
+public String luoghi() {
+    return "luoghi_interesse/luoghi";
+}
+
+@GetMapping("/chi-siamo")
+public String chiSiamo(){
+    return "footer/chi-siamo";
+}
+
+@GetMapping("/privacy")
+public String privacy(){
+    return "footer/privacy";
+}
+
+@GetMapping("/termini")
+public String termini(){
+    return "footer/termini";
+}
+
+
 }

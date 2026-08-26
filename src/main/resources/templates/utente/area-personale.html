@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itineraria - Area Personale</title>
-    <link rel="stylesheet" href="/css/pages.css">
-    <meta name="_csrf" th:content="${_csrf.token}">
-    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/pages.css}">
 
-</head>
-<body>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>>
+<body class="account-page">
 
-    <!-- Header Maintenu -->
-    <header>
-        <a th:href="@{/}" class="logo">ITINERARIA</a>
-          <div th:replace="~{fragments/navbar :: navbar}"></div>
-    </header>
+    <div th:replace="~{fragments/navbar :: navbar(mostraAccedi=false)}"></div>
+
 
     <div class="area-personale-wrapper">
         
@@ -286,7 +284,7 @@
 
     </div>
 
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
+  <div th:replace="~{fragments/footer :: footer}"></div>
     
     <script th:src="@{/js/utente/area-personale.js(v=3)}" defer></script>
 </body>

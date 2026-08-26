@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.luoghi-page{
+    background:#f7f4ee;
+    color:#243126;
+    overflow:hidden;
+}
+
+.luoghi-shell{
+    width:min(1180px,calc(100% - 48px));
+    margin:0 auto;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.luoghi-hero{
+    position:relative;
+    min-height:560px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(205,91,43,.30),transparent 30%),
+        radial-gradient(circle at 90% 85%,rgba(129,156,105,.30),transparent 34%),
+        linear-gradient(135deg,#173522 0%,#23472f 52%,#34563d 100%);
+}
+
+.luoghi-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    opacity:.18;
+    background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:42px 42px;
+}
+
+.luoghi-hero__shape{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+}
+
+.luoghi-hero__shape--one{
+    width:320px;
+    height:320px;
+    left:-130px;
+    bottom:-150px;
+    border:2px solid rgba(211,95,46,.45);
+}
+
+.luoghi-hero__shape--two{
+    width:440px;
+    height:440px;
+    right:-180px;
+    top:-220px;
+    border:1px solid rgba(255,255,255,.14);
+}
+
+.luoghi-hero__content{
+    position:relative;
+    z-index:2;
+    width:min(920px,calc(100% - 48px));
+    margin:0 auto;
+    padding:100px 0 80px;
+    text-align:center;
+}
+
+.luoghi-hero__eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:22px;
+    color:#d56b3e;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.18em;
+}
+
+.luoghi-hero__eyebrow i{
+    font-size:14px;
+}
+
+.luoghi-hero h1{
+    margin:0;
+    color:#fffdf7;
+    font-family:"Playfair Display",Georgia,serif;
+    font-size:clamp(52px,7vw,90px);
+    font-weight:700;
+    line-height:.98;
+    letter-spacing:-.045em;
+}
+
+.luoghi-hero h1 span{
+    display:block;
+    margin-top:8px;
+    color:#d26a3c;
+    font-style:italic;
+}
+
+.luoghi-hero__content>p{
+    max-width:680px;
+    margin:28px auto 0;
+    color:rgba(255,255,255,.78);
+    font-size:16px;
+    line-height:1.75;
+}
+
+.luoghi-hero__scroll{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    margin-top:45px;
+    color:rgba(255,255,255,.58);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.luoghi-hero__scroll i{
+    color:#d26a3c;
+    animation:luoghiBounce 1.7s infinite;
+}
+
+@keyframes luoghiBounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(5px);}
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.luoghi-intro{
+    padding:95px 0 65px;
+}
+
+.luoghi-intro .luoghi-shell{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:90px;
+    align-items:end;
+}
+
+.luoghi-kicker{
+    display:block;
+    margin-bottom:12px;
+    color:#bd5128;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.18em;
+}
+
+.luoghi-intro h2{
+    margin:0;
+    max-width:650px;
+    color:#213a29;
+    font-family:"Playfair Display",Georgia,serif;
+    font-size:clamp(37px,4.5vw,60px);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-.035em;
+}
+
+.luoghi-intro h2 em{
+    color:#b74e27;
+    font-weight:600;
+}
+
+.luoghi-intro__text{
+    margin:0 0 5px;
+    color:#766f65;
+    font-size:14px;
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.luoghi-categories{
+    padding:20px 0 110px;
+}
+
+.luoghi-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.luogo-category{
+    position:relative;
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    padding:36px;
+    border:1px solid rgba(34,58,42,.09);
+    border-radius:24px;
+    background:#fffdf9;
+    box-shadow:0 16px 45px rgba(41,49,42,.07);
+    transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+}
+
+.luogo-category::before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    top:-110px;
+    right:-80px;
+    border-radius:50%;
+    transition:transform .45s ease;
+}
+
+.luogo-category::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:5px;
+    height:0;
+    background:#bc522a;
+    transition:height .35s ease;
+}
+
+.luogo-category:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 65px rgba(38,47,40,.13);
+    border-color:rgba(183,79,39,.18);
+}
+
+.luogo-category:hover::before{
+    transform:scale(1.16);
+}
+
+.luogo-category:hover::after{
+    height:100%;
+}
+
+.luogo-category:nth-child(5){
+    grid-column:1 / -1;
+    min-height:330px;
+}
+
+.luogo-category--museum::before{
+    background:rgba(184,78,38,.10);
+}
+
+.luogo-category--library::before{
+    background:rgba(63,99,70,.10);
+}
+
+.luogo-category--restaurant::before{
+    background:rgba(202,135,62,.12);
+}
+
+.luogo-category--cafe::before{
+    background:rgba(126,81,55,.10);
+}
+
+.luogo-category--park::before{
+    background:rgba(77,121,75,.12);
+}
+
+.luogo-category__number{
+    position:absolute;
+    top:28px;
+    left:32px;
+    color:rgba(34,58,42,.18);
+    font-family:"Playfair Display",Georgia,serif;
+    font-size:17px;
+    font-weight:700;
+}
+
+.luogo-category__icon{
+    position:absolute;
+    top:28px;
+    right:30px;
+    width:62px;
+    height:62px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    background:#223e2b;
+    color:#fff;
+    font-size:23px;
+    box-shadow:0 10px 25px rgba(31,54,38,.15);
+    transition:transform .35s ease,background .35s ease;
+}
+
+.luogo-category:hover .luogo-category__icon{
+    transform:rotate(-5deg) scale(1.08);
+    background:#b95029;
+}
+
+.luogo-category__content{
+    position:relative;
+    z-index:2;
+    max-width:520px;
+}
+
+.luogo-category__label{
+    display:block;
+    margin-bottom:10px;
+    color:#b64d27;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.15em;
+}
+
+.luogo-category h3{
+    margin:0;
+    color:#213a29;
+    font-family:"Playfair Display",Georgia,serif;
+    font-size:34px;
+    font-weight:700;
+    letter-spacing:-.025em;
+}
+
+.luogo-category p{
+    max-width:480px;
+    margin:13px 0 23px;
+    color:#756e64;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.luogo-category__link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:#263d2b;
+    font-size:12px;
+    font-weight:800;
+}
+
+.luogo-category__link i{
+    color:#bd5128;
+    transition:transform .25s ease;
+}
+
+.luogo-category:hover .luogo-category__link i{
+    transform:translateX(6px);
+}
+
+
+/* =========================================================
+   FRASE FINALE
+   ========================================================= */
+
+.luoghi-quote{
+    position:relative;
+    padding:100px 24px;
+    text-align:center;
+    overflow:hidden;
+    background:#eae3d7;
+}
+
+.luoghi-quote::before,
+.luoghi-quote::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border:1px solid rgba(183,79,39,.20);
+    border-radius:50%;
+}
+
+.luoghi-quote::before{
+    left:-130px;
+    top:-120px;
+}
+
+.luoghi-quote::after{
+    right:-140px;
+    bottom:-150px;
+}
+
+.luoghi-quote__decor{
+    width:44px;
+    height:44px;
+    display:grid;
+    place-items:center;
+    margin:0 auto 24px;
+    border-radius:50%;
+    background:#1f3b29;
+    color:#d36136;
+}
+
+.luoghi-quote p{
+    margin:0;
+    color:#213a29;
+    font-family:"Playfair Display",Georgia,serif;
+    font-size:clamp(31px,4vw,48px);
+    font-weight:700;
+    line-height:1.18;
+}
+
+.luoghi-quote p em{
+    color:#b94e27;
+}
+
+.luoghi-quote>span{
+    display:block;
+    margin-top:25px;
+    color:#897e70;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.2em;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+    .luoghi-intro .luoghi-shell{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .luoghi-grid{
+        grid-template-columns:1fr;
+    }
+
+    .luogo-category:nth-child(5){
+        grid-column:auto;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .luoghi-shell{
+        width:min(100% - 30px,1180px);
+    }
+
+    .luoghi-hero{
+        min-height:520px;
+    }
+
+    .luoghi-hero__content{
+        width:calc(100% - 30px);
+        padding:80px 0 65px;
+    }
+
+    .luoghi-hero h1{
+        font-size:48px;
+    }
+
+    .luoghi-hero__content>p{
+        font-size:14px;
+    }
+
+    .luoghi-intro{
+        padding:70px 0 45px;
+    }
+
+    .luogo-category{
+        min-height:340px;
+        padding:28px;
+    }
+
+    .luogo-category__number{
+        left:26px;
+    }
+
+    .luogo-category__icon{
+        right:24px;
+        width:55px;
+        height:55px;
+    }
+
+    .luogo-category h3{
+        font-size:29px;
+    }
+
+    .luoghi-categories{
+        padding-bottom:75px;
+    }
+
+    .luoghi-quote{
+        padding:80px 20px;
+    }
+
+}
