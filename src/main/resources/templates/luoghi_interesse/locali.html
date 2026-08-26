@@ -19,6 +19,9 @@
   <!-- CSS del progetto -->
   <link rel="stylesheet" th:href="@{/css/locali.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
+
+  <link rel="icon" type="image/png" th:href="@{/images/favicon-bianco.png}">
+  
 </head>
 
 <body>
@@ -110,7 +113,7 @@
     <i class="fa-solid fa-magnifying-glass"></i> Nessun locale trovato. Prova con un altro filtro.
   </p>
 
-  <footer th:replace="~{fragments/footer :: footer}"></footer>
+<div th:replace="~{fragments/footer :: footer}"></div>
 
   <script>
     (function () {
