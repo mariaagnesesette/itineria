@@ -12,12 +12,7 @@
     <!-- Header Maintenu -->
     <header>
         <a th:href="@{/}" class="logo">ITINERARIA</a>
-        <nav>
-            <a th:href="@{/}">Home</a>
-            <a href="#">Luoghi d'interesse</a>
-            <a href="#">Eventi</a>
-            <a href="../footer/contattaci.html">Contatti</a>
-        </nav>
+          <div th:replace="~{fragments/navbar :: navbar}"></div>
     </header>
 
     <div class="area-personale-wrapper">
@@ -196,12 +191,8 @@
 
     </div>
 
-    <footer>
-        <p> 2025 Itineraria. Tutti i diritti riservati.</p>
-        <p style="margin-top: 10px;">
-            <a href="../footer/supporto.html">Supporto</a> | <a href="../footer/faq.html">FAQ</a> | <a href="../footer/contattaci.html">Contattaci</a>
-        </p>
-    </footer>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    
     <script th:src="@{/js/utente/area-personale.js}" defer></script>
 </body>
 </html>
