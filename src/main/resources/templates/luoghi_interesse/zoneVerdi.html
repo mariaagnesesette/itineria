@@ -47,21 +47,13 @@
 
       <div class="filter-chips category-filters">
         <button type="button" class="filter-chip active" data-filter="all">Tutti</button>
-        <th:block th:if="${categorieParchi != null}">
-          <button type="button" th:each="cat : ${categorieParchi}"
-                  th:attr="data-filter=${cat.id}"
-                  th:text="${cat.nome}"
-                  class="filter-chip"></button>
-        </th:block>
-        <th:block th:if="${categorieParchi == null}">
-          <button type="button" class="filter-chip" data-filter="PARCO_URBANO">Parchi urbani</button>
-          <button type="button" class="filter-chip" data-filter="PARCO_NATURALE">Aree naturali</button>
-          <button type="button" class="filter-chip" data-filter="PARCO_STORICO">Giardini storici</button>
-          <button type="button" class="filter-chip" data-filter="GIARDINO_PUBBLICO">Giardini pubblici</button>
-          <button type="button" class="filter-chip" data-filter="AREA_CANI">Aree per cani</button>
-          <button type="button" class="filter-chip" data-filter="ORTO_BOTANICO">Orti botanici</button>
-          <button type="button" class="filter-chip" data-filter="RISERVA_NATURALE">Riserve naturali</button>
-        </th:block>
+        <button type="button" class="filter-chip" data-filter="PARCO_URBANO"><i class="fa-solid fa-tree-city"></i> Parchi urbani</button>
+        <button type="button" class="filter-chip" data-filter="PARCO_NATURALE"><i class="fa-solid fa-mountain"></i> Aree naturali</button>
+        <button type="button" class="filter-chip" data-filter="PARCO_STORICO"><i class="fa-solid fa-landmark"></i> Giardini storici</button>
+        <button type="button" class="filter-chip" data-filter="GIARDINO_PUBBLICO"><i class="fa-solid fa-seedling"></i> Giardini pubblici</button>
+        <button type="button" class="filter-chip" data-filter="AREA_CANI"><i class="fa-solid fa-dog"></i> Aree per cani</button>
+        <button type="button" class="filter-chip" data-filter="ORTO_BOTANICO"><i class="fa-solid fa-spa"></i> Orti botanici</button>
+        <button type="button" class="filter-chip" data-filter="RISERVA_NATURALE"><i class="fa-solid fa-mountain-sun"></i> Riserve naturali</button>
       </div>
 
       <div class="filter-chips feature-filters">
@@ -84,65 +76,7 @@
 
 
 
-  <!-- Risultati organizzati per categoria -->
-  <section class="section" th:if="${categorieParchi != null}">
-    <div class="container">
-      <div class="parchi-results-header">
-        <h2 class="section__title">
-          <i class="fa-solid fa-tree"></i>
-          Parchi e zone verdi
-        </h2>
-          <span class="parchi-results-count"
-            th:text="${risultati != null ? risultati.totalElements + ' risultati' : (parchi != null ? #lists.size(parchi) + ' risultati' : '0 risultati')}">
-          0 risultati
-        </span>
-      </div>
-      <div th:each="categoria : ${categorieParchi}" class="park-category" th:id="${categoria.id}">
-        <h2 class="section__title">
-          <i th:class="'fa-solid ' + ${categoria.icona}"></i>
-          <span th:text="${categoria.nome}">Nome categoria</span>
-        </h2>
-        <div class="park-grid">
-          <a th:each="parco : ${categoria.parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}"
-            th:classappend="${parco.preferito} ? ' park-card--featured' : ''" class="park-card"
-            th:attr="data-category=${parco.tipologia}, data-dog-friendly=${parco.dogFriendly}, data-ristoro=${parco.ristoro}, data-ciclabile=${parco.ciclabile}">
-            <span class="park-card__badge" th:if="${parco.preferito}">Consigliato</span>
-            <span class="park-card__icon"><i th:class="'fa-solid ' + ${parco.icona}"></i></span>
-            <span class="park-card__body">
-              <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
-              <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>
-              <span class="park-card__badges">
-                <span class="badge" th:if="${parco.areaMq != null}">
-                  <i class="fa-solid fa-ruler-combined"></i>
-                  <span th:text="${#numbers.formatDecimal(parco.areaMq, 1, 'COMMA', 2, 'POINT')} + ' m²'"></span>
-                </span>
-                <span class="badge" th:if="${parco.dogFriendly}">
-                  <i class="fa-solid fa-dog"></i>
-                  Dog friendly
-                </span>
-                <span class="badge" th:if="${parco.ristoro}">
-                  <i class="fa-solid fa-mug-saucer"></i>
-                  Ristoro
-                </span>
-                <span class="badge" th:if="${parco.ciclabile}">
-                  <i class="fa-solid fa-person-biking"></i>
-                  Ciclabile
-                </span>
-                <span class="badge" th:if="${parco.accessibilita != null}">
-                  <i class="fa-solid fa-wheelchair"></i>
-                  Accessibile
-                </span>
-              </span>
-            </span>
-            <i class="fa-solid fa-arrow-right park-card__arrow"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Fallback: lista piatta -->
-  <section class="section" th:if="${categorieParchi == null && parchi != null}">
+  <section class="section" th:if="${parchi != null}">
     <div class="container">
       <div class="parchi-results-header">
         <h2 class="section__title">
@@ -157,6 +91,7 @@
       <div class="park-grid">
         <a th:each="parco : ${parchi}" th:href="@{/zoneVerdi/{id}(id=${parco.id})}" class="park-card"
           th:attr="data-category=${parco.tipologia}, data-dog-friendly=${parco.dogFriendly}, data-ristoro=${parco.ristoro}, data-ciclabile=${parco.ciclabile}">
+          <span class="park-card__icon"><i class="fa-solid fa-tree"></i></span>
           <span class="park-card__body">
             <span class="park-card__title" th:text="${parco.nome}">Nome parco</span>
             <span class="park-card__desc" th:text="${parco.descrizione}">Descrizione breve</span>
@@ -190,7 +125,7 @@
   </section>
 
   <p class="park-empty-state" id="parkEmptyState"
-    th:if="${(parchi == null || #lists.isEmpty(parchi)) && (categorieParchi == null || #lists.isEmpty(categorieParchi))}">
+    th:if="${parchi == null || #lists.isEmpty(parchi)}">
     <i class="fa-solid fa-magnifying-glass"></i> Nessun parco trovato. Prova con un altro filtro.
   </p>
 
@@ -210,9 +145,6 @@
         document.querySelectorAll('.filter-chip--toggle')
       );
 
-      var categories = Array.prototype.slice.call(
-        document.querySelectorAll('.park-category')
-      );
       var cards = Array.prototype.slice.call(
         document.querySelectorAll('.park-card')
       );
@@ -234,11 +166,6 @@
 
           card.style.display = categoryMatches && featureMatches ? '' : 'none';
         });
-
-        categories.forEach(function (category) {
-          var hasVisibleCard = category.querySelector('.park-card:not([style*="display: none"])');
-          category.style.display = hasVisibleCard ? '' : 'none';
-        });
       }
 
       categoryChips.forEach(function (chip) {
@@ -258,17 +185,6 @@
           }
 
           applyFilters();
-
-          if (activeCategory !== 'all') {
-            var element = document.getElementById(activeCategory);
-
-            if (element) {
-              element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          }
         });
       });
 
