@@ -82,41 +82,25 @@
       <div class="places-carousel__viewport">
         <div class="places-carousel__track" id="placesTrack">
 
+          <a th:each="luogo : ${luoghiPrincipali}"
+             th:href="${luogo.tipoLuogo.name() == 'BIBLIOTECA'} ? @{/biblioteche/{id}(id=${luogo.id})} :
+                       (${luogo.tipoLuogo.name() == 'MUSEO'} ? @{/musei/{id}(id=${luogo.id})} :
+                       (${luogo.tipoLuogo.name() == 'RISTORANTE'} ? @{/ristoranti/{id}(id=${luogo.id})} :
+                       (${luogo.tipoLuogo.name() == 'LOCALE'} ? @{/locali/{id}(id=${luogo.id})} :
+                       @{/zoneVerdi/{id}(id=${luogo.id})})))"
+             class="place-slide">
 
-          <!-- Slide statici di esempio -->
-          <a th:href="@{/luoghi/mole-antonelliana}" href="#" class="place-slide">
-            <img src="https://images.unsplash.com/photo-1725630592680-90f1c82649b0?q=80&w=1600&auto=format&fit=crop" alt="Mole Antonelliana e skyline di Torino al tramonto">
-            <span class="place-slide__caption">
-              <h3>Mole Antonelliana</h3>
-              <p>Il simbolo di Torino, sede del Museo del Cinema</p>
+            <img th:if="${immaginiLuoghi.get(luogo.id)} != null"
+                 th:src="${immaginiLuoghi.get(luogo.id)}"
+                 th:alt="${luogo.nome}">
+
+            <span class="place-slide__placeholder" th:if="${immaginiLuoghi.get(luogo.id)} == null">
+              <i class="fa-solid fa-location-dot"></i>
             </span>
-          </a>
-          <a th:href="@{/luoghi/monte-dei-cappuccini}" href="#" class="place-slide">
-            <img src="https://images.unsplash.com/photo-1649160845345-97ad6714f904?q=80&w=1600&auto=format&fit=crop" alt="Vista panoramica di Torino con la Mole sullo sfondo">
+
             <span class="place-slide__caption">
-              <h3>Monte dei Cappuccini</h3>
-              <p>Il punto panoramico più amato dai torinesi</p>
-            </span>
-          </a>
-          <a th:href="@{/luoghi/piazza-vittorio}" href="#" class="place-slide">
-            <img src="https://images.unsplash.com/photo-1608210577933-d602090bbc29?q=80&w=1600&auto=format&fit=crop" alt="Edificio storico di Torino al tramonto">
-            <span class="place-slide__caption">
-              <h3>Piazza Vittorio Veneto</h3>
-              <p>Una delle piazze porticate più grandi d'Europa</p>
-            </span>
-          </a>
-          <a th:href="@{/luoghi/fiume-po}" href="#" class="place-slide">
-            <img src="https://images.unsplash.com/photo-1692656479597-05c4f67cffde?q=80&w=1600&auto=format&fit=crop" alt="Torre con guglia sullo skyline di Torino">
-            <span class="place-slide__caption">
-              <h3>Lungo il Po</h3>
-              <p>Passeggiate e scorci sul fiume che attraversa la città</p>
-            </span>
-          </a>
-          <a th:href="@{/luoghi/centro-storico}" href="#" class="place-slide">
-            <img src="https://images.unsplash.com/photo-1664309571450-5180d3ca2ce9?q=80&w=1600&auto=format&fit=crop" alt="Edificio storico con guglia nel centro di Torino">
-            <span class="place-slide__caption">
-              <h3>Centro Storico</h3>
-              <p>Portici, caffè storici e architettura barocca</p>
+              <h3 th:text="${luogo.nome}">Nome luogo</h3>
+              <p th:text="${luogo.descrizione}">Descrizione del luogo</p>
             </span>
           </a>
 
@@ -192,40 +176,53 @@
 <!-- ==========================================================================
      EVENTI IN ARRIVO
      ========================================================================== -->
-<section class="section">
-  <div class="container">
+<section class="section events-section">
 
-    <div class="section__header">
-      <h2 class="section__title"><i class="fa-regular fa-calendar"></i> Eventi in arrivo</h2>
-      <div class="section__controls">
+  <div class="events-scroll-zoom" id="eventsCarousel">
+
+    <div class="events-carousel">
+
+      <div class="events-carousel-title" id="eventsTitleStatic">
+        <h2 class="section__title"><i class="fa-regular fa-calendar"></i> Eventi in arrivo</h2>
         <a th:href="@{/eventi}" href="#" class="section__link">Vedi tutti</a>
-        <button class="nav-arrow" data-events-prev aria-label="Eventi precedenti"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="nav-arrow" data-events-next aria-label="Eventi successivi"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
-    </div>
 
-    <div class="events-row" id="eventsRow">
+      <div class="events-carousel-viewport">
 
+        <div class="events-carousel-header" id="eventsHeaderOverlay">
+          <h2 class="section__title"><i class="fa-regular fa-calendar"></i> Eventi in arrivo</h2>
+          <a th:href="@{/eventi}" href="#" class="section__link">Vedi tutti</a>
+        </div>
 
-      <!-- Card statiche  -->
-  <a th:each="evento, iterStat : ${eventi}"
-     th:href="@{/eventi/{id}(id=${evento.id})}"
-     class="event-card">
+        <div class="events-carousel-track">
 
-    <img th:src="${immaginiEventi[iterStat.index % #lists.size(immaginiEventi)]}"
-         th:alt="${evento.nome}">
+          <a th:each="evento : ${eventi}"
+             th:href="@{/eventi/{id}(id=${evento.id})}"
+             class="event-card">
 
-    <span class="event-card__badge event-card__badge--free"
-          th:if="${evento.gratuito}">Gratuito</span>
-    <span class="event-card__badge event-card__badge--price"
-          th:unless="${evento.gratuito}"
-          th:text="'da €' + ${evento.prezzo}">da €10</span>
+            <img th:src="${immaginiEventi.get(evento.id)}"
+                 th:alt="${evento.nome}">
 
-    <span class="event-card__overlay">
-      <span class="event-card__title" th:text="${evento.nome}">Titolo evento</span>
-      <span class="event-card__date" th:text="${evento.dataTesto}">Data evento</span>
-    </span>
-  </a>
+            <span class="event-card__badge event-card__badge--free"
+                  th:if="${evento.gratuito}">Gratuito</span>
+            <span class="event-card__badge event-card__badge--price"
+                  th:unless="${evento.gratuito}"
+                  th:text="'da €' + ${evento.prezzo}">da €10</span>
+
+            <span class="event-card__overlay">
+              <span class="event-card__title" th:text="${evento.nome}">Titolo evento</span>
+              <span class="event-card__date" th:text="${evento.dataTesto}">Data evento</span>
+            </span>
+          </a>
+
+        </div>
+
+        <button type="button" class="events-carousel-arrow events-carousel-arrow--prev" data-events-prev aria-label="Eventi precedenti"><i class="fa-solid fa-chevron-left"></i></button>
+        <button type="button" class="events-carousel-arrow events-carousel-arrow--next" data-events-next aria-label="Eventi successivi"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <div class="events-carousel-dots"></div>
+
+      </div>
 
     </div>
   </div>
@@ -367,21 +364,155 @@
     startAutoplay();
   }
 
-  /* ---------- Scroll frecce "Eventi in arrivo" ---------- */
-  var eventsRow = document.getElementById('eventsRow');
-  if (eventsRow) {
-    var scrollByCard = function (direction) {
-      var card = eventsRow.querySelector('.event-card');
-      var gap = 16;
-      var amount = card ? (card.getBoundingClientRect().width + gap) * direction : 300 * direction;
-      eventsRow.scrollBy({ left: amount, behavior: 'smooth' });
-    };
-    document.querySelectorAll('[data-events-prev]').forEach(function (btn) {
-      btn.addEventListener('click', function () { scrollByCard(-1); });
-    });
-    document.querySelectorAll('[data-events-next]').forEach(function (btn) {
-      btn.addEventListener('click', function () { scrollByCard(1); });
-    });
+  /* ---------- Carosello "Eventi in arrivo" ---------- */
+  var eventsCarousel = document.getElementById('eventsCarousel');
+  if (eventsCarousel) {
+    var eTrack = eventsCarousel.querySelector('.events-carousel-track');
+    var eSlides = Array.prototype.slice.call(eventsCarousel.querySelectorAll('.event-card'));
+    var ePrevBtn = eventsCarousel.querySelector('.events-carousel-arrow--prev');
+    var eNextBtn = eventsCarousel.querySelector('.events-carousel-arrow--next');
+    var eDotsWrap = eventsCarousel.querySelector('.events-carousel-dots');
+    var eIndex = 0;
+    var eAutoplayId = null;
+
+    if (eSlides.length > 0) {
+
+      eSlides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Vai all\'evento ' + (i + 1));
+        dot.addEventListener('click', function () { eGoTo(i); eResetAutoplay(); });
+        eDotsWrap.appendChild(dot);
+      });
+      var eDots = Array.prototype.slice.call(eDotsWrap.children);
+
+      var eUpdate = function () {
+        eTrack.style.transform = 'translateX(-' + (eIndex * 100) + '%)';
+        eDots.forEach(function (d, i) { d.classList.toggle('active', i === eIndex); });
+      };
+
+      var eGoTo = function (i) {
+        eIndex = (i + eSlides.length) % eSlides.length;
+        eUpdate();
+      };
+
+      var eNext = function () { eGoTo(eIndex + 1); };
+
+      var eStartAutoplay = function () {
+        if (eSlides.length <= 1) return;
+        eAutoplayId = setInterval(eNext, 4500);
+      };
+      var eResetAutoplay = function () {
+        if (eAutoplayId) clearInterval(eAutoplayId);
+        eStartAutoplay();
+      };
+
+      ePrevBtn && ePrevBtn.addEventListener('click', function () { eGoTo(eIndex - 1); eResetAutoplay(); });
+      eNextBtn && eNextBtn.addEventListener('click', function () { eNext(); eResetAutoplay(); });
+
+      if (eSlides.length <= 1) {
+        if (ePrevBtn) ePrevBtn.style.display = 'none';
+        if (eNextBtn) eNextBtn.style.display = 'none';
+      }
+
+      var eTouchStartX = 0;
+      eTrack.addEventListener('touchstart', function (e) { eTouchStartX = e.touches[0].clientX; }, { passive: true });
+      eTrack.addEventListener('touchend', function (e) {
+        var diff = e.changedTouches[0].clientX - eTouchStartX;
+        if (Math.abs(diff) > 40) { diff < 0 ? eNext() : eGoTo(eIndex - 1); eResetAutoplay(); }
+      }, { passive: true });
+
+      eUpdate();
+      eStartAutoplay();
+      eventsCarousel.addEventListener('mouseenter', function () { if (eAutoplayId) clearInterval(eAutoplayId); });
+      eventsCarousel.addEventListener('mouseleave', eStartAutoplay);
+    }
+  }
+
+  /* ---------- Effetto scroll-zoom "Eventi in arrivo" ----------
+     La sezione si ingrandisce a tutto schermo scorrendo (sotto la navbar),
+     resta agganciata mentre si scorre e si rilascia rivelando il resto
+     della pagina. Stessa tecnica del carosello immagini nel dettaglio
+     luogo/evento. */
+  var navbar = document.querySelector('.site-header');
+
+  function setNavbarHeight() {
+    var height = navbar ? navbar.getBoundingClientRect().height : 0;
+    document.documentElement.style.setProperty('--navbar-height', height + 'px');
+    return height;
+  }
+
+  var navbarHeight = setNavbarHeight();
+
+  var zoomWrap = eventsCarousel; // #eventsCarousel è già .events-scroll-zoom
+  if (zoomWrap) {
+    var zCarousel = zoomWrap.querySelector('.events-carousel');
+    var zViewport = zoomWrap.querySelector('.events-carousel-viewport');
+    var zTitleStatic = document.getElementById('eventsTitleStatic');
+    var zHeaderOverlay = document.getElementById('eventsHeaderOverlay');
+    var zTitleHeight = zTitleStatic ? zTitleStatic.scrollHeight : 0;
+
+    if (zCarousel && zViewport) {
+      var baseWidthRatio = 0.92;
+      var baseMaxWidth = 1200;
+      var baseHeight = 460;
+      var baseRadius = 22;
+      var growRangeRatio = 0.35;
+
+      var zTicking = false;
+
+      var zUpdate = function () {
+        zTicking = false;
+
+        var rect = zoomWrap.getBoundingClientRect();
+        var growRange = window.innerHeight * growRangeRatio;
+        var progress = Math.min(1, Math.max(0, -rect.top / growRange));
+
+        var startWidth = Math.min(baseMaxWidth, window.innerWidth * baseWidthRatio);
+        var startHeight = window.innerWidth <= 520 ? 300 : (window.innerWidth <= 860 ? 360 : baseHeight);
+        var fullHeight = window.innerHeight - navbarHeight;
+
+        var width = startWidth + (window.innerWidth - startWidth) * progress;
+        var height = startHeight + (fullHeight - startHeight) * progress;
+        var radius = baseRadius * (1 - progress);
+
+        zViewport.style.width = width + 'px';
+        zViewport.style.height = height + 'px';
+        zViewport.style.borderRadius = radius + 'px';
+
+        // Il titolo statico sopra al box si comprime e sfuma nella prima
+        // metà dello scroll; l'header ancorato dentro l'immagine prende
+        // il suo posto man mano che la sezione si ingrandisce.
+        if (zTitleStatic && zHeaderOverlay) {
+          var headerProgress = Math.min(1, progress / 0.5);
+
+          zTitleStatic.style.maxHeight = (zTitleHeight * (1 - headerProgress)) + 'px';
+          zTitleStatic.style.marginBottom = (16 * (1 - headerProgress)) + 'px';
+          zTitleStatic.style.opacity = String(1 - headerProgress);
+          zTitleStatic.style.transform = 'translateY(' + (-10 * headerProgress) + 'px)';
+          zTitleStatic.style.pointerEvents = headerProgress > 0.6 ? 'none' : 'auto';
+
+          zHeaderOverlay.style.opacity = String(headerProgress);
+          zHeaderOverlay.style.pointerEvents = headerProgress > 0.1 ? 'auto' : 'none';
+        }
+      };
+
+      var zOnScroll = function () {
+        if (!zTicking) {
+          window.requestAnimationFrame(zUpdate);
+          zTicking = true;
+        }
+      };
+
+      var zOnResize = function () {
+        navbarHeight = setNavbarHeight();
+        zOnScroll();
+      };
+
+      window.addEventListener('scroll', zOnScroll, { passive: true });
+      window.addEventListener('resize', zOnResize);
+      zUpdate();
+    }
   }
 })();
 </script>

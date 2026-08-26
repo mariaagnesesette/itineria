@@ -733,6 +733,8 @@
 
 .review-card {
 
+    position: relative;
+
     padding: 24px;
 
     border-radius: 18px;
@@ -740,6 +742,11 @@
     background: #fafafa;
 
     border: 1px solid #eee;
+}
+
+.review-card:has(.btn-delete-review) {
+
+    padding-right: 130px;
 }
 
 .review-top {
@@ -761,6 +768,50 @@
 .review-stars {
 
     letter-spacing: 2px;
+}
+
+.btn-delete-review {
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 20px;
+
+    transform: translateY(-50%);
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #ddd;
+
+    background: transparent;
+
+    color: #666;
+
+    cursor: pointer;
+
+    padding: 6px 14px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.btn-delete-review:hover {
+
+    background: #b3261e;
+
+    border-color: #b3261e;
+
+    color: #fff;
 }
 
 .review-comment {

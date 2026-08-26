@@ -126,7 +126,8 @@ public class SecurityConfig {
                 // Creazione
                 .requestMatchers(
                     HttpMethod.POST,
-                    "/api/recensioni/**"
+                    "/api/recensioni/**",
+                    "/recensioni"
                 ).hasAnyRole(
                     "USER",
                     "MANAGER",

@@ -587,7 +587,8 @@
                 <div class="reviews-list" th:unless="${biblioteca.recensioni == null
                              || biblioteca.recensioni.isEmpty()}">
 
-                    <article class="review-card" th:each="recensione : ${biblioteca.recensioni}">
+                    <article class="review-card" th:each="recensione : ${biblioteca.recensioni}"
+                        th:attr="data-recensione-id=${recensione.id}">
 
                         <div class="review-top">
 
@@ -603,6 +604,13 @@
                                 </span>
 
                             </div>
+
+                            <button type="button" class="btn-delete-review"
+                                th:if="${utenteId != null and recensione.utente.id == utenteId}"
+                                th:attr="data-recensione-id=${recensione.id}"
+                                aria-label="Elimina recensione">
+                                Elimina
+                            </button>
 
                         </div>
 
@@ -628,7 +636,8 @@
 
             <form method="post" th:action="@{/recensioni}">
 
-                <input type="hidden" name="luogoInteresseId" th:value="${biblioteca.id}">
+                <input type="hidden" name="idLuogoInteresse" th:value="${biblioteca.id}">
+                <input type="hidden" name="redirectUrl" th:value="@{/biblioteche/{id}(id=${biblioteca.id})}">
 
                 <div class="form-group">
 

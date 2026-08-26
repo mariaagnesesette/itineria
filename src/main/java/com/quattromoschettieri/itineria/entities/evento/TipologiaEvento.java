@@ -13,7 +13,7 @@ public enum TipologiaEvento {
     PRESENTAZIONE_LIBRO("fa-book"),
     WORKSHOP("fa-screwdriver-wrench"),
     EVENTO_BAMBINI("fa-child-reaching"),
-    EVENTO_SPECIALE("fa-sparkles");
+    EVENTO_SPECIALE("fa-wand-magic-sparkles");
 
     private final String icona;
 

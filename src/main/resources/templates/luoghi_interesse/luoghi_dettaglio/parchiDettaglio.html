@@ -670,7 +670,8 @@
                 <div class="reviews-list" th:unless="${zonaVerde.recensioni == null
                              || zonaVerde.recensioni.isEmpty()}">
 
-                    <article class="review-card" th:each="recensione : ${zonaVerde.recensioni}">
+                    <article class="review-card" th:each="recensione : ${zonaVerde.recensioni}"
+                        th:attr="data-recensione-id=${recensione.id}">
 
                         <div class="review-top">
 
@@ -686,6 +687,13 @@
                                 </span>
 
                             </div>
+
+                            <button type="button" class="btn-delete-review"
+                                th:if="${utenteId != null and recensione.utente.id == utenteId}"
+                                th:attr="data-recensione-id=${recensione.id}"
+                                aria-label="Elimina recensione">
+                                Elimina
+                            </button>
 
                         </div>
 
@@ -711,7 +719,8 @@
 
             <form method="post" th:action="@{/recensioni}">
 
-                <input type="hidden" name="luogoInteresseId" th:value="${zonaVerde.id}">
+                <input type="hidden" name="idLuogoInteresse" th:value="${zonaVerde.id}">
+                <input type="hidden" name="redirectUrl" th:value="@{/zoneVerdi/{id}(id=${zonaVerde.id})}">
 
                 <div class="form-group">
 

@@ -256,6 +256,43 @@
     });
 })();
 
+// Eliminazione di una recensione da parte dell'autore.
+(function () {
+    const csrfToken = document.querySelector('meta[name="_csrf"]')?.content;
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.content;
+
+    document.querySelectorAll('.btn-delete-review[data-recensione-id]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            if (!confirm('Vuoi eliminare questa recensione?')) {
+                return;
+            }
+
+            const recensioneId = btn.dataset.recensioneId;
+
+            btn.disabled = true;
+            try {
+                const headers = {};
+                if (csrfToken && csrfHeader) {
+                    headers[csrfHeader] = csrfToken;
+                }
+
+                const response = await fetch(
+                    `/api/recensioni/${recensioneId}`,
+                    { method: 'DELETE', headers }
+                );
+
+                if (response.ok) {
+                    btn.closest('.review-card')?.remove();
+                } else {
+                    btn.disabled = false;
+                }
+            } catch {
+                btn.disabled = false;
+            }
+        });
+    });
+})();
+
 function apriFormRecensione() {
 
     const form = document.getElementById("reviewForm");

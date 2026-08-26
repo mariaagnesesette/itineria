@@ -415,6 +415,18 @@ input:focus-visible {
   border-radius: 16px 16px 0 0;
   display: block;
 }
+.place-slide__placeholder {
+  width: 100%;
+  height: 500px;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-header-footer);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 48px;
+}
+
 /* Riposizionamento frecce sopra alle immagini a schermo intero */
 .places-carousel__side-arrow {
   position: absolute;
@@ -452,6 +464,10 @@ input:focus-visible {
   font-size: 1.1rem;
   color: #555555;
   line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .places-carousel__side-arrow {
@@ -568,28 +584,90 @@ input:focus-visible {
    EVENTI IN ARRIVO
    ========================================================================== */
 
-.events-row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 4 * 16px) / 5);
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.events-section { margin-bottom: 0; }
+
+/* Scroll-zoom: la sezione si ingrandisce a tutto schermo scorrendo (sotto la
+   navbar), resta agganciata mentre si scorre e si rilascia rivelando il
+   resto della pagina. Stessa tecnica usata nella galleria del dettaglio
+   luogo/evento. */
+
+.events-scroll-zoom {
+  position: relative;
+  height: 160vh;
+  margin-top: 24px;
+  /* full-bleed: esce dal max-width/padding del container */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
-.events-row::-webkit-scrollbar { display: none; }
+.events-carousel {
+  position: sticky;
+  top: var(--navbar-height, 0px);
+  height: calc(100vh - var(--navbar-height, 0px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-.event-card { scroll-snap-align: start; }
+/* Titolo "statico": visibile sopra il carosello all'inizio, si comprime e
+   sfuma mentre la sezione si ingrandisce, lasciando spazio all'header che
+   si ancora dentro l'immagine (vedi .events-carousel-header). */
+.events-carousel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: min(1200px, 92%);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: opacity .15s ease, transform .15s ease;
+}
+
+.events-carousel-viewport {
+  position: relative;
+  width: min(1200px, 92%);
+  height: 460px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: border-radius .1s linear;
+}
+
+.events-carousel-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 22px 28px;
+  background: linear-gradient(to bottom, rgba(0,0,0,.6), transparent);
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+
+.events-carousel-header .section__title { color: var(--color-white); }
+.events-carousel-header .section__title i { color: var(--color-white); }
+.events-carousel-header .section__link { color: var(--color-white); }
+.events-carousel-header .section__link:hover { color: var(--color-accent); }
+
+.events-carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform .6s cubic-bezier(.25, 1, .5, 1);
+}
 
 .event-card {
   position: relative;
-  border-radius: var(--radius-md);
+  flex: 0 0 100%;
+  max-width: 100%;
+  height: 100%;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
-  box-shadow: var(--shadow-card);
 }
 
 .event-card img {
@@ -599,7 +677,60 @@ input:focus-visible {
   transition: transform 0.4s ease;
 }
 
-.event-card:hover img { transform: scale(1.06); }
+.event-card:hover img { transform: scale(1.04); }
+
+.events-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0, 0, 0, .55);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s ease;
+}
+
+.events-carousel-arrow:hover { background: var(--color-accent); }
+
+.events-carousel-arrow--prev { left: 16px; }
+.events-carousel-arrow--next { right: 16px; }
+
+.events-carousel-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.events-carousel-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .6);
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.events-carousel-dots button.active {
+  background: var(--color-white);
+  width: 22px;
+  border-radius: 999px;
+}
 
 .event-card__overlay {
   position: absolute;
@@ -742,7 +873,6 @@ input:focus-visible {
    ========================================================================== */
 
 @media (max-width: 1200px) {
-  .events-row { grid-auto-columns: calc((100% - 2 * 16px) / 3); }
   .categories-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
 }
@@ -750,17 +880,17 @@ input:focus-visible {
 @media (max-width: 860px) {
   .container { padding: 0 20px; }
   .main-nav { display: none; }
-  .events-row { grid-auto-columns: calc((100% - 16px) / 2); }
   .categories-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .hero { padding-top: 160px; }
   .place-slide { aspect-ratio: 4 / 3; }
+  .events-carousel-viewport { height: 360px; }
 }
 
 @media (max-width: 520px) {
-  .events-row { grid-auto-columns: 78%; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .events-carousel-viewport { height: 300px; }
 }
 
 /* Reduced motion */
