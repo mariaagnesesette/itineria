@@ -230,33 +230,30 @@
         </div>
 
         <div id="panel-recensioni" class="tab-panel">
-            <div class="review-card" data-review-id="1">
-                <div class="review-header">
-                    <h3>Biblioteca dell'Archiginnasio</h3>
-                    <div class="review-meta">
-                        <span class="stars">★★★★★</span>
-                        <span>2 luglio 2026</span>
-                    </div>
-                </div>
-                <p class="review-text">Sale meravigliose e silenziose, wifi stabile. Perfetta per studiare tutto il pomeriggio.</p>
-                <div class="review-actions">
-                    <button class="btn-action-sm" type="button" data-action="edit-review">✏️ Modifica</button>
-                    <button class="btn-action-text" type="button" data-action="delete-review">🗑 Elimina</button>
-                </div>
-            </div>
 
-            <div class="review-card" data-review-id="2">
+            <p th:if="${#lists.isEmpty(recensioni)}" class="form-message">
+                Non hai ancora scritto nessuna recensione.
+            </p>
+
+            <div class="review-card" th:each="recensione : ${recensioni}"
+                 th:attr="data-review-id=${recensione.id}">
                 <div class="review-header">
-                    <h3>Trattoria del Portico</h3>
+                    <h3 th:text="${recensione.luogoInteresse.nome}">Nome luogo</h3>
                     <div class="review-meta">
-                        <span class="stars">★★★★☆</span>
-                        <span>30 giugno 2026</span>
+                        <span class="stars"
+                              th:text="${'★'.repeat(recensione.voto)} + ${'☆'.repeat(5 - recensione.voto)}">★★★★★</span>
                     </div>
                 </div>
-                <p class="review-text">Tagliatelle ottime e personale gentile. Il dehors è il posto migliore.</p>
+                <p class="review-text" th:text="${recensione.commento}">Testo recensione</p>
                 <div class="review-actions">
-                    <button class="btn-action-sm" type="button" data-action="edit-review">✏️ Modifica</button>
-                    <button class="btn-action-text" type="button" data-action="delete-review">🗑 Elimina</button>
+                    <a class="btn-action-sm"
+                       th:href="${recensione.luogoInteresse.tipoLuogo.name() == 'BIBLIOTECA'} ? @{/biblioteche/{id}(id=${recensione.luogoInteresse.id},recensione=${recensione.id})} :
+                                 (${recensione.luogoInteresse.tipoLuogo.name() == 'MUSEO'} ? @{/musei/{id}(id=${recensione.luogoInteresse.id},recensione=${recensione.id})} :
+                                 (${recensione.luogoInteresse.tipoLuogo.name() == 'RISTORANTE'} ? @{/ristoranti/{id}(id=${recensione.luogoInteresse.id},recensione=${recensione.id})} :
+                                 (${recensione.luogoInteresse.tipoLuogo.name() == 'LOCALE'} ? @{/locali/{id}(id=${recensione.luogoInteresse.id},recensione=${recensione.id})} :
+                                 @{/zoneVerdi/{id}(id=${recensione.luogoInteresse.id},recensione=${recensione.id})})))">✏️ Modifica</a>
+                    <button class="btn-action-text" type="button" data-action="delete-review"
+                            th:attr="data-recensione-id=${recensione.id}">🗑 Elimina</button>
                 </div>
             </div>
         </div>
@@ -296,7 +293,7 @@
                         <p th:text="${(evento.luogoInteresse != null ? evento.luogoInteresse.nome : '')} + ' · ' + ${evento.getDataTesto()}">Luogo · Data</p>
                     </div>
                     <a class="btn-action-sm"
-                       th:href="@{/eventi/{id}(id=${evento.id})}">✏️ Modifica</a>
+                       th:href="@{/eventi/{id}(id=${evento.id},gestione=true)}">✏️ Modifica</a>
                 </div>
             </div>
         </div>

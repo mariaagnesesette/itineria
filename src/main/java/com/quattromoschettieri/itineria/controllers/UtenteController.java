@@ -1,5 +1,6 @@
 package com.quattromoschettieri.itineria.controllers;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import com.quattromoschettieri.itineria.repository.eventoRepository.EventoReposi
 import com.quattromoschettieri.itineria.services.BibliotecaService;
 import com.quattromoschettieri.itineria.services.LocaleService;
 import com.quattromoschettieri.itineria.services.MuseoService;
+import com.quattromoschettieri.itineria.services.RecensioneService;
 import com.quattromoschettieri.itineria.services.RistoranteService;
 import com.quattromoschettieri.itineria.services.ZonaVerdeService;
 import com.quattromoschettieri.itineria.services.utenteService.PreferitiService;
@@ -36,6 +38,7 @@ public class UtenteController {
     private final LuogoInteresseRepository luogoInteresseRepository;
     private final EventoRepository eventoRepository;
     private final PreferitiService preferitiService;
+    private final RecensioneService recensioneService;
 
     private final BibliotecaService bibliotecaService;
     private final MuseoService museoService;
@@ -60,6 +63,8 @@ public class UtenteController {
         model.addAttribute("utenteId", utente.getId());
         model.addAttribute("luoghiPreferiti", preferitiService.findLuoghiPreferiti(utente.getId()));
         model.addAttribute("eventiPreferiti", preferitiService.findEventiPreferiti(utente.getId()));
+        model.addAttribute("recensioni",
+                recensioneService.findByUtenteId(utente.getId(), Pageable.unpaged()).getContent());
 
         if (utente.getRuolo() == Ruolo.ADMIN) {
             model.addAttribute("luoghiGestiti", luogoInteresseRepository.findAll());

@@ -69,5 +69,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  document.querySelector('#panel-recensioni').addEventListener('click', event => { const card = event.target.closest('.review-card'); if (!card) return; if (event.target.closest('[data-action="delete-review"]') && confirm('Eliminare questa recensione?')) card.remove(); if (event.target.closest('[data-action="edit-review"]')) { const text = card.querySelector('.review-text'); const edit = prompt('Modifica la recensione:', text.textContent); if (edit?.trim()) text.textContent = edit.trim(); } });
+  document.querySelector('#panel-recensioni')?.addEventListener('click', async event => {
+    const button = event.target.closest('[data-action="delete-review"]');
+    if (!button) return;
+    if (!confirm('Eliminare questa recensione?')) return;
+
+    const headers = {};
+    if (csrfToken && csrfHeader) headers[csrfHeader] = csrfToken;
+
+    const response = await fetch(`/api/recensioni/${button.dataset.recensioneId}`, { method: 'DELETE', headers });
+    if (response.ok) {
+      button.closest('.review-card').remove();
+    }
+  });
 });

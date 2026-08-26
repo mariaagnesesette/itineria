@@ -100,6 +100,7 @@ public class EventoController {
     @GetMapping("/{id}")
     public String findById(
             @PathVariable Long id,
+            @RequestParam(value = "gestione", required = false, defaultValue = "false") boolean gestione,
             Authentication authentication,
             Model model) {
 
@@ -117,7 +118,7 @@ public class EventoController {
         model.addAttribute("utenteId", utenteAutenticato != null ? utenteAutenticato.getId() : null);
         model.addAttribute("isPreferito", utenteAutenticato != null
                 && utenteAutenticato.getEventiPreferiti().contains(evento));
-        model.addAttribute("puoModificare", puoModificare(evento, authentication));
+        model.addAttribute("puoModificare", gestione && puoModificare(evento, authentication));
 
         return "luoghi_interesse/luoghi_dettaglio/eventoDettaglio";
     }
@@ -319,7 +320,7 @@ public class EventoController {
                 "Evento modificato con successo"
         );
 
-        return "redirect:/eventi/" + id;
+        return "redirect:/eventi/" + id + "?gestione=true";
     }
 
 
@@ -382,7 +383,7 @@ public class EventoController {
                 "Data evento aggiunta con successo"
         );
 
-        return "redirect:/eventi/" + id;
+        return "redirect:/eventi/" + id + "?gestione=true";
     }
 
 
@@ -433,7 +434,7 @@ public class EventoController {
                 "Data evento modificata con successo"
         );
 
-        return "redirect:/eventi/" + id;
+        return "redirect:/eventi/" + id + "?gestione=true";
     }
 
 
@@ -453,6 +454,6 @@ public class EventoController {
                 "Data evento eliminata con successo"
         );
 
-        return "redirect:/eventi/" + id;
+        return "redirect:/eventi/" + id + "?gestione=true";
     }
 }

@@ -293,6 +293,74 @@
     });
 })();
 
+// Modifica di una recensione da parte dell'autore, direttamente dalla card.
+(function () {
+    const csrfToken = document.querySelector('meta[name="_csrf"]')?.content;
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.content;
+
+    function apriModifica(card) {
+        card.querySelector('.review-comment').hidden = true;
+        card.querySelector('.btn-edit-review').hidden = true;
+        card.querySelector('.review-edit-form').hidden = false;
+    }
+
+    function chiudiModifica(card) {
+        card.querySelector('.review-comment').hidden = false;
+        card.querySelector('.btn-edit-review').hidden = false;
+        card.querySelector('.review-edit-form').hidden = true;
+    }
+
+    document.querySelectorAll('.btn-edit-review[data-recensione-id]').forEach(btn => {
+        btn.addEventListener('click', () => apriModifica(btn.closest('.review-card')));
+    });
+
+    document.querySelectorAll('.btn-cancel-review').forEach(btn => {
+        btn.addEventListener('click', () => chiudiModifica(btn.closest('.review-card')));
+    });
+
+    document.querySelectorAll('.btn-save-review').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const card = btn.closest('.review-card');
+            const form = btn.closest('.review-edit-form');
+            const recensioneId = card.dataset.recensioneId;
+            const voto = form.querySelector('.review-edit-voto').value;
+            const commento = form.querySelector('.review-edit-commento').value;
+
+            btn.disabled = true;
+            try {
+                const headers = { 'Content-Type': 'application/json' };
+                if (csrfToken && csrfHeader) headers[csrfHeader] = csrfToken;
+
+                const response = await fetch(`/api/recensioni/${recensioneId}`, {
+                    method: 'PUT',
+                    headers,
+                    body: JSON.stringify({ voto: Number(voto), commento })
+                });
+
+                if (response.ok) {
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete('recensione');
+                    window.location.href = url.toString();
+                }
+            } finally {
+                btn.disabled = false;
+            }
+        });
+    });
+
+    // Se si arriva dall'area personale con ?recensione={id}, apre subito
+    // la card corrispondente in modifica e vi scorre sopra.
+    const params = new URLSearchParams(window.location.search);
+    const recensioneId = params.get('recensione');
+    if (recensioneId) {
+        const card = document.querySelector(`.review-card[data-recensione-id="${recensioneId}"]`);
+        if (card && card.querySelector('.btn-edit-review')) {
+            apriModifica(card);
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+})();
+
 function apriFormRecensione() {
 
     const form = document.getElementById("reviewForm");

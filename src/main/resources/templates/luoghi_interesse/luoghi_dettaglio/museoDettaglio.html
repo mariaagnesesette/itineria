@@ -659,18 +659,61 @@
 
                             </div>
 
-                            <button type="button" class="btn-delete-review"
-                                th:if="${utenteId != null and recensione.utente.id == utenteId}"
-                                th:attr="data-recensione-id=${recensione.id}"
-                                aria-label="Elimina recensione">
-                                Elimina
-                            </button>
+                            <div class="review-owner-actions" th:if="${utenteId != null and recensione.utente.id == utenteId}">
+
+                                <button type="button" class="btn-edit-review"
+                                    th:attr="data-recensione-id=${recensione.id}"
+                                    aria-label="Modifica recensione">
+                                    Modifica
+                                </button>
+
+                                <button type="button" class="btn-delete-review"
+                                    th:attr="data-recensione-id=${recensione.id}"
+                                    aria-label="Elimina recensione">
+                                    Elimina
+                                </button>
+
+                            </div>
 
                         </div>
 
                         <p class="review-comment" th:text="${recensione.commento}">
                             Commento recensione
                         </p>
+
+                        <form class="review-edit-form" hidden
+                            th:if="${utenteId != null and recensione.utente.id == utenteId}"
+                            th:attr="data-recensione-id=${recensione.id}">
+
+                            <div class="form-group">
+
+                                <label>Valutazione</label>
+
+                                <select class="review-edit-voto">
+                                    <option value="5" th:selected="${recensione.voto == 5}">★★★★★ - 5</option>
+                                    <option value="4" th:selected="${recensione.voto == 4}">★★★★☆ - 4</option>
+                                    <option value="3" th:selected="${recensione.voto == 3}">★★★☆☆ - 3</option>
+                                    <option value="2" th:selected="${recensione.voto == 2}">★★☆☆☆ - 2</option>
+                                    <option value="1" th:selected="${recensione.voto == 1}">★☆☆☆☆ - 1</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>La tua recensione</label>
+
+                                <textarea class="review-edit-commento" rows="6" maxlength="5000"
+                                    th:text="${recensione.commento}"></textarea>
+
+                            </div>
+
+                            <div class="review-edit-actions">
+                                <button type="button" class="luogo-button btn-save-review">Salva modifiche</button>
+                                <button type="button" class="btn-action-text btn-cancel-review">Annulla</button>
+                            </div>
+
+                        </form>
 
                     </article>
 
