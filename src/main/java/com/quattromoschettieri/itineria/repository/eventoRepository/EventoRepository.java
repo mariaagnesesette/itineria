@@ -14,6 +14,8 @@ public interface EventoRepository extends JpaRepository<Evento, Long>, JpaSpecif
 
     List<Evento> findByNomeContainingIgnoreCase(String nome);
 
+    List<Evento> findByLuogoInteresse_Manager_Id(Long managerId);
+
     @Query("""
            SELECT e
            FROM Evento e

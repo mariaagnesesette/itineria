@@ -7,6 +7,10 @@
 
     <title>Eventi - Itineria</title>
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="stylesheet"
           th:href="@{/css/style.css}">
 
@@ -22,81 +26,93 @@
 
 <main>
 
-    <!-- HERO -->
-    <section class="section eventi-hero">
+    <!-- PAGE INTRO -->
+    <section class="page-intro">
 
         <div class="container">
 
-            <span class="section__eyebrow">
-                <i class="fa-solid fa-calendar-days"></i>
-                Scopri cosa succede
-            </span>
+            <!-- TITOLO -->
+            <h1 class="page-intro__title">
 
-            <h1 class="section__title">
+                <i class="fa-solid fa-calendar-days"></i>
                 Eventi
+
             </h1>
 
-            <p class="section__subtitle">
+
+            <!-- DESCRIZIONE -->
+            <p class="page-intro__desc">
                 Mostre, concerti, spettacoli, conferenze,
                 festival e tanti altri eventi a Torino.
             </p>
 
-        </div>
-
-    </section>
-
-
-    <!-- FILTRI RAPIDI -->
-    <section class="section">
-
-        <div class="container">
-
-            <div class="filter-chips">
-
-                <a th:href="@{/eventi}"
-                   class="filter-chip">
-                    Tutti
-                </a>
-
-                <a th:href="@{/eventi/futuri}"
-                   class="filter-chip">
-                    Eventi futuri
-                </a>
-
-                <a th:href="@{/eventi/in-corso}"
-                   class="filter-chip">
-                    In corso
-                </a>
-
-                <a th:href="@{/eventi/storici}"
-                   class="filter-chip">
-                    Storici
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FORM FILTRI -->
-    <section class="section">
-
-        <div class="container">
 
             <form th:action="@{/eventi/search}"
                   th:object="${eventoDTO}"
                   method="get"
                   class="eventi-filter-form">
 
-                <div class="eventi-filter-row">
+                <!-- RICERCA -->
+                <div class="event-search">
 
-                    <!-- NOME -->
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
                     <input type="text"
                            th:field="*{nome}"
-                           placeholder="Cerca evento">
+                           placeholder="Cerca un evento per nome...">
 
+                </div>
+
+
+                <!-- FILTRI RAPIDI -->
+                <div class="filter-chips">
+
+                    <a th:href="@{/eventi}"
+                       class="filter-chip">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Tutti
+                    </a>
+
+                    <a th:href="@{/eventi/futuri}"
+                       class="filter-chip">
+                        <i class="fa-solid fa-forward"></i>
+                        Eventi futuri
+                    </a>
+
+                    <a th:href="@{/eventi/in-corso}"
+                       class="filter-chip">
+                        <i class="fa-solid fa-circle-play"></i>
+                        In corso
+                    </a>
+
+                    <a th:href="@{/eventi/storici}"
+                       class="filter-chip">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        Storici
+                    </a>
+
+
+                    <span class="filter-divider" aria-hidden="true"></span>
+
+
+                    <!-- PRENOTAZIONE -->
+                    <label class="filter-chip filter-chip--toggle"
+                           th:classappend="${eventoDTO.prenotazione} ? ' active'">
+
+                        <input type="checkbox"
+                               th:field="*{prenotazione}"
+                               hidden
+                               onchange="this.form.submit()">
+
+                        <i class="fa-solid fa-check filter-chip__check"></i>
+                        Con prenotazione
+
+                    </label>
+
+                </div>
+
+
+                <div class="eventi-filter-row">
 
                     <!-- TIPOLOGIA -->
                     <select th:field="*{tipologiaEvento}">
@@ -107,7 +123,7 @@
 
                         <option th:each="tipologia : ${tipologieEvento}"
                                 th:value="${tipologia}"
-                                th:text="${tipologia}">
+                                th:text="${#strings.toLowerCase(#strings.replace(tipologia, '_', ' '))}">
                         </option>
 
                     </select>
@@ -117,12 +133,12 @@
                     <select th:field="*{pubblicoEvento}">
 
                         <option value="">
-                            Tutti i pubblici
+                            Tipo di pubblico
                         </option>
 
                         <option th:each="pubblico : ${pubbliciEvento}"
                                 th:value="${pubblico}"
-                                th:text="${pubblico}">
+                                th:text="${#strings.toLowerCase(#strings.replace(pubblico, '_', ' '))}">
                         </option>
 
                     </select>
@@ -144,17 +160,6 @@
                            placeholder="Prezzo massimo"
                            min="0"
                            step="0.01">
-
-
-                    <!-- PRENOTAZIONE -->
-                    <label class="eventi-filter-check">
-
-                        <input type="checkbox"
-                               th:field="*{prenotazione}">
-
-                        Prenotazione
-
-                    </label>
 
 
                     <!-- CERCA -->
@@ -234,7 +239,11 @@
                     <!-- ICONA -->
                     <div class="event-card__icon">
 
-                        <i class="fa-solid fa-calendar-star"></i>
+                        <i th:if="${evento.tipologiaEvento != null}"
+                           th:class="'fa-solid ' + ${evento.tipologiaEvento.icona}"></i>
+
+                        <i th:if="${evento.tipologiaEvento == null}"
+                           class="fa-solid fa-calendar-star"></i>
 
                     </div>
 
@@ -263,10 +272,13 @@
 
                         <!-- TIPOLOGIA -->
                         <span class="event-card__type"
-                              th:if="${evento.tipologiaEvento != null}"
-                              th:text="${evento.tipologiaEvento}">
+                              th:if="${evento.tipologiaEvento != null}">
 
-                            Tipologia
+                            <i th:class="'fa-solid ' + ${evento.tipologiaEvento.icona}"></i>
+
+                            <span th:text="${#strings.toLowerCase(#strings.replace(evento.tipologiaEvento, '_', ' '))}">
+                                Tipologia
+                            </span>
 
                         </span>
 
@@ -277,7 +289,7 @@
                                      && !evento.dateEvento.isEmpty()}">
 
                             <div th:each="data : ${evento.dateEvento}"
-                                 class="event-card__date">
+                                 class="event-card__date badge">
 
                                 <i class="fa-solid fa-calendar"></i>
 
@@ -308,7 +320,8 @@
 
 
                             <!-- PREZZO -->
-                            <span th:if="${evento.prezzo != null}">
+                            <span class="badge"
+                                  th:if="${evento.prezzo != null}">
 
                                 <i class="fa-solid fa-euro-sign"></i>
 
@@ -328,21 +341,23 @@
 
 
                             <!-- PRENOTAZIONE -->
-                            <span th:if="${evento.prenotazione}">
+                            <span class="badge"
+                                  th:if="${evento.prenotazione}">
 
                                 <i class="fa-solid fa-ticket"></i>
 
-                                Prenotazione
+                                Con prenotazione
 
                             </span>
 
 
                             <!-- PUBBLICO -->
-                            <span th:if="${evento.pubblicoEvento != null}">
+                            <span class="badge"
+                                  th:if="${evento.pubblicoEvento != null}">
 
                                 <i class="fa-solid fa-users"></i>
 
-                                <span th:text="${evento.pubblicoEvento}">
+                                <span th:text="${#strings.toLowerCase(#strings.replace(evento.pubblicoEvento, '_', ' '))}">
                                     Tutti
                                 </span>
 
