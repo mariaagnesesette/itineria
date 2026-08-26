@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Fragment Navbar -->
-<header class="site-header site-header--solid" th:fragment="navbar">
+<header class="site-header site-header--solid" th:fragment="navbar" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <div class="container site-header__inner">
     <nav class="main-nav">
       <a href="/" class="main-nav__link">Home</a>
@@ -76,10 +76,26 @@
 </nav>
 
 <a th:href="@{/accedi}"
-   class="btn-login">
+   class="btn-login"
+   sec:authorize="!isAuthenticated()">
     <i class="fa-solid fa-user"></i>
     Accedi
 </a>
+
+<div class="account-menu" sec:authorize="isAuthenticated()" style="display:flex; align-items:center; gap:14px;">
+    <a th:href="@{/utente}" class="btn-login">
+        <i class="fa-solid fa-user"></i>
+        Area personale
+    </a>
+
+    <form th:action="@{/logout}" method="POST" style="display:inline;">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button type="submit" style="border:0; background:transparent; cursor:pointer; color:#fff; font:inherit; opacity:.85;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Esci
+        </button>
+    </form>
+</div>
 
 </div>
 </header>

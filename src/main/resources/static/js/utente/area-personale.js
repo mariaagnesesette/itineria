@@ -1,24 +1,32 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', () => {
-  const profileKey = 'itinerariaProfile';
-  const defaultProfile = { nome: '', cognome: '', email: '', dataNascita: '', username: '' };
-  let profile = { ...defaultProfile, ...JSON.parse(localStorage.getItem(profileKey) || '{}') };
-  const profileForm = document.querySelector('#profileForm');
-  const profileName = document.querySelector('#profileName');
-  const fillProfile = () => { Object.entries(profile).forEach(([key, value]) => { if (profileForm.elements[key]) profileForm.elements[key].value = value; }); profileName.textContent = `${profile.nome} ${profile.cognome}`.trim() || 'Il tuo profilo'; };
-  fillProfile();
+  const viewCard = document.querySelector('#viewProfileCard');
+  const editCard = document.querySelector('#editProfileCard');
+  const btnModifica = document.querySelector('#btnModificaProfilo');
+  const btnAnnulla = document.querySelector('#btnAnnullaModifica');
+
+  btnModifica?.addEventListener('click', () => { viewCard.hidden = true; editCard.hidden = false; });
+  btnAnnulla?.addEventListener('click', () => { editCard.hidden = true; viewCard.hidden = false; });
+
+  const passwordForm = document.querySelector('#passwordForm');
+  const btnCambiaPassword = document.querySelector('#btnCambiaPassword');
+  const btnAnnullaPassword = document.querySelector('#btnAnnullaPassword');
+
+  btnCambiaPassword?.addEventListener('click', () => { passwordForm.hidden = false; btnCambiaPassword.hidden = true; });
+  btnAnnullaPassword?.addEventListener('click', () => { passwordForm.hidden = true; passwordForm.reset(); btnCambiaPassword.hidden = false; });
+
+  document.querySelectorAll('.btn-toggle-password').forEach(button => button.addEventListener('click', () => {
+    const input = document.getElementById(button.dataset.target);
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    button.textContent = isHidden ? '🙈' : '👁';
+  }));
 
   document.querySelectorAll('.tab-btn').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(item => item.classList.toggle('active', item === button));
     document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.toggle('active', panel.id === `panel-${button.dataset.tab}`));
   }));
-  profileForm.addEventListener('submit', event => {
-    event.preventDefault(); if (!profileForm.checkValidity()) return profileForm.reportValidity();
-    profile = { ...profile, ...Object.fromEntries(new FormData(profileForm)) }; delete profile.password;
-    localStorage.setItem(profileKey, JSON.stringify(profile)); fillProfile();
-    const message = document.querySelector('#profileMessage'); message.textContent = 'Modifiche salvate sul dispositivo.'; message.className = 'form-message success';
-  });
 
   const documentsKey = 'itinerariaDocuments'; const documentsBody = document.querySelector('#documentsBody');
   const renderDocuments = () => { const docs = JSON.parse(localStorage.getItem(documentsKey) || '[]'); documentsBody.innerHTML = docs.length ? docs.map(doc => `<tr><td>${doc.tipo}</td><td>${doc.codice}</td><td>${doc.date}</td><td><span class="badge-status">In approvazione</span></td></tr>`).join('') : '<tr><td colspan="4">Nessun documento caricato.</td></tr>'; };
