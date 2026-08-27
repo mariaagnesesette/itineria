@@ -130,6 +130,7 @@ textarea{resize:vertical;}
 
 .cards-list-grid{display:grid;gap:11px;margin-top:18px;}
 .item-card{display:flex;align-items:center;justify-content:space-between;padding:17px 19px;}
+.item-card[hidden]{display:none;}
 .item-card h3,.review-card h3{color:var(--ink);font:700 17px 'Playfair Display',Georgia,serif;}
 .item-card p,.review-text{margin:3px 0 0;color:var(--muted);font-size:12px;}
 
@@ -270,7 +271,7 @@ textarea{resize:vertical;}
 
 /* CHI SIAMO */
 .about-page{background:#f8f5f0;}
-.about-hero{position:relative;overflow:hidden;min-height:560px;display:flex;align-items:center;justify-content:center;padding:110px 24px;text-align:center;background:linear-gradient(135deg,#17291c,#27452f 62%,#425f43);color:#fff;}
+.about-hero{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:110px 24px;text-align:center;background:linear-gradient(135deg,#17291c,#27452f 62%,#425f43);color:#fff;}
 .about-hero__content{position:relative;z-index:2;max-width:900px;}
 .about-kicker,.about-label{display:block;color:#c85a32;font-size:10px;font-weight:800;letter-spacing:.22em;}
 .about-hero .about-kicker{color:#e7a384;}
@@ -367,7 +368,7 @@ textarea{resize:vertical;}
 .about-page .site-footer,.legal-page .site-footer{margin-top:0;}
 
 @media(max-width:850px){.about-story-grid,.legal-layout{grid-template-columns:1fr;}.team-grid{grid-template-columns:1fr;}.about-values-grid{grid-template-columns:1fr;}.legal-index{position:static;}.about-story-grid{gap:40px;}}
-@media(max-width:560px){.about-wrapper,.legal-layout{width:calc(100% - 30px);}.about-hero{min-height:480px;padding:80px 18px;}.about-story,.about-team,.about-values,.about-secret{padding:65px 0;}.about-photo-placeholder{min-height:330px;}.team-card{padding:23px;}.legal-hero{padding:70px 18px;}.legal-layout{margin:50px auto;}.legal-index{display:none;}}
+@media(max-width:560px){.about-wrapper,.legal-layout{width:calc(100% - 30px);}.about-hero{min-height:100vh;padding:80px 18px;}.about-story,.about-team,.about-values,.about-secret{padding:65px 0;}.about-photo-placeholder{min-height:330px;}.team-card{padding:23px;}.legal-hero{padding:70px 18px;}.legal-layout{margin:50px auto;}.legal-index{display:none;}}
 
 /* =========================
    EASTER EGG

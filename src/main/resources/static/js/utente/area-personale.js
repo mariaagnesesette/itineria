@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.content;
 
   document.querySelectorAll('.pill-btn').forEach(button => button.addEventListener('click', () => { favoriteType = button.dataset.favoriteType; document.querySelectorAll('.pill-btn').forEach(item => item.classList.toggle('active', item === button)); renderFavorites(); }));
-  const renderFavorites = () => { [...favoritesList.querySelectorAll('[data-favorite-item]')].forEach(card => { const text = card.textContent.toLowerCase(); card.hidden = card.dataset.favoriteItem !== favoriteType || !text.includes(search.value.toLowerCase()); }); };
+  const renderFavorites = () => { [...favoritesList.querySelectorAll('[data-favorite-item]')].forEach(card => { const text = card.textContent.toLowerCase(); const show = card.dataset.favoriteItem === favoriteType && text.includes(search.value.toLowerCase()); card.hidden = !show; card.style.display = show ? '' : 'none'; }); };
   search?.addEventListener('input', renderFavorites);
   renderFavorites();
 
