@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -118,12 +119,20 @@ public class EventoController {
 
         List<ImmagineEvento> immagini = immagineEventoService.findByEventoId(id);
 
+        boolean puoModificare = gestione && puoModificare(evento, authentication);
+
         model.addAttribute("evento", evento);
         model.addAttribute("immagini", immagini);
         model.addAttribute("utenteId", utenteAutenticato != null ? utenteAutenticato.getId() : null);
         model.addAttribute("isPreferito", utenteAutenticato != null
                 && utenteAutenticato.getEventiPreferiti().contains(evento));
-        model.addAttribute("puoModificare", gestione && puoModificare(evento, authentication));
+        model.addAttribute("puoModificare", puoModificare);
+        model.addAttribute("eventoDTO", eventoService.findDtoById(id));
+
+        if (puoModificare) {
+            model.addAttribute("luoghi", luoghiGestibili(authentication));
+            aggiungiFiltri(model);
+        }
 
         return "luoghi_interesse/luoghi_dettaglio/eventoDettaglio";
     }
@@ -320,37 +329,31 @@ public class EventoController {
     // MODIFICA EVENTO
     // =========================
 
+    // La modifica avviene direttamente nella pagina di dettaglio dell'evento
     @GetMapping("/{id}/modifica")
-    public String modificaEvento(
-            @PathVariable Long id,
-            Model model) {
-
-        EventoDTO dto =
-                eventoService.findDtoById(id);
-
-        model.addAttribute(
-                "eventoDTO",
-                dto
-        );
-
-        aggiungiFiltri(model);
-
-        return "eventi/modifica";
+    public String modificaEvento(@PathVariable Long id) {
+        return "redirect:/eventi/" + id + "?gestione=true";
     }
 
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}/modifica")
     public String update(
             @PathVariable Long id,
             @ModelAttribute EventoDTO dto,
             RedirectAttributes redirectAttributes) {
 
-        eventoService.update(id, dto);
-
-        redirectAttributes.addFlashAttribute(
-                "messaggio",
-                "Evento modificato con successo"
-        );
+        try {
+            eventoService.update(id, dto);
+            redirectAttributes.addFlashAttribute(
+                    "messaggio",
+                    "Evento modificato con successo"
+            );
+        } catch (RuntimeException e) {
+            redirectAttributes.addFlashAttribute(
+                    "erroreModifica",
+                    "Controlla i dati inseriti: alcuni campi non sono validi."
+            );
+        }
 
         return "redirect:/eventi/" + id + "?gestione=true";
     }

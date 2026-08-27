@@ -114,6 +114,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ==========================================================================
+   MODALITÀ MODIFICA (come nelle pagine di dettaglio dei luoghi)
+   Ogni .edit-box alterna la vista normale (.view-mode) e il form (.edit-mode).
+   ========================================================================== */
+
+(function () {
+    document.querySelectorAll('.edit-box').forEach(box => {
+        const viewMode = box.querySelector('.view-mode');
+        const editMode = box.querySelector('.edit-mode');
+        const btnEdit = box.querySelector('.btn-edit-box');
+        const btnCancel = box.querySelector('.btn-cancel-box');
+        if (!editMode) return;
+
+        btnEdit?.addEventListener('click', () => { viewMode.hidden = true; editMode.hidden = false; });
+        btnCancel?.addEventListener('click', () => { editMode.hidden = true; viewMode.hidden = false; });
+    });
+
+    if (document.body.dataset.erroreModifica === 'true') {
+        document.querySelectorAll('.edit-box').forEach(box => {
+            const viewMode = box.querySelector('.view-mode');
+            const editMode = box.querySelector('.edit-mode');
+            if (editMode) { viewMode.hidden = true; editMode.hidden = false; }
+        });
+    }
+})();
+
+/* ==========================================================================
    CAROSELLO GALLERIA
    ========================================================================== */
 

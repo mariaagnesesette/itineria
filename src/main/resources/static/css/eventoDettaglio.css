@@ -649,6 +649,45 @@
    GRIGLIA CONTENUTI
    ========================================================================== */
 
+/* Il form di modifica non deve rompere la griglia: i suoi figli
+   (colonna principale e sidebar) partecipano direttamente al grid. */
+.event-detail-edit-form {
+    display: contents;
+}
+
+.event-detail-card .edit-mode .form-group {
+    margin-bottom: 16px;
+}
+
+.event-detail-card .edit-mode label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.event-detail-card .edit-mode input[type="text"],
+.event-detail-card .edit-mode input[type="number"],
+.event-detail-card .edit-mode textarea,
+.event-detail-card .edit-mode select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid var(--color-line, #ddd);
+    border-radius: var(--radius-md, 10px);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.event-detail-card .edit-mode textarea {
+    resize: vertical;
+}
+
+.event-detail-card .edit-mode .form-group label input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
 .event-detail-grid {
     display: grid;
 
