@@ -29,7 +29,7 @@ public interface EventoRepository extends JpaRepository<Evento, Long>, JpaSpecif
            SELECT e
            FROM Evento e
            JOIN e.dateEvento d
-           WHERE d.dataInizio > CURRENT_DATE
+           WHERE d.dataFine >= CURRENT_DATE
            GROUP BY e
            ORDER BY MIN(d.dataInizio) ASC
            """)
