@@ -202,7 +202,9 @@ textarea{resize:vertical;}
 .support-answer{display:none;padding:0 22px 22px 67px;color:#766f65;line-height:1.7;}
 .support-faq.is-open .support-answer{display:block;}
 
-.support-contact-section{padding:90px 0;background:#f8f5f0;scroll-margin-top:100px;}
+.support-contact-section{padding:0 0 90px;background:#f8f5f0;}
+#support-contact{scroll-margin-top:72px;}
+#support-form-card{scroll-margin-top:0;}
 .support-contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:55px;align-items:center;}
 .support-contact-info h2{max-width:480px;margin:0 0 18px;color:#1f3323;font:800 clamp(35px,4vw,50px)/1.08 'Playfair Display',Georgia,serif;}
 .support-contact-intro{max-width:500px;margin:0 0 32px;color:#766f65;line-height:1.75;}
