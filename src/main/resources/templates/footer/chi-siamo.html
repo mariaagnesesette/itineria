@@ -109,68 +109,76 @@
     </div>
   </div>
 </section>
+<section class="about-manifesto">
+<div class="about-wrapper">
+<span class="about-label">PERCHÉ ITINERARIA</span>
+<blockquote>“Le città sono piene di luoghi. Noi volevamo costruire un modo migliore per scoprirli.”</blockquote>
+<p>Itineraria vuole aiutare le persone a guardare una città con occhi diversi: non soltanto attraverso i luoghi più conosciuti, ma attraverso esperienze, spazi, eventi e piccoli angoli che possono trasformare una giornata.</p>
+</div>
+</section>
 
 <section class="about-secret">
-  <div class="about-wrapper">
-    <div class="about-secret-box">
-      <span class="about-label">PSST...</span>
-      <h2>C'è qualcosa che non ti abbiamo ancora raccontato.</h2>
-      <p>Vuoi vedere cosa succedeva davvero dietro le quinte di Itineraria?</p>
-
-      <button type="button" id="openEasterEgg" class="magic-button">
-        <span><i class="fa-solid fa-wand-magic-sparkles"></i> Premi il bottone proibito</span>
-      </button>
-    </div>
-  </div>
+<div class="about-wrapper">
+<div class="about-secret-box">
+<span class="about-label">PSST...</span>
+<h2>C'è qualcosa che non ti abbiamo ancora raccontato.</h2>
+<p>Prima di chiudere, abbiamo ancora qualche ringraziamento da fare.</p>
+<button type="button" id="openEasterEgg" class="magic-button"><span><i class="fa-solid fa-wand-magic-sparkles"></i> Premi il bottone proibito</span></button>
+</div>
+</div>
 </section>
+</main>
 
 <div id="easterEggModal" class="easter-egg-modal" aria-hidden="true">
-  <div class="easter-egg-backdrop" id="easterEggBackdrop"></div>
+<div class="easter-egg-backdrop" id="easterEggBackdrop"></div>
+<div class="easter-egg-confetti" id="easterEggConfetti"></div>
+<div class="easter-egg-box" id="easterEggBox">
 
-  <div class="easter-egg-box" id="easterEggBox">
-    <button type="button" id="closeEasterEgg" class="easter-egg-close" aria-label="Chiudi">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
+<button type="button" id="closeEasterEgg" class="easter-egg-close" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
 
-    <div class="easter-egg-badge">
-      <i class="fa-solid fa-lock-open"></i>
-      EASTER EGG SBLOCCATO
-    </div>
+<div class="easter-egg-badge"><i class="fa-solid fa-graduation-cap"></i> GRAZIE GENERATION</div>
+<h2 class="easter-egg-title">Prima di chiudere...</h2>
+<p class="easter-egg-subtitle">Questo progetto porta con sé anche tutto il percorso che ci ha portati fino a qui.</p>
 
-    <h2 class="easter-egg-title">I Quattro Moschettieri</h2>
-
-    <p class="easter-egg-subtitle">
-      Uno per tutti. Tutti per Itineraria.
-    </p>
-
-    <div class="easter-egg-image-wrap">
-      <img th:src="@{/images/easter-egg-meme.png}"
-           src="/images/easter-egg-meme.png"
-           alt="Il team Itineraria dietro le quinte"
-           class="easter-egg-image">
-    </div>
-
-    <p class="easter-egg-caption" id="easterEggCaption">
-      Quattro persone, centinaia di righe di codice, bug ovunque e una quantità non dichiarata di pazienza.
-    </p>
-
-    <button type="button" id="playMagicBtn" class="easter-egg-magic-btn">
-      <i class="fa-solid fa-champagne-glasses"></i>
-      Festeggiamo ancora
-    </button>
-
-    <div class="easter-egg-confetti" id="easterEggConfetti"></div>
-  </div>
+<div class="generation-final-thanks">
+<div class="generation-final-icon"><i class="fa-solid fa-heart"></i></div>
+<p>Un grazie speciale a tutti i docenti di <strong>Generation Italy</strong> che ci hanno accompagnato durante questo percorso, tra Java, database, Spring Boot, frontend, errori, correzioni e infinite domande.</p>
+<p>Ci avete dato gli strumenti per trasformare quello che abbiamo imparato in qualcosa di nostro: <strong>Itineraria.</strong></p>
+<div class="generation-signature">Giulia · Sami · Maria · Samuele ❤️</div>
 </div>
 
-<section class="about-manifesto">
-  <div class="about-wrapper">
-    <span class="about-label">PERCHÉ ITINERARIA</span>
-    <blockquote>“Le città sono piene di luoghi. Noi volevamo costruire un modo migliore per scoprirli.”</blockquote>
-    <p>Itineraria vuole aiutare le persone a guardare una città con occhi diversi: non soltanto attraverso i luoghi più conosciuti, ma attraverso esperienze, spazi, eventi e piccoli angoli che possono trasformare una giornata.</p>
-  </div>
-</section>
+<div class="fifth-musketeer-intro">
+<span>MA NON È FINITA...</span>
+<h3>C'è qualcuno che manca all'appello.</h3>
+<p>Un quinto moschettiere è comparso proprio quando il tempo stringeva e i bug sembravano moltiplicarsi.</p>
+</div>
 
+<button type="button" id="revealClaudioBtn" class="easter-egg-magic-btn easter-egg-orange-btn"><i class="fa-solid fa-eye"></i> Svela il quinto moschettiere</button>
+
+<div class="claudio-reveal" id="claudioReveal" aria-hidden="true">
+<div class="claudio-image-secret">
+<img th:src="@{/images/grazie-claude.png}" src="/images/grazie-claude.png" alt="Il nostro quinto moschettiere">
+</div>
+<div class="claudio-message">
+<span>IL QUINTO MOSCHETTIERE</span>
+<h3>Un grazie speciale al nostro grande Claudio.</h3>
+<p>Quando nelle ultime ore il tempo stringeva, i bug aumentavano e la speranza diminuiva... è arrivato lui. Il nostro soccorso in extremis, promosso ufficialmente a quinto moschettiere.</p>
+</div>
+</div>
+
+<button type="button" id="revealMemeBtn" class="easter-egg-magic-btn meme-button"><i class="fa-solid fa-lock"></i> Svela il vero dietro le quinte</button>
+
+<div class="easter-egg-meme-reveal" id="easterEggMemeReveal" aria-hidden="true">
+<div class="easter-egg-image-wrap">
+<img th:src="@{/images/easter-egg-meme.png}" src="/images/easter-egg-meme.png" alt="Il team Itineraria dietro le quinte" class="easter-egg-image">
+</div>
+<p class="easter-egg-caption" id="easterEggCaption">Quattro persone, centinaia di righe di codice, bug ovunque e una quantità non dichiarata di pazienza.</p>
+<button type="button" id="playMagicBtn" class="easter-egg-magic-btn party-button"><i class="fa-solid fa-champagne-glasses"></i> Festeggiamo ancora</button>
+</div>
+
+
+</div>
+</div>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <script th:src="@{/js/faq/chi-siamo.js}" defer></script>
