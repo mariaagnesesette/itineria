@@ -1,103 +1,185 @@
 document.addEventListener("DOMContentLoaded",()=>{
-const button=document.getElementById("magicButton");
-const reveal=document.getElementById("secretReveal");
-const box=document.getElementById("secretBox");
-if(!button||!reveal||!box)return;
 
-let discovered=false;
+const openBtn=document.getElementById("openEasterEgg");
+const closeBtn=document.getElementById("closeEasterEgg");
+const modal=document.getElementById("easterEggModal");
+const backdrop=document.getElementById("easterEggBackdrop");
 
-button.addEventListener("click",()=>{
-reveal.classList.toggle("is-visible");
-reveal.setAttribute("aria-hidden",reveal.classList.contains("is-visible")?"false":"true");
+const revealClaudioBtn=document.getElementById("revealClaudioBtn");
+const claudioReveal=document.getElementById("claudioReveal");
 
-if(!discovered){
-discovered=true;
-button.innerHTML='<span><i class="fa-solid fa-sparkles"></i> Segreto scoperto</span>';
+const revealMemeBtn=document.getElementById("revealMemeBtn");
+const memeReveal=document.getElementById("easterEggMemeReveal");
+
+const magicBtn=document.getElementById("playMagicBtn");
+const confettiBox=document.getElementById("easterEggConfetti");
+const eggBox=document.getElementById("easterEggBox");
+const imageWrap=document.querySelector(".easter-egg-image-wrap");
+const caption=document.getElementById("easterEggCaption");
+
+if(!openBtn||!closeBtn||!modal||!eggBox)return;
+
+const captions=[
+"Quattro persone, centinaia di righe di codice, bug ovunque e una quantità non dichiarata di pazienza.",
+"Quando finalmente funziona e nessuno osa più toccare il codice.",
+"Prima il debug. Poi gli applausi.",
+"Errore 500? Non sappiamo di cosa stai parlando.",
+"Funziona. Non sappiamo perché. Non tocchiamo più niente.",
+"Il vero progetto erano i bug che abbiamo risolto lungo il percorso."
+];
+
+function launchConfetti(){
+if(!confettiBox)return;
+
+const colors=["#c85a32","#e27a4d","#223625","#4f6b57","#f0c36d","#ffffff"];
+
+for(let i=0;i<55;i++){
+const piece=document.createElement("span");
+
+piece.className="confetti-piece";
+piece.style.left=Math.random()*100+"%";
+piece.style.top="-20px";
+piece.style.background=colors[Math.floor(Math.random()*colors.length)];
+piece.style.animationDuration=(1000+Math.random()*1000)+"ms";
+piece.style.animationDelay=(Math.random()*150)+"ms";
+
+confettiBox.appendChild(piece);
+
+setTimeout(()=>{
+piece.remove();
+},2300);
 }
 
-const symbols=["✦","✧","★","✦","✧","★","✦","★","✧","✦","★","✧"];
+eggBox.classList.remove("party");
+void eggBox.offsetWidth;
+eggBox.classList.add("party");
 
-symbols.forEach((symbol,index)=>{
+if(imageWrap){
+imageWrap.classList.remove("party");
+void imageWrap.offsetWidth;
+imageWrap.classList.add("party");
+}
+}
+
+function openModal(){
+modal.classList.add("is-open");
+modal.setAttribute("aria-hidden","false");
+document.body.style.overflow="hidden";
+
+eggBox.scrollTop=0;
+
+launchConfetti();
+}
+
+function closeModal(){
+modal.classList.remove("is-open");
+modal.setAttribute("aria-hidden","true");
+document.body.style.overflow="";
+}
+
+openBtn.addEventListener("click",openModal);
+
+closeBtn.addEventListener("click",closeModal);
+
+if(backdrop){
+backdrop.addEventListener("click",closeModal);
+}
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape"&&modal.classList.contains("is-open")){
+closeModal();
+}
+});
+
+/* =========================
+   QUINTO MOSCHETTIERE
+   ========================= */
+
+if(revealClaudioBtn&&claudioReveal){
+
+revealClaudioBtn.addEventListener("click",()=>{
+
+const visible=claudioReveal.classList.toggle("is-visible");
+
+claudioReveal.setAttribute(
+"aria-hidden",
+visible?"false":"true"
+);
+
+revealClaudioBtn.innerHTML=visible
+?'<i class="fa-solid fa-hands-praying"></i> Quinto moschettiere rivelato'
+:'<i class="fa-solid fa-eye"></i> Svela il quinto moschettiere';
+
+if(visible){
+
+launchConfetti();
+
 setTimeout(()=>{
-const spark=document.createElement("span");
-spark.className="magic-spark";
-spark.textContent=symbol;
-spark.style.left=(10+Math.random()*80)+"%";
-spark.style.bottom=(10+Math.random()*15)+"px";
-spark.style.animationDelay=(Math.random()*.25)+"s";
-box.appendChild(spark);
-setTimeout(()=>spark.remove(),2200);
-},index*55);
+eggBox.scrollTo({
+top:claudioReveal.offsetTop-20,
+behavior:"smooth"
 });
-});
+},350);
+
+}
+
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const openBtn = document.getElementById("openEasterEgg");
-  const closeBtn = document.getElementById("closeEasterEgg");
-  const modal = document.getElementById("easterEggModal");
-  const magicBtn = document.getElementById("playMagicBtn");
-  const confettiBox = document.getElementById("easterEggConfetti");
-  const eggBox = document.getElementById("easterEggBox");
-  const imageWrap = document.querySelector(".easter-egg-image-wrap");
+}
 
-  if (!openBtn || !closeBtn || !modal) return;
+/* =========================
+   MEME DIETRO LE QUINTE
+   ========================= */
 
-  function launchConfetti() {
-    const colors = ["#c85a32", "#e27a4d", "#223625", "#4f6b57", "#f0c36d", "#ffffff"];
+if(revealMemeBtn&&memeReveal){
 
-    for (let i = 0; i < 36; i++) {
-      const piece = document.createElement("span");
-      piece.className = "confetti-piece";
-      piece.style.left = Math.random() * 100 + "%";
-      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-      piece.style.animationDuration = (1000 + Math.random() * 900) + "ms";
-      piece.style.animationDelay = (Math.random() * 200) + "ms";
-      piece.style.transform = `translateY(-40px) rotate(${Math.random() * 360}deg)`;
-      confettiBox.appendChild(piece);
+revealMemeBtn.addEventListener("click",()=>{
 
-      setTimeout(() => {
-        piece.remove();
-      }, 2200);
-    }
+const visible=memeReveal.classList.toggle("is-visible");
 
-    eggBox.classList.remove("party");
-    imageWrap.classList.remove("party");
+memeReveal.setAttribute(
+"aria-hidden",
+visible?"false":"true"
+);
 
-    void eggBox.offsetWidth;
-    void imageWrap.offsetWidth;
+revealMemeBtn.innerHTML=visible
+?'<i class="fa-solid fa-lock-open"></i> Dietro le quinte sbloccato'
+:'<i class="fa-solid fa-lock"></i> Svela il vero dietro le quinte';
 
-    eggBox.classList.add("party");
-    imageWrap.classList.add("party");
-  }
+if(visible){
 
-  function openModal() {
-    modal.classList.add("is-open");
-    document.body.style.overflow = "hidden";
-    launchConfetti();
-  }
+launchConfetti();
 
-  function closeModal() {
-    modal.classList.remove("is-open");
-    document.body.style.overflow = "";
-  }
+setTimeout(()=>{
+eggBox.scrollTo({
+top:memeReveal.offsetTop-20,
+behavior:"smooth"
+});
+},350);
 
-  openBtn.addEventListener("click", openModal);
-  closeBtn.addEventListener("click", closeModal);
+}
 
-  modal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("easter-egg-backdrop")) {
-      closeModal();
-    }
-  });
+});
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeModal();
-    }
-  });
+}
 
-  if (magicBtn) {
-    magicBtn.addEventListener("click", launchConfetti);
-  }
+/* =========================
+   FESTEGGIAMO ANCORA
+   ========================= */
+
+if(magicBtn){
+
+magicBtn.addEventListener("click",()=>{
+
+launchConfetti();
+
+if(caption){
+caption.textContent=
+captions[Math.floor(Math.random()*captions.length)];
+}
+
+});
+
+}
+
 });
