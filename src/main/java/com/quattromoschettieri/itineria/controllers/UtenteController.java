@@ -106,7 +106,7 @@ public class UtenteController {
 
         utenteService.update(utente.getId(), dto);
 
-        return "redirect:/utente/profilo";
+        return "redirect:/utente";
     }
 
     // Mostra il form per cambiare la password
@@ -132,7 +132,7 @@ public class UtenteController {
                 nuovaPassword
         );
 
-        return "redirect:/utente/profilo";
+        return "redirect:/utente";
     }
 
     // Elimina definitivamente l'account dell'utente autenticato
@@ -184,7 +184,7 @@ public class UtenteController {
                 );
         }
 
-        return "redirect:/utente/area-persoale";
+        return "redirect:/utente";
     }
     
 }
